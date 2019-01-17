@@ -1,1 +1,0 @@
-# aimasa.github.io
