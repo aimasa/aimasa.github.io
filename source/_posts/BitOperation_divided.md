@@ -1,5 +1,5 @@
 ---
-title: 位位运算_除法
+title: 位运算_除法
 copyright: true
 date: 2019-02-19 10:48:51
 categories:
