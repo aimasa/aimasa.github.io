@@ -4,10 +4,14 @@ copyright: true
 date: 2019-01-30 16:10:39
 categories:
 - Python
-- range()
+- range()&array[::]
 tags:
 - python的用法
 ---
+
+简单的讲了一下range的用法和array[::]的一些用法
+<!--more-->
+
 [参考博文](www.cnblogs.com/buro79xxd/archive/2011/05/23/2054493.html)
 array = [1, 2, 5, 3, 6, 8, 4]
 
