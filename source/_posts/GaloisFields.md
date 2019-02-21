@@ -1,5 +1,5 @@
 ---
-title: GaloisFields
+title: 伽罗瓦域
 copyright: true
 date: 2019-02-18 10:50:22
 categories:
