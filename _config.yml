@@ -74,25 +74,49 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: blog_themes_next
-live2d: 
-  enable: true
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  model: 
-    use: live2d-widget-model-wanko
-  display: 
-    position: right
-    width: 150
-    height: 300
-  mobile: 
-    show: true
+
 search:
   path: search.xml
   field: post
   format: html
   limit: 10000
+  
+# MathJax Support
+mathjax:
+  enable: true
+  per_page: true
+
+# Live2D
+## https://github.com/EYHN/hexo-helper-live2d
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  debug: false
+  model:
+    use: live2d-widget-model-haruto
+    scale: 1
+    hHeadPos: 0.5
+    vHeadPos: 0.618
+  display:
+    superSample: 2
+    width: 150
+    height: 200
+    position: left
+    hOffset: 0
+    vOffset: -20
+  mobile:
+    show: true
+    scale: 0.5
+  react:
+    opacityDefault: 0.7
+    opacityOnHover: 0.2
+    
+
+  
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 

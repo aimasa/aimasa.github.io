@@ -37,3 +37,5 @@ tags:
 [素因数](https://zhidao.baidu.com/question/105237827.html)：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。
 
 [合数](https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0)：（又叫合成数）每个大于1的整数如果不是质数就是合数。
+
+1不是素数，最小的质数是2
