@@ -1,12 +1,12 @@
  
 
-title: QR_detail_BCH
+title: 了解二维码(三):BCH解码器
 copyright: true
 date: 2019-01-23 21:12:48
 categories:
 - QR
 - 了解二维码
-- BCH解码器
+- 了解二维码(三):BCH解码器
 tags:
 - QR
 ---
@@ -104,50 +104,18 @@ mod2^8就是让加减乘除里面的结果小于2^8，在0-255的区间里面。
 
 但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为[离散对数](http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/)（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。）
 
-    gf_exp = [0] * 512 # Create list of 512 elements. In Python 2.6+, consider using bytearray
-    gf_log = [0] * 256
+   详细内容请看[基于对数的乘除法](https://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/)
 
-    def init_tables(prim=0x11d):
-    '''Precompute the logarithm and anti-log tables for faster computation later, using the provided primitive polynomial.'''
-        # prim is the primitive (binary) polynomial. Since it's a polynomial in the binary sense,
-        # it's only in fact a single galois field value between 0 and 255, and not a list of gf values.
-        global gf_exp, gf_log
-        gf_exp = [0] * 512 # 就是和gf_log相反的表（gf_log值是下标，gf_log的下标是它的值）
-        gf_log = [0] * 256 # (把2的幂和它对应的幂会生成的值通过这个下标和对应的值的关系连在一起)
-        # For each possible value in the galois field 2^8, we will pre-compute the logarithm and anti-logarithm (exponential) of this value
-        x = 1
-        for i in range(0, 255):
-            gf_exp[i] = x # compute anti-log for this value and store it in a table
-            gf_log[x] = i # compute log at the same time
-            x = gf_mult_noLUT(x, 2, prim)
+## 多项式
 
-        # If you use only generator==2 or a power of 2, you can use the following which is faster than gf_mult_noLUT():
-        #x <<= 1 # multiply by 2 (change 1 by another number y to multiply by a power of 2^y)
-        #if x & 0x100: #类似于x> = 256，但速度要快得多
-            #(because 0x100 == 256)
-            #x ^= prim # substract the primary polynomial to the current value (instead of 255, so that we get a unique set made of coprime numbers), this is the core of the tables generation
+维基百科中在介绍RS码前还介绍了伽罗瓦域的多项式，这可能会带来一点混淆，因为伽罗华域的元素本身也是多项式（译注：是系数仅为0、1的多项式）
 
-        #优化：反日志表的大小加倍，这样我们就不需要修改255来保持在边界内
-        #（因为我们主要使用这个表来增加两个GF数，不再增加）。
-        for i in range(255, 512):
-            gf_exp[i] = gf_exp[i - 255]
-        return [gf_log, gf_exp]
+---直接摘自[翻译文档](https://www.felix021.com/blog/read.php?2116)
 
-这段代码会生成一个表，这个表里面是0-256对应的2的这些次幂的答案，然后如果要计算乘法的话，对方给出了一个大值然后用gf_log[x]找出对应的次幂，再进行加法运算。最后的一个循环是为了防止运算出来的幂相加的值超过255，所以把上限改成了512.（$\,2^{255}\,=\,00000001$然后又开始新一轮的循环2次幂。）
+[详细介绍代码](https://aimasa.github.io/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/)
 
-    def gf_mul(x,y):
-    if x==0 or y==0:
-        return 0
-    return gf_exp[gf_log[x] + gf_log[y]]#这样就可以不用再多一步%255去防止gf_exp溢出了的运算了。
+# 参考资料
 
-## 基于对数的除法
+[参考网页](https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders)
 
-    def gf_div(x,y):
-        if y==0:
-            raise ZeroDivisionError()
-        if x==0:
-            return 0
-        return gf_exp[(gf_log[x] + 255 - gf_log[y])% 255]
-
-如果x对应的次幂比y对应的要小的话，加上255找到之后对应的幂还是和本身一样，最后求255的模的意思是让幂保持在0-255之间。0-254内的数值与255-510内的值
-
+[参考网页](https://www.felix021.com/blog/read.php?2116)

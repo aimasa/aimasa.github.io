@@ -1,11 +1,11 @@
 ---
-title: 了解二维码（二）
+title: 了解二维码(二):二维码的编码方式
 copyright: true
 date: 2019-01-21 14:57:33
 categories:
 - QR
 - 了解二维码
-- 二维码的编码方式
+- 了解二维码(二):二维码的编码方式
 tags:
 - QR
 ---
@@ -146,4 +146,4 @@ Error correction bytes: bc 2a 90 13 6b af ef fd 4b e0
 
 为了使我们的QR码解码器**可靠**，我们需要能够**纠正**错误。 本文的下一部分将描述如何通过构造BCH解码器，更具体地说是Reed-Solomon解码器来纠正错误。
 
-[二维码之解码器]()
+[二维码之解码器](https://aimasa.github.io/2019/01/23/BCH/)
