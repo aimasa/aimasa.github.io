@@ -127,10 +127,13 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式. 也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-03-08T06:39:30.653Z">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chenfa.png">
+<meta property="og:updated_time" content="2019-03-29T11:03:35.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解二维码(四)：Reed-Solomon code">
 <meta name="twitter:description" content="在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式. 也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。">
+<meta name="twitter:image" content="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png">
 
 
 
@@ -508,15 +511,15 @@
 return g
 </code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p>
 <h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p>
- <center>![](chufa.png)</center>
+ <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png"></center>
 
 <p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p>
- <center>![](chenfa.png)</center>
+ <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chenfa.png"></center>
 
 <p>于是得出编码信息为12 34 56 37 e6 78 d9。</p>
 <pre><code>def gf_poly_div(dividend, divisor):
-    &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations
-    (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39;
+    &apos;&apos;&apos;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations
+    (doesn&apos;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&apos;&apos;&apos;
     # CAUTION: this function expects polynomials to follow the opposite convention at decoding:
     # the terms must go from the biggest to lowest degree (while most other functions here expect
     # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]
@@ -527,21 +530,21 @@ return g
         #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using
         # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.
         coef = msg_out[i] # precaching
-        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization).
+        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&apos;s also a good optimization).
             for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,
-                                          # because it&#39;s only used to normalize the dividend coefficient
+                                          # because it&apos;s only used to normalize the dividend coefficient
                 if divisor[j] != 0: # log(0) is undefined
                     msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。
                     # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef
 
 # The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor
-# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s
-# what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.
+# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&apos;s
+# what we couldn&apos;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.
     separator = -(len(divisor)-1)
     return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头
 </code></pre><p>然后出来了一个高效的编码方法：</p>
 <pre><code>def rs_encode_msg(msg_in, nsym):
-    &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39;
+    &apos;&apos;&apos;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&apos;&apos;&apos;
     if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))
     gen = rs_generator_poly(nsym)
     # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).
@@ -551,20 +554,20 @@ return g
 
     # Synthetic division main loop
     for i in range(len(msg_in)):
-        # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration
+        # Note that it&apos;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration
         # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,
         # we directly commit them to the output).
         coef = msg_out[i]
 
-        # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check
-        # the divisor here because we know it can&#39;t be 0 since we generated it.
+        # log(0) is undefined, so we need to manually check for this case. There&apos;s no need to check
+        # the divisor here because we know it can&apos;t be 0 since we generated it.
         if coef != 0:
-            # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)
+            # in synthetic division, we always skip the first coefficient of the divisior, because it&apos;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)
             for j in range(1, len(gen)):
                 msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)
 
     # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]
-    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder
+    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&apos;t need the quotient but only the remainder
     # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get
     # our complete codeword composed of the message + code.
     msg_out[:len(msg_in)] = msg_in
@@ -591,7 +594,7 @@ return g
   <p><span>本文标题:</span><a href="/2019/03/05/RS-code/">了解二维码(四)：Reed-Solomon code</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年03月05日 - 16:03</p>
-  <p><span>最后更新:</span>2019年03月08日 - 14:03</p>
+  <p><span>最后更新:</span>2019年03月29日 - 19:03</p>
   <p><span>原始链接:</span><a href="/2019/03/05/RS-code/" title="了解二维码(四)：Reed-Solomon code">http://aimasa.github.io/2019/03/05/RS-code/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/03/05/RS-code/" aria-label="复制成功！"></i></span>
   </p>
@@ -655,8 +658,8 @@ return g
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/05/hexo_next图片无法加载问题/" rel="prev" title="hexo_next图片无法加载问题">
-                hexo_next图片无法加载问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/07/python下划线/" rel="prev" title="python下划线">
+                python下划线 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -763,7 +766,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -875,7 +878,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22k</span>
+    <span title="Site words total count">21.3k</span>
   
 </div>
 
@@ -1530,7 +1533,10 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <!-- 页面点击小红心 -->
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1547,9 +1553,6 @@ var jiathis_config={
 <script type="text/javascript" src="">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

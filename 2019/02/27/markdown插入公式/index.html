@@ -126,10 +126,17 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="实测在该博客中提到的四种在markdown中插入公式的办法">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-03-05T11:39:22.220Z">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_3.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png">
+<meta property="og:updated_time" content="2019-03-29T10:56:01.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="markdown插入公式">
 <meta name="twitter:description" content="实测在该博客中提到的四种在markdown中插入公式的办法">
+<meta name="twitter:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png">
 
 
 
@@ -438,7 +445,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  646
+                  637
                 </span>
               
 
@@ -477,23 +484,23 @@
       
         <p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p>
 <a id="more"></a>
-<h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center>![](fangfa1_1.png)</center>
+<h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png"></center>
 
-<center>=======></center>
+<center>=======&gt;</center>
 
-<center>![](fangfa1_2.png)</center>
+<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png"></center>
 
-<center>![](fangfa1_3.png)</center>
+<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_3.png"></center>
 
 <h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p>
 <pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;
-</code></pre><center>![](fangfa2.png)</center>
+</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png"></center>
 
 <h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p>
-<center>![](fangfa3.png)</center>
+<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png"></center>
 
 <h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p>
-<center>![](fangfa4.png)</center>
+<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png"></center>
 
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p>
 <p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p>
@@ -502,7 +509,7 @@
 <pre><code>$ npm install hexo-math --save
 </code></pre><p>在站点配置文件 _config.yml 中添加：</p>
 <pre><code>math:
-  engine: &#39;mathjax&#39; # or &#39;katex&#39;
+  engine: &apos;mathjax&apos; # or &apos;katex&apos;
   mathjax:
     # src: custom_mathjax_source
     config:
@@ -520,11 +527,11 @@ mathjax:
 hexo math install
 </code></pre><p>然后更改</p>
 <p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p>
-<p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p>
+<p>Step 1:<br>    escape: /^\(<a href="">\`*{}[\</a># +-.!_&gt;])/,</p>
 <p>替换成</p>
 <pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,
-</code></pre><p>这一步是在原基础上取消了对\,{,}的转义(escape)</p>
-<p>Step 2:<br>    em: /^\b<em>((?:[^</em>]|<em>_)+?)</em>\b|^*((?:**|[\s\S])+?)*(?!*)/,</p>
+</code></pre><p>这一步是在原基础上取消了对\\,\{,\}的转义(escape)</p>
+<p>Step 2:<br>    em: /^\b_((?:[^_]|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p>
 <p>替换成</p>
 <pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 </code></pre><p>这样一来MathJax就能与marked.js共存了。</p>
@@ -551,7 +558,7 @@ hexo math install
   <p><span>本文标题:</span><a href="/2019/02/27/markdown插入公式/">markdown插入公式</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年02月27日 - 15:02</p>
-  <p><span>最后更新:</span>2019年03月05日 - 19:03</p>
+  <p><span>最后更新:</span>2019年03月29日 - 18:03</p>
   <p><span>原始链接:</span><a href="/2019/02/27/markdown插入公式/" title="markdown插入公式">http://aimasa.github.io/2019/02/27/markdown插入公式/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/02/27/markdown插入公式/" aria-label="复制成功！"></i></span>
   </p>
@@ -717,7 +724,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -829,7 +836,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22k</span>
+    <span title="Site words total count">21.3k</span>
   
 </div>
 
@@ -1484,7 +1491,10 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <!-- 页面点击小红心 -->
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1501,9 +1511,6 @@ var jiathis_config={
 <script type="text/javascript" src="">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

@@ -127,10 +127,12 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-02-20T12:27:35.194Z">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/BitOperation_mult/field_multiplication.png">
+<meta property="og:updated_time" content="2019-03-29T10:40:03.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算_乘法">
 <meta name="twitter:description" content="伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。">
+<meta name="twitter:image" content="http://pp48biywe.bkt.clouddn.com/static/images/BitOperation_mult/field_multiplication.png">
 
 
 
@@ -439,7 +441,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  141
+                  139
                 </span>
               
 
@@ -477,12 +479,12 @@
 
       
         <p>伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。<br><a id="more"></a></p>
-<center>![](field_multiplication.png)</center>
+<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/BitOperation_mult/field_multiplication.png"><br></center>
 
 <p>其中乘法运算完成后，结果相加的步骤和普通乘法不一样，它用的是异或</p>
 <p>所以根据<a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">该链接中的代码</a>举例:</p>
 <pre><code>def cl_mul(x,y):
-&#39;&#39;&#39;Bitwise carry-less multiplication on integers&#39;&#39;&#39;
+&apos;&apos;&apos;Bitwise carry-less multiplication on integers&apos;&apos;&apos;
     z = 0
     i = 0
     while (y&gt;&gt;i) &gt; 0:
@@ -509,7 +511,7 @@ return z
   <p><span>本文标题:</span><a href="/2019/02/19/BitOperation_mult/">位运算_乘法</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年02月19日 - 10:02</p>
-  <p><span>最后更新:</span>2019年02月20日 - 20:02</p>
+  <p><span>最后更新:</span>2019年03月29日 - 18:03</p>
   <p><span>原始链接:</span><a href="/2019/02/19/BitOperation_mult/" title="位运算_乘法">http://aimasa.github.io/2019/02/19/BitOperation_mult/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/02/19/BitOperation_mult/" aria-label="复制成功！"></i></span>
   </p>
@@ -672,7 +674,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -768,7 +770,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22k</span>
+    <span title="Site words total count">21.3k</span>
   
 </div>
 
@@ -1423,7 +1425,10 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <!-- 页面点击小红心 -->
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1440,9 +1445,6 @@ var jiathis_config={
 <script type="text/javascript" src="">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

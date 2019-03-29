@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-03-29T02:42:21.332Z</updated>
+  <updated>2019-03-29T10:32:51.262Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://aimasa.github.io/2019/03/29/%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
     <id>http://aimasa.github.io/2019/03/29/为Next主题添加统计阅读量的功能以及开评论/</id>
     <published>2019-03-29T01:09:00.000Z</published>
-    <updated>2019-03-29T02:42:21.332Z</updated>
+    <updated>2019-03-29T10:32:51.262Z</updated>
     
     <content type="html"><![CDATA[<h1 id="需要准备工作"><a href="#需要准备工作" class="headerlink" title="需要准备工作"></a>需要准备工作</h1><p>我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。</p><a id="more"></a><h1 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h1><h2 id="开放评论"><a href="#开放评论" class="headerlink" title="开放评论"></a>开放评论</h2><p>注册完这个账号，然后创建项目（企业开发的话要钱，所以选择个人开发）。接着去Next主题里面设置</p><pre><code>valine:  enable: true  appid:  # your leancloud application appid你点进你leancloud账号里新建的项目里面，然后点进设置，会看到项目自动生成的appid，然后复制过来  appkey: # your leancloud application appkey它的位置就在appid下面一行  notify: false # mail notifier , https://github.com/xCss/Valine/wiki通知  verify: false # Verification code验证码（评论前要输入的）  placeholder: Just go go # comment box placeholder评论框提示你输入的话语  avatar: mm # gravatar style默认头像  guest_info: nick,mail # custom comment header评论前要输入的信息  pageSize: 10 # pagination size一页默认展示的评论数</code></pre><p>然后就能开评论了，因为我刚开始设置输入错了appid和appkey，出现了402错误（反正会提示你哪错了，就不做解释辽。）</p><h3 id="给评论加上邮件通知"><a href="#给评论加上邮件通知" class="headerlink" title="给评论加上邮件通知"></a>给评论加上邮件通知</h3><p>这个是跟着<a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank" rel="noopener">这个博客</a>的方法来的，虽然之前的博客教我怎么用leancloud自带的邮件通知功能去提醒别人评论已回复，但是说是因为是正在开发的功能，还不太稳定，同时还会被要求开验证码，觉得很不方便，所以我换了个博客跟着用第三方的邮件提醒功能。</p><p>因为过程有些繁琐，我也只是跟着它的方法来的，所以就只在这放个链接好了。这是个开源项目。</p><h2 id="添加统计阅读量功能"><a href="#添加统计阅读量功能" class="headerlink" title="添加统计阅读量功能"></a>添加统计阅读量功能</h2><p>在你新建的项目的存储里面，新建一个叫Counter的class，ACL权限选择无限制，里面的appid和appkey和上面获取的是一样的，在这里就不讲是怎么去获取的了。</p><pre><code># Show number of visitors to each article.# You can visit https://leancloud.cn get AppID and AppKey.leancloud_visitors:  enable: true  app_id: #AppID  app_key: #AppKey</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://valine.js.org/notify.html" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">参考博客(让博客支持评论功能)</a></p><p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/高级配置.md#自定义邮件模板" target="_blank" rel="noopener">第三方邮件回复自带定时器</a></p>]]></content>
     
@@ -96,9 +96,9 @@
     <link href="http://aimasa.github.io/2019/03/13/eclipse%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81/"/>
     <id>http://aimasa.github.io/2019/03/13/eclipse找不到源码/</id>
     <published>2019-03-13T09:13:31.000Z</published>
-    <updated>2019-03-13T09:21:59.537Z</updated>
+    <updated>2019-03-29T10:41:43.056Z</updated>
     
-    <content type="html"><![CDATA[<p>想看看bitSet的源码，但是点进去却显示Source Not Found</p><a id="more"></a><p>点windows—&gt;preference—&gt;java进入如下界面：</p><center>![](java_jre.png)</center><p>然后用鼠标点击jre一下，使旁边的Edit获得焦点，然后点击Edit，进入如下界面：</p><center>![](java_Edit.png)</center><p>最后选中jdk中的src.zip,点击确定，应用即可</p>]]></content>
+    <content type="html"><![CDATA[<p>想看看bitSet的源码，但是点进去却显示Source Not Found</p><a id="more"></a><p>点windows–&gt;preference–&gt;java进入如下界面：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/eclipse找不到源码/java_jre.png"></center><p>然后用鼠标点击jre一下，使旁边的Edit获得焦点，然后点击Edit，进入如下界面：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/eclipse找不到源码/java_Edit.png"></center><p>最后选中jdk中的src.zip,点击确定，应用即可</p>]]></content>
     
     <summary type="html">
     
@@ -112,20 +112,6 @@
     
     
       <category term="eclipse故障" scheme="http://aimasa.github.io/tags/eclipse%E6%95%85%E9%9A%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>静态工厂（简单工厂）</title>
-    <link href="http://aimasa.github.io/2019/03/12/%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%EF%BC%88%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%EF%BC%89/"/>
-    <id>http://aimasa.github.io/2019/03/12/静态工厂（简单工厂）/</id>
-    <published>2019-03-12T06:05:39.000Z</published>
-    <updated>2019-03-12T06:05:39.399Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
@@ -154,49 +140,13 @@
   </entry>
   
   <entry>
-    <title>脆弱水印与QR</title>
-    <link href="http://aimasa.github.io/2019/03/11/%E8%84%86%E5%BC%B1%E6%B0%B4%E5%8D%B0%E4%B8%8EQR/"/>
-    <id>http://aimasa.github.io/2019/03/11/脆弱水印与QR/</id>
-    <published>2019-03-11T07:04:23.000Z</published>
-    <updated>2019-03-11T07:04:23.428Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>RS解码</title>
-    <link href="http://aimasa.github.io/2019/03/08/RS-decoding/"/>
-    <id>http://aimasa.github.io/2019/03/08/RS-decoding/</id>
-    <published>2019-03-08T06:41:27.000Z</published>
-    <updated>2019-03-08T06:44:40.698Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="QR" scheme="http://aimasa.github.io/categories/QR/"/>
-    
-      <category term="了解二维码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
-    
-      <category term="了解二维码(五)：RS解码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81-%E4%BA%94-%EF%BC%9ARS%E8%A7%A3%E7%A0%81/"/>
-    
-    
-      <category term="QR" scheme="http://aimasa.github.io/tags/QR/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python下划线</title>
     <link href="http://aimasa.github.io/2019/03/07/python%E4%B8%8B%E5%88%92%E7%BA%BF/"/>
     <id>http://aimasa.github.io/2019/03/07/python下划线/</id>
     <published>2019-03-07T03:29:50.000Z</published>
-    <updated>2019-03-11T05:53:13.716Z</updated>
+    <updated>2019-03-29T10:57:30.321Z</updated>
     
-    <content type="html"><![CDATA[<p>在python中经常会遇到下划线”_”的情况</p><a id="more"></a><h1 id="单下划线”-”"><a href="#单下划线”-”" class="headerlink" title="单下划线”_”"></a>单下划线”_”</h1><p>就是无关紧要的变量，就用”_”表示，因为这个值不需要再次引用。</p><p>也可以表达python REPL中最接近一根表达式的结果。</p><h1 id="单前导下划线”-var”"><a href="#单前导下划线”-var”" class="headerlink" title="单前导下划线”_var”"></a>单前导下划线”_var”</h1><p>这是命名约定，就是前面加一个下划线就是暗示别人说这里是私有类，用通配符导入模块时候这个方法（或者变量）是不会跟着包一起导入进去的，但是常规方法调用这个方法（或者变量时候）是不受单个下划线命名约定的影响的。</p><h1 id="单后导下划线”var-”"><a href="#单后导下划线”var-”" class="headerlink" title="单后导下划线”var_”"></a>单后导下划线”var_”</h1><p>就是让该变量名（或者方法名）来避免和python关键词产生冲突。</p><h1 id="双前导下划线”-var”"><a href="#双前导下划线”-var”" class="headerlink" title="双前导下划线”__var”"></a>双前导下划线”__var”</h1><p>当在类上下文中使用，会触发”名称修饰”，由python解释器强制执行。就是在这个双下划线前面加上”_[包名]”</p><center>![](qiandao.png)</center><h1 id="双前导和双末尾下划线-“var“"><a href="#双前导和双末尾下划线-“var“" class="headerlink" title="双前导和双末尾下划线 “var“"></a>双前导和双末尾下划线 “<strong>var</strong>“</h1><p>表示python语言定义的特殊方法。</p><p>最好避免在自己的程序中使用以双下划线（“dunders”）开头和结尾的名称，以避免与将来Python语言的变化产生冲突。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/36173202" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+    <content type="html"><![CDATA[<p>在python中经常会遇到下划线”_”的情况</p><a id="more"></a><h1 id="单下划线”-”"><a href="#单下划线”-”" class="headerlink" title="单下划线”_”"></a>单下划线”_”</h1><p>就是无关紧要的变量，就用”_”表示，因为这个值不需要再次引用。</p><p>也可以表达python REPL中最接近一根表达式的结果。</p><h1 id="单前导下划线”-var”"><a href="#单前导下划线”-var”" class="headerlink" title="单前导下划线”_var”"></a>单前导下划线”_var”</h1><p>这是命名约定，就是前面加一个下划线就是暗示别人说这里是私有类，用通配符导入模块时候这个方法（或者变量）是不会跟着包一起导入进去的，但是常规方法调用这个方法（或者变量时候）是不受单个下划线命名约定的影响的。</p><h1 id="单后导下划线”var-”"><a href="#单后导下划线”var-”" class="headerlink" title="单后导下划线”var_”"></a>单后导下划线”var_”</h1><p>就是让该变量名（或者方法名）来避免和python关键词产生冲突。</p><h1 id="双前导下划线”-var”"><a href="#双前导下划线”-var”" class="headerlink" title="双前导下划线”__var”"></a>双前导下划线”__var”</h1><p>当在类上下文中使用，会触发”名称修饰”，由python解释器强制执行。就是在这个双下划线前面加上”_[包名]”</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/python下划线/qiandao.png"></center><h1 id="双前导和双末尾下划线-“var“"><a href="#双前导和双末尾下划线-“var“" class="headerlink" title="双前导和双末尾下划线 “var“"></a>双前导和双末尾下划线 “<strong>var</strong>“</h1><p>表示python语言定义的特殊方法。</p><p>最好避免在自己的程序中使用以双下划线（“dunders”）开头和结尾的名称，以避免与将来Python语言的变化产生冲突。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/36173202" target="_blank" rel="noopener">参考网页</a></p>]]></content>
     
     <summary type="html">
     
@@ -214,39 +164,13 @@
   </entry>
   
   <entry>
-    <title>hexo_next图片无法加载问题</title>
-    <link href="http://aimasa.github.io/2019/03/05/hexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
-    <id>http://aimasa.github.io/2019/03/05/hexo_next图片无法加载问题/</id>
-    <published>2019-03-05T11:40:52.000Z</published>
-    <updated>2019-03-27T02:24:18.008Z</updated>
-    
-    <content type="html"><![CDATA[<p>错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现</p><pre><code>！[]()</code></pre><p>无法被hexo g解析生成图片链接</p><a id="more"></a><p>用谷歌不管怎么搜索关键词都没有用，所以我直接删掉了”.deploy_git”，然后再用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p><p>但是有时候这个办法还是会失效，然后我参考了<a href="https://850552586.github.io/2018/11/15/hexo%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank" rel="noopener">这篇博客的做法</a>替换掉了hexo-asset-image下载后生成的index.js这个文件（我把它的代码复制到这）</p><pre><code>&#39;use strict&#39;;var cheerio = require(&#39;cheerio&#39;);// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-stringfunction getPosition(str, m, i) {  return str.split(m, i).join(m).length;}var version = String(hexo.version).split(&#39;.&#39;);hexo.extend.filter.register(&#39;after_post_render&#39;, function(data){  var config = hexo.config;  if(config.post_asset_folder){        var link = data.permalink;    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)       var beginPos = getPosition(link, &#39;/&#39;, 1) + 1;    else       var beginPos = getPosition(link, &#39;/&#39;, 3) + 1;    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.    var endPos = link.lastIndexOf(&#39;/&#39;) + 1;    link = link.substring(beginPos, endPos);    var toprocess = [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];    for(var i = 0; i &lt; toprocess.length; i++){      var key = toprocess[i];      var $ = cheerio.load(data[key], {        ignoreWhitespace: false,        xmlMode: false,        lowerCaseTags: false,        decodeEntities: false      });      $(&#39;img&#39;).each(function(){        if ($(this).attr(&#39;src&#39;)){            // For windows style path, we replace &#39;\&#39; to &#39;/&#39;.            var src = $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;/&#39;);            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;               !/^\s*\//.test(src)) {              // For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.              // In addition, to support multi-level local directory.              var linkArray = link.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39;;              });              var srcArray = src.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39; &amp;&amp; elem != &#39;.&#39;;              });                  if(srcArray.length &gt; 1)                srcArray.shift();              src = srcArray.join(&#39;/&#39;);              $(this).attr(&#39;src&#39;, config.root + link + src);              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);            }        }else{            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);            console.info&amp;&amp;console.info($(this));        }      });      data[key] = $.html();    }  }});</code></pre><p>然后再去删掉”.deploy_git”，用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;！[]()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;无法被hexo g解析生成图片链接&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo错误笔记" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="hexo_next图片无法加载问题" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/hexo-next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
-    
-    
-      <category term="hexo err类型" scheme="http://aimasa.github.io/tags/hexo-err%E7%B1%BB%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
     <title>了解二维码(四)：Reed-Solomon code</title>
     <link href="http://aimasa.github.io/2019/03/05/RS-code/"/>
     <id>http://aimasa.github.io/2019/03/05/RS-code/</id>
     <published>2019-03-05T08:31:59.000Z</published>
-    <updated>2019-03-08T06:39:30.653Z</updated>
+    <updated>2019-03-29T11:03:35.525Z</updated>
     
-    <content type="html"><![CDATA[<p>在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.</p><p>也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。</p><a id="more"></a><p>与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。</p><p>我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。</p><p>总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符）</p><blockquote><p>加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。</p></blockquote><h1 id="RS生成多项式"><a href="#RS生成多项式" class="headerlink" title="RS生成多项式"></a>RS生成多项式</h1><p>RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如：</p><blockquote><p>$\,g_{4}\, =\, \left (x-\alpha ^{0}  \right )\left (x-\alpha ^{1}  \right )\left (x-\alpha ^{2}  \right )\left (x-\alpha ^{3}  \right )=  01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$</p></blockquote><p>这是一个计算了指定n个纠错符号的RS码需要的生成多项式。</p><pre><code>def rs_generator_poly(nsym):    g = [1]    for i in range(0, nsym):        g = gf_poly_mul(g, [1, gf_pow(2, i)])return g</code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p><h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p> <center>![](chufa.png)</center><p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p> <center>![](chenfa.png)</center><p>于是得出编码信息为12 34 56 37 e6 78 d9。</p><pre><code>def gf_poly_div(dividend, divisor):    &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations    (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39;    # CAUTION: this function expects polynomials to follow the opposite convention at decoding:    # the terms must go from the biggest to lowest degree (while most other functions here expect    # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]    msg_out = list(dividend) # Copy the dividend    #normalizer = divisor[0] # precomputing for performance    for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1.        #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using        # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.        coef = msg_out[i] # precaching        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization).            for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,                                          # because it&#39;s only used to normalize the dividend coefficient                if divisor[j] != 0: # log(0) is undefined                    msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。                    # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef# The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s# what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.    separator = -(len(divisor)-1)    return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头</code></pre><p>然后出来了一个高效的编码方法：</p><pre><code>def rs_encode_msg(msg_in, nsym):    &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39;    if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))    gen = rs_generator_poly(nsym)    # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).    msg_out = [0] * (len(msg_in) + len(gen)-1)    # Initializing the Synthetic Division with the dividend (= input message     polynomial)    msg_out[:len(msg_in)] = msg_in    # Synthetic division main loop    for i in range(len(msg_in)):        # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration        # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,        # we directly commit them to the output).        coef = msg_out[i]        # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check        # the divisor here because we know it can&#39;t be 0 since we generated it.        if coef != 0:            # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)            for j in range(1, len(gen)):                msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)    # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder    # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get    # our complete codeword composed of the message + code.    msg_out[:len(msg_in)] = msg_in    return msg_out</code></pre><p>这段新的代码把编码和长除法功能加在了一起，语句更简短。</p><p>这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 -  通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名</p>]]></content>
+    <content type="html"><![CDATA[<p>在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.</p><p>也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。</p><a id="more"></a><p>与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。</p><p>我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。</p><p>总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符）</p><blockquote><p>加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。</p></blockquote><h1 id="RS生成多项式"><a href="#RS生成多项式" class="headerlink" title="RS生成多项式"></a>RS生成多项式</h1><p>RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如：</p><blockquote><p>$\,g_{4}\, =\, \left (x-\alpha ^{0}  \right )\left (x-\alpha ^{1}  \right )\left (x-\alpha ^{2}  \right )\left (x-\alpha ^{3}  \right )=  01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$</p></blockquote><p>这是一个计算了指定n个纠错符号的RS码需要的生成多项式。</p><pre><code>def rs_generator_poly(nsym):    g = [1]    for i in range(0, nsym):        g = gf_poly_mul(g, [1, gf_pow(2, i)])return g</code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p><h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png"></center><p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chenfa.png"></center><p>于是得出编码信息为12 34 56 37 e6 78 d9。</p><pre><code>def gf_poly_div(dividend, divisor):    &apos;&apos;&apos;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations    (doesn&apos;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&apos;&apos;&apos;    # CAUTION: this function expects polynomials to follow the opposite convention at decoding:    # the terms must go from the biggest to lowest degree (while most other functions here expect    # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]    msg_out = list(dividend) # Copy the dividend    #normalizer = divisor[0] # precomputing for performance    for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1.        #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using        # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.        coef = msg_out[i] # precaching        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&apos;s also a good optimization).            for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,                                          # because it&apos;s only used to normalize the dividend coefficient                if divisor[j] != 0: # log(0) is undefined                    msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。                    # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef# The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&apos;s# what we couldn&apos;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.    separator = -(len(divisor)-1)    return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头</code></pre><p>然后出来了一个高效的编码方法：</p><pre><code>def rs_encode_msg(msg_in, nsym):    &apos;&apos;&apos;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&apos;&apos;&apos;    if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))    gen = rs_generator_poly(nsym)    # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).    msg_out = [0] * (len(msg_in) + len(gen)-1)    # Initializing the Synthetic Division with the dividend (= input message     polynomial)    msg_out[:len(msg_in)] = msg_in    # Synthetic division main loop    for i in range(len(msg_in)):        # Note that it&apos;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration        # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,        # we directly commit them to the output).        coef = msg_out[i]        # log(0) is undefined, so we need to manually check for this case. There&apos;s no need to check        # the divisor here because we know it can&apos;t be 0 since we generated it.        if coef != 0:            # in synthetic division, we always skip the first coefficient of the divisior, because it&apos;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)            for j in range(1, len(gen)):                msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)    # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&apos;t need the quotient but only the remainder    # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get    # our complete codeword composed of the message + code.    msg_out[:len(msg_in)] = msg_in    return msg_out</code></pre><p>这段新的代码把编码和长除法功能加在了一起，语句更简短。</p><p>这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 -  通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名</p>]]></content>
     
     <summary type="html">
     
@@ -340,20 +264,6 @@
   </entry>
   
   <entry>
-    <title>用户异常行为模式的研究</title>
-    <link href="http://aimasa.github.io/2019/03/01/%E7%94%A8%E6%88%B7%E5%BC%82%E5%B8%B8%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%94%E7%A9%B6/"/>
-    <id>http://aimasa.github.io/2019/03/01/用户异常行为模式的研究/</id>
-    <published>2019-03-01T03:00:44.000Z</published>
-    <updated>2019-03-01T03:00:44.473Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>多源异构数据采集及实体链接算法研究</title>
     <link href="http://aimasa.github.io/2019/03/01/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
     <id>http://aimasa.github.io/2019/03/01/多源异构数据采集及实体链接算法研究/</id>
@@ -380,9 +290,9 @@
     <link href="http://aimasa.github.io/2019/02/27/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
     <id>http://aimasa.github.io/2019/02/27/markdown插入公式/</id>
     <published>2019-02-27T07:22:31.000Z</published>
-    <updated>2019-03-05T11:39:22.220Z</updated>
+    <updated>2019-03-29T10:56:01.787Z</updated>
     
-    <content type="html"><![CDATA[<p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p><a id="more"></a><h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center>![](fangfa1_1.png)</center><center>=======></center><center>![](fangfa1_2.png)</center><center>![](fangfa1_3.png)</center><h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p><pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code></pre><center>![](fangfa2.png)</center><h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p><center>![](fangfa3.png)</center><h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p><center>![](fangfa4.png)</center><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p><p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p><p>（还有根着<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">这个博文</a>改了一下渲染什么的，我也不知道有什么用.）</p><h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>下载插件</p><pre><code>$ npm install hexo-math --save</code></pre><p>在站点配置文件 _config.yml 中添加：</p><pre><code>math:  engine: &#39;mathjax&#39; # or &#39;katex&#39;  mathjax:    # src: custom_mathjax_source    config:      # MathJax config</code></pre><p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:</p><pre><code># MathJax Supportmathjax:  enable: true  per_page: false  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>就是在数学公式的书写代码前面后面各加一个$符号。</p><p>然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。</p><h2 id="最后的使用办法"><a href="#最后的使用办法" class="headerlink" title="最后的使用办法"></a>最后的使用办法</h2><p>我找到了<a href="https://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">这个博客</a><br>根据它里面教我的去执行</p><pre><code>npm install hexo-math --savehexo math install</code></pre><p>然后更改</p><p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p><p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p><p>替换成</p><pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></pre><p>这一步是在原基础上取消了对\,{,}的转义(escape)</p><p>Step 2:<br>    em: /^\b<em>((?:[^</em>]|<em>_)+?)</em>\b|^*((?:**|[\s\S])+?)*(?!*)/,</p><p>替换成</p><pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></pre><p>这样一来MathJax就能与marked.js共存了。</p><p>就这样，我又能很好地插入数学公式了。</p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p><p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p><p>如果该链接打不开，请进入参考文档去寻找正确地址。</p>]]></content>
+    <content type="html"><![CDATA[<p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p><a id="more"></a><h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png"></center><center>=======&gt;</center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png"></center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_3.png"></center><h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p><pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png"></center><h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png"></center><h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png"></center><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p><p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p><p>（还有根着<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">这个博文</a>改了一下渲染什么的，我也不知道有什么用.）</p><h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>下载插件</p><pre><code>$ npm install hexo-math --save</code></pre><p>在站点配置文件 _config.yml 中添加：</p><pre><code>math:  engine: &apos;mathjax&apos; # or &apos;katex&apos;  mathjax:    # src: custom_mathjax_source    config:      # MathJax config</code></pre><p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:</p><pre><code># MathJax Supportmathjax:  enable: true  per_page: false  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>就是在数学公式的书写代码前面后面各加一个$符号。</p><p>然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。</p><h2 id="最后的使用办法"><a href="#最后的使用办法" class="headerlink" title="最后的使用办法"></a>最后的使用办法</h2><p>我找到了<a href="https://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">这个博客</a><br>根据它里面教我的去执行</p><pre><code>npm install hexo-math --savehexo math install</code></pre><p>然后更改</p><p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p><p>Step 1:<br>    escape: /^\(<a href="">\`*{}[\</a># +-.!_&gt;])/,</p><p>替换成</p><pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></pre><p>这一步是在原基础上取消了对\\,\{,\}的转义(escape)</p><p>Step 2:<br>    em: /^\b_((?:[^_]|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p><p>替换成</p><pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></pre><p>这样一来MathJax就能与marked.js共存了。</p><p>就这样，我又能很好地插入数学公式了。</p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p><p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p><p>如果该链接打不开，请进入参考文档去寻找正确地址。</p>]]></content>
     
     <summary type="html">
     
@@ -402,14 +312,14 @@
     <link href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
     <id>http://aimasa.github.io/2019/02/27/离散对数/</id>
     <published>2019-02-27T06:49:07.000Z</published>
-    <updated>2019-02-28T08:59:27.620Z</updated>
+    <updated>2019-03-29T11:06:35.841Z</updated>
     
-    <content type="html"><![CDATA[<p>设g为素数p的模循环群的<a href="https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/">原根</a>,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$</p><p>对任意的a，计算： $b=g^{a}\ mod \ p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。</p><p>因为a、b均为整数，不像实数那么“连续”，故称离散对数。</p><a id="more"></a><p><a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a></p><h1 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h1><h2 id="加密方法1—标准Diffie-Hellman算法"><a href="#加密方法1—标准Diffie-Hellman算法" class="headerlink" title="加密方法1—标准Diffie-Hellman算法"></a>加密方法1—标准Diffie-Hellman算法</h2><p>A发送消息m（0&lt;m&lt;p）给B</p><p>A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A</p><p>B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A</p><p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p><p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p><h2 id="加密方法2—T-ElGamal算法"><a href="#加密方法2—T-ElGamal算法" class="headerlink" title="加密方法2—T. ElGamal算法"></a>加密方法2—T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p><center>![](fangfa1.png)</center><p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p><h2 id="加密方法3—密钥交换"><a href="#加密方法3—密钥交换" class="headerlink" title="加密方法3—密钥交换"></a>加密方法3—密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p><center>![](fangfa2.png)</center><p>这个方法比较容易被程序实现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a}\ mod \ p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>]]></content>
+    <content type="html"><![CDATA[<p>设g为素数p的模循环群的<a href="https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/">原根</a>,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$</p><p>对任意的a，计算： $b=g^{a} mod  p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。</p><p>因为a、b均为整数，不像实数那么“连续”，故称离散对数。</p><a id="more"></a><p><a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a></p><h1 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h1><h2 id="加密方法1–标准Diffie-Hellman算法"><a href="#加密方法1–标准Diffie-Hellman算法" class="headerlink" title="加密方法1–标准Diffie-Hellman算法"></a>加密方法1–标准Diffie-Hellman算法</h2><p>A发送消息m（0&lt;m&lt;p）给B</p><p>A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A</p><p>B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A</p><p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p><p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p><h2 id="加密方法2–T-ElGamal算法"><a href="#加密方法2–T-ElGamal算法" class="headerlink" title="加密方法2–T. ElGamal算法"></a>加密方法2–T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa1.png"></center><p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p><h2 id="加密方法3–密钥交换"><a href="#加密方法3–密钥交换" class="headerlink" title="加密方法3–密钥交换"></a>加密方法3–密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa2.png"></center><p>这个方法比较容易被程序实现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a} mod  p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;设g为素数p的模循环群的&lt;a href=&quot;https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/&quot;&gt;原根&lt;/a&gt;,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$&lt;/p&gt;
-&lt;p&gt;对任意的a，计算： $b=g^{a}\ mod \ p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。&lt;/p&gt;
+&lt;p&gt;对任意的a，计算： $b=g^{a} mod  p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。&lt;/p&gt;
 &lt;p&gt;因为a、b均为整数，不像实数那么“连续”，故称离散对数。&lt;/p&gt;
     
     </summary>
@@ -428,18 +338,16 @@
     <link href="http://aimasa.github.io/2019/02/26/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
     <id>http://aimasa.github.io/2019/02/26/双射单射满射/</id>
     <published>2019-02-26T12:28:07.000Z</published>
-    <updated>2019-02-26T12:33:13.751Z</updated>
+    <updated>2019-03-29T11:10:06.186Z</updated>
     
-    <content type="html"><![CDATA[<p>在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。</p><p>单射：指将不同的变量映射到不同的值的函数。(也就是一对一)</p><p>满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应—可多对一或一对一)</p><p>双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应—一对一）</p><p><img src="//aimasa.github.io/2019/02/26/双射单射满射/she.png" alt=""><br>——————-<a href="https://zh.wikipedia.org/wiki/%E5%8D%95%E5%B0%84%E3%80%81%E5%8F%8C%E5%B0%84%E4%B8%8E%E6%BB%A1%E5%B0%84" target="_blank" rel="noopener">摘自维基百科</a></p>]]></content>
+    <content type="html"><![CDATA[<p>在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。</p><p>单射：指将不同的变量映射到不同的值的函数。(也就是一对一)</p><p>满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应–可多对一或一对一)</p><p>双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应–一对一）</p><a id="more"></a><p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/双射单射满射/she.png"></center></p><p>————-<a href="https://zh.wikipedia.org/wiki/%E5%8D%95%E5%B0%84%E3%80%81%E5%8F%8C%E5%B0%84%E4%B8%8E%E6%BB%A1%E5%B0%84" target="_blank" rel="noopener">摘自维基百科</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。&lt;/p&gt;
+      &lt;p&gt;在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。&lt;/p&gt;
 &lt;p&gt;单射：指将不同的变量映射到不同的值的函数。(也就是一对一)&lt;/p&gt;
-&lt;p&gt;满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有
-      
+&lt;p&gt;满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应–可多对一或一对一)&lt;/p&gt;
+&lt;p&gt;双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应–一对一）&lt;/p&gt;
     
     </summary>
     
@@ -457,13 +365,13 @@
     <link href="http://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/"/>
     <id>http://aimasa.github.io/2019/02/26/原根/</id>
     <published>2019-02-26T07:30:32.000Z</published>
-    <updated>2019-02-28T02:19:45.071Z</updated>
+    <updated>2019-03-29T11:12:56.339Z</updated>
     
-    <content type="html"><![CDATA[<p>其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv\ 1(mod\ m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E6%A0%B9" target="_blank" rel="noopener">参考定理</a></p><center>![](yuangen.png)</center><p>就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。</p><p>所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的）</p><p>存在原根的模乘法群称为循环群。</p><p>原根性质：</p><center>![](xinzhi.png)</center>]]></content>
+    <content type="html"><![CDATA[<p>其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E6%A0%B9" target="_blank" rel="noopener">参考定理</a></p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/yuangen.png"></center><p>就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。</p><p>所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的）</p><p>存在原根的模乘法群称为循环群。</p><p>原根性质：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/xinzhi.png"></center>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv\ 1(mod\ m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根&lt;br&gt;&lt;/p&gt;
+      &lt;p&gt;其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根&lt;br&gt;
     
     </summary>
     
@@ -473,6 +381,130 @@
     
     
       <category term="原根" scheme="http://aimasa.github.io/tags/%E5%8E%9F%E6%A0%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>互质关系</title>
+    <link href="http://aimasa.github.io/2019/02/22/MutRela/"/>
+    <id>http://aimasa.github.io/2019/02/22/MutRela/</id>
+    <published>2019-02-22T08:09:32.000Z</published>
+    <updated>2019-02-26T07:23:43.070Z</updated>
+    
+    <content type="html"><![CDATA[<p>互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。</p><a id="more"></a><p><a href="http://www.wikiwand.com/zh-sg/%E4%BA%92%E8%B3%AA" target="_blank" rel="noopener">参考资料</a><br>通过观察可以发现在以下的情况下，两个数一定会互质。</p><ul><li>两个不同的素数一定互质。例如，2与7、13与19。</li><li>一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。</li><li>1和任何一个自然数都互质。如1和9908。</li><li>2的幂和任何一个奇数都互质。如32和75、256与315。</li><li>相邻两个自然数互质。如15与16。</li><li>相邻两个奇数互质。如49与51。</li><li>较大数是素数，则两个数互质。如97与88。</li><li>两数和是素数，则两个数互质。如52与45。</li><li>两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。</li><li>两数积是无平方数约数的数，则两个数互质。如154与195。</li><li>较大数除以较小数的余数是1或-1，则两个数互质。如440与63。</li><li><strong>辗转相除法</strong>。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。</li><li><p><strong>p是大于1的整数，则p和p-1构成互质关系</strong>，比如57和56。</p></li><li><p><strong>p是大于1的奇数，则p和p-2构成互质关系</strong>，比如17和15。</p></li><li>一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。</li><li>两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。</li><li>两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。</li></ul><p><a href="https://zhidao.baidu.com/question/105237827.html" target="_blank" rel="noopener">素因数</a>：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。</p><p><a href="https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0" target="_blank" rel="noopener">合数</a>：（又叫合成数）每个大于1的整数如果不是质数就是合数。</p><p>1不是素数，最小的质数是2</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
+    
+    
+      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/tags/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>欧拉函数</title>
+    <link href="http://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/"/>
+    <id>http://aimasa.github.io/2019/02/22/欧拉函数/</id>
+    <published>2019-02-22T07:24:26.000Z</published>
+    <updated>2019-03-29T11:09:38.132Z</updated>
+    
+    <content type="html"><![CDATA[<p>欧拉函数：</p><p>若正整数 a , n 互质，则  aφ(n) ≡ 1(mod n)   其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。</p><p>欧拉定理：</p><p>如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立</p><a id="more"></a><p><a href="https://www.kancloud.cn/kancloud/rsa_algorithm/48487" target="_blank" rel="noopener">参考资料</a></p><p><a href="https://aimasa.github.io/2019/02/22/MutRela/">互质关系</a></p><h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>用来思考的问题：<br>任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p><p>n=1时候，φ(n=1)=1,因为1和任何数互质。</p><p>n为素数的时候，φ(n)=n-1，因为素数和每个小于自己的数都互质。</p><p>n=p^k,p为素数时候，p^k中存在很多和p有倍数关系的数字，1 x p，2 x p，……p^(k-1) x p。由列出的公式看出，一共有p^(k-1)个和p有倍数关系的数字，所以φ(p^k)=p^(k)-p^(k-1)</p><p>如果n能分解成两个互质的整数之积，n=p1 x p2,则φ(n) = φ(p1p2) = φ(p1)φ(p2).(即积的欧拉函数等于各个因子的欧拉函数之积。比如，φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24。)</p><p>以上这四个方法，可以任意运用来得出自己想要的结果</p><h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>如果正整数a和n互为质数，那么n的欧拉公式φ(n)可以让下列公式成立：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/欧拉函数/Eular.png"></center><p>这样，a^(φ(n))减掉1就能被n整除了。</p><p>而且，欧拉定理的特殊情况就是<a href="https://aimasa.github.io/2019/02/20/discreteLogarithm/">费马小定理</a></p><h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>就是正整数a和n互为质数，那么一定存在b使得</p><p>ab ≡ 1(mod n)</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;欧拉函数：&lt;/p&gt;
+&lt;p&gt;若正整数 a , n 互质，则  aφ(n) ≡ 1(mod n)   其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。&lt;/p&gt;
+&lt;p&gt;欧拉定理：&lt;/p&gt;
+&lt;p&gt;如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="欧拉函数&amp;欧拉定理" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
+    
+    
+      <category term="欧拉函数&amp;欧拉定理" scheme="http://aimasa.github.io/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>同余</title>
+    <link href="http://aimasa.github.io/2019/02/21/%E5%90%8C%E4%BD%99/"/>
+    <id>http://aimasa.github.io/2019/02/21/同余/</id>
+    <published>2019-02-21T11:23:44.000Z</published>
+    <updated>2019-03-29T11:11:39.298Z</updated>
+    
+    <content type="html"><![CDATA[<p>同余是数论中的一种等价关系。符号是≡，有两个正整数，一起除以一个相同的正整数，得出的余数一样的话，那么称这两个正整数同余。</p><a id="more"></a><p><a href="https://zh.wikipedia.org/wiki/%E5%90%8C%E9%A4%98" target="_blank" rel="noopener">参考维基百科</a></p><p>就是，正整数a,b取模c的值是一样的，那么我们可以这样去表示它：</p><pre><code>a ≡ b(mod c)</code></pre><p>可以读作a同余于b模c。</p><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h2 id="整除性"><a href="#整除性" class="headerlink" title="整除性"></a>整除性</h2><pre><code>a ≡ b(mod c) =&gt; cm = a-b =&gt; m | (a-b) [c属于Z]</code></pre><p>m | (a-b): (a-b)是m的倍数</p><h2 id="保持基本运算"><a href="#保持基本运算" class="headerlink" title="保持基本运算"></a>保持基本运算</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/gongshi.png"></center><h2 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h2><pre><code>a ≡ b(mod m) b ≡ d(mod m) =&gt;a ≡ d(mod m)  </code></pre><h2 id="放大缩小模数"><a href="#放大缩小模数" class="headerlink" title="放大缩小模数"></a>放大缩小模数</h2>  <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/bigsmall.png"></center><h2 id="除法原理一"><a href="#除法原理一" class="headerlink" title="除法原理一"></a>除法原理一</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/chufa.png"></center><h2 id="除法原理二"><a href="#除法原理二" class="headerlink" title="除法原理二"></a>除法原理二</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/yuanli.png"></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;同余是数论中的一种等价关系。符号是≡，有两个正整数，一起除以一个相同的正整数，得出的余数一样的话，那么称这两个正整数同余。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="离散对数" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
+    
+      <category term="同余" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/%E5%90%8C%E4%BD%99/"/>
+    
+    
+      <category term="同余" scheme="http://aimasa.github.io/tags/%E5%90%8C%E4%BD%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RSA算法</title>
+    <link href="http://aimasa.github.io/2019/02/21/RSA-key/"/>
+    <id>http://aimasa.github.io/2019/02/21/RSA-key/</id>
+    <published>2019-02-21T06:16:45.000Z</published>
+    <updated>2019-02-26T06:02:47.770Z</updated>
+    
+    <content type="html"><![CDATA[<p>RSA公钥算法是现在非常普遍的存在，因为它的高运算量所以导致难破解，其实最主要的原因是现有的计算机的运算能力还没有那么强，没办法对巨大的加密数进行因式分解。</p><p>目前公开破译的位数是768位，实际使用一般是1024位或是2048位，所以理论上特别的安全。<br><a id="more"></a><br><a href="https://blog.csdn.net/u014044812/article/details/80866759" target="_blank" rel="noopener">证明方法</a></p><p><a href="https://www.zhihu.com/question/25038691" target="_blank" rel="noopener">公私钥生成步骤</a></p><h1 id="公钥私钥生成"><a href="#公钥私钥生成" class="headerlink" title="公钥私钥生成"></a>公钥私钥生成</h1><p>先选取两个质数q,p</p><blockquote><p>n = p * q</p></blockquote><p>然后算出n的 <a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉函数</a> φ(n)</p><blockquote><p>φ(n)=(p-1)(q-1)</p></blockquote><p>从1-φ(n)中选出一个质数e，这个e要和φ(n)互质</p><p>对e取反模</p><blockquote><p>ed ≡ 1 (mod φ(n))</p></blockquote><p>根据同余的定义，这个式子可以延展为：</p><blockquote><p>ed - 1 = kφ(n)</p></blockquote><p>根据已知的φ(n)和e得出d的值(会有很多组值，取其一即可)<br>以此得出公钥(n,e) 私钥(n,d)</p><h1 id="加密解密"><a href="#加密解密" class="headerlink" title="加密解密"></a>加密解密</h1><h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><p> m为需要被加密的信息<br> c为会生成的信息</p><p>m^e ≡ c(mod n)</p><h2 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h2><p>c^d ≡ m(mod n)</p><h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><h3 id="验证解密公式成立"><a href="#验证解密公式成立" class="headerlink" title="验证解密公式成立"></a>验证解密公式成立</h3><p>对解密公式c^d ≡ m(mod n)进行验证</p><p>根据加密公式 </p><blockquote><p>m^e ≡ c(mod n) =&gt; m^e - c =kn =&gt;c = m^e -kn</p></blockquote><p>把c代入我们要证明的解密公式</p><blockquote><p>(m^e - kn)^d ≡ m(mod n) </p></blockquote><p>因为kn能被n整除，所以在拆这种多项式的时候，能被n整除的数可以留下，因为只有不能被n整除的数才能够产生余数。所以得出下面的公式</p><blockquote><p>m^ed ≡ m(mod n)</p></blockquote><p>又因为ed等于kφ(n)+1，故得出如下公式</p><blockquote><p>m^(kφ(n)+1) ≡ m(mod n)</p></blockquote><p>所以，我们只要证明这个公式成立，就证明解密公式的成立，也就证明了RSA算法的成立。</p><h4 id="两部分证明"><a href="#两部分证明" class="headerlink" title="两部分证明"></a>两部分证明</h4><h5 id="m与n互质"><a href="#m与n互质" class="headerlink" title="m与n互质"></a>m与n互质</h5><p>根据<a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉定理</a>得出如下公式</p><blockquote><p>m^φ(n) ≡ 1(mod n) =&gt; m^φ(n)-1 = kn =&gt;m^φ(n) = kn + 1<br>(m^φ(n))^h = (kn + 1)^h </p></blockquote><p>而对(kn + 1)^h 对n取模为1，可以推出</p><blockquote><p>(kn + 1)^h ≡ 1(mod n) =&gt; (m^φ(n))^h ≡ 1(mod n)<br>=&gt; m^(kφ(n)+1) ≡ m(mod n)</p></blockquote><p>该式子成立</p><h5 id="m与n不互质"><a href="#m与n不互质" class="headerlink" title="m与n不互质"></a>m与n不互质</h5><p>m和n不互质时候，所以n和m一定有除1以外的公因子，又因为n等于质数p和质数q的乘积(<strong>两个质数之积是合数，但该合数只有四个因子，因数除了1和它本身外还有这两个质数因子。</strong>)所以，m必然等于kq或kp。</p><p>以m=kq为例，那么m一定和p互质(<strong>一个素数，另一个数不为它的倍数，那么两个数一定互质</strong>)——&gt;根据<a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉定理</a>可得出如下公式：</p><blockquote><p>(kq)^φ(p) ≡ 1 (mod p)</p></blockquote><p>因为p为质数，所以</p><blockquote><p>φ(p)= p - 1</p></blockquote><p>可以得出</p><blockquote><p>(kq)^(p - 1) ≡ 1 (mod p)  </p><p>((kq)^(p - 1))^h(q - 1) x kq ≡ kq (mod p) </p><p>(kq)^(hφ(n) + 1) ≡ kq (mod p)</p></blockquote><p>又因为(因为上式中的h可以为任意数字，所以假定h为下式中的h)</p><blockquote><p>ed ≡ 1(modφ(n)) → ed = hφ(n)+1 → ed = h(p−1)(q−1)+1 </p></blockquote><p>故</p><blockquote><p>(kq)^ed ≡ kq (mod p)</p><p>(kq)^ed - kq = tp</p></blockquote><p>因为等式左边对q取模为零，所以右边一定也为零，所以tp中t一定是q的倍数，令t=uq</p><blockquote><p>(kq)^ed - kq = uqp</p></blockquote><p>又因为n = pq, m = kq，所以</p><blockquote><p>m^ed -m = un</p><p>m^ed ≡m(modn)</p></blockquote><p>又因为生成密钥的第五步中我们取e并求了他对φ(n)的模反元素d：</p><blockquote><p>ed≡1(modφ(n))→ed=hφ(n)+1</p></blockquote><p>将ed代入上式得：</p><blockquote><p>m^(hφ(n)+1) ≡ m(modn)</p></blockquote><p>故当m与n不互质时候，证明原式成功。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RSA公钥算法是现在非常普遍的存在，因为它的高运算量所以导致难破解，其实最主要的原因是现有的计算机的运算能力还没有那么强，没办法对巨大的加密数进行因式分解。&lt;/p&gt;
+&lt;p&gt;目前公开破译的位数是768位，实际使用一般是1024位或是2048位，所以理论上特别的安全。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="RSA算法" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/RSA%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="RSA算法" scheme="http://aimasa.github.io/tags/RSA%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>欧几里得算法（了解了一下贝祖等式）</title>
+    <link href="http://aimasa.github.io/2019/02/20/Euclidean/"/>
+    <id>http://aimasa.github.io/2019/02/20/Euclidean/</id>
+    <published>2019-02-20T12:16:33.000Z</published>
+    <updated>2019-02-21T06:04:23.794Z</updated>
+    
+    <content type="html"><![CDATA[<p>它是求最大公约数的算法。<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E8%BC%BE%E8%BD%89%E7%9B%B8%E9%99%A4%E6%B3%95#%E8%AE%A1%E7%AE%97%E5%95%86%E5%92%8C%E4%BD%99%E6%95%B0" target="_blank" rel="noopener">参考链接</a><br>a x b =c  c是a的倍数，a是c的约数。<br>最大公约数就是能够整除几个自然数中的最大的一个</p><p>欧几里得算法则是用于计算两个整数的最大公约数，它又被叫做最大公约数</p><p>两个整数的最大公约数表示方法：GCD(a,b)</p><p>欧几里得的辗转相除法其实可以用来计算任意多整数的最大公约数。</p><p>算法描述：GCD(a,b)=c时候，除掉小学时候学的分解这两个数，取共有的公约数，然后把它们相乘之外，还可以用另外一种方法把c求出来——就是用a,b两个数中最大的那个数减去最小的那个数，然后那个最大的数就变成得出的差值，以此循环，直到有一个数变成零为止，另一个不为零的数就是它们的最大公约数。</p><p>用辗转相除法算最大公约数效率非常高。</p><p>eg:</p><pre><code>252 105 的最大公约数147 105（252-105）42  105（147-105）42  63 （105-42）42  21 （63-42）21  21 （随便哪边减掉哪边）0   21</code></pre><p>因为在这个辗转相除的过程中，它可以一个数大于另一个数大很多（比如42和105）这时候，105需要减掉2次42才能得到比42更小的数字，所以这里可以考虑除法求余的办法。105 mod 42=21，这样又快又准，还方便。</p><pre><code>252 105（252 mod 105）42  105（105 mod 42）42  21 （42 mod 21）0   21 （正好结果是0，所以21是最大公约数）</code></pre><p>所以，ua+vb的值的集合，都是c的倍数。—-因为a和b的最大公约数是c，即都能被c整除，这个是贝祖等式提出的定义</p><p>a和b的最大公约数叫做a和b的<strong>理想</strong>的生成元素。这个最大公约数的定义导出了两个现代抽象代数的概念：<strong>主理想（由单个元素生成的理想）</strong> 以及<strong>主理想整环（其每一理想都是主理想的整环）</strong>。</p><p>GCD(a,b)=1那么这两个数一定互质</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;它是求最大公约数的算法。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="欧几里得算法/辗转相除法及贝祖等式" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E5%8F%8A%E8%B4%9D%E7%A5%96%E7%AD%89%E5%BC%8F/"/>
+    
+    
+      <category term="欧几里得算法/辗转相除法简略介绍及贝祖等式" scheme="http://aimasa.github.io/tags/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E7%AE%80%E7%95%A5%E4%BB%8B%E7%BB%8D%E5%8F%8A%E8%B4%9D%E7%A5%96%E7%AD%89%E5%BC%8F/"/>
     
   </entry>
   
