@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>aimasa的个人博客</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://aimasa.github.io/"/>
+  <updated>2019-03-29T02:42:21.332Z</updated>
+  <id>http://aimasa.github.io/</id>
+  
+  <author>
+    <name>ZHY</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为Next主题添加统计阅读量的功能以及开评论</title>
+    <link href="http://aimasa.github.io/2019/03/29/%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
+    <id>http://aimasa.github.io/2019/03/29/为Next主题添加统计阅读量的功能以及开评论/</id>
+    <published>2019-03-29T01:09:00.000Z</published>
+    <updated>2019-03-29T02:42:21.332Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="需要准备工作"><a href="#需要准备工作" class="headerlink" title="需要准备工作"></a>需要准备工作</h1><p>我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。</p><a id="more"></a><h1 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h1><h2 id="开放评论"><a href="#开放评论" class="headerlink" title="开放评论"></a>开放评论</h2><p>注册完这个账号，然后创建项目（企业开发的话要钱，所以选择个人开发）。接着去Next主题里面设置</p><pre><code>valine:  enable: true  appid:  # your leancloud application appid你点进你leancloud账号里新建的项目里面，然后点进设置，会看到项目自动生成的appid，然后复制过来  appkey: # your leancloud application appkey它的位置就在appid下面一行  notify: false # mail notifier , https://github.com/xCss/Valine/wiki通知  verify: false # Verification code验证码（评论前要输入的）  placeholder: Just go go # comment box placeholder评论框提示你输入的话语  avatar: mm # gravatar style默认头像  guest_info: nick,mail # custom comment header评论前要输入的信息  pageSize: 10 # pagination size一页默认展示的评论数</code></pre><p>然后就能开评论了，因为我刚开始设置输入错了appid和appkey，出现了402错误（反正会提示你哪错了，就不做解释辽。）</p><h3 id="给评论加上邮件通知"><a href="#给评论加上邮件通知" class="headerlink" title="给评论加上邮件通知"></a>给评论加上邮件通知</h3><p>这个是跟着<a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank" rel="noopener">这个博客</a>的方法来的，虽然之前的博客教我怎么用leancloud自带的邮件通知功能去提醒别人评论已回复，但是说是因为是正在开发的功能，还不太稳定，同时还会被要求开验证码，觉得很不方便，所以我换了个博客跟着用第三方的邮件提醒功能。</p><p>因为过程有些繁琐，我也只是跟着它的方法来的，所以就只在这放个链接好了。这是个开源项目。</p><h2 id="添加统计阅读量功能"><a href="#添加统计阅读量功能" class="headerlink" title="添加统计阅读量功能"></a>添加统计阅读量功能</h2><p>在你新建的项目的存储里面，新建一个叫Counter的class，ACL权限选择无限制，里面的appid和appkey和上面获取的是一样的，在这里就不讲是怎么去获取的了。</p><pre><code># Show number of visitors to each article.# You can visit https://leancloud.cn get AppID and AppKey.leancloud_visitors:  enable: true  app_id: #AppID  app_key: #AppKey</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://valine.js.org/notify.html" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">参考博客(让博客支持评论功能)</a></p><p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/高级配置.md#自定义邮件模板" target="_blank" rel="noopener">第三方邮件回复自带定时器</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;需要准备工作&quot;&gt;&lt;a href=&quot;#需要准备工作&quot; class=&quot;headerlink&quot; title=&quot;需要准备工作&quot;&gt;&lt;/a&gt;需要准备工作&lt;/h1&gt;&lt;p&gt;我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo 更新配置" scheme="http://aimasa.github.io/categories/hexo-%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="添加统计阅读量以及打开评论" scheme="http://aimasa.github.io/categories/hexo-%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E4%BB%A5%E5%8F%8A%E6%89%93%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
+    
+    
+      <category term="hexo" scheme="http://aimasa.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bitSet源码解读</title>
+    <link href="http://aimasa.github.io/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    <id>http://aimasa.github.io/2019/03/14/bitSet源码解读/</id>
+    <published>2019-03-14T05:49:01.000Z</published>
+    <updated>2019-03-28T07:37:24.581Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为最近在看二维码相关，在github上拉下来的代码里面有用到bitSet库，所以在试着看源码。<br>看了一段时间，发现就算理清了逻辑结构也不明白什么意思，所以就去网上查了一下bitSet是做什么的。</p><p>都说bitSet是用来对大量的数据进行整理，减少内存负担（我是这样理解的），bitSet是用长整型对数据进行存储，比起用二进制用int对数据进行存储的方法相比，确实可以减少许多内存【这里对内存概念不是很清楚，日后补全。</p><a id="more"></a><h1 id="部分源码分析"><a href="#部分源码分析" class="headerlink" title="部分源码分析"></a>部分源码分析</h1><h2 id="定义好的关键词-大概可以这样叫"><a href="#定义好的关键词-大概可以这样叫" class="headerlink" title="定义好的关键词(大概可以这样叫)"></a>定义好的关键词(大概可以这样叫)</h2><pre><code>/* * bitSet被打包为字的数组 * word的大小选择完全取决于它的性能 */private final static int ADDRESS_BITS_PER_WORD = 6;private final static int BITS_PER_WORD = 1 &lt;&lt; ADDRESS_BITS_PER_WORD;private final static int BIT_INDEX_MASK = BITS_PER_WORD - 1;/* Used to shift left or right for a partial word mask */private static final long WORD_MASK = 0xffffffffffffffffL;</code></pre><p>这是该方法中定义的参数，其中ADDRESS_BITS_PER_WORD=6是指在java中long型是占8个字节，64bit（$\,2^{6}\,=\,64byte\,$）所以对应的二进制就是6.</p><pre><code>private long[] words;private transient int wordsInUse = 0;//已使用的范围的下标private transient boolean sizeIsSticky = false;//表示用户是使用默认的words的大小(64bit)还是自定义</code></pre><h2 id="关于wordIndex的定义"><a href="#关于wordIndex的定义" class="headerlink" title="关于wordIndex的定义"></a>关于wordIndex的定义</h2><p>这里是bit下标对应的word下标的计算过程：</p><pre><code>private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><h2 id="bitSet的构造函数-里面有对words这个数组的定义"><a href="#bitSet的构造函数-里面有对words这个数组的定义" class="headerlink" title="bitSet的构造函数(里面有对words这个数组的定义)"></a>bitSet的构造函数(里面有对words这个数组的定义)</h2><p>其中，bitSet的构造函数是：</p><pre><code>public BitSet(int nbits) {    // nbits can&#39;t be negative; size 0 is OK    if (nbits &lt; 0)        throw new NegativeArraySizeException(&quot;nbits &lt; 0: &quot; + nbits);    initWords(nbits);    sizeIsSticky = true;}private void initWords(int nbits) {    words = new long[wordIndex(nbits-1) + 1];}</code></pre><p>这是在初始化时候给bitSet中的long[] words分配大小时候，就会调用这个构造函数，但是如果初始化时候去输入long[] 这个数组的话，相当于直接定义long[] words这个数组。</p><pre><code>private BitSet(long[] words) {    this.words = words;    this.wordsInUse = words.length;//这里wordsInUse表示的是定义的数组的长度，如果没有定义长度的话，那么这个值默认为零。    checkInvariants();}</code></pre><p>然后还有无参构造，这个就是用默认的数组大小64bit</p><pre><code>public BitSet() {    initWords(BITS_PER_WORD);    sizeIsSticky = false;}</code></pre><h2 id="bitSet的clear方法-对words这个数组进行清零"><a href="#bitSet的clear方法-对words这个数组进行清零" class="headerlink" title="bitSet的clear方法(对words这个数组进行清零)"></a>bitSet的clear方法(对words这个数组进行清零)</h2><p>其中wordsInUse在源码中出现频率非常高，这个参数是用来记录word数组中已经使用了的个数。</p><pre><code>public void clear(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    int wordIndex = wordIndex(bitIndex);//计算这个bit下标实际上是第几个word(Long)    if (wordIndex &gt;= wordsInUse) //如果这个下标不在wordsInUse范围内，那么返回，因为没有必要进行别的操作了。        return;    words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex); //把words[wordIndex]中的值设置为false（就是清零）因为&lt;&lt;这是左移。取反后就全是零了，再进行与运算，就相当于设置该bitIndex这个位为false，也就是将该位清零。    recalculateWordsInUse();    checkInvariants();}</code></pre><h2 id="关于和clear对应的set方法-对words这个数组进行赋值"><a href="#关于和clear对应的set方法-对words这个数组进行赋值" class="headerlink" title="关于和clear对应的set方法(对words这个数组进行赋值)"></a>关于和clear对应的set方法(对words这个数组进行赋值)</h2><p>这是set函数，就是把bitIndex的对应的位置设置为true，然后返回设置了true的地方的下标：</p><pre><code>public void set(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    int wordIndex = wordIndex(bitIndex);    expandTo(wordIndex);//判断是否需要扩容，如果需要，则进行扩容    words[wordIndex] |= (1L &lt;&lt; bitIndex); // 把这个bitIndex位设置为true    checkInvariants();}</code></pre><h2 id="关于clear每次最后都要用到的recalculateWordsInUse-方法"><a href="#关于clear每次最后都要用到的recalculateWordsInUse-方法" class="headerlink" title="关于clear每次最后都要用到的recalculateWordsInUse()方法"></a>关于clear每次最后都要用到的recalculateWordsInUse()方法</h2><p>更新wordsInUse，判断实际存储大小。</p><pre><code>private void recalculateWordsInUse() {    //遍历words这个数组，直到找到一个是true的地方    int i;    for (i = wordsInUse-1; i &gt;= 0; i--)        if (words[i] != 0)            break;    wordsInUse = i+1; // 就是让wordsInUse的大小更改为实际单词存储量}</code></pre><h2 id="clear和set方法中都会出现的checkInvariants-方法"><a href="#clear和set方法中都会出现的checkInvariants-方法" class="headerlink" title="clear和set方法中都会出现的checkInvariants()方法"></a>clear和set方法中都会出现的checkInvariants()方法</h2><p>判断这个word数组是否溢出，是否需要抛出异常。</p><pre><code>private void checkInvariants() {    assert(wordsInUse == 0 || words[wordsInUse - 1] != 0);    assert(wordsInUse &gt;= 0 &amp;&amp; wordsInUse &lt;= words.length);    assert(wordsInUse == words.length || words[wordsInUse] == 0);}</code></pre><h2 id="克隆方法clone"><a href="#克隆方法clone" class="headerlink" title="克隆方法clone()"></a>克隆方法clone()</h2><pre><code>public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p><a href="https://aimasa.github.io/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">参考深克隆和浅克隆</a></p><h2 id="trimToSize-方法"><a href="#trimToSize-方法" class="headerlink" title="trimToSize()方法"></a>trimToSize()方法</h2><p>当word的长度或者内容是自定义的情况下则调用的<br>    private void trimToSize() {<br>        if (wordsInUse != words.length) {<br>            words = Arrays.copyOf(words, wordsInUse);//把实际用的数据拷贝出来放进words里面<br>            checkInvariants();<br>        }<br>    }</p><h2 id="get-方法"><a href="#get-方法" class="headerlink" title="get()方法"></a>get()方法</h2><pre><code>public boolean get(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    checkInvariants();    int wordIndex = wordIndex(bitIndex);    return (wordIndex &lt; wordsInUse)        &amp;&amp; ((words[wordIndex] &amp; (1L &lt;&lt; bitIndex)) != 0);//判断数据是否是在使用范围内，该bitIndex位是否为0.}</code></pre><p>就是前面的先是判断下标是否在存储完数据使用过的范围内，如果不在就无效。再判断bitIndex对应的数据位是否是零，如果都是的话返回true。</p><h1 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h1><p><a href="http://www.voidcn.com/article/p-bqoyhfid-rv.html" target="_blank" rel="noopener">对bitSet内存存储方法进行详细介绍，但其他的写的不太明了</a></p><p><a href="https://www.cnblogs.com/larryzeal/p/7710389.html" target="_blank" rel="noopener">举例说明了bitSet的用法，内容详细</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">对bitSet源码中的重要方法进行解读</a></p><p><a href="https://www.jianshu.com/p/00b38e7ec2f2" target="_blank" rel="noopener">简要介绍了bitSet里面的类</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为最近在看二维码相关，在github上拉下来的代码里面有用到bitSet库，所以在试着看源码。&lt;br&gt;看了一段时间，发现就算理清了逻辑结构也不明白什么意思，所以就去网上查了一下bitSet是做什么的。&lt;/p&gt;
+&lt;p&gt;都说bitSet是用来对大量的数据进行整理，减少内存负担（我是这样理解的），bitSet是用长整型对数据进行存储，比起用二进制用int对数据进行存储的方法相比，确实可以减少许多内存【这里对内存概念不是很清楚，日后补全。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java语法" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/"/>
+    
+      <category term="bitSet部分源码解读" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/bitSet%E9%83%A8%E5%88%86%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+    
+      <category term="java语法" scheme="http://aimasa.github.io/tags/java%E8%AF%AD%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java的~、|、&lt;&lt;、&gt;&gt;、&gt;&gt;&gt;、^</title>
+    <link href="http://aimasa.github.io/2019/03/14/java%E7%9A%84/"/>
+    <id>http://aimasa.github.io/2019/03/14/java的/</id>
+    <published>2019-03-14T02:08:58.000Z</published>
+    <updated>2019-03-28T09:20:23.695Z</updated>
+    
+    <content type="html"><![CDATA[<p>在看BitSet的源码的时候，我看到了这样一段代码</p><pre><code>words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex);</code></pre><p>其中~(1L&lt;&lt;bitIndex)我不太明白这是什么意思，所以谷歌了一下,就顺便查了一下日常容易被我弄错的逻辑运算符的用法。</p><a id="more"></a><p>其中</p><p>~：是按位取反运算符</p><p>如：~(10010010)=01101101</p><p>所以这句的意思是在1L左移bitIndex位后，对words[wordIndex]这个第一个bit的位清零</p><h1 id="容易混淆的逻辑运算符"><a href="#容易混淆的逻辑运算符" class="headerlink" title="容易混淆的逻辑运算符"></a>容易混淆的逻辑运算符</h1><p>顺便解释一下|这个的意思</p><pre><code>|：这个是按位或运算&gt;&gt; 是带符号右移，若左操作数是正数，则高位补“0”，若左操作数是负数，则高位补“1”.&lt;&lt; 左移，不管正负数左移时候，最高位都不用管，只需要在后面补零就可以了，和&lt;&lt;&lt;不带符号左移一样，所以就没有不带符号左移&gt;&gt;&gt; 是无符号右移，无论左操作数是正数还是负数，在高位都补“0”</code></pre><p>计算机都是用补码存储数据的。所以当一个数带符号右移或者左移，就是单纯的对该数进行除乘。</p><p>所以在带符号右移或者左移时候，为了保证数字在这个安全的距离能够得出想要的正确结果（乘除2的标准结果），所以int设置的可活动的位移是32，就是左右移32位时候，就会恢复数字的原本值，long设置的可活动位移是64.</p><p>emmmm感觉我语言讲述的不是很清楚，所以附上例子把。</p><pre><code>public class test {    public static void main(String[] args) {        long a=-5;        System.out.println((a &lt;&lt; 64));          // output: -5      }}</code></pre><p>这是long的情况，接下来我放int的例子：</p><pre><code>public class test {    public static void main(String[] args) {        int a=-5;        System.out.println((a &lt;&lt; 32));          // output: -5      }}</code></pre><p>恩，就是这样，我是这样理解的。</p><h1 id="关于"><a href="#关于" class="headerlink" title="关于^"></a>关于^</h1><p>^这个是异或运算符。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/0236b51b903f" target="_blank" rel="noopener">位移参考</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在看BitSet的源码的时候，我看到了这样一段代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;words[wordIndex] &amp;amp;= ~(1L &amp;lt;&amp;lt; bitIndex);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中~(1L&amp;lt;&amp;lt;bitIndex)我不太明白这是什么意思，所以谷歌了一下,就顺便查了一下日常容易被我弄错的逻辑运算符的用法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java语法" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/"/>
+    
+      <category term="java中的&quot;~&quot;" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/java%E4%B8%AD%E7%9A%84/"/>
+    
+    
+      <category term="java语法" scheme="http://aimasa.github.io/tags/java%E8%AF%AD%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>eclipse找不到源码</title>
+    <link href="http://aimasa.github.io/2019/03/13/eclipse%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81/"/>
+    <id>http://aimasa.github.io/2019/03/13/eclipse找不到源码/</id>
+    <published>2019-03-13T09:13:31.000Z</published>
+    <updated>2019-03-13T09:21:59.537Z</updated>
+    
+    <content type="html"><![CDATA[<p>想看看bitSet的源码，但是点进去却显示Source Not Found</p><a id="more"></a><p>点windows—&gt;preference—&gt;java进入如下界面：</p><center>![](java_jre.png)</center><p>然后用鼠标点击jre一下，使旁边的Edit获得焦点，然后点击Edit，进入如下界面：</p><center>![](java_Edit.png)</center><p>最后选中jdk中的src.zip,点击确定，应用即可</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想看看bitSet的源码，但是点进去却显示Source Not Found&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="eclipse故障" scheme="http://aimasa.github.io/categories/eclipse%E6%95%85%E9%9A%9C/"/>
+    
+      <category term="eclipse点进方法找不到源码" scheme="http://aimasa.github.io/categories/eclipse%E6%95%85%E9%9A%9C/eclipse%E7%82%B9%E8%BF%9B%E6%96%B9%E6%B3%95%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81/"/>
+    
+    
+      <category term="eclipse故障" scheme="http://aimasa.github.io/tags/eclipse%E6%95%85%E9%9A%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>静态工厂（简单工厂）</title>
+    <link href="http://aimasa.github.io/2019/03/12/%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%EF%BC%88%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%EF%BC%89/"/>
+    <id>http://aimasa.github.io/2019/03/12/静态工厂（简单工厂）/</id>
+    <published>2019-03-12T06:05:39.000Z</published>
+    <updated>2019-03-12T06:05:39.399Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>对于QR生成的java源码学习(一):关于java语法内容</title>
+    <link href="http://aimasa.github.io/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://aimasa.github.io/2019/03/11/对于QR生成的源码学习/</id>
+    <published>2019-03-11T11:53:20.000Z</published>
+    <updated>2019-03-28T09:27:02.562Z</updated>
+    
+    <content type="html"><![CDATA[<p>java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。</p><a id="more"></a><h1 id="Object-与-Objects-的区别"><a href="#Object-与-Objects-的区别" class="headerlink" title="Object 与 Objects 的区别"></a>Object 与 Objects 的区别</h1><p>Object 是 Java 中所有类的基类，位于java.lang包。</p><p>Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p><pre><code>Objects.requireNonNull(text);</code></pre><p>其中源码是这样写的：</p><pre><code>public static &lt;T&gt; T requireNonNull(T obj)</code></pre><p>T：obj的相关类型</p><p>obj：要检查是否为空的参数</p><p>return：如果obj不为空就返回obj，如果是空就返回NullPointerException（空指针异常）</p><h1 id="关于Matcher"><a href="#关于Matcher" class="headerlink" title="关于Matcher"></a>关于Matcher</h1><p>源码是这样的：<br>    NUMERIC_REGEX.matcher(text).matches()</p><p>先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配</p><pre><code>public Matcher matcher(CharSequence input)Pattern.matcher(CharSequence input)</code></pre><p>input：需要被转换为匹配模式的字符串</p><p>return：返回这个Pattern的新匹配器</p><pre><code>public boolean matches()</code></pre><p>return：当且仅当整个区域序列匹配此匹配器的模式时才返回true</p><h1 id="bitSet"><a href="#bitSet" class="headerlink" title="bitSet"></a>bitSet</h1><p>一个long长64bit，所以</p><pre><code>private final static int ADDRESS_BITS_PER_WORD = 6;private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><p>其中是在计算bitIndex个bit对应的是第几个long</p><h1 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h1><p>assert()对括号中的条件进行判定，如果条件为真则往下继续运行，条件为假则打印完错误信息然后程序停止运行。</p><h1 id="native"><a href="#native" class="headerlink" title="native"></a>native</h1><p>native是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。</p><p>因为native是底层实现的，所以它的速度非常快。</p><h1 id="cloneable接口和Serializable接口"><a href="#cloneable接口和Serializable接口" class="headerlink" title="cloneable接口和Serializable接口"></a>cloneable接口和Serializable接口</h1><p>扩展<br>Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自<a href="https://www.cnblogs.com/Qian123/p/5710533.html" target="_blank" rel="noopener">论java中的浅克隆和深克隆</a></p><h1 id="关于克隆clone-方法"><a href="#关于克隆clone-方法" class="headerlink" title="关于克隆clone()方法"></a>关于克隆clone()方法</h1><pre><code>public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。    mode = Objects.requireNonNull(md);    Objects.requireNonNull(data);    if (numCh &lt; 0)        throw new IllegalArgumentException(&quot;Invalid value&quot;);    numChars = numCh;    this.data = data.clone();  // 做一个完整的副本（final data）}</code></pre><p>这个clone()方法因为data是BitBuffer这个类，所以调用了BitBuffer这个类里面写的的clone()方法</p><pre><code>public BitBuffer clone() {    try {        BitBuffer result = (BitBuffer)super.clone();//创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。        result.data = (BitSet)result.data.clone();//对BitBuffer这个对象里面成员变量再做一次克隆（到BitSet类中的clone()这个方法去了）        return result;    } catch (CloneNotSupportedException e) {        throw new AssertionError(e);    }}</code></pre><p>为了进行深度克隆，第一次调用的clone()方法时java的Object这个对象的类的克隆，那个属于浅克隆。<br>这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。</p><pre><code>类Object：protected native Object clone() throws CloneNotSupportedException;</code></pre><p>浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。</p><pre><code>类BitSet：public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p>其中result.data指向的是BitSet这个被实例化过一个类，所以去对BitSet data进行了一次克隆，然后data的里面有words的引用，所以再对这个值做一次clone().</p><h1 id="关于在一段数据后循环添加0xEC和0x11这两个数"><a href="#关于在一段数据后循环添加0xEC和0x11这两个数" class="headerlink" title="关于在一段数据后循环添加0xEC和0x11这两个数"></a>关于在一段数据后循环添加0xEC和0x11这两个数</h1><pre><code>for (int padByte = 0xEC; bb.bitLength() &lt; dataCapacityBits; padByte ^= 0xEC ^ 0x11)    bb.appendBits(padByte, 8);</code></pre><p>其中0xEC和0x11是8bit8bit循环添加在bb里面的<br>通过padByte ^= 0xEC ^ 0x11异或，来控制每次添加的8bit，先0xEC然后0x11这样去填充数据编码部分，直到值填满（为什么不能16bit一起填进去？如果16bit的话就会导致填到最后悔有溢出的情况。）</p><h1 id="关于QrSegment这个类"><a href="#关于QrSegment这个类" class="headerlink" title="关于QrSegment这个类"></a>关于QrSegment这个类</h1><p>QrSegment这个类被定义后包括的函数</p><pre><code>public final Mode mode;/** The length of this segment&#39;s unencoded data. Measured in characters for * numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode. * Always zero or positive. Not the same as the data&#39;s bit length. */public final int numChars;// The data bits of this segment. Not null. Accessed through getData().final BitBuffer data;</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/quiet-snowy-day/p/6387321.html" target="_blank" rel="noopener">关于Object和Objects的区别</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">关于bitSet的源码解读</a></p><p><a href="https://blog.csdn.net/youjianbo_han_87/article/details/2586375" target="_blank" rel="noopener">关于native的用法</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="对于QR生成的java源码学习" scheme="http://aimasa.github.io/categories/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84java%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="java语法" scheme="http://aimasa.github.io/categories/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84java%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/java%E8%AF%AD%E6%B3%95/"/>
+    
+    
+      <category term="java语法" scheme="http://aimasa.github.io/tags/java%E8%AF%AD%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>脆弱水印与QR</title>
+    <link href="http://aimasa.github.io/2019/03/11/%E8%84%86%E5%BC%B1%E6%B0%B4%E5%8D%B0%E4%B8%8EQR/"/>
+    <id>http://aimasa.github.io/2019/03/11/脆弱水印与QR/</id>
+    <published>2019-03-11T07:04:23.000Z</published>
+    <updated>2019-03-11T07:04:23.428Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>RS解码</title>
+    <link href="http://aimasa.github.io/2019/03/08/RS-decoding/"/>
+    <id>http://aimasa.github.io/2019/03/08/RS-decoding/</id>
+    <published>2019-03-08T06:41:27.000Z</published>
+    <updated>2019-03-08T06:44:40.698Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="QR" scheme="http://aimasa.github.io/categories/QR/"/>
+    
+      <category term="了解二维码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
+    
+      <category term="了解二维码(五)：RS解码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81-%E4%BA%94-%EF%BC%9ARS%E8%A7%A3%E7%A0%81/"/>
+    
+    
+      <category term="QR" scheme="http://aimasa.github.io/tags/QR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python下划线</title>
+    <link href="http://aimasa.github.io/2019/03/07/python%E4%B8%8B%E5%88%92%E7%BA%BF/"/>
+    <id>http://aimasa.github.io/2019/03/07/python下划线/</id>
+    <published>2019-03-07T03:29:50.000Z</published>
+    <updated>2019-03-11T05:53:13.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>在python中经常会遇到下划线”_”的情况</p><a id="more"></a><h1 id="单下划线”-”"><a href="#单下划线”-”" class="headerlink" title="单下划线”_”"></a>单下划线”_”</h1><p>就是无关紧要的变量，就用”_”表示，因为这个值不需要再次引用。</p><p>也可以表达python REPL中最接近一根表达式的结果。</p><h1 id="单前导下划线”-var”"><a href="#单前导下划线”-var”" class="headerlink" title="单前导下划线”_var”"></a>单前导下划线”_var”</h1><p>这是命名约定，就是前面加一个下划线就是暗示别人说这里是私有类，用通配符导入模块时候这个方法（或者变量）是不会跟着包一起导入进去的，但是常规方法调用这个方法（或者变量时候）是不受单个下划线命名约定的影响的。</p><h1 id="单后导下划线”var-”"><a href="#单后导下划线”var-”" class="headerlink" title="单后导下划线”var_”"></a>单后导下划线”var_”</h1><p>就是让该变量名（或者方法名）来避免和python关键词产生冲突。</p><h1 id="双前导下划线”-var”"><a href="#双前导下划线”-var”" class="headerlink" title="双前导下划线”__var”"></a>双前导下划线”__var”</h1><p>当在类上下文中使用，会触发”名称修饰”，由python解释器强制执行。就是在这个双下划线前面加上”_[包名]”</p><center>![](qiandao.png)</center><h1 id="双前导和双末尾下划线-“var“"><a href="#双前导和双末尾下划线-“var“" class="headerlink" title="双前导和双末尾下划线 “var“"></a>双前导和双末尾下划线 “<strong>var</strong>“</h1><p>表示python语言定义的特殊方法。</p><p>最好避免在自己的程序中使用以双下划线（“dunders”）开头和结尾的名称，以避免与将来Python语言的变化产生冲突。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/36173202" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在python中经常会遇到下划线”_”的情况&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://aimasa.github.io/categories/python/"/>
+    
+      <category term="下划线" scheme="http://aimasa.github.io/categories/python/%E4%B8%8B%E5%88%92%E7%BA%BF/"/>
+    
+    
+      <category term="python用法" scheme="http://aimasa.github.io/tags/python%E7%94%A8%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo_next图片无法加载问题</title>
+    <link href="http://aimasa.github.io/2019/03/05/hexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
+    <id>http://aimasa.github.io/2019/03/05/hexo_next图片无法加载问题/</id>
+    <published>2019-03-05T11:40:52.000Z</published>
+    <updated>2019-03-27T02:24:18.008Z</updated>
+    
+    <content type="html"><![CDATA[<p>错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现</p><pre><code>！[]()</code></pre><p>无法被hexo g解析生成图片链接</p><a id="more"></a><p>用谷歌不管怎么搜索关键词都没有用，所以我直接删掉了”.deploy_git”，然后再用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p><p>但是有时候这个办法还是会失效，然后我参考了<a href="https://850552586.github.io/2018/11/15/hexo%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank" rel="noopener">这篇博客的做法</a>替换掉了hexo-asset-image下载后生成的index.js这个文件（我把它的代码复制到这）</p><pre><code>&#39;use strict&#39;;var cheerio = require(&#39;cheerio&#39;);// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-stringfunction getPosition(str, m, i) {  return str.split(m, i).join(m).length;}var version = String(hexo.version).split(&#39;.&#39;);hexo.extend.filter.register(&#39;after_post_render&#39;, function(data){  var config = hexo.config;  if(config.post_asset_folder){        var link = data.permalink;    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)       var beginPos = getPosition(link, &#39;/&#39;, 1) + 1;    else       var beginPos = getPosition(link, &#39;/&#39;, 3) + 1;    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.    var endPos = link.lastIndexOf(&#39;/&#39;) + 1;    link = link.substring(beginPos, endPos);    var toprocess = [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];    for(var i = 0; i &lt; toprocess.length; i++){      var key = toprocess[i];      var $ = cheerio.load(data[key], {        ignoreWhitespace: false,        xmlMode: false,        lowerCaseTags: false,        decodeEntities: false      });      $(&#39;img&#39;).each(function(){        if ($(this).attr(&#39;src&#39;)){            // For windows style path, we replace &#39;\&#39; to &#39;/&#39;.            var src = $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;/&#39;);            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;               !/^\s*\//.test(src)) {              // For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.              // In addition, to support multi-level local directory.              var linkArray = link.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39;;              });              var srcArray = src.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39; &amp;&amp; elem != &#39;.&#39;;              });                  if(srcArray.length &gt; 1)                srcArray.shift();              src = srcArray.join(&#39;/&#39;);              $(this).attr(&#39;src&#39;, config.root + link + src);              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);            }        }else{            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);            console.info&amp;&amp;console.info($(this));        }      });      data[key] = $.html();    }  }});</code></pre><p>然后再去删掉”.deploy_git”，用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;！[]()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;无法被hexo g解析生成图片链接&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo错误笔记" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="hexo_next图片无法加载问题" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/hexo-next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
+    
+    
+      <category term="hexo err类型" scheme="http://aimasa.github.io/tags/hexo-err%E7%B1%BB%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>了解二维码(四)：Reed-Solomon code</title>
+    <link href="http://aimasa.github.io/2019/03/05/RS-code/"/>
+    <id>http://aimasa.github.io/2019/03/05/RS-code/</id>
+    <published>2019-03-05T08:31:59.000Z</published>
+    <updated>2019-03-08T06:39:30.653Z</updated>
+    
+    <content type="html"><![CDATA[<p>在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.</p><p>也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。</p><a id="more"></a><p>与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。</p><p>我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。</p><p>总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符）</p><blockquote><p>加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。</p></blockquote><h1 id="RS生成多项式"><a href="#RS生成多项式" class="headerlink" title="RS生成多项式"></a>RS生成多项式</h1><p>RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如：</p><blockquote><p>$\,g_{4}\, =\, \left (x-\alpha ^{0}  \right )\left (x-\alpha ^{1}  \right )\left (x-\alpha ^{2}  \right )\left (x-\alpha ^{3}  \right )=  01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$</p></blockquote><p>这是一个计算了指定n个纠错符号的RS码需要的生成多项式。</p><pre><code>def rs_generator_poly(nsym):    g = [1]    for i in range(0, nsym):        g = gf_poly_mul(g, [1, gf_pow(2, i)])return g</code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p><h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p> <center>![](chufa.png)</center><p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p> <center>![](chenfa.png)</center><p>于是得出编码信息为12 34 56 37 e6 78 d9。</p><pre><code>def gf_poly_div(dividend, divisor):    &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations    (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39;    # CAUTION: this function expects polynomials to follow the opposite convention at decoding:    # the terms must go from the biggest to lowest degree (while most other functions here expect    # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]    msg_out = list(dividend) # Copy the dividend    #normalizer = divisor[0] # precomputing for performance    for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1.        #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using        # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.        coef = msg_out[i] # precaching        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization).            for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,                                          # because it&#39;s only used to normalize the dividend coefficient                if divisor[j] != 0: # log(0) is undefined                    msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。                    # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef# The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s# what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.    separator = -(len(divisor)-1)    return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头</code></pre><p>然后出来了一个高效的编码方法：</p><pre><code>def rs_encode_msg(msg_in, nsym):    &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39;    if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))    gen = rs_generator_poly(nsym)    # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).    msg_out = [0] * (len(msg_in) + len(gen)-1)    # Initializing the Synthetic Division with the dividend (= input message     polynomial)    msg_out[:len(msg_in)] = msg_in    # Synthetic division main loop    for i in range(len(msg_in)):        # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration        # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,        # we directly commit them to the output).        coef = msg_out[i]        # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check        # the divisor here because we know it can&#39;t be 0 since we generated it.        if coef != 0:            # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)            for j in range(1, len(gen)):                msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)    # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder    # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get    # our complete codeword composed of the message + code.    msg_out[:len(msg_in)] = msg_in    return msg_out</code></pre><p>这段新的代码把编码和长除法功能加在了一起，语句更简短。</p><p>这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 -  通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.&lt;/p&gt;
+&lt;p&gt;也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="QR" scheme="http://aimasa.github.io/categories/QR/"/>
+    
+      <category term="了解二维码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
+    
+      <category term="了解二维码(四)：Reed-Solomon code" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81-%E5%9B%9B-%EF%BC%9AReed-Solomon-code/"/>
+    
+    
+      <category term="QR" scheme="http://aimasa.github.io/tags/QR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于对数</title>
+    <link href="http://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/"/>
+    <id>http://aimasa.github.io/2019/03/05/基于对数/</id>
+    <published>2019-03-05T08:00:58.000Z</published>
+    <updated>2019-03-07T10:51:06.639Z</updated>
+    
+    <content type="html"><![CDATA[<p>它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧</p><a id="more"></a><h1 id="基于对数"><a href="#基于对数" class="headerlink" title="基于对数"></a>基于对数</h1><p>其中的gf_mult_noLUT(x, 2, prim)源自<a href="https://aimasa.github.io/2019/02/20/RussianPeasant/">俄罗斯农夫算法</a></p><h2 id="基于对数的乘法（次幂的加法）"><a href="#基于对数的乘法（次幂的加法）" class="headerlink" title="基于对数的乘法（次幂的加法）"></a>基于对数的乘法（次幂的加法）</h2><p>但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为<a href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">离散对数</a>（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。）</p><pre><code>gf_exp = [0] * 512 # Create list of 512 elements. In Python 2.6+, consider using bytearraygf_log = [0] * 256def init_tables(prim=0x11d):&#39;&#39;&#39;Precompute the logarithm and anti-log tables for faster computation later, using the provided primitive polynomial.&#39;&#39;&#39;    # prim is the primitive (binary) polynomial. Since it&#39;s a polynomial in the binary sense,    # it&#39;s only in fact a single galois field value between 0 and 255, and not a list of gf values.    global gf_exp, gf_log    gf_exp = [0] * 512 # 就是和gf_log相反的表（gf_log值是下标，gf_log的下标是它的值）    gf_log = [0] * 256 # (把2的幂和它对应的幂会生成的值通过这个下标和对应的值的关系连在一起)    # For each possible value in the galois field 2^8, we will pre-compute the logarithm and anti-logarithm (exponential) of this value    x = 1    for i in range(0, 255):        gf_exp[i] = x # compute anti-log for this value and store it in a table        gf_log[x] = i # compute log at the same time        x = gf_mult_noLUT(x, 2, prim)    # If you use only generator==2 or a power of 2, you can use the following which is faster than gf_mult_noLUT():    #x &lt;&lt;= 1 # multiply by 2 (change 1 by another number y to multiply by a power of 2^y)    #if x &amp; 0x100: #类似于x&gt; = 256，但速度要快得多        #(because 0x100 == 256)        #x ^= prim # substract the primary polynomial to the current value (instead of 255, so that we get a unique set made of coprime numbers), this is the core of the tables generation    #优化：反日志表的大小加倍，这样我们就不需要修改255来保持在边界内    #（因为我们主要使用这个表来增加两个GF数，不再增加）。    for i in range(255, 512):        gf_exp[i] = gf_exp[i - 255]    return [gf_log, gf_exp]</code></pre><p>这段代码会生成一个表，这个表里面是0-256对应的2的这些次幂的答案，然后如果要计算乘法的话，对方给出了一个大值然后用gf_log[x]找出对应的次幂，再进行加法运算。最后的一个循环是为了防止运算出来的幂相加的值超过255，所以把上限改成了512.（$\,2^{255}\,=\,00000001$然后又开始新一轮的循环2次幂。）</p><pre><code>def gf_mul(x,y):if x==0 or y==0:    return 0return gf_exp[gf_log[x] + gf_log[y]]#这样就可以不用再多一步%255去防止gf_exp溢出了的运算了。</code></pre><h2 id="基于对数的除法"><a href="#基于对数的除法" class="headerlink" title="基于对数的除法"></a>基于对数的除法</h2><pre><code>def gf_div(x,y):    if y==0:        raise ZeroDivisionError()    if x==0:        return 0    return gf_exp[(gf_log[x] + 255 - gf_log[y])% 255]</code></pre><p>如果x对应的次幂比y对应的要小的话，加上255找到之后对应的幂还是和本身一样，最后求255的模的意思是让幂保持在0-255之间。0-254内的数值与255-510内的值</p><h2 id="基于对数的次幂"><a href="#基于对数的次幂" class="headerlink" title="基于对数的次幂"></a>基于对数的次幂</h2><pre><code>def gf_pow(x, power):    return gf_exp[(gf_log[x] * power) % 255]</code></pre><h2 id="基于对数的导数"><a href="#基于对数的导数" class="headerlink" title="基于对数的导数"></a>基于对数的导数</h2><pre><code>def gf_inverse(x):    return gf_exp[255 - gf_log[x]] # gf_inverse(x) == gf_div(1, x)</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="位运算代码示例" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"/>
+    
+      <category term="基于对数乘除法" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0%E4%B9%98%E9%99%A4%E6%B3%95/"/>
+    
+    
+      <category term="基于对数乘除法" scheme="http://aimasa.github.io/tags/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0%E4%B9%98%E9%99%A4%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多项式</title>
+    <link href="http://aimasa.github.io/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/"/>
+    <id>http://aimasa.github.io/2019/03/05/多项式/</id>
+    <published>2019-03-05T07:47:53.000Z</published>
+    <updated>2019-03-06T07:55:18.085Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。</p><p>其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。</p><a id="more"></a><h1 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h1><p>其中gf_mul(p[i], x)该方法源自<a href="https://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/">基于对数的乘法</a></p><h2 id="多项式的加法"><a href="#多项式的加法" class="headerlink" title="多项式的加法"></a>多项式的加法</h2><pre><code>def gf_poly_add(p,q):    r = [0] * max(len(p),len(q))    for i in range(0,len(p)):        r[i+len(r)-len(p)] = p[i]        for i in range(0,len(q)):            r[i+len(r)-len(q)] ^= q[i]#让在伽罗瓦域内的q和p两个多项式相加return r</code></pre><p>多项式相加就是幂次相同的系数相加，所以该方法将两个多项式的不同幂的系数均按幂次大小顺序排序，然后按顺序进行相加。</p><h2 id="多项式的乘法（和一个普通系数的乘法）"><a href="#多项式的乘法（和一个普通系数的乘法）" class="headerlink" title="多项式的乘法（和一个普通系数的乘法）"></a>多项式的乘法（和一个普通系数的乘法）</h2><pre><code>def gf_poly_scale(p,x):    r = [0] * len(p)    for i in range(0, len(p)):        r[i] = gf_mul(p[i], x)# 该方法见基于对数的乘法部分内return r</code></pre><p>就是按照普通多项式乘法进行相乘，让x系数和多项式中各级幂的系数在伽罗瓦域内和x相乘</p><h2 id="两个多项式间的乘法"><a href="#两个多项式间的乘法" class="headerlink" title="两个多项式间的乘法"></a>两个多项式间的乘法</h2><pre><code>def gf_poly_mul(p,q):    &#39;&#39;&#39;Multiply two polynomials, inside Galois Field&#39;&#39;&#39;    # Pre-allocate the result array    r = [0] * (len(p)+len(q)-1)    # Compute the polynomial multiplication (just like the outer product of two vectors,    # we multiply each coefficients of p with all coefficients of q)    for j in range(0, len(q)):        for i in range(0, len(p)):            r[i+j] ^= gf_mul(p[i], q[j]) # equivalent to: r[i + j] = gf_add(r[i+j], gf_mul(p[i], q[j]))    # -- you can see it&#39;s your usual polynomial multiplicationreturn r</code></pre><p>就是两个普通的多项式相乘时候，系数分别相乘（比如$\,\left (5x^{2}+4x+1 \right )\cdot \left ( 7x^{2}+9x+1 \right )\,$）其中$\,\left (7x^{2}  \right)  \cdot \left ( 5x^{2}+4x+1  \right )\,$以此类推……</p><p>然后其中i+j的意味着相同次幂的系数，所以在该代码中对他们进行了相加（异或）。</p><p>在该代码中展示的仅仅是在伽罗瓦域中的系数的乘法然后再相加，所以用的是循环i和j，让所有的系数都能互相乘并且相加。</p><h2 id="秦九韶算法"><a href="#秦九韶算法" class="headerlink" title="秦九韶算法"></a>秦九韶算法</h2><p>这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a<em>{n}x^{n}+a</em>{n-1}x^{n-1}+…+a<em>{2}x^{2}+a</em>{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 <a href="https://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/">详细介绍</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。&lt;/p&gt;
+&lt;p&gt;其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="位运算代码示例" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"/>
+    
+      <category term="多项式的加法和乘法" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%B3%95%E5%92%8C%E4%B9%98%E6%B3%95/"/>
+    
+    
+      <category term="多项式的加法和乘法" scheme="http://aimasa.github.io/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%B3%95%E5%92%8C%E4%B9%98%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>秦九韶算法</title>
+    <link href="http://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
+    <id>http://aimasa.github.io/2019/03/04/秦九韶算法/</id>
+    <published>2019-03-04T11:14:58.000Z</published>
+    <updated>2019-03-04T12:49:06.967Z</updated>
+    
+    <content type="html"><![CDATA[<p>用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高<br><a id="more"></a></p><h1 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h1><p>普通方法对于多项式（$\,a<em>{n}x^{n}+a</em>{n-1}x^{n-1}+…+a<em>{2}x^{2}+a</em>{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加</p><p>而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a<em>{n}x+a</em>{n-1} \right )x+a_{n-2}  \right )x+… \right )x+1$.</p><p>也就相当于在程序中用递归：</p><blockquote><p>$\,f<em>{1}\,=\,a</em>{n}x+a_{n-1}\,$</p><p>$\,f<em>{2}\,=\,f</em>{1}x+a_{n-2}\,$</p><p>……</p><p>$\,f<em>{n-1}=f</em>{n-2}x+a_{1}\,$</p><p>$\,f<em>{n}=f</em>{n-1}x+1\,$ </p></blockquote><p>$\,f_{n}\,$为所求</p><p>自然效率会比普通的算法要快许多。</p><h1 id="代码用例"><a href="#代码用例" class="headerlink" title="代码用例"></a>代码用例</h1><pre><code>def gf_poly_eval(poly, x):    &#39;&#39;&#39;基于有限域的秦九韶算法的代码（所以乘法和加法都是一样的意思--都是异或）.&#39;&#39;&#39;    y = poly[0]    for i in range(1, len(poly)):        y = gf_mul(y, x) ^ poly[i]return y</code></pre><p>代码中的gf_mul(x,y)是基于对数表中的乘法中，见<a href="https://aimasa.github.io/2019/01/23/BCH/">笔记</a>的基于对数表的乘法该处。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zh.wikipedia.org/wiki/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">参考维基百科</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="伽罗瓦域/有限域" scheme="http://aimasa.github.io/categories/%E4%BC%BD%E7%BD%97%E7%93%A6%E5%9F%9F-%E6%9C%89%E9%99%90%E5%9F%9F/"/>
+    
+      <category term="秦九韶算法" scheme="http://aimasa.github.io/categories/%E4%BC%BD%E7%BD%97%E7%93%A6%E5%9F%9F-%E6%9C%89%E9%99%90%E5%9F%9F/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="秦九韶算法" scheme="http://aimasa.github.io/tags/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用户异常行为模式的研究</title>
+    <link href="http://aimasa.github.io/2019/03/01/%E7%94%A8%E6%88%B7%E5%BC%82%E5%B8%B8%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%94%E7%A9%B6/"/>
+    <id>http://aimasa.github.io/2019/03/01/用户异常行为模式的研究/</id>
+    <published>2019-03-01T03:00:44.000Z</published>
+    <updated>2019-03-01T03:00:44.473Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>多源异构数据采集及实体链接算法研究</title>
+    <link href="http://aimasa.github.io/2019/03/01/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
+    <id>http://aimasa.github.io/2019/03/01/多源异构数据采集及实体链接算法研究/</id>
+    <published>2019-03-01T02:47:17.000Z</published>
+    <updated>2019-03-01T11:04:13.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。</p><a id="more"></a><h1 id="多源异构数据"><a href="#多源异构数据" class="headerlink" title="多源异构数据"></a>多源异构数据</h1><p>就是不同数据库中的数据，在企业信息化建设过程中，因为各业务系统建设和实施数据管理系统的阶段性、技术性和一些其他因素的影响，让企业在发展过程中大量采用不同存储方式的业务数据，而且采用的数据管理系统也不一样，从简单的文件数据库到复杂的网络数据库，它们构成了企业的异构数据源。</p><h1 id="实体链接"><a href="#实体链接" class="headerlink" title="实体链接"></a>实体链接</h1><p>一个实体可以用多个文本表达（多词一义），同一文本可能表达出多个不同的实体（一词多义）。通过进行实体链接，就是让文本中的实体指称和知识库中的实体进行链接。能够让文本中的数据转化为带有实体标注的文本。进而帮助人和计算机理解文本的具体含义。</p><p>个人理解是实体链接就是让文本中的一个词对应一个具体的实体</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/30940524" target="_blank" rel="noopener">参考博客</a></p><p><a href="https://bbs.csdn.net/topics/390383619" target="_blank" rel="noopener">参考帖子</a></p><p><a href="https://www.1xuezhe.exuezhe.com/Qk/art/585002?dbcode=1&amp;flag=2" target="_blank" rel="noopener">参考文献</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="多源异构数据采集及实体链接算法研究" scheme="http://aimasa.github.io/categories/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="多源异构数据采集及实体链接算法研究" scheme="http://aimasa.github.io/tags/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown插入公式</title>
+    <link href="http://aimasa.github.io/2019/02/27/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
+    <id>http://aimasa.github.io/2019/02/27/markdown插入公式/</id>
+    <published>2019-02-27T07:22:31.000Z</published>
+    <updated>2019-03-05T11:39:22.220Z</updated>
+    
+    <content type="html"><![CDATA[<p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p><a id="more"></a><h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center>![](fangfa1_1.png)</center><center>=======></center><center>![](fangfa1_2.png)</center><center>![](fangfa1_3.png)</center><h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p><pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code></pre><center>![](fangfa2.png)</center><h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p><center>![](fangfa3.png)</center><h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p><center>![](fangfa4.png)</center><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p><p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p><p>（还有根着<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">这个博文</a>改了一下渲染什么的，我也不知道有什么用.）</p><h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>下载插件</p><pre><code>$ npm install hexo-math --save</code></pre><p>在站点配置文件 _config.yml 中添加：</p><pre><code>math:  engine: &#39;mathjax&#39; # or &#39;katex&#39;  mathjax:    # src: custom_mathjax_source    config:      # MathJax config</code></pre><p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:</p><pre><code># MathJax Supportmathjax:  enable: true  per_page: false  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>就是在数学公式的书写代码前面后面各加一个$符号。</p><p>然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。</p><h2 id="最后的使用办法"><a href="#最后的使用办法" class="headerlink" title="最后的使用办法"></a>最后的使用办法</h2><p>我找到了<a href="https://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">这个博客</a><br>根据它里面教我的去执行</p><pre><code>npm install hexo-math --savehexo math install</code></pre><p>然后更改</p><p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p><p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p><p>替换成</p><pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></pre><p>这一步是在原基础上取消了对\,{,}的转义(escape)</p><p>Step 2:<br>    em: /^\b<em>((?:[^</em>]|<em>_)+?)</em>\b|^*((?:**|[\s\S])+?)*(?!*)/,</p><p>替换成</p><pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></pre><p>这样一来MathJax就能与marked.js共存了。</p><p>就这样，我又能很好地插入数学公式了。</p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p><p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p><p>如果该链接打不开，请进入参考文档去寻找正确地址。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;实测在&lt;a href=&quot;https://www.jianshu.com/p/054484d0892a&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;该博客&lt;/a&gt;中提到的四种在markdown中插入公式的办法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="markdown" scheme="http://aimasa.github.io/categories/markdown/"/>
+    
+      <category term="markdown插入公式" scheme="http://aimasa.github.io/categories/markdown/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>离散对数(Discrete logarithm)</title>
+    <link href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
+    <id>http://aimasa.github.io/2019/02/27/离散对数/</id>
+    <published>2019-02-27T06:49:07.000Z</published>
+    <updated>2019-02-28T08:59:27.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>设g为素数p的模循环群的<a href="https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/">原根</a>,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$</p><p>对任意的a，计算： $b=g^{a}\ mod \ p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。</p><p>因为a、b均为整数，不像实数那么“连续”，故称离散对数。</p><a id="more"></a><p><a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a></p><h1 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h1><h2 id="加密方法1—标准Diffie-Hellman算法"><a href="#加密方法1—标准Diffie-Hellman算法" class="headerlink" title="加密方法1—标准Diffie-Hellman算法"></a>加密方法1—标准Diffie-Hellman算法</h2><p>A发送消息m（0&lt;m&lt;p）给B</p><p>A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A</p><p>B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A</p><p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p><p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p><h2 id="加密方法2—T-ElGamal算法"><a href="#加密方法2—T-ElGamal算法" class="headerlink" title="加密方法2—T. ElGamal算法"></a>加密方法2—T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p><center>![](fangfa1.png)</center><p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p><h2 id="加密方法3—密钥交换"><a href="#加密方法3—密钥交换" class="headerlink" title="加密方法3—密钥交换"></a>加密方法3—密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p><center>![](fangfa2.png)</center><p>这个方法比较容易被程序实现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a}\ mod \ p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设g为素数p的模循环群的&lt;a href=&quot;https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/&quot;&gt;原根&lt;/a&gt;,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$&lt;/p&gt;
+&lt;p&gt;对任意的a，计算： $b=g^{a}\ mod \ p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。&lt;/p&gt;
+&lt;p&gt;因为a、b均为整数，不像实数那么“连续”，故称离散对数。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="离散对数" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
+    
+      <category term="离散对数加密解密" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/"/>
+    
+    
+      <category term="离散对数加密解密" scheme="http://aimasa.github.io/tags/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双射单射满射</title>
+    <link href="http://aimasa.github.io/2019/02/26/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
+    <id>http://aimasa.github.io/2019/02/26/双射单射满射/</id>
+    <published>2019-02-26T12:28:07.000Z</published>
+    <updated>2019-02-26T12:33:13.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。</p><p>单射：指将不同的变量映射到不同的值的函数。(也就是一对一)</p><p>满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应—可多对一或一对一)</p><p>双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应—一对一）</p><p><img src="//aimasa.github.io/2019/02/26/双射单射满射/she.png" alt=""><br>——————-<a href="https://zh.wikipedia.org/wiki/%E5%8D%95%E5%B0%84%E3%80%81%E5%8F%8C%E5%B0%84%E4%B8%8E%E6%BB%A1%E5%B0%84" target="_blank" rel="noopener">摘自维基百科</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。&lt;/p&gt;
+&lt;p&gt;单射：指将不同的变量映射到不同的值的函数。(也就是一对一)&lt;/p&gt;
+&lt;p&gt;满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有
+      
+    
+    </summary>
+    
+      <category term="数学基础知识" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="双射单射满射" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
+    
+    
+      <category term="双射单射满射" scheme="http://aimasa.github.io/tags/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原根</title>
+    <link href="http://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/"/>
+    <id>http://aimasa.github.io/2019/02/26/原根/</id>
+    <published>2019-02-26T07:30:32.000Z</published>
+    <updated>2019-02-28T02:19:45.071Z</updated>
+    
+    <content type="html"><![CDATA[<p>其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv\ 1(mod\ m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E6%A0%B9" target="_blank" rel="noopener">参考定理</a></p><center>![](yuangen.png)</center><p>就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。</p><p>所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的）</p><p>存在原根的模乘法群称为循环群。</p><p>原根性质：</p><center>![](xinzhi.png)</center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv\ 1(mod\ m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="离散对数" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
+    
+      <category term="原根" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/%E5%8E%9F%E6%A0%B9/"/>
+    
+    
+      <category term="原根" scheme="http://aimasa.github.io/tags/%E5%8E%9F%E6%A0%B9/"/>
+    
+  </entry>
+  
+</feed>
