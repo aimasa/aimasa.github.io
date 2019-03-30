@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-03-04T12:49:06.967Z">
+<meta property="og:updated_time" content="2019-03-29T12:17:14.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="秦九韶算法">
 <meta name="twitter:description" content="用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高">
@@ -477,15 +477,15 @@
 
       
         <p>用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高<br><a id="more"></a></p>
-<h1 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h1><p>普通方法对于多项式（$\,a<em>{n}x^{n}+a</em>{n-1}x^{n-1}+…+a<em>{2}x^{2}+a</em>{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加</p>
-<p>而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a<em>{n}x+a</em>{n-1} \right )x+a_{n-2}  \right )x+… \right )x+1$.</p>
+<h1 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h1><p>普通方法对于多项式（$\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加</p>
+<p>而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a_{n}x+a_{n-1} \right )x+a_{n-2}  \right )x+… \right )x+1$.</p>
 <p>也就相当于在程序中用递归：</p>
 <blockquote>
-<p>$\,f<em>{1}\,=\,a</em>{n}x+a_{n-1}\,$</p>
-<p>$\,f<em>{2}\,=\,f</em>{1}x+a_{n-2}\,$</p>
+<p>$\,f_{1}\,=\,a_{n}x+a_{n-1}\,$</p>
+<p>$\,f_{2}\,=\,f_{1}x+a_{n-2}\,$</p>
 <p>……</p>
-<p>$\,f<em>{n-1}=f</em>{n-2}x+a_{1}\,$</p>
-<p>$\,f<em>{n}=f</em>{n-1}x+1\,$ </p>
+<p>$\,f_{n-1}=f_{n-2}x+a_{1}\,$</p>
+<p>$\,f_{n}=f_{n-1}x+1\,$ </p>
 </blockquote>
 <p>$\,f_{n}\,$为所求</p>
 <p>自然效率会比普通的算法要快许多。</p>
@@ -516,7 +516,7 @@ return y
   <p><span>本文标题:</span><a href="/2019/03/04/秦九韶算法/">秦九韶算法</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年03月04日 - 19:03</p>
-  <p><span>最后更新:</span>2019年03月04日 - 20:03</p>
+  <p><span>最后更新:</span>2019年03月29日 - 20:03</p>
   <p><span>原始链接:</span><a href="/2019/03/04/秦九韶算法/" title="秦九韶算法">http://aimasa.github.io/2019/03/04/秦九韶算法/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/03/04/秦九韶算法/" aria-label="复制成功！"></i></span>
   </p>
@@ -688,7 +688,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -699,7 +699,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -800,7 +800,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.3k</span>
+    <span title="Site words total count">22.3k</span>
   
 </div>
 
@@ -1447,7 +1447,7 @@ var jiathis_config={
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
@@ -1458,23 +1458,6 @@ var jiathis_config={
   <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

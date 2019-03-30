@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="markdown,">
 
 
 
@@ -120,6 +120,7 @@
 
 
 <meta name="description" content="实测在该博客中提到的四种在markdown中插入公式的办法">
+<meta name="keywords" content="markdown">
 <meta property="og:type" content="article">
 <meta property="og:title" content="markdown插入公式">
 <meta property="og:url" content="http://aimasa.github.io/2019/02/27/markdown插入公式/index.html">
@@ -132,7 +133,7 @@
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png">
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png">
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png">
-<meta property="og:updated_time" content="2019-03-29T10:56:01.787Z">
+<meta property="og:updated_time" content="2019-03-30T07:55:58.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="markdown插入公式">
 <meta name="twitter:description" content="实测在该博客中提到的四种在markdown中插入公式的办法">
@@ -445,7 +446,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  637
+                  645
                 </span>
               
 
@@ -486,7 +487,7 @@
 <a id="more"></a>
 <h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png"></center>
 
-<center>=======&gt;</center>
+<center>=======></center>
 
 <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png"></center>
 
@@ -509,7 +510,7 @@
 <pre><code>$ npm install hexo-math --save
 </code></pre><p>在站点配置文件 _config.yml 中添加：</p>
 <pre><code>math:
-  engine: &apos;mathjax&apos; # or &apos;katex&apos;
+  engine: &#39;mathjax&#39; # or &#39;katex&#39;
   mathjax:
     # src: custom_mathjax_source
     config:
@@ -527,11 +528,11 @@ mathjax:
 hexo math install
 </code></pre><p>然后更改</p>
 <p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p>
-<p>Step 1:<br>    escape: /^\(<a href="">\`*{}[\</a># +-.!_&gt;])/,</p>
+<p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p>
 <p>替换成</p>
 <pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,
 </code></pre><p>这一步是在原基础上取消了对\\,\{,\}的转义(escape)</p>
-<p>Step 2:<br>    em: /^\b_((?:[^_]|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p>
+<p>Step 2:<br>    em: /^\b_((?:<sup><a href="#fn__" id="reffn__">_</a></sup>|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p>
 <p>替换成</p>
 <pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 </code></pre><p>这样一来MathJax就能与marked.js共存了。</p>
@@ -539,6 +540,7 @@ hexo math install
 <h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p>
 <p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p>
 <p>如果该链接打不开，请进入参考文档去寻找正确地址。</p>
+<p><a href="https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/" target="_blank" rel="noopener">用mathjax对公式进行渲染</a></p>
 
       
     </div>
@@ -558,7 +560,7 @@ hexo math install
   <p><span>本文标题:</span><a href="/2019/02/27/markdown插入公式/">markdown插入公式</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年02月27日 - 15:02</p>
-  <p><span>最后更新:</span>2019年03月29日 - 18:03</p>
+  <p><span>最后更新:</span>2019年03月30日 - 15:03</p>
   <p><span>原始链接:</span><a href="/2019/02/27/markdown插入公式/" title="markdown插入公式">http://aimasa.github.io/2019/02/27/markdown插入公式/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/02/27/markdown插入公式/" aria-label="复制成功！"></i></span>
   </p>
@@ -596,6 +598,12 @@ hexo math install
   
 </div>
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/markdown/" rel="tag"><i class="fa fa-tag"></i> markdown</a>
+          
+        </div>
       
 
       
@@ -724,7 +732,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -735,7 +743,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -836,7 +844,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.3k</span>
+    <span title="Site words total count">22.3k</span>
   
 </div>
 
@@ -1483,7 +1491,7 @@ var jiathis_config={
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
@@ -1494,23 +1502,6 @@ var jiathis_config={
   <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

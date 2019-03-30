@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。 其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-03-06T07:55:18.085Z">
+<meta property="og:updated_time" content="2019-03-29T12:18:04.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多项式">
 <meta name="twitter:description" content="其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。 其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。">
@@ -508,7 +508,7 @@ return r
 </code></pre><p>就是两个普通的多项式相乘时候，系数分别相乘（比如$\,\left (5x^{2}+4x+1 \right )\cdot \left ( 7x^{2}+9x+1 \right )\,$）其中$\,\left (7x^{2}  \right)  \cdot \left ( 5x^{2}+4x+1  \right )\,$以此类推……</p>
 <p>然后其中i+j的意味着相同次幂的系数，所以在该代码中对他们进行了相加（异或）。</p>
 <p>在该代码中展示的仅仅是在伽罗瓦域中的系数的乘法然后再相加，所以用的是循环i和j，让所有的系数都能互相乘并且相加。</p>
-<h2 id="秦九韶算法"><a href="#秦九韶算法" class="headerlink" title="秦九韶算法"></a>秦九韶算法</h2><p>这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a<em>{n}x^{n}+a</em>{n-1}x^{n-1}+…+a<em>{2}x^{2}+a</em>{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 <a href="https://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/">详细介绍</a></p>
+<h2 id="秦九韶算法"><a href="#秦九韶算法" class="headerlink" title="秦九韶算法"></a>秦九韶算法</h2><p>这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 <a href="https://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/">详细介绍</a></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p>
 <p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>
 
@@ -530,7 +530,7 @@ return r
   <p><span>本文标题:</span><a href="/2019/03/05/多项式/">多项式</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年03月05日 - 15:03</p>
-  <p><span>最后更新:</span>2019年03月06日 - 15:03</p>
+  <p><span>最后更新:</span>2019年03月29日 - 20:03</p>
   <p><span>原始链接:</span><a href="/2019/03/05/多项式/" title="多项式">http://aimasa.github.io/2019/03/05/多项式/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/03/05/多项式/" aria-label="复制成功！"></i></span>
   </p>
@@ -702,7 +702,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -713,7 +713,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -814,7 +814,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.3k</span>
+    <span title="Site words total count">22.3k</span>
   
 </div>
 
@@ -1461,7 +1461,7 @@ var jiathis_config={
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
@@ -1472,23 +1472,6 @@ var jiathis_config={
   <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
