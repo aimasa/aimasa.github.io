@@ -1,443 +1,998 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[hexo公式渲染]]></title>
-    <url>%2F2019%2F03%2F30%2Fhexo%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[hexo博客上传图片]]></title>
-    <url>%2F2019%2F03%2F29%2Fhexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%2F</url>
-    <content type="text"><![CDATA[因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。 准备工作去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香） 然后百度教程 开始下载插件 npm install hexo-qiniu-sync --save 然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面 plugins: - hexo-qiniu-sync qiniu: offline: false sync: true bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字 access_key: AccessKey # 你在七牛上面账号的密钥管理的key secret_key: SecretKey # 你在七牛上面账号的密钥管理的key dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好 urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。 update_exist: true image: folder: images extend: js: folder: js css: folder: css 好了，其他详细的说明下面有指路辽== 插入图片我用的是这种语法，其他的我不想看辽，目前也用不到。 参考资料我觉得很详细的教程]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>hexo公式渲染</title>
+      <link href="/2019/03/30/hexo%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93/"/>
+      <url>/2019/03/30/hexo%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo博客上传图片</title>
+      <link href="/2019/03/29/hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/"/>
+      <url>/2019/03/29/hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</url>
+      
+        <content type="html"><![CDATA[<p>因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……<br>这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。</p><a id="more"></a><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香）</p><p>然后百度教程</p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>下载插件</p><pre><code>npm install hexo-qiniu-sync --save</code></pre><p>然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面</p><pre><code>plugins:  - hexo-qiniu-syncqiniu:  offline: false  sync: true  bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字  access_key: AccessKey # 你在七牛上面账号的密钥管理的key  secret_key: SecretKey # 你在七牛上面账号的密钥管理的key  dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好  urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static    local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。  update_exist: true  image:    folder: images    extend:  js:    folder: js  css:    folder: css</code></pre><p>好了，其他详细的说明下面有指路辽==</p><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>我用的是<img src="http://pp48biywe.bkt.clouddn.com/static/images/xxx.png">这种语法，其他的我不想看辽，目前也用不到。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lwtang.github.io/2018/11/27/qiniu-store-image/" target="_blank" rel="noopener">我觉得很详细的教程</a></p>]]></content>
+      
+      
       <categories>
-        <category>hexo更新配置</category>
-        <category>hexo插入图片</category>
+          
+          <category> hexo更新配置 </category>
+          
+          <category> hexo插入图片 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[为Next主题添加统计阅读量的功能以及开评论]]></title>
-    <url>%2F2019%2F03%2F29%2F%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA%2F</url>
-    <content type="text"><![CDATA[需要准备工作我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。 具体步骤开放评论注册完这个账号，然后创建项目（企业开发的话要钱，所以选择个人开发）。接着去Next主题里面设置 valine: enable: true appid: # your leancloud application appid你点进你leancloud账号里新建的项目里面，然后点进设置，会看到项目自动生成的appid，然后复制过来 appkey: # your leancloud application appkey它的位置就在appid下面一行 notify: false # mail notifier , https://github.com/xCss/Valine/wiki通知 verify: false # Verification code验证码（评论前要输入的） placeholder: Just go go # comment box placeholder评论框提示你输入的话语 avatar: mm # gravatar style默认头像 guest_info: nick,mail # custom comment header评论前要输入的信息 pageSize: 10 # pagination size一页默认展示的评论数 然后就能开评论了，因为我刚开始设置输入错了appid和appkey，出现了402错误（反正会提示你哪错了，就不做解释辽。） 给评论加上邮件通知这个是跟着这个博客的方法来的，虽然之前的博客教我怎么用leancloud自带的邮件通知功能去提醒别人评论已回复，但是说是因为是正在开发的功能，还不太稳定，同时还会被要求开验证码，觉得很不方便，所以我换了个博客跟着用第三方的邮件提醒功能。 因为过程有些繁琐，我也只是跟着它的方法来的，所以就只在这放个链接好了。这是个开源项目。 添加统计阅读量功能在你新建的项目的存储里面，新建一个叫Counter的class，ACL权限选择无限制，里面的appid和appkey和上面获取的是一样的，在这里就不讲是怎么去获取的了。 # Show number of visitors to each article. # You can visit https://leancloud.cn get AppID and AppKey. leancloud_visitors: enable: true app_id: #AppID app_key: #AppKey 参考资料参考博客(添加统计阅读量功能) 参考博客(添加统计阅读量功能) 参考博客(让博客支持评论功能) 第三方邮件回复自带定时器]]></content>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>为Next主题添加统计阅读量的功能以及开评论</title>
+      <link href="/2019/03/29/%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
+      <url>/2019/03/29/%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="需要准备工作"><a href="#需要准备工作" class="headerlink" title="需要准备工作"></a>需要准备工作</h1><p>我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。</p><a id="more"></a><h1 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h1><h2 id="开放评论"><a href="#开放评论" class="headerlink" title="开放评论"></a>开放评论</h2><p>注册完这个账号，然后创建项目（企业开发的话要钱，所以选择个人开发）。接着去Next主题里面设置</p><pre><code>valine:  enable: true  appid:  # your leancloud application appid你点进你leancloud账号里新建的项目里面，然后点进设置，会看到项目自动生成的appid，然后复制过来  appkey: # your leancloud application appkey它的位置就在appid下面一行  notify: false # mail notifier , https://github.com/xCss/Valine/wiki通知  verify: false # Verification code验证码（评论前要输入的）  placeholder: Just go go # comment box placeholder评论框提示你输入的话语  avatar: mm # gravatar style默认头像  guest_info: nick,mail # custom comment header评论前要输入的信息  pageSize: 10 # pagination size一页默认展示的评论数</code></pre><p>然后就能开评论了，因为我刚开始设置输入错了appid和appkey，出现了402错误（反正会提示你哪错了，就不做解释辽。）</p><h3 id="给评论加上邮件通知"><a href="#给评论加上邮件通知" class="headerlink" title="给评论加上邮件通知"></a>给评论加上邮件通知</h3><p>这个是跟着<a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank" rel="noopener">这个博客</a>的方法来的，虽然之前的博客教我怎么用leancloud自带的邮件通知功能去提醒别人评论已回复，但是说是因为是正在开发的功能，还不太稳定，同时还会被要求开验证码，觉得很不方便，所以我换了个博客跟着用第三方的邮件提醒功能。</p><p>因为过程有些繁琐，我也只是跟着它的方法来的，所以就只在这放个链接好了。这是个开源项目。</p><h2 id="添加统计阅读量功能"><a href="#添加统计阅读量功能" class="headerlink" title="添加统计阅读量功能"></a>添加统计阅读量功能</h2><p>在你新建的项目的存储里面，新建一个叫Counter的class，ACL权限选择无限制，里面的appid和appkey和上面获取的是一样的，在这里就不讲是怎么去获取的了。</p><pre><code># Show number of visitors to each article.# You can visit https://leancloud.cn get AppID and AppKey.leancloud_visitors:  enable: true  app_id: #AppID  app_key: #AppKey</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://valine.js.org/notify.html" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">参考博客(让博客支持评论功能)</a></p><p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/高级配置.md#自定义邮件模板" target="_blank" rel="noopener">第三方邮件回复自带定时器</a></p>]]></content>
+      
+      
       <categories>
-        <category>hexo 更新配置</category>
-        <category>添加统计阅读量以及打开评论</category>
+          
+          <category> hexo 更新配置 </category>
+          
+          <category> 添加统计阅读量以及打开评论 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[bitSet源码解读]]></title>
-    <url>%2F2019%2F03%2F14%2FbitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%2F</url>
-    <content type="text"><![CDATA[因为最近在看二维码相关，在github上拉下来的代码里面有用到bitSet库，所以在试着看源码。看了一段时间，发现就算理清了逻辑结构也不明白什么意思，所以就去网上查了一下bitSet是做什么的。 都说bitSet是用来对大量的数据进行整理，减少内存负担（我是这样理解的），bitSet是用长整型对数据进行存储，比起用二进制用int对数据进行存储的方法相比，确实可以减少许多内存【这里对内存概念不是很清楚，日后补全。 部分源码分析定义好的关键词(大概可以这样叫)/* * bitSet被打包为字的数组 * word的大小选择完全取决于它的性能 */ private final static int ADDRESS_BITS_PER_WORD = 6; private final static int BITS_PER_WORD = 1 &lt;&lt; ADDRESS_BITS_PER_WORD; private final static int BIT_INDEX_MASK = BITS_PER_WORD - 1; /* Used to shift left or right for a partial word mask */ private static final long WORD_MASK = 0xffffffffffffffffL; 这是该方法中定义的参数，其中ADDRESS_BITS_PER_WORD=6是指在java中long型是占8个字节，64bit（$\,2^{6}\,=\,64byte\,$）所以对应的二进制就是6. private long[] words; private transient int wordsInUse = 0;//已使用的范围的下标 private transient boolean sizeIsSticky = false;//表示用户是使用默认的words的大小(64bit)还是自定义 关于wordIndex的定义这里是bit下标对应的word下标的计算过程： private static int wordIndex(int bitIndex) { return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD; } bitSet的构造函数(里面有对words这个数组的定义)其中，bitSet的构造函数是： public BitSet(int nbits) { // nbits can&#39;t be negative; size 0 is OK if (nbits &lt; 0) throw new NegativeArraySizeException(&quot;nbits &lt; 0: &quot; + nbits); initWords(nbits); sizeIsSticky = true; } private void initWords(int nbits) { words = new long[wordIndex(nbits-1) + 1]; } 这是在初始化时候给bitSet中的long[] words分配大小时候，就会调用这个构造函数，但是如果初始化时候去输入long[] 这个数组的话，相当于直接定义long[] words这个数组。 private BitSet(long[] words) { this.words = words; this.wordsInUse = words.length;//这里wordsInUse表示的是定义的数组的长度，如果没有定义长度的话，那么这个值默认为零。 checkInvariants(); } 然后还有无参构造，这个就是用默认的数组大小64bit public BitSet() { initWords(BITS_PER_WORD); sizeIsSticky = false; } bitSet的clear方法(对words这个数组进行清零)其中wordsInUse在源码中出现频率非常高，这个参数是用来记录word数组中已经使用了的个数。 public void clear(int bitIndex) { if (bitIndex &lt; 0) throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex); int wordIndex = wordIndex(bitIndex);//计算这个bit下标实际上是第几个word(Long) if (wordIndex &gt;= wordsInUse) //如果这个下标不在wordsInUse范围内，那么返回，因为没有必要进行别的操作了。 return; words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex); //把words[wordIndex]中的值设置为false（就是清零）因为&lt;&lt;这是左移。取反后就全是零了，再进行与运算，就相当于设置该bitIndex这个位为false，也就是将该位清零。 recalculateWordsInUse(); checkInvariants(); } 关于和clear对应的set方法(对words这个数组进行赋值)这是set函数，就是把bitIndex的对应的位置设置为true，然后返回设置了true的地方的下标： public void set(int bitIndex) { if (bitIndex &lt; 0) throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex); int wordIndex = wordIndex(bitIndex); expandTo(wordIndex);//判断是否需要扩容，如果需要，则进行扩容 words[wordIndex] |= (1L &lt;&lt; bitIndex); // 把这个bitIndex位设置为true checkInvariants(); } 关于clear每次最后都要用到的recalculateWordsInUse()方法更新wordsInUse，判断实际存储大小。 private void recalculateWordsInUse() { //遍历words这个数组，直到找到一个是true的地方 int i; for (i = wordsInUse-1; i &gt;= 0; i--) if (words[i] != 0) break; wordsInUse = i+1; // 就是让wordsInUse的大小更改为实际单词存储量 } clear和set方法中都会出现的checkInvariants()方法判断这个word数组是否溢出，是否需要抛出异常。 private void checkInvariants() { assert(wordsInUse == 0 || words[wordsInUse - 1] != 0); assert(wordsInUse &gt;= 0 &amp;&amp; wordsInUse &lt;= words.length); assert(wordsInUse == words.length || words[wordsInUse] == 0); } 克隆方法clone()public Object clone() { if (! sizeIsSticky) trimToSize(); try { BitSet result = (BitSet) super.clone(); result.words = words.clone(); result.checkInvariants(); return result; } catch (CloneNotSupportedException e) { throw new InternalError(e); } } 参考深克隆和浅克隆 trimToSize()方法当word的长度或者内容是自定义的情况下则调用的 private void trimToSize() { if (wordsInUse != words.length) { words = Arrays.copyOf(words, wordsInUse);//把实际用的数据拷贝出来放进words里面 checkInvariants(); } } get()方法public boolean get(int bitIndex) { if (bitIndex &lt; 0) throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex); checkInvariants(); int wordIndex = wordIndex(bitIndex); return (wordIndex &lt; wordsInUse) &amp;&amp; ((words[wordIndex] &amp; (1L &lt;&lt; bitIndex)) != 0);//判断数据是否是在使用范围内，该bitIndex位是否为0. } 就是前面的先是判断下标是否在存储完数据使用过的范围内，如果不在就无效。再判断bitIndex对应的数据位是否是零，如果都是的话返回true。 参考网站对bitSet内存存储方法进行详细介绍，但其他的写的不太明了 举例说明了bitSet的用法，内容详细 对bitSet源码中的重要方法进行解读 简要介绍了bitSet里面的类]]></content>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>bitSet源码解读</title>
+      <link href="/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+      <url>/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</url>
+      
+        <content type="html"><![CDATA[<p>因为最近在看二维码相关，在github上拉下来的代码里面有用到bitSet库，所以在试着看源码。<br>看了一段时间，发现就算理清了逻辑结构也不明白什么意思，所以就去网上查了一下bitSet是做什么的。</p><p>都说bitSet是用来对大量的数据进行整理，减少内存负担（我是这样理解的），bitSet是用长整型对数据进行存储，比起用二进制用int对数据进行存储的方法相比，确实可以减少许多内存【这里对内存概念不是很清楚，日后补全。</p><a id="more"></a><h1 id="部分源码分析"><a href="#部分源码分析" class="headerlink" title="部分源码分析"></a>部分源码分析</h1><h2 id="定义好的关键词-大概可以这样叫"><a href="#定义好的关键词-大概可以这样叫" class="headerlink" title="定义好的关键词(大概可以这样叫)"></a>定义好的关键词(大概可以这样叫)</h2><pre><code>/* * bitSet被打包为字的数组 * word的大小选择完全取决于它的性能 */private final static int ADDRESS_BITS_PER_WORD = 6;private final static int BITS_PER_WORD = 1 &lt;&lt; ADDRESS_BITS_PER_WORD;private final static int BIT_INDEX_MASK = BITS_PER_WORD - 1;/* Used to shift left or right for a partial word mask */private static final long WORD_MASK = 0xffffffffffffffffL;</code></pre><p>这是该方法中定义的参数，其中ADDRESS_BITS_PER_WORD=6是指在java中long型是占8个字节，64bit（$\,2^{6}\,=\,64byte\,$）所以对应的二进制就是6.</p><pre><code>private long[] words;private transient int wordsInUse = 0;//已使用的范围的下标private transient boolean sizeIsSticky = false;//表示用户是使用默认的words的大小(64bit)还是自定义</code></pre><h2 id="关于wordIndex的定义"><a href="#关于wordIndex的定义" class="headerlink" title="关于wordIndex的定义"></a>关于wordIndex的定义</h2><p>这里是bit下标对应的word下标的计算过程：</p><pre><code>private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><h2 id="bitSet的构造函数-里面有对words这个数组的定义"><a href="#bitSet的构造函数-里面有对words这个数组的定义" class="headerlink" title="bitSet的构造函数(里面有对words这个数组的定义)"></a>bitSet的构造函数(里面有对words这个数组的定义)</h2><p>其中，bitSet的构造函数是：</p><pre><code>public BitSet(int nbits) {    // nbits can&#39;t be negative; size 0 is OK    if (nbits &lt; 0)        throw new NegativeArraySizeException(&quot;nbits &lt; 0: &quot; + nbits);    initWords(nbits);    sizeIsSticky = true;}private void initWords(int nbits) {    words = new long[wordIndex(nbits-1) + 1];}</code></pre><p>这是在初始化时候给bitSet中的long[] words分配大小时候，就会调用这个构造函数，但是如果初始化时候去输入long[] 这个数组的话，相当于直接定义long[] words这个数组。</p><pre><code>private BitSet(long[] words) {    this.words = words;    this.wordsInUse = words.length;//这里wordsInUse表示的是定义的数组的长度，如果没有定义长度的话，那么这个值默认为零。    checkInvariants();}</code></pre><p>然后还有无参构造，这个就是用默认的数组大小64bit</p><pre><code>public BitSet() {    initWords(BITS_PER_WORD);    sizeIsSticky = false;}</code></pre><h2 id="bitSet的clear方法-对words这个数组进行清零"><a href="#bitSet的clear方法-对words这个数组进行清零" class="headerlink" title="bitSet的clear方法(对words这个数组进行清零)"></a>bitSet的clear方法(对words这个数组进行清零)</h2><p>其中wordsInUse在源码中出现频率非常高，这个参数是用来记录word数组中已经使用了的个数。</p><pre><code>public void clear(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    int wordIndex = wordIndex(bitIndex);//计算这个bit下标实际上是第几个word(Long)    if (wordIndex &gt;= wordsInUse) //如果这个下标不在wordsInUse范围内，那么返回，因为没有必要进行别的操作了。        return;    words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex); //把words[wordIndex]中的值设置为false（就是清零）因为&lt;&lt;这是左移。取反后就全是零了，再进行与运算，就相当于设置该bitIndex这个位为false，也就是将该位清零。    recalculateWordsInUse();    checkInvariants();}</code></pre><h2 id="关于和clear对应的set方法-对words这个数组进行赋值"><a href="#关于和clear对应的set方法-对words这个数组进行赋值" class="headerlink" title="关于和clear对应的set方法(对words这个数组进行赋值)"></a>关于和clear对应的set方法(对words这个数组进行赋值)</h2><p>这是set函数，就是把bitIndex的对应的位置设置为true，然后返回设置了true的地方的下标：</p><pre><code>public void set(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    int wordIndex = wordIndex(bitIndex);    expandTo(wordIndex);//判断是否需要扩容，如果需要，则进行扩容    words[wordIndex] |= (1L &lt;&lt; bitIndex); // 把这个bitIndex位设置为true    checkInvariants();}</code></pre><h2 id="关于clear每次最后都要用到的recalculateWordsInUse-方法"><a href="#关于clear每次最后都要用到的recalculateWordsInUse-方法" class="headerlink" title="关于clear每次最后都要用到的recalculateWordsInUse()方法"></a>关于clear每次最后都要用到的recalculateWordsInUse()方法</h2><p>更新wordsInUse，判断实际存储大小。</p><pre><code>private void recalculateWordsInUse() {    //遍历words这个数组，直到找到一个是true的地方    int i;    for (i = wordsInUse-1; i &gt;= 0; i--)        if (words[i] != 0)            break;    wordsInUse = i+1; // 就是让wordsInUse的大小更改为实际单词存储量}</code></pre><h2 id="clear和set方法中都会出现的checkInvariants-方法"><a href="#clear和set方法中都会出现的checkInvariants-方法" class="headerlink" title="clear和set方法中都会出现的checkInvariants()方法"></a>clear和set方法中都会出现的checkInvariants()方法</h2><p>判断这个word数组是否溢出，是否需要抛出异常。</p><pre><code>private void checkInvariants() {    assert(wordsInUse == 0 || words[wordsInUse - 1] != 0);    assert(wordsInUse &gt;= 0 &amp;&amp; wordsInUse &lt;= words.length);    assert(wordsInUse == words.length || words[wordsInUse] == 0);}</code></pre><h2 id="克隆方法clone"><a href="#克隆方法clone" class="headerlink" title="克隆方法clone()"></a>克隆方法clone()</h2><pre><code>public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p><a href="https://aimasa.github.io/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">参考深克隆和浅克隆</a></p><h2 id="trimToSize-方法"><a href="#trimToSize-方法" class="headerlink" title="trimToSize()方法"></a>trimToSize()方法</h2><p>当word的长度或者内容是自定义的情况下则调用的<br>    private void trimToSize() {<br>        if (wordsInUse != words.length) {<br>            words = Arrays.copyOf(words, wordsInUse);//把实际用的数据拷贝出来放进words里面<br>            checkInvariants();<br>        }<br>    }</p><h2 id="get-方法"><a href="#get-方法" class="headerlink" title="get()方法"></a>get()方法</h2><pre><code>public boolean get(int bitIndex) {    if (bitIndex &lt; 0)        throw new IndexOutOfBoundsException(&quot;bitIndex &lt; 0: &quot; + bitIndex);    checkInvariants();    int wordIndex = wordIndex(bitIndex);    return (wordIndex &lt; wordsInUse)        &amp;&amp; ((words[wordIndex] &amp; (1L &lt;&lt; bitIndex)) != 0);//判断数据是否是在使用范围内，该bitIndex位是否为0.}</code></pre><p>就是前面的先是判断下标是否在存储完数据使用过的范围内，如果不在就无效。再判断bitIndex对应的数据位是否是零，如果都是的话返回true。</p><h1 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h1><p><a href="http://www.voidcn.com/article/p-bqoyhfid-rv.html" target="_blank" rel="noopener">对bitSet内存存储方法进行详细介绍，但其他的写的不太明了</a></p><p><a href="https://www.cnblogs.com/larryzeal/p/7710389.html" target="_blank" rel="noopener">举例说明了bitSet的用法，内容详细</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">对bitSet源码中的重要方法进行解读</a></p><p><a href="https://www.jianshu.com/p/00b38e7ec2f2" target="_blank" rel="noopener">简要介绍了bitSet里面的类</a></p>]]></content>
+      
+      
       <categories>
-        <category>java语法</category>
-        <category>bitSet部分源码解读</category>
+          
+          <category> java语法 </category>
+          
+          <category> bitSet部分源码解读 </category>
+          
       </categories>
-      <tags>
-        <tag>java语法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[java的~、|、、>>>、^]]></title>
-    <url>%2F2019%2F03%2F14%2Fjava%E7%9A%84%2F</url>
-    <content type="text"><![CDATA[在看BitSet的源码的时候，我看到了这样一段代码 words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex); 其中~(1L&lt;&lt;bitIndex)我不太明白这是什么意思，所以谷歌了一下,就顺便查了一下日常容易被我弄错的逻辑运算符的用法。 其中 ~：是按位取反运算符 如：~(10010010)=01101101 所以这句的意思是在1L左移bitIndex位后，对words[wordIndex]这个第一个bit的位清零 容易混淆的逻辑运算符顺便解释一下|这个的意思 |：这个是按位或运算 &gt;&gt; 是带符号右移，若左操作数是正数，则高位补“0”，若左操作数是负数，则高位补“1”. &lt;&lt; 左移，不管正负数左移时候，最高位都不用管，只需要在后面补零就可以了，和&lt;&lt;&lt;不带符号左移一样，所以就没有不带符号左移 &gt;&gt;&gt; 是无符号右移，无论左操作数是正数还是负数，在高位都补“0” 计算机都是用补码存储数据的。所以当一个数带符号右移或者左移，就是单纯的对该数进行除乘。 所以在带符号右移或者左移时候，为了保证数字在这个安全的距离能够得出想要的正确结果（乘除2的标准结果），所以int设置的可活动的位移是32，就是左右移32位时候，就会恢复数字的原本值，long设置的可活动位移是64. emmmm感觉我语言讲述的不是很清楚，所以附上例子把。 public class test { public static void main(String[] args) { long a=-5; System.out.println((a &lt;&lt; 64)); // output: -5 } } 这是long的情况，接下来我放int的例子： public class test { public static void main(String[] args) { int a=-5; System.out.println((a &lt;&lt; 32)); // output: -5 } } 恩，就是这样，我是这样理解的。 关于^^这个是异或运算符。 参考资料位移参考]]></content>
+      
+      
+        <tags>
+            
+            <tag> java语法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java的~、|、&lt;&lt;、&gt;&gt;、&gt;&gt;&gt;、^</title>
+      <link href="/2019/03/14/java%E7%9A%84/"/>
+      <url>/2019/03/14/java%E7%9A%84/</url>
+      
+        <content type="html"><![CDATA[<p>在看BitSet的源码的时候，我看到了这样一段代码</p><pre><code>words[wordIndex] &amp;= ~(1L &lt;&lt; bitIndex);</code></pre><p>其中~(1L&lt;&lt;bitIndex)我不太明白这是什么意思，所以谷歌了一下,就顺便查了一下日常容易被我弄错的逻辑运算符的用法。</p><a id="more"></a><p>其中</p><p>~：是按位取反运算符</p><p>如：~(10010010)=01101101</p><p>所以这句的意思是在1L左移bitIndex位后，对words[wordIndex]这个第一个bit的位清零</p><h1 id="容易混淆的逻辑运算符"><a href="#容易混淆的逻辑运算符" class="headerlink" title="容易混淆的逻辑运算符"></a>容易混淆的逻辑运算符</h1><p>顺便解释一下|这个的意思</p><pre><code>|：这个是按位或运算&gt;&gt; 是带符号右移，若左操作数是正数，则高位补“0”，若左操作数是负数，则高位补“1”.&lt;&lt; 左移，不管正负数左移时候，最高位都不用管，只需要在后面补零就可以了，和&lt;&lt;&lt;不带符号左移一样，所以就没有不带符号左移&gt;&gt;&gt; 是无符号右移，无论左操作数是正数还是负数，在高位都补“0”</code></pre><p>计算机都是用补码存储数据的。所以当一个数带符号右移或者左移，就是单纯的对该数进行除乘。</p><p>所以在带符号右移或者左移时候，为了保证数字在这个安全的距离能够得出想要的正确结果（乘除2的标准结果），所以int设置的可活动的位移是32，就是左右移32位时候，就会恢复数字的原本值，long设置的可活动位移是64.</p><p>emmmm感觉我语言讲述的不是很清楚，所以附上例子把。</p><pre><code>public class test {    public static void main(String[] args) {        long a=-5;        System.out.println((a &lt;&lt; 64));          // output: -5      }}</code></pre><p>这是long的情况，接下来我放int的例子：</p><pre><code>public class test {    public static void main(String[] args) {        int a=-5;        System.out.println((a &lt;&lt; 32));          // output: -5      }}</code></pre><p>恩，就是这样，我是这样理解的。</p><h1 id="关于"><a href="#关于" class="headerlink" title="关于^"></a>关于^</h1><p>^这个是异或运算符。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/0236b51b903f" target="_blank" rel="noopener">位移参考</a></p>]]></content>
+      
+      
       <categories>
-        <category>java语法</category>
-        <category>java中的&quot;~&quot;</category>
+          
+          <category> java语法 </category>
+          
+          <category> java中的&quot;~&quot; </category>
+          
       </categories>
-      <tags>
-        <tag>java语法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[eclipse找不到源码]]></title>
-    <url>%2F2019%2F03%2F13%2Feclipse%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81%2F</url>
-    <content type="text"><![CDATA[想看看bitSet的源码，但是点进去却显示Source Not Found 点windows—&gt;preference—&gt;java进入如下界面： 然后用鼠标点击jre一下，使旁边的Edit获得焦点，然后点击Edit，进入如下界面： 最后选中jdk中的src.zip,点击确定，应用即可]]></content>
+      
+      
+        <tags>
+            
+            <tag> java语法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>eclipse找不到源码</title>
+      <link href="/2019/03/13/eclipse%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81/"/>
+      <url>/2019/03/13/eclipse%E6%89%BE%E4%B8%8D%E5%88%B0%E6%BA%90%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<p>想看看bitSet的源码，但是点进去却显示Source Not Found</p><a id="more"></a><p>点windows—&gt;preference—&gt;java进入如下界面：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/eclipse找不到源码/java_jre.png"></center><p>然后用鼠标点击jre一下，使旁边的Edit获得焦点，然后点击Edit，进入如下界面：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/eclipse找不到源码/java_Edit.png"></center><p>最后选中jdk中的src.zip,点击确定，应用即可</p>]]></content>
+      
+      
       <categories>
-        <category>eclipse故障</category>
-        <category>eclipse点进方法找不到源码</category>
+          
+          <category> eclipse故障 </category>
+          
+          <category> eclipse点进方法找不到源码 </category>
+          
       </categories>
-      <tags>
-        <tag>eclipse故障</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[对于QR生成的java源码学习(一):关于java语法内容]]></title>
-    <url>%2F2019%2F03%2F11%2F%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。 Object 与 Objects 的区别Object 是 Java 中所有类的基类，位于java.lang包。 Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。 Objects.requireNonNull(text); 其中源码是这样写的： public static &lt;T&gt; T requireNonNull(T obj) T：obj的相关类型 obj：要检查是否为空的参数 return：如果obj不为空就返回obj，如果是空就返回NullPointerException（空指针异常） 关于Matcher源码是这样的： NUMERIC_REGEX.matcher(text).matches() 先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配 public Matcher matcher(CharSequence input) Pattern.matcher(CharSequence input) input：需要被转换为匹配模式的字符串 return：返回这个Pattern的新匹配器 public boolean matches() return：当且仅当整个区域序列匹配此匹配器的模式时才返回true bitSet一个long长64bit，所以 private final static int ADDRESS_BITS_PER_WORD = 6; private static int wordIndex(int bitIndex) { return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD; } 其中是在计算bitIndex个bit对应的是第几个long assertassert()对括号中的条件进行判定，如果条件为真则往下继续运行，条件为假则打印完错误信息然后程序停止运行。 nativenative是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。 因为native是底层实现的，所以它的速度非常快。 cloneable接口和Serializable接口扩展Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自论java中的浅克隆和深克隆 关于克隆clone()方法public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。 mode = Objects.requireNonNull(md); Objects.requireNonNull(data); if (numCh &lt; 0) throw new IllegalArgumentException(&quot;Invalid value&quot;); numChars = numCh; this.data = data.clone(); // 做一个完整的副本（final data） } 这个clone()方法因为data是BitBuffer这个类，所以调用了BitBuffer这个类里面写的的clone()方法 public BitBuffer clone() { try { BitBuffer result = (BitBuffer)super.clone();//创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。 result.data = (BitSet)result.data.clone();//对BitBuffer这个对象里面成员变量再做一次克隆（到BitSet类中的clone()这个方法去了） return result; } catch (CloneNotSupportedException e) { throw new AssertionError(e); } } 为了进行深度克隆，第一次调用的clone()方法时java的Object这个对象的类的克隆，那个属于浅克隆。这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。 类Object： protected native Object clone() throws CloneNotSupportedException; 浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。 类BitSet： public Object clone() { if (! sizeIsSticky) trimToSize(); try { BitSet result = (BitSet) super.clone(); result.words = words.clone(); result.checkInvariants(); return result; } catch (CloneNotSupportedException e) { throw new InternalError(e); } } 其中result.data指向的是BitSet这个被实例化过一个类，所以去对BitSet data进行了一次克隆，然后data的里面有words的引用，所以再对这个值做一次clone(). 关于在一段数据后循环添加0xEC和0x11这两个数for (int padByte = 0xEC; bb.bitLength() &lt; dataCapacityBits; padByte ^= 0xEC ^ 0x11) bb.appendBits(padByte, 8); 其中0xEC和0x11是8bit8bit循环添加在bb里面的通过padByte ^= 0xEC ^ 0x11异或，来控制每次添加的8bit，先0xEC然后0x11这样去填充数据编码部分，直到值填满（为什么不能16bit一起填进去？如果16bit的话就会导致填到最后悔有溢出的情况。） 关于QrSegment这个类QrSegment这个类被定义后包括的函数 public final Mode mode; /** The length of this segment&#39;s unencoded data. Measured in characters for * numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode. * Always zero or positive. Not the same as the data&#39;s bit length. */ public final int numChars; // The data bits of this segment. Not null. Accessed through getData(). final BitBuffer data; 参考资料关于Object和Objects的区别 关于bitSet的源码解读 关于native的用法]]></content>
+      
+      
+        <tags>
+            
+            <tag> eclipse故障 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>对于QR生成的java源码学习(一):关于java语法内容</title>
+      <link href="/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p>java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。</p><a id="more"></a><h1 id="Object-与-Objects-的区别"><a href="#Object-与-Objects-的区别" class="headerlink" title="Object 与 Objects 的区别"></a>Object 与 Objects 的区别</h1><p>Object 是 Java 中所有类的基类，位于java.lang包。</p><p>Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p><pre><code>Objects.requireNonNull(text);</code></pre><p>其中源码是这样写的：</p><pre><code>public static &lt;T&gt; T requireNonNull(T obj)</code></pre><p>T：obj的相关类型</p><p>obj：要检查是否为空的参数</p><p>return：如果obj不为空就返回obj，如果是空就返回NullPointerException（空指针异常）</p><h1 id="关于Matcher"><a href="#关于Matcher" class="headerlink" title="关于Matcher"></a>关于Matcher</h1><p>源码是这样的：<br>    NUMERIC_REGEX.matcher(text).matches()</p><p>先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配</p><pre><code>public Matcher matcher(CharSequence input)Pattern.matcher(CharSequence input)</code></pre><p>input：需要被转换为匹配模式的字符串</p><p>return：返回这个Pattern的新匹配器</p><pre><code>public boolean matches()</code></pre><p>return：当且仅当整个区域序列匹配此匹配器的模式时才返回true</p><h1 id="bitSet"><a href="#bitSet" class="headerlink" title="bitSet"></a>bitSet</h1><p>一个long长64bit，所以</p><pre><code>private final static int ADDRESS_BITS_PER_WORD = 6;private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><p>其中是在计算bitIndex个bit对应的是第几个long</p><h1 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h1><p>assert()对括号中的条件进行判定，如果条件为真则往下继续运行，条件为假则打印完错误信息然后程序停止运行。</p><h1 id="native"><a href="#native" class="headerlink" title="native"></a>native</h1><p>native是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。</p><p>因为native是底层实现的，所以它的速度非常快。</p><h1 id="cloneable接口和Serializable接口"><a href="#cloneable接口和Serializable接口" class="headerlink" title="cloneable接口和Serializable接口"></a>cloneable接口和Serializable接口</h1><p>扩展<br>Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自<a href="https://www.cnblogs.com/Qian123/p/5710533.html" target="_blank" rel="noopener">论java中的浅克隆和深克隆</a></p><h1 id="关于克隆clone-方法"><a href="#关于克隆clone-方法" class="headerlink" title="关于克隆clone()方法"></a>关于克隆clone()方法</h1><pre><code>public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。    mode = Objects.requireNonNull(md);    Objects.requireNonNull(data);    if (numCh &lt; 0)        throw new IllegalArgumentException(&quot;Invalid value&quot;);    numChars = numCh;    this.data = data.clone();  // 做一个完整的副本（final data）}</code></pre><p>这个clone()方法因为data是BitBuffer这个类，所以调用了BitBuffer这个类里面写的的clone()方法</p><pre><code>public BitBuffer clone() {    try {        BitBuffer result = (BitBuffer)super.clone();//创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。        result.data = (BitSet)result.data.clone();//对BitBuffer这个对象里面成员变量再做一次克隆（到BitSet类中的clone()这个方法去了）        return result;    } catch (CloneNotSupportedException e) {        throw new AssertionError(e);    }}</code></pre><p>为了进行深度克隆，第一次调用的clone()方法时java的Object这个对象的类的克隆，那个属于浅克隆。<br>这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。</p><pre><code>类Object：protected native Object clone() throws CloneNotSupportedException;</code></pre><p>浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。</p><pre><code>类BitSet：public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p>其中result.data指向的是BitSet这个被实例化过一个类，所以去对BitSet data进行了一次克隆，然后data的里面有words的引用，所以再对这个值做一次clone().</p><h1 id="关于在一段数据后循环添加0xEC和0x11这两个数"><a href="#关于在一段数据后循环添加0xEC和0x11这两个数" class="headerlink" title="关于在一段数据后循环添加0xEC和0x11这两个数"></a>关于在一段数据后循环添加0xEC和0x11这两个数</h1><pre><code>for (int padByte = 0xEC; bb.bitLength() &lt; dataCapacityBits; padByte ^= 0xEC ^ 0x11)    bb.appendBits(padByte, 8);</code></pre><p>其中0xEC和0x11是8bit8bit循环添加在bb里面的<br>通过padByte ^= 0xEC ^ 0x11异或，来控制每次添加的8bit，先0xEC然后0x11这样去填充数据编码部分，直到值填满（为什么不能16bit一起填进去？如果16bit的话就会导致填到最后悔有溢出的情况。）</p><h1 id="关于QrSegment这个类"><a href="#关于QrSegment这个类" class="headerlink" title="关于QrSegment这个类"></a>关于QrSegment这个类</h1><p>QrSegment这个类被定义后包括的函数</p><pre><code>public final Mode mode;/** The length of this segment&#39;s unencoded data. Measured in characters for * numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode. * Always zero or positive. Not the same as the data&#39;s bit length. */public final int numChars;// The data bits of this segment. Not null. Accessed through getData().final BitBuffer data;</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/quiet-snowy-day/p/6387321.html" target="_blank" rel="noopener">关于Object和Objects的区别</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">关于bitSet的源码解读</a></p><p><a href="https://blog.csdn.net/youjianbo_han_87/article/details/2586375" target="_blank" rel="noopener">关于native的用法</a></p>]]></content>
+      
+      
       <categories>
-        <category>对于QR生成的java源码学习</category>
-        <category>java语法</category>
+          
+          <category> 对于QR生成的java源码学习 </category>
+          
+          <category> java语法 </category>
+          
       </categories>
-      <tags>
-        <tag>java语法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python下划线]]></title>
-    <url>%2F2019%2F03%2F07%2Fpython%E4%B8%8B%E5%88%92%E7%BA%BF%2F</url>
-    <content type="text"><![CDATA[在python中经常会遇到下划线”_”的情况 单下划线”_”就是无关紧要的变量，就用”_”表示，因为这个值不需要再次引用。 也可以表达python REPL中最接近一根表达式的结果。 单前导下划线”_var”这是命名约定，就是前面加一个下划线就是暗示别人说这里是私有类，用通配符导入模块时候这个方法（或者变量）是不会跟着包一起导入进去的，但是常规方法调用这个方法（或者变量时候）是不受单个下划线命名约定的影响的。 单后导下划线”var_”就是让该变量名（或者方法名）来避免和python关键词产生冲突。 双前导下划线”__var”当在类上下文中使用，会触发”名称修饰”，由python解释器强制执行。就是在这个双下划线前面加上”_[包名]” 双前导和双末尾下划线 “var“表示python语言定义的特殊方法。 最好避免在自己的程序中使用以双下划线（“dunders”）开头和结尾的名称，以避免与将来Python语言的变化产生冲突。 参考资料参考网页]]></content>
+      
+      
+        <tags>
+            
+            <tag> java语法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python下划线</title>
+      <link href="/2019/03/07/python%E4%B8%8B%E5%88%92%E7%BA%BF/"/>
+      <url>/2019/03/07/python%E4%B8%8B%E5%88%92%E7%BA%BF/</url>
+      
+        <content type="html"><![CDATA[<p>在python中经常会遇到下划线”_”的情况</p><a id="more"></a><h1 id="单下划线”-”"><a href="#单下划线”-”" class="headerlink" title="单下划线”_”"></a>单下划线”_”</h1><p>就是无关紧要的变量，就用”_”表示，因为这个值不需要再次引用。</p><p>也可以表达python REPL中最接近一根表达式的结果。</p><h1 id="单前导下划线”-var”"><a href="#单前导下划线”-var”" class="headerlink" title="单前导下划线”_var”"></a>单前导下划线”_var”</h1><p>这是命名约定，就是前面加一个下划线就是暗示别人说这里是私有类，用通配符导入模块时候这个方法（或者变量）是不会跟着包一起导入进去的，但是常规方法调用这个方法（或者变量时候）是不受单个下划线命名约定的影响的。</p><h1 id="单后导下划线”var-”"><a href="#单后导下划线”var-”" class="headerlink" title="单后导下划线”var_”"></a>单后导下划线”var_”</h1><p>就是让该变量名（或者方法名）来避免和python关键词产生冲突。</p><h1 id="双前导下划线”-var”"><a href="#双前导下划线”-var”" class="headerlink" title="双前导下划线”__var”"></a>双前导下划线”__var”</h1><p>当在类上下文中使用，会触发”名称修饰”，由python解释器强制执行。就是在这个双下划线前面加上”_[包名]”</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/python下划线/qiandao.png"></center><h1 id="双前导和双末尾下划线-“var“"><a href="#双前导和双末尾下划线-“var“" class="headerlink" title="双前导和双末尾下划线 “var“"></a>双前导和双末尾下划线 “<strong>var</strong>“</h1><p>表示python语言定义的特殊方法。</p><p>最好避免在自己的程序中使用以双下划线（“dunders”）开头和结尾的名称，以避免与将来Python语言的变化产生冲突。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/36173202" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+      
+      
       <categories>
-        <category>python</category>
-        <category>下划线</category>
+          
+          <category> python </category>
+          
+          <category> 下划线 </category>
+          
       </categories>
-      <tags>
-        <tag>python用法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hexo_next图片无法加载问题]]></title>
-    <url>%2F2019%2F03%2F05%2Fhexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现 ！[]() 无法被hexo g解析生成图片链接 用谷歌不管怎么搜索关键词都没有用，所以我直接删掉了”.deploy_git”，然后再用 hexo d -g 重新生成静态页面并且部署在网站上，然后图片成功生成了。 但是有时候这个办法还是会失效，然后我参考了这篇博客的做法替换掉了hexo-asset-image下载后生成的index.js这个文件（我把它的代码复制到这） &#39;use strict&#39;; var cheerio = require(&#39;cheerio&#39;); // http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string function getPosition(str, m, i) { return str.split(m, i).join(m).length; } var version = String(hexo.version).split(&#39;.&#39;); hexo.extend.filter.register(&#39;after_post_render&#39;, function(data){ var config = hexo.config; if(config.post_asset_folder){ var link = data.permalink; if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3) var beginPos = getPosition(link, &#39;/&#39;, 1) + 1; else var beginPos = getPosition(link, &#39;/&#39;, 3) + 1; // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;. var endPos = link.lastIndexOf(&#39;/&#39;) + 1; link = link.substring(beginPos, endPos); var toprocess = [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;]; for(var i = 0; i &lt; toprocess.length; i++){ var key = toprocess[i]; var $ = cheerio.load(data[key], { ignoreWhitespace: false, xmlMode: false, lowerCaseTags: false, decodeEntities: false }); $(&#39;img&#39;).each(function(){ if ($(this).attr(&#39;src&#39;)){ // For windows style path, we replace &#39;\&#39; to &#39;/&#39;. var src = $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;/&#39;); if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp; !/^\s*\//.test(src)) { // For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed. // In addition, to support multi-level local directory. var linkArray = link.split(&#39;/&#39;).filter(function(elem){ return elem != &#39;&#39;; }); var srcArray = src.split(&#39;/&#39;).filter(function(elem){ return elem != &#39;&#39; &amp;&amp; elem != &#39;.&#39;; }); if(srcArray.length &gt; 1) srcArray.shift(); src = srcArray.join(&#39;/&#39;); $(this).attr(&#39;src&#39;, config.root + link + src); console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src); } }else{ console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;); console.info&amp;&amp;console.info($(this)); } }); data[key] = $.html(); } } }); 然后再去删掉”.deploy_git”，用 hexo d -g 重新生成静态页面并且部署在网站上，然后图片成功生成了。]]></content>
+      
+      
+        <tags>
+            
+            <tag> python用法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo_next图片无法加载问题</title>
+      <link href="/2019/03/05/hexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
+      <url>/2019/03/05/hexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现</p><pre><code>！[]()</code></pre><p>无法被hexo g解析生成图片链接</p><a id="more"></a><p>用谷歌不管怎么搜索关键词都没有用，所以我直接删掉了”.deploy_git”，然后再用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p><p>但是有时候这个办法还是会失效，然后我参考了<a href="https://850552586.github.io/2018/11/15/hexo%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank" rel="noopener">这篇博客的做法</a>替换掉了hexo-asset-image下载后生成的index.js这个文件（我把它的代码复制到这）</p><pre><code>&#39;use strict&#39;;var cheerio = require(&#39;cheerio&#39;);// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-stringfunction getPosition(str, m, i) {  return str.split(m, i).join(m).length;}var version = String(hexo.version).split(&#39;.&#39;);hexo.extend.filter.register(&#39;after_post_render&#39;, function(data){  var config = hexo.config;  if(config.post_asset_folder){        var link = data.permalink;    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)       var beginPos = getPosition(link, &#39;/&#39;, 1) + 1;    else       var beginPos = getPosition(link, &#39;/&#39;, 3) + 1;    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.    var endPos = link.lastIndexOf(&#39;/&#39;) + 1;    link = link.substring(beginPos, endPos);    var toprocess = [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];    for(var i = 0; i &lt; toprocess.length; i++){      var key = toprocess[i];      var $ = cheerio.load(data[key], {        ignoreWhitespace: false,        xmlMode: false,        lowerCaseTags: false,        decodeEntities: false      });      $(&#39;img&#39;).each(function(){        if ($(this).attr(&#39;src&#39;)){            // For windows style path, we replace &#39;\&#39; to &#39;/&#39;.            var src = $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;/&#39;);            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;               !/^\s*\//.test(src)) {              // For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.              // In addition, to support multi-level local directory.              var linkArray = link.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39;;              });              var srcArray = src.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39; &amp;&amp; elem != &#39;.&#39;;              });                  if(srcArray.length &gt; 1)                srcArray.shift();              src = srcArray.join(&#39;/&#39;);              $(this).attr(&#39;src&#39;, config.root + link + src);              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);            }        }else{            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);            console.info&amp;&amp;console.info($(this));        }      });      data[key] = $.html();    }  }});</code></pre><p>然后再去删掉”.deploy_git”，用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p>]]></content>
+      
+      
       <categories>
-        <category>hexo错误笔记</category>
-        <category>hexo_next图片无法加载问题</category>
+          
+          <category> hexo错误笔记 </category>
+          
+          <category> hexo_next图片无法加载问题 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo err类型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[了解二维码(四)：Reed-Solomon code]]></title>
-    <url>%2F2019%2F03%2F05%2FRS-code%2F</url>
-    <content type="text"><![CDATA[在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式. 也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。 与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。 我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。 总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符） 加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。 RS生成多项式RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如： $\,g_{4}\, =\, \left (x-\alpha ^{0} \right )\left (x-\alpha ^{1} \right )\left (x-\alpha ^{2} \right )\left (x-\alpha ^{3} \right )= 01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$ 这是一个计算了指定n个纠错符号的RS码需要的生成多项式。 def rs_generator_poly(nsym): g = [1] for i in range(0, nsym): g = gf_poly_mul(g, [1, gf_pow(2, i)]) return g 这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积 多项式除法除法中 其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。 于是得出编码信息为12 34 56 37 e6 78 d9。 def gf_poly_div(dividend, divisor): &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39; # CAUTION: this function expects polynomials to follow the opposite convention at decoding: # the terms must go from the biggest to lowest degree (while most other functions here expect # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5] msg_out = list(dividend) # Copy the dividend #normalizer = divisor[0] # precomputing for performance for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1. #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here. coef = msg_out[i] # precaching if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization). for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior, # because it&#39;s only used to normalize the dividend coefficient if divisor[j] != 0: # log(0) is undefined msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。 # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef # The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor # (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s # what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder. separator = -(len(divisor)-1) return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头 然后出来了一个高效的编码方法： def rs_encode_msg(msg_in, nsym): &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39; if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym)) gen = rs_generator_poly(nsym) # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols). msg_out = [0] * (len(msg_in) + len(gen)-1) # Initializing the Synthetic Division with the dividend (= input message polynomial) msg_out[:len(msg_in)] = msg_in # Synthetic division main loop for i in range(len(msg_in)): # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated value at each iteration # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values, # we directly commit them to the output). coef = msg_out[i] # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check # the divisor here because we know it can&#39;t be 0 since we generated it. if coef != 0: # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic) for j in range(1, len(gen)): msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef) # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)] # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get # our complete codeword composed of the message + code. msg_out[:len(msg_in)] = msg_in return msg_out 这段新的代码把编码和长除法功能加在了一起，语句更简短。 这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 - 通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名]]></content>
+      
+      
+        <tags>
+            
+            <tag> hexo err类型 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>了解二维码(四)：Reed-Solomon code</title>
+      <link href="/2019/03/05/RS-code/"/>
+      <url>/2019/03/05/RS-code/</url>
+      
+        <content type="html"><![CDATA[<p>在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.</p><p>也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。</p><a id="more"></a><p>与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。</p><p>我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。</p><p>总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符）</p><blockquote><p>加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。</p></blockquote><h1 id="RS生成多项式"><a href="#RS生成多项式" class="headerlink" title="RS生成多项式"></a>RS生成多项式</h1><p>RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如：</p><blockquote><p>$\,g_{4}\, =\, \left (x-\alpha ^{0}  \right )\left (x-\alpha ^{1}  \right )\left (x-\alpha ^{2}  \right )\left (x-\alpha ^{3}  \right )=  01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$</p></blockquote><p>这是一个计算了指定n个纠错符号的RS码需要的生成多项式。</p><pre><code>def rs_generator_poly(nsym):    g = [1]    for i in range(0, nsym):        g = gf_poly_mul(g, [1, gf_pow(2, i)])return g</code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p><h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png"></center><p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chenfa.png"></center><p>于是得出编码信息为12 34 56 37 e6 78 d9。</p><pre><code>def gf_poly_div(dividend, divisor):    &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations    (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39;    # CAUTION: this function expects polynomials to follow the opposite convention at decoding:    # the terms must go from the biggest to lowest degree (while most other functions here expect    # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]    msg_out = list(dividend) # Copy the dividend    #normalizer = divisor[0] # precomputing for performance    for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1.        #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using        # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.        coef = msg_out[i] # precaching        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization).            for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,                                          # because it&#39;s only used to normalize the dividend coefficient                if divisor[j] != 0: # log(0) is undefined                    msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。                    # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef# The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s# what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.    separator = -(len(divisor)-1)    return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头</code></pre><p>然后出来了一个高效的编码方法：</p><pre><code>def rs_encode_msg(msg_in, nsym):    &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39;    if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))    gen = rs_generator_poly(nsym)    # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).    msg_out = [0] * (len(msg_in) + len(gen)-1)    # Initializing the Synthetic Division with the dividend (= input message     polynomial)    msg_out[:len(msg_in)] = msg_in    # Synthetic division main loop    for i in range(len(msg_in)):        # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration        # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,        # we directly commit them to the output).        coef = msg_out[i]        # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check        # the divisor here because we know it can&#39;t be 0 since we generated it.        if coef != 0:            # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)            for j in range(1, len(gen)):                msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)    # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder    # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get    # our complete codeword composed of the message + code.    msg_out[:len(msg_in)] = msg_in    return msg_out</code></pre><p>这段新的代码把编码和长除法功能加在了一起，语句更简短。</p><p>这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 -  通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名</p>]]></content>
+      
+      
       <categories>
-        <category>QR</category>
-        <category>了解二维码</category>
-        <category>了解二维码(四)：Reed-Solomon code</category>
+          
+          <category> QR </category>
+          
+          <category> 了解二维码 </category>
+          
+          <category> 了解二维码(四)：Reed-Solomon code </category>
+          
       </categories>
-      <tags>
-        <tag>QR</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[基于对数]]></title>
-    <url>%2F2019%2F03%2F05%2F%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧 基于对数其中的gf_mult_noLUT(x, 2, prim)源自俄罗斯农夫算法 基于对数的乘法（次幂的加法）但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为离散对数（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。） gf_exp = [0] * 512 # Create list of 512 elements. In Python 2.6+, consider using bytearray gf_log = [0] * 256 def init_tables(prim=0x11d): &#39;&#39;&#39;Precompute the logarithm and anti-log tables for faster computation later, using the provided primitive polynomial.&#39;&#39;&#39; # prim is the primitive (binary) polynomial. Since it&#39;s a polynomial in the binary sense, # it&#39;s only in fact a single galois field value between 0 and 255, and not a list of gf values. global gf_exp, gf_log gf_exp = [0] * 512 # 就是和gf_log相反的表（gf_log值是下标，gf_log的下标是它的值） gf_log = [0] * 256 # (把2的幂和它对应的幂会生成的值通过这个下标和对应的值的关系连在一起) # For each possible value in the galois field 2^8, we will pre-compute the logarithm and anti-logarithm (exponential) of this value x = 1 for i in range(0, 255): gf_exp[i] = x # compute anti-log for this value and store it in a table gf_log[x] = i # compute log at the same time x = gf_mult_noLUT(x, 2, prim) # If you use only generator==2 or a power of 2, you can use the following which is faster than gf_mult_noLUT(): #x &lt;&lt;= 1 # multiply by 2 (change 1 by another number y to multiply by a power of 2^y) #if x &amp; 0x100: #类似于x&gt; = 256，但速度要快得多 #(because 0x100 == 256) #x ^= prim # substract the primary polynomial to the current value (instead of 255, so that we get a unique set made of coprime numbers), this is the core of the tables generation #优化：反日志表的大小加倍，这样我们就不需要修改255来保持在边界内 #（因为我们主要使用这个表来增加两个GF数，不再增加）。 for i in range(255, 512): gf_exp[i] = gf_exp[i - 255] return [gf_log, gf_exp] 这段代码会生成一个表，这个表里面是0-256对应的2的这些次幂的答案，然后如果要计算乘法的话，对方给出了一个大值然后用gf_log[x]找出对应的次幂，再进行加法运算。最后的一个循环是为了防止运算出来的幂相加的值超过255，所以把上限改成了512.（$\,2^{255}\,=\,00000001$然后又开始新一轮的循环2次幂。） def gf_mul(x,y): if x==0 or y==0: return 0 return gf_exp[gf_log[x] + gf_log[y]]#这样就可以不用再多一步%255去防止gf_exp溢出了的运算了。 基于对数的除法def gf_div(x,y): if y==0: raise ZeroDivisionError() if x==0: return 0 return gf_exp[(gf_log[x] + 255 - gf_log[y])% 255] 如果x对应的次幂比y对应的要小的话，加上255找到之后对应的幂还是和本身一样，最后求255的模的意思是让幂保持在0-255之间。0-254内的数值与255-510内的值 基于对数的次幂def gf_pow(x, power): return gf_exp[(gf_log[x] * power) % 255] 基于对数的导数def gf_inverse(x): return gf_exp[255 - gf_log[x]] # gf_inverse(x) == gf_div(1, x) 参考资料参考网页 参考网页]]></content>
+      
+      
+        <tags>
+            
+            <tag> QR </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于对数</title>
+      <link href="/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/"/>
+      <url>/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<p>它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧</p><a id="more"></a><h1 id="基于对数"><a href="#基于对数" class="headerlink" title="基于对数"></a>基于对数</h1><p>其中的gf_mult_noLUT(x, 2, prim)源自<a href="https://aimasa.github.io/2019/02/20/RussianPeasant/">俄罗斯农夫算法</a></p><h2 id="基于对数的乘法（次幂的加法）"><a href="#基于对数的乘法（次幂的加法）" class="headerlink" title="基于对数的乘法（次幂的加法）"></a>基于对数的乘法（次幂的加法）</h2><p>但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为<a href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">离散对数</a>（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。）</p><pre><code>gf_exp = [0] * 512 # Create list of 512 elements. In Python 2.6+, consider using bytearraygf_log = [0] * 256def init_tables(prim=0x11d):&#39;&#39;&#39;Precompute the logarithm and anti-log tables for faster computation later, using the provided primitive polynomial.&#39;&#39;&#39;    # prim is the primitive (binary) polynomial. Since it&#39;s a polynomial in the binary sense,    # it&#39;s only in fact a single galois field value between 0 and 255, and not a list of gf values.    global gf_exp, gf_log    gf_exp = [0] * 512 # 就是和gf_log相反的表（gf_log值是下标，gf_log的下标是它的值）    gf_log = [0] * 256 # (把2的幂和它对应的幂会生成的值通过这个下标和对应的值的关系连在一起)    # For each possible value in the galois field 2^8, we will pre-compute the logarithm and anti-logarithm (exponential) of this value    x = 1    for i in range(0, 255):        gf_exp[i] = x # compute anti-log for this value and store it in a table        gf_log[x] = i # compute log at the same time        x = gf_mult_noLUT(x, 2, prim)    # If you use only generator==2 or a power of 2, you can use the following which is faster than gf_mult_noLUT():    #x &lt;&lt;= 1 # multiply by 2 (change 1 by another number y to multiply by a power of 2^y)    #if x &amp; 0x100: #类似于x&gt; = 256，但速度要快得多        #(because 0x100 == 256)        #x ^= prim # substract the primary polynomial to the current value (instead of 255, so that we get a unique set made of coprime numbers), this is the core of the tables generation    #优化：反日志表的大小加倍，这样我们就不需要修改255来保持在边界内    #（因为我们主要使用这个表来增加两个GF数，不再增加）。    for i in range(255, 512):        gf_exp[i] = gf_exp[i - 255]    return [gf_log, gf_exp]</code></pre><p>这段代码会生成一个表，这个表里面是0-256对应的2的这些次幂的答案，然后如果要计算乘法的话，对方给出了一个大值然后用gf_log[x]找出对应的次幂，再进行加法运算。最后的一个循环是为了防止运算出来的幂相加的值超过255，所以把上限改成了512.（$\,2^{255}\,=\,00000001$然后又开始新一轮的循环2次幂。）</p><pre><code>def gf_mul(x,y):if x==0 or y==0:    return 0return gf_exp[gf_log[x] + gf_log[y]]#这样就可以不用再多一步%255去防止gf_exp溢出了的运算了。</code></pre><h2 id="基于对数的除法"><a href="#基于对数的除法" class="headerlink" title="基于对数的除法"></a>基于对数的除法</h2><pre><code>def gf_div(x,y):    if y==0:        raise ZeroDivisionError()    if x==0:        return 0    return gf_exp[(gf_log[x] + 255 - gf_log[y])% 255]</code></pre><p>如果x对应的次幂比y对应的要小的话，加上255找到之后对应的幂还是和本身一样，最后求255的模的意思是让幂保持在0-255之间。0-254内的数值与255-510内的值</p><h2 id="基于对数的次幂"><a href="#基于对数的次幂" class="headerlink" title="基于对数的次幂"></a>基于对数的次幂</h2><pre><code>def gf_pow(x, power):    return gf_exp[(gf_log[x] * power) % 255]</code></pre><h2 id="基于对数的导数"><a href="#基于对数的导数" class="headerlink" title="基于对数的导数"></a>基于对数的导数</h2><pre><code>def gf_inverse(x):    return gf_exp[255 - gf_log[x]] # gf_inverse(x) == gf_div(1, x)</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>基于对数乘除法</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 基于对数乘除法 </category>
+          
       </categories>
-      <tags>
-        <tag>基于对数乘除法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[多项式]]></title>
-    <url>%2F2019%2F03%2F05%2F%E5%A4%9A%E9%A1%B9%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。 其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。 多项式其中gf_mul(p[i], x)该方法源自基于对数的乘法 多项式的加法def gf_poly_add(p,q): r = [0] * max(len(p),len(q)) for i in range(0,len(p)): r[i+len(r)-len(p)] = p[i] for i in range(0,len(q)): r[i+len(r)-len(q)] ^= q[i]#让在伽罗瓦域内的q和p两个多项式相加 return r 多项式相加就是幂次相同的系数相加，所以该方法将两个多项式的不同幂的系数均按幂次大小顺序排序，然后按顺序进行相加。 多项式的乘法（和一个普通系数的乘法）def gf_poly_scale(p,x): r = [0] * len(p) for i in range(0, len(p)): r[i] = gf_mul(p[i], x)# 该方法见基于对数的乘法部分内 return r 就是按照普通多项式乘法进行相乘，让x系数和多项式中各级幂的系数在伽罗瓦域内和x相乘 两个多项式间的乘法def gf_poly_mul(p,q): &#39;&#39;&#39;Multiply two polynomials, inside Galois Field&#39;&#39;&#39; # Pre-allocate the result array r = [0] * (len(p)+len(q)-1) # Compute the polynomial multiplication (just like the outer product of two vectors, # we multiply each coefficients of p with all coefficients of q) for j in range(0, len(q)): for i in range(0, len(p)): r[i+j] ^= gf_mul(p[i], q[j]) # equivalent to: r[i + j] = gf_add(r[i+j], gf_mul(p[i], q[j])) # -- you can see it&#39;s your usual polynomial multiplication return r 就是两个普通的多项式相乘时候，系数分别相乘（比如$\,\left (5x^{2}+4x+1 \right )\cdot \left ( 7x^{2}+9x+1 \right )\,$）其中$\,\left (7x^{2} \right) \cdot \left ( 5x^{2}+4x+1 \right )\,$以此类推…… 然后其中i+j的意味着相同次幂的系数，所以在该代码中对他们进行了相加（异或）。 在该代码中展示的仅仅是在伽罗瓦域中的系数的乘法然后再相加，所以用的是循环i和j，让所有的系数都能互相乘并且相加。 秦九韶算法这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 详细介绍 参考资料参考网页 参考网页]]></content>
+      
+      
+        <tags>
+            
+            <tag> 基于对数乘除法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>多项式</title>
+      <link href="/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/"/>
+      <url>/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p>其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。</p><p>其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。</p><a id="more"></a><h1 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h1><p>其中gf_mul(p[i], x)该方法源自<a href="https://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/">基于对数的乘法</a></p><h2 id="多项式的加法"><a href="#多项式的加法" class="headerlink" title="多项式的加法"></a>多项式的加法</h2><pre><code>def gf_poly_add(p,q):    r = [0] * max(len(p),len(q))    for i in range(0,len(p)):        r[i+len(r)-len(p)] = p[i]        for i in range(0,len(q)):            r[i+len(r)-len(q)] ^= q[i]#让在伽罗瓦域内的q和p两个多项式相加return r</code></pre><p>多项式相加就是幂次相同的系数相加，所以该方法将两个多项式的不同幂的系数均按幂次大小顺序排序，然后按顺序进行相加。</p><h2 id="多项式的乘法（和一个普通系数的乘法）"><a href="#多项式的乘法（和一个普通系数的乘法）" class="headerlink" title="多项式的乘法（和一个普通系数的乘法）"></a>多项式的乘法（和一个普通系数的乘法）</h2><pre><code>def gf_poly_scale(p,x):    r = [0] * len(p)    for i in range(0, len(p)):        r[i] = gf_mul(p[i], x)# 该方法见基于对数的乘法部分内return r</code></pre><p>就是按照普通多项式乘法进行相乘，让x系数和多项式中各级幂的系数在伽罗瓦域内和x相乘</p><h2 id="两个多项式间的乘法"><a href="#两个多项式间的乘法" class="headerlink" title="两个多项式间的乘法"></a>两个多项式间的乘法</h2><pre><code>def gf_poly_mul(p,q):    &#39;&#39;&#39;Multiply two polynomials, inside Galois Field&#39;&#39;&#39;    # Pre-allocate the result array    r = [0] * (len(p)+len(q)-1)    # Compute the polynomial multiplication (just like the outer product of two vectors,    # we multiply each coefficients of p with all coefficients of q)    for j in range(0, len(q)):        for i in range(0, len(p)):            r[i+j] ^= gf_mul(p[i], q[j]) # equivalent to: r[i + j] = gf_add(r[i+j], gf_mul(p[i], q[j]))    # -- you can see it&#39;s your usual polynomial multiplicationreturn r</code></pre><p>就是两个普通的多项式相乘时候，系数分别相乘（比如$\,\left (5x^{2}+4x+1 \right )\cdot \left ( 7x^{2}+9x+1 \right )\,$）其中$\,\left (7x^{2}  \right)  \cdot \left ( 5x^{2}+4x+1  \right )\,$以此类推……</p><p>然后其中i+j的意味着相同次幂的系数，所以在该代码中对他们进行了相加（异或）。</p><p>在该代码中展示的仅仅是在伽罗瓦域中的系数的乘法然后再相加，所以用的是循环i和j，让所有的系数都能互相乘并且相加。</p><h2 id="秦九韶算法"><a href="#秦九韶算法" class="headerlink" title="秦九韶算法"></a>秦九韶算法</h2><p>这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 <a href="https://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/">详细介绍</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>多项式的加法和乘法</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 多项式的加法和乘法 </category>
+          
       </categories>
-      <tags>
-        <tag>多项式的加法和乘法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[秦九韶算法]]></title>
-    <url>%2F2019%2F03%2F04%2F%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高 算法介绍普通方法对于多项式（$\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加 而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a_{n}x+a_{n-1} \right )x+a_{n-2} \right )x+… \right )x+1$. 也就相当于在程序中用递归： $\,f_{1}\,=\,a_{n}x+a_{n-1}\,$ $\,f_{2}\,=\,f_{1}x+a_{n-2}\,$ …… $\,f_{n-1}=f_{n-2}x+a_{1}\,$ $\,f_{n}=f_{n-1}x+1\,$ $\,f_{n}\,$为所求 自然效率会比普通的算法要快许多。 代码用例def gf_poly_eval(poly, x): &#39;&#39;&#39;基于有限域的秦九韶算法的代码（所以乘法和加法都是一样的意思--都是异或）.&#39;&#39;&#39; y = poly[0] for i in range(1, len(poly)): y = gf_mul(y, x) ^ poly[i] return y 代码中的gf_mul(x,y)是基于对数表中的乘法中，见笔记的基于对数表的乘法该处。 参考资料参考维基百科]]></content>
+      
+      
+        <tags>
+            
+            <tag> 多项式的加法和乘法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>秦九韶算法</title>
+      <link href="/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
+      <url>/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p>用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高<br><a id="more"></a></p><h1 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h1><p>普通方法对于多项式（$\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加</p><p>而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a_{n}x+a_{n-1} \right )x+a_{n-2}  \right )x+… \right )x+1$.</p><p>也就相当于在程序中用递归：</p><blockquote><p>$\,f_{1}\,=\,a_{n}x+a_{n-1}\,$</p><p>$\,f_{2}\,=\,f_{1}x+a_{n-2}\,$</p><p>……</p><p>$\,f_{n-1}=f_{n-2}x+a_{1}\,$</p><p>$\,f_{n}=f_{n-1}x+1\,$ </p></blockquote><p>$\,f_{n}\,$为所求</p><p>自然效率会比普通的算法要快许多。</p><h1 id="代码用例"><a href="#代码用例" class="headerlink" title="代码用例"></a>代码用例</h1><pre><code>def gf_poly_eval(poly, x):    &#39;&#39;&#39;基于有限域的秦九韶算法的代码（所以乘法和加法都是一样的意思--都是异或）.&#39;&#39;&#39;    y = poly[0]    for i in range(1, len(poly)):        y = gf_mul(y, x) ^ poly[i]return y</code></pre><p>代码中的gf_mul(x,y)是基于对数表中的乘法中，见<a href="https://aimasa.github.io/2019/01/23/BCH/">笔记</a>的基于对数表的乘法该处。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zh.wikipedia.org/wiki/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">参考维基百科</a></p>]]></content>
+      
+      
       <categories>
-        <category>伽罗瓦域/有限域</category>
-        <category>秦九韶算法</category>
+          
+          <category> 伽罗瓦域/有限域 </category>
+          
+          <category> 秦九韶算法 </category>
+          
       </categories>
-      <tags>
-        <tag>秦九韶算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[多源异构数据采集及实体链接算法研究]]></title>
-    <url>%2F2019%2F03%2F01%2F%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%2F</url>
-    <content type="text"><![CDATA[老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。 多源异构数据就是不同数据库中的数据，在企业信息化建设过程中，因为各业务系统建设和实施数据管理系统的阶段性、技术性和一些其他因素的影响，让企业在发展过程中大量采用不同存储方式的业务数据，而且采用的数据管理系统也不一样，从简单的文件数据库到复杂的网络数据库，它们构成了企业的异构数据源。 实体链接一个实体可以用多个文本表达（多词一义），同一文本可能表达出多个不同的实体（一词多义）。通过进行实体链接，就是让文本中的实体指称和知识库中的实体进行链接。能够让文本中的数据转化为带有实体标注的文本。进而帮助人和计算机理解文本的具体含义。 个人理解是实体链接就是让文本中的一个词对应一个具体的实体 参考资料参考博客 参考帖子 参考文献]]></content>
+      
+      
+        <tags>
+            
+            <tag> 秦九韶算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>多源异构数据采集及实体链接算法研究</title>
+      <link href="/2019/03/01/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
+      <url>/2019/03/01/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/</url>
+      
+        <content type="html"><![CDATA[<p>老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。</p><a id="more"></a><h1 id="多源异构数据"><a href="#多源异构数据" class="headerlink" title="多源异构数据"></a>多源异构数据</h1><p>就是不同数据库中的数据，在企业信息化建设过程中，因为各业务系统建设和实施数据管理系统的阶段性、技术性和一些其他因素的影响，让企业在发展过程中大量采用不同存储方式的业务数据，而且采用的数据管理系统也不一样，从简单的文件数据库到复杂的网络数据库，它们构成了企业的异构数据源。</p><h1 id="实体链接"><a href="#实体链接" class="headerlink" title="实体链接"></a>实体链接</h1><p>一个实体可以用多个文本表达（多词一义），同一文本可能表达出多个不同的实体（一词多义）。通过进行实体链接，就是让文本中的实体指称和知识库中的实体进行链接。能够让文本中的数据转化为带有实体标注的文本。进而帮助人和计算机理解文本的具体含义。</p><p>个人理解是实体链接就是让文本中的一个词对应一个具体的实体</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/30940524" target="_blank" rel="noopener">参考博客</a></p><p><a href="https://bbs.csdn.net/topics/390383619" target="_blank" rel="noopener">参考帖子</a></p><p><a href="https://www.1xuezhe.exuezhe.com/Qk/art/585002?dbcode=1&amp;flag=2" target="_blank" rel="noopener">参考文献</a></p>]]></content>
+      
+      
       <categories>
-        <category>多源异构数据采集及实体链接算法研究</category>
+          
+          <category> 多源异构数据采集及实体链接算法研究 </category>
+          
       </categories>
-      <tags>
-        <tag>多源异构数据采集及实体链接算法研究</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[markdown插入公式]]></title>
-    <url>%2F2019%2F02%2F27%2Fmarkdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[实测在该博客中提到的四种在markdown中插入公式的办法 办法1：借助在线公式编辑器 =======> 办法2：借助Google Chart服务器在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。 &lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt; 办法3：借助forkosh服务器与上一方法类似 办法4：借助MathJax引擎！在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式 总结只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。 但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据这篇博文去更改了我博客hexo框架和next主题的设置 （还有根着这个博文改了一下渲染什么的，我也不知道有什么用.） 安装和配置下载插件 $ npm install hexo-math --save 在站点配置文件 _config.yml 中添加： math: engine: &#39;mathjax&#39; # or &#39;katex&#39; mathjax: # src: custom_mathjax_source config: # MathJax config 在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true: # MathJax Support mathjax: enable: true per_page: false cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML 使用就是在数学公式的书写代码前面后面各加一个$符号。 然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。 最后的使用办法我找到了这个博客根据它里面教我的去执行 npm install hexo-math --save hexo math install 然后更改 用编辑器打开marked.js（在./node_modules/marked/lib/中） Step 1: escape: /^\([\`*{}[]()# +-.!_&gt;])/, 替换成 escape: /^\\([`*\[\]()# +\-.!_&gt;])/, 这一步是在原基础上取消了对\\,\{,\}的转义(escape) Step 2: em: /^\b_((?:_|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/, 替换成 em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/, 这样一来MathJax就能与marked.js共存了。 就这样，我又能很好地插入数学公式了。 数学公式参考文档 该文档提供的下载地址 如果该链接打不开，请进入参考文档去寻找正确地址。 用mathjax对公式进行渲染]]></content>
+      
+      
+        <tags>
+            
+            <tag> 多源异构数据采集及实体链接算法研究 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>markdown插入公式</title>
+      <link href="/2019/02/27/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
+      <url>/2019/02/27/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p><a id="more"></a><h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png"></center><center>=======></center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png"></center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_3.png"></center><h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p><pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png"></center><h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png"></center><h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png"></center><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p><p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p><p>（还有根着<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">这个博文</a>改了一下渲染什么的，我也不知道有什么用.）</p><h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>下载插件</p><pre><code>$ npm install hexo-math --save</code></pre><p>在站点配置文件 _config.yml 中添加：</p><pre><code>math:  engine: &#39;mathjax&#39; # or &#39;katex&#39;  mathjax:    # src: custom_mathjax_source    config:      # MathJax config</code></pre><p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:</p><pre><code># MathJax Supportmathjax:  enable: true  per_page: false  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>就是在数学公式的书写代码前面后面各加一个$符号。</p><p>然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。</p><h2 id="最后的使用办法"><a href="#最后的使用办法" class="headerlink" title="最后的使用办法"></a>最后的使用办法</h2><p>我找到了<a href="https://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">这个博客</a><br>根据它里面教我的去执行</p><pre><code>npm install hexo-math --savehexo math install</code></pre><p>然后更改</p><p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p><p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p><p>替换成</p><pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></pre><p>这一步是在原基础上取消了对\\,\{,\}的转义(escape)</p><p>Step 2:<br>    em: /^\b_((?:<sup><a href="#fn__" id="reffn__">_</a></sup>|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p><p>替换成</p><pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></pre><p>这样一来MathJax就能与marked.js共存了。</p><p>就这样，我又能很好地插入数学公式了。</p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p><p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p><p>如果该链接打不开，请进入参考文档去寻找正确地址。</p><p><a href="https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/" target="_blank" rel="noopener">用mathjax对公式进行渲染</a></p>]]></content>
+      
+      
       <categories>
-        <category>markdown</category>
-        <category>markdown插入公式</category>
+          
+          <category> markdown </category>
+          
+          <category> markdown插入公式 </category>
+          
       </categories>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[离散对数(Discrete logarithm)]]></title>
-    <url>%2F2019%2F02%2F27%2F%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[设g为素数p的模循环群的原根,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$ 对任意的a，计算： $b=g^{a} mod p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。 因为a、b均为整数，不像实数那么“连续”，故称离散对数。 参考博文 加密过程加密方法1—标准Diffie-Hellman算法A发送消息m（0&lt;m&lt;p）给B A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。参见群的定义） 然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理 加密方法2—T. ElGamal算法因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进参考博文直接看。 这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。 加密方法3—密钥交换它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密） 这个方法比较容易被程序实现。 总结这个加密算法难被破解的原因在于$b=g^{a} mod p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。]]></content>
+      
+      
+        <tags>
+            
+            <tag> markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>离散对数(Discrete logarithm)</title>
+      <link href="/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
+      <url>/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<p>设g为素数p的模循环群的<a href="https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/">原根</a>,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$</p><p>对任意的a，计算： $b=g^{a} mod  p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。</p><p>因为a、b均为整数，不像实数那么“连续”，故称离散对数。</p><a id="more"></a><p><a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a></p><h1 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h1><h2 id="加密方法1—标准Diffie-Hellman算法"><a href="#加密方法1—标准Diffie-Hellman算法" class="headerlink" title="加密方法1—标准Diffie-Hellman算法"></a>加密方法1—标准Diffie-Hellman算法</h2><p>A发送消息m（0&lt;m&lt;p）给B</p><p>A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A</p><p>B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A</p><p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p><p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p><h2 id="加密方法2—T-ElGamal算法"><a href="#加密方法2—T-ElGamal算法" class="headerlink" title="加密方法2—T. ElGamal算法"></a>加密方法2—T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa1.png"></center><p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p><h2 id="加密方法3—密钥交换"><a href="#加密方法3—密钥交换" class="headerlink" title="加密方法3—密钥交换"></a>加密方法3—密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa2.png"></center><p>这个方法比较容易被程序实现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a} mod  p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>]]></content>
+      
+      
       <categories>
-        <category>离散对数</category>
-        <category>离散对数加密解密</category>
+          
+          <category> 离散对数 </category>
+          
+          <category> 离散对数加密解密 </category>
+          
       </categories>
-      <tags>
-        <tag>离散对数加密解密</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[双射单射满射]]></title>
-    <url>%2F2019%2F02%2F26%2F%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84%2F</url>
-    <content type="text"><![CDATA[在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。 单射：指将不同的变量映射到不同的值的函数。(也就是一对一) 满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应—可多对一或一对一) 双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应—一对一） ——————-摘自维基百科]]></content>
+      
+      
+        <tags>
+            
+            <tag> 离散对数加密解密 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>双射单射满射</title>
+      <link href="/2019/02/26/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
+      <url>/2019/02/26/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/</url>
+      
+        <content type="html"><![CDATA[<p>在数学定义中，单射、满射和双射是指根据其定义域和陪域的关联方式所区分的三类函数。</p><p>单射：指将不同的变量映射到不同的值的函数。(也就是一对一)</p><p>满射：指陪域等于值域的函数。即：对陪域中任意元素，都存在至少一个定义域中的元素与之对应。(每个定义域都有相应的值域与之对应—可多对一或一对一)</p><p>双射（也称一一对应或一一映射）：既是单射又是满射的函数。直观地说，一个双射函数形成一个对应，并且每一个输入值都有正好一个输出值以及每一个输出值都有正好一个输入值。 （每个定义域都有相应的值域与之对应—一对一）</p><a id="more"></a><p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/双射单射满射/she.png"></center></p><p>——————-<a href="https://zh.wikipedia.org/wiki/%E5%8D%95%E5%B0%84%E3%80%81%E5%8F%8C%E5%B0%84%E4%B8%8E%E6%BB%A1%E5%B0%84" target="_blank" rel="noopener">摘自维基百科</a></p>]]></content>
+      
+      
       <categories>
-        <category>数学基础知识</category>
-        <category>双射单射满射</category>
+          
+          <category> 数学基础知识 </category>
+          
+          <category> 双射单射满射 </category>
+          
       </categories>
-      <tags>
-        <tag>双射单射满射</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[原根]]></title>
-    <url>%2F2019%2F02%2F26%2F%E5%8E%9F%E6%A0%B9%2F</url>
-    <content type="text"><![CDATA[其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根 参考定理 就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。 所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的） 存在原根的模乘法群称为循环群。 原根性质：]]></content>
+      
+      
+        <tags>
+            
+            <tag> 双射单射满射 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>原根</title>
+      <link href="/2019/02/26/%E5%8E%9F%E6%A0%B9/"/>
+      <url>/2019/02/26/%E5%8E%9F%E6%A0%B9/</url>
+      
+        <content type="html"><![CDATA[<p>其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E6%A0%B9" target="_blank" rel="noopener">参考定理</a></p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/yuangen.png"></center><p>就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。</p><p>所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的）</p><p>存在原根的模乘法群称为循环群。</p><p>原根性质：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/xinzhi.png"></center>]]></content>
+      
+      
       <categories>
-        <category>离散对数</category>
-        <category>原根</category>
+          
+          <category> 离散对数 </category>
+          
+          <category> 原根 </category>
+          
       </categories>
-      <tags>
-        <tag>原根</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[互质关系]]></title>
-    <url>%2F2019%2F02%2F22%2FMutRela%2F</url>
-    <content type="text"><![CDATA[互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。 参考资料通过观察可以发现在以下的情况下，两个数一定会互质。 两个不同的素数一定互质。例如，2与7、13与19。 一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。 1和任何一个自然数都互质。如1和9908。 2的幂和任何一个奇数都互质。如32和75、256与315。 相邻两个自然数互质。如15与16。 相邻两个奇数互质。如49与51。 较大数是素数，则两个数互质。如97与88。 两数和是素数，则两个数互质。如52与45。 两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。 两数积是无平方数约数的数，则两个数互质。如154与195。 较大数除以较小数的余数是1或-1，则两个数互质。如440与63。 辗转相除法。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。 p是大于1的整数，则p和p-1构成互质关系，比如57和56。 p是大于1的奇数，则p和p-2构成互质关系，比如17和15。 一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。 两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。 两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。 素因数：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。 合数：（又叫合成数）每个大于1的整数如果不是质数就是合数。 1不是素数，最小的质数是2]]></content>
+      
+      
+        <tags>
+            
+            <tag> 原根 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>互质关系</title>
+      <link href="/2019/02/22/MutRela/"/>
+      <url>/2019/02/22/MutRela/</url>
+      
+        <content type="html"><![CDATA[<p>互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。</p><a id="more"></a><p><a href="http://www.wikiwand.com/zh-sg/%E4%BA%92%E8%B3%AA" target="_blank" rel="noopener">参考资料</a><br>通过观察可以发现在以下的情况下，两个数一定会互质。</p><ul><li>两个不同的素数一定互质。例如，2与7、13与19。</li><li>一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。</li><li>1和任何一个自然数都互质。如1和9908。</li><li>2的幂和任何一个奇数都互质。如32和75、256与315。</li><li>相邻两个自然数互质。如15与16。</li><li>相邻两个奇数互质。如49与51。</li><li>较大数是素数，则两个数互质。如97与88。</li><li>两数和是素数，则两个数互质。如52与45。</li><li>两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。</li><li>两数积是无平方数约数的数，则两个数互质。如154与195。</li><li>较大数除以较小数的余数是1或-1，则两个数互质。如440与63。</li><li><strong>辗转相除法</strong>。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。</li><li><p><strong>p是大于1的整数，则p和p-1构成互质关系</strong>，比如57和56。</p></li><li><p><strong>p是大于1的奇数，则p和p-2构成互质关系</strong>，比如17和15。</p></li><li>一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。</li><li>两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。</li><li>两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。</li></ul><p><a href="https://zhidao.baidu.com/question/105237827.html" target="_blank" rel="noopener">素因数</a>：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。</p><p><a href="https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0" target="_blank" rel="noopener">合数</a>：（又叫合成数）每个大于1的整数如果不是质数就是合数。</p><p>1不是素数，最小的质数是2</p>]]></content>
+      
+      
       <categories>
-        <category>RSA公钥加密</category>
-        <category>互质关系（互素关系）</category>
+          
+          <category> RSA公钥加密 </category>
+          
+          <category> 互质关系（互素关系） </category>
+          
       </categories>
-      <tags>
-        <tag>互质关系（互素关系）</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[欧拉函数]]></title>
-    <url>%2F2019%2F02%2F22%2F%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[欧拉函数： 若正整数 a , n 互质，则 aφ(n) ≡ 1(mod n) 其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。 欧拉定理： 如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立 参考资料 互质关系 欧拉函数用来思考的问题：任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？） n=1时候，φ(n=1)=1,因为1和任何数互质。 n为素数的时候，φ(n)=n-1，因为素数和每个小于自己的数都互质。 n=p^k,p为素数时候，p^k中存在很多和p有倍数关系的数字，1 x p，2 x p，……p^(k-1) x p。由列出的公式看出，一共有p^(k-1)个和p有倍数关系的数字，所以φ(p^k)=p^(k)-p^(k-1) 如果n能分解成两个互质的整数之积，n=p1 x p2,则φ(n) = φ(p1p2) = φ(p1)φ(p2).(即积的欧拉函数等于各个因子的欧拉函数之积。比如，φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24。) 以上这四个方法，可以任意运用来得出自己想要的结果 欧拉定理如果正整数a和n互为质数，那么n的欧拉公式φ(n)可以让下列公式成立： 这样，a^(φ(n))减掉1就能被n整除了。 而且，欧拉定理的特殊情况就是费马小定理 模反元素就是正整数a和n互为质数，那么一定存在b使得 ab ≡ 1(mod n)]]></content>
+      
+      
+        <tags>
+            
+            <tag> 互质关系（互素关系） </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>欧拉函数</title>
+      <link href="/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/"/>
+      <url>/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<p>欧拉函数：</p><p>若正整数 a , n 互质，则  aφ(n) ≡ 1(mod n)   其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。</p><p>欧拉定理：</p><p>如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立</p><a id="more"></a><p><a href="https://www.kancloud.cn/kancloud/rsa_algorithm/48487" target="_blank" rel="noopener">参考资料</a></p><p><a href="https://aimasa.github.io/2019/02/22/MutRela/">互质关系</a></p><h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>用来思考的问题：<br>任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p><p>n=1时候，φ(n=1)=1,因为1和任何数互质。</p><p>n为素数的时候，φ(n)=n-1，因为素数和每个小于自己的数都互质。</p><p>n=p^k,p为素数时候，p^k中存在很多和p有倍数关系的数字，1 x p，2 x p，……p^(k-1) x p。由列出的公式看出，一共有p^(k-1)个和p有倍数关系的数字，所以φ(p^k)=p^(k)-p^(k-1)</p><p>如果n能分解成两个互质的整数之积，n=p1 x p2,则φ(n) = φ(p1p2) = φ(p1)φ(p2).(即积的欧拉函数等于各个因子的欧拉函数之积。比如，φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24。)</p><p>以上这四个方法，可以任意运用来得出自己想要的结果</p><h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>如果正整数a和n互为质数，那么n的欧拉公式φ(n)可以让下列公式成立：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/欧拉函数/Eular.png"></center><p>这样，a^(φ(n))减掉1就能被n整除了。</p><p>而且，欧拉定理的特殊情况就是<a href="https://aimasa.github.io/2019/02/20/discreteLogarithm/">费马小定理</a></p><h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>就是正整数a和n互为质数，那么一定存在b使得</p><p>ab ≡ 1(mod n)</p>]]></content>
+      
+      
       <categories>
-        <category>RSA公钥加密</category>
-        <category>欧拉函数&amp;欧拉定理</category>
+          
+          <category> RSA公钥加密 </category>
+          
+          <category> 欧拉函数&amp;欧拉定理 </category>
+          
       </categories>
-      <tags>
-        <tag>欧拉函数&amp;欧拉定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[同余]]></title>
-    <url>%2F2019%2F02%2F21%2F%E5%90%8C%E4%BD%99%2F</url>
-    <content type="text"><![CDATA[同余是数论中的一种等价关系。符号是≡，有两个正整数，一起除以一个相同的正整数，得出的余数一样的话，那么称这两个正整数同余。 参考维基百科 就是，正整数a,b取模c的值是一样的，那么我们可以这样去表示它： a ≡ b(mod c) 可以读作a同余于b模c。 性质整除性a ≡ b(mod c) =&gt; cm = a-b =&gt; m | (a-b) [c属于Z] m | (a-b): (a-b)是m的倍数 保持基本运算 传递性a ≡ b(mod m) b ≡ d(mod m) =&gt;a ≡ d(mod m) 放大缩小模数 除法原理一 除法原理二]]></content>
+      
+      
+        <tags>
+            
+            <tag> 欧拉函数&amp;欧拉定理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>同余</title>
+      <link href="/2019/02/21/%E5%90%8C%E4%BD%99/"/>
+      <url>/2019/02/21/%E5%90%8C%E4%BD%99/</url>
+      
+        <content type="html"><![CDATA[<p>同余是数论中的一种等价关系。符号是≡，有两个正整数，一起除以一个相同的正整数，得出的余数一样的话，那么称这两个正整数同余。</p><a id="more"></a><p><a href="https://zh.wikipedia.org/wiki/%E5%90%8C%E9%A4%98" target="_blank" rel="noopener">参考维基百科</a></p><p>就是，正整数a,b取模c的值是一样的，那么我们可以这样去表示它：</p><pre><code>a ≡ b(mod c)</code></pre><p>可以读作a同余于b模c。</p><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h2 id="整除性"><a href="#整除性" class="headerlink" title="整除性"></a>整除性</h2><pre><code>a ≡ b(mod c) =&gt; cm = a-b =&gt; m | (a-b) [c属于Z]</code></pre><p>m | (a-b): (a-b)是m的倍数</p><h2 id="保持基本运算"><a href="#保持基本运算" class="headerlink" title="保持基本运算"></a>保持基本运算</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/gongshi.png"></center><h2 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h2><pre><code>a ≡ b(mod m) b ≡ d(mod m) =&gt;a ≡ d(mod m)  </code></pre><h2 id="放大缩小模数"><a href="#放大缩小模数" class="headerlink" title="放大缩小模数"></a>放大缩小模数</h2>  <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/bigsmall.png"></center><h2 id="除法原理一"><a href="#除法原理一" class="headerlink" title="除法原理一"></a>除法原理一</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/chufa.png"></center><h2 id="除法原理二"><a href="#除法原理二" class="headerlink" title="除法原理二"></a>除法原理二</h2><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/同余/yuanli.png"></center>]]></content>
+      
+      
       <categories>
-        <category>离散对数</category>
-        <category>同余</category>
+          
+          <category> 离散对数 </category>
+          
+          <category> 同余 </category>
+          
       </categories>
-      <tags>
-        <tag>同余</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RSA算法]]></title>
-    <url>%2F2019%2F02%2F21%2FRSA-key%2F</url>
-    <content type="text"><![CDATA[RSA公钥算法是现在非常普遍的存在，因为它的高运算量所以导致难破解，其实最主要的原因是现有的计算机的运算能力还没有那么强，没办法对巨大的加密数进行因式分解。 目前公开破译的位数是768位，实际使用一般是1024位或是2048位，所以理论上特别的安全。证明方法 公私钥生成步骤 公钥私钥生成先选取两个质数q,p n = p * q 然后算出n的 欧拉函数 φ(n) φ(n)=(p-1)(q-1) 从1-φ(n)中选出一个质数e，这个e要和φ(n)互质 对e取反模 ed ≡ 1 (mod φ(n)) 根据同余的定义，这个式子可以延展为： ed - 1 = kφ(n) 根据已知的φ(n)和e得出d的值(会有很多组值，取其一即可)以此得出公钥(n,e) 私钥(n,d) 加密解密加密 m为需要被加密的信息 c为会生成的信息 m^e ≡ c(mod n) 解密c^d ≡ m(mod n) 证明验证解密公式成立对解密公式c^d ≡ m(mod n)进行验证 根据加密公式 m^e ≡ c(mod n) =&gt; m^e - c =kn =&gt;c = m^e -kn 把c代入我们要证明的解密公式 (m^e - kn)^d ≡ m(mod n) 因为kn能被n整除，所以在拆这种多项式的时候，能被n整除的数可以留下，因为只有不能被n整除的数才能够产生余数。所以得出下面的公式 m^ed ≡ m(mod n) 又因为ed等于kφ(n)+1，故得出如下公式 m^(kφ(n)+1) ≡ m(mod n) 所以，我们只要证明这个公式成立，就证明解密公式的成立，也就证明了RSA算法的成立。 两部分证明m与n互质根据欧拉定理得出如下公式 m^φ(n) ≡ 1(mod n) =&gt; m^φ(n)-1 = kn =&gt;m^φ(n) = kn + 1(m^φ(n))^h = (kn + 1)^h 而对(kn + 1)^h 对n取模为1，可以推出 (kn + 1)^h ≡ 1(mod n) =&gt; (m^φ(n))^h ≡ 1(mod n)=&gt; m^(kφ(n)+1) ≡ m(mod n) 该式子成立 m与n不互质m和n不互质时候，所以n和m一定有除1以外的公因子，又因为n等于质数p和质数q的乘积(两个质数之积是合数，但该合数只有四个因子，因数除了1和它本身外还有这两个质数因子。)所以，m必然等于kq或kp。 以m=kq为例，那么m一定和p互质(一个素数，另一个数不为它的倍数，那么两个数一定互质)——&gt;根据欧拉定理可得出如下公式： (kq)^φ(p) ≡ 1 (mod p) 因为p为质数，所以 φ(p)= p - 1 可以得出 (kq)^(p - 1) ≡ 1 (mod p) ((kq)^(p - 1))^h(q - 1) x kq ≡ kq (mod p) (kq)^(hφ(n) + 1) ≡ kq (mod p) 又因为(因为上式中的h可以为任意数字，所以假定h为下式中的h) ed ≡ 1(modφ(n)) → ed = hφ(n)+1 → ed = h(p−1)(q−1)+1 故 (kq)^ed ≡ kq (mod p) (kq)^ed - kq = tp 因为等式左边对q取模为零，所以右边一定也为零，所以tp中t一定是q的倍数，令t=uq (kq)^ed - kq = uqp 又因为n = pq, m = kq，所以 m^ed -m = un m^ed ≡m(modn) 又因为生成密钥的第五步中我们取e并求了他对φ(n)的模反元素d： ed≡1(modφ(n))→ed=hφ(n)+1 将ed代入上式得： m^(hφ(n)+1) ≡ m(modn) 故当m与n不互质时候，证明原式成功。]]></content>
+      
+      
+        <tags>
+            
+            <tag> 同余 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RSA算法</title>
+      <link href="/2019/02/21/RSA-key/"/>
+      <url>/2019/02/21/RSA-key/</url>
+      
+        <content type="html"><![CDATA[<p>RSA公钥算法是现在非常普遍的存在，因为它的高运算量所以导致难破解，其实最主要的原因是现有的计算机的运算能力还没有那么强，没办法对巨大的加密数进行因式分解。</p><p>目前公开破译的位数是768位，实际使用一般是1024位或是2048位，所以理论上特别的安全。<br><a id="more"></a><br><a href="https://blog.csdn.net/u014044812/article/details/80866759" target="_blank" rel="noopener">证明方法</a></p><p><a href="https://www.zhihu.com/question/25038691" target="_blank" rel="noopener">公私钥生成步骤</a></p><h1 id="公钥私钥生成"><a href="#公钥私钥生成" class="headerlink" title="公钥私钥生成"></a>公钥私钥生成</h1><p>先选取两个质数q,p</p><blockquote><p>n = p * q</p></blockquote><p>然后算出n的 <a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉函数</a> φ(n)</p><blockquote><p>φ(n)=(p-1)(q-1)</p></blockquote><p>从1-φ(n)中选出一个质数e，这个e要和φ(n)互质</p><p>对e取反模</p><blockquote><p>ed ≡ 1 (mod φ(n))</p></blockquote><p>根据同余的定义，这个式子可以延展为：</p><blockquote><p>ed - 1 = kφ(n)</p></blockquote><p>根据已知的φ(n)和e得出d的值(会有很多组值，取其一即可)<br>以此得出公钥(n,e) 私钥(n,d)</p><h1 id="加密解密"><a href="#加密解密" class="headerlink" title="加密解密"></a>加密解密</h1><h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><p> m为需要被加密的信息<br> c为会生成的信息</p><p>m^e ≡ c(mod n)</p><h2 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h2><p>c^d ≡ m(mod n)</p><h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><h3 id="验证解密公式成立"><a href="#验证解密公式成立" class="headerlink" title="验证解密公式成立"></a>验证解密公式成立</h3><p>对解密公式c^d ≡ m(mod n)进行验证</p><p>根据加密公式 </p><blockquote><p>m^e ≡ c(mod n) =&gt; m^e - c =kn =&gt;c = m^e -kn</p></blockquote><p>把c代入我们要证明的解密公式</p><blockquote><p>(m^e - kn)^d ≡ m(mod n) </p></blockquote><p>因为kn能被n整除，所以在拆这种多项式的时候，能被n整除的数可以留下，因为只有不能被n整除的数才能够产生余数。所以得出下面的公式</p><blockquote><p>m^ed ≡ m(mod n)</p></blockquote><p>又因为ed等于kφ(n)+1，故得出如下公式</p><blockquote><p>m^(kφ(n)+1) ≡ m(mod n)</p></blockquote><p>所以，我们只要证明这个公式成立，就证明解密公式的成立，也就证明了RSA算法的成立。</p><h4 id="两部分证明"><a href="#两部分证明" class="headerlink" title="两部分证明"></a>两部分证明</h4><h5 id="m与n互质"><a href="#m与n互质" class="headerlink" title="m与n互质"></a>m与n互质</h5><p>根据<a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉定理</a>得出如下公式</p><blockquote><p>m^φ(n) ≡ 1(mod n) =&gt; m^φ(n)-1 = kn =&gt;m^φ(n) = kn + 1<br>(m^φ(n))^h = (kn + 1)^h </p></blockquote><p>而对(kn + 1)^h 对n取模为1，可以推出</p><blockquote><p>(kn + 1)^h ≡ 1(mod n) =&gt; (m^φ(n))^h ≡ 1(mod n)<br>=&gt; m^(kφ(n)+1) ≡ m(mod n)</p></blockquote><p>该式子成立</p><h5 id="m与n不互质"><a href="#m与n不互质" class="headerlink" title="m与n不互质"></a>m与n不互质</h5><p>m和n不互质时候，所以n和m一定有除1以外的公因子，又因为n等于质数p和质数q的乘积(<strong>两个质数之积是合数，但该合数只有四个因子，因数除了1和它本身外还有这两个质数因子。</strong>)所以，m必然等于kq或kp。</p><p>以m=kq为例，那么m一定和p互质(<strong>一个素数，另一个数不为它的倍数，那么两个数一定互质</strong>)——&gt;根据<a href="https://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">欧拉定理</a>可得出如下公式：</p><blockquote><p>(kq)^φ(p) ≡ 1 (mod p)</p></blockquote><p>因为p为质数，所以</p><blockquote><p>φ(p)= p - 1</p></blockquote><p>可以得出</p><blockquote><p>(kq)^(p - 1) ≡ 1 (mod p)  </p><p>((kq)^(p - 1))^h(q - 1) x kq ≡ kq (mod p) </p><p>(kq)^(hφ(n) + 1) ≡ kq (mod p)</p></blockquote><p>又因为(因为上式中的h可以为任意数字，所以假定h为下式中的h)</p><blockquote><p>ed ≡ 1(modφ(n)) → ed = hφ(n)+1 → ed = h(p−1)(q−1)+1 </p></blockquote><p>故</p><blockquote><p>(kq)^ed ≡ kq (mod p)</p><p>(kq)^ed - kq = tp</p></blockquote><p>因为等式左边对q取模为零，所以右边一定也为零，所以tp中t一定是q的倍数，令t=uq</p><blockquote><p>(kq)^ed - kq = uqp</p></blockquote><p>又因为n = pq, m = kq，所以</p><blockquote><p>m^ed -m = un</p><p>m^ed ≡m(modn)</p></blockquote><p>又因为生成密钥的第五步中我们取e并求了他对φ(n)的模反元素d：</p><blockquote><p>ed≡1(modφ(n))→ed=hφ(n)+1</p></blockquote><p>将ed代入上式得：</p><blockquote><p>m^(hφ(n)+1) ≡ m(modn)</p></blockquote><p>故当m与n不互质时候，证明原式成功。</p>]]></content>
+      
+      
       <categories>
-        <category>RSA公钥加密</category>
-        <category>RSA算法</category>
+          
+          <category> RSA公钥加密 </category>
+          
+          <category> RSA算法 </category>
+          
       </categories>
-      <tags>
-        <tag>RSA算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[欧几里得算法（了解了一下贝祖等式）]]></title>
-    <url>%2F2019%2F02%2F20%2FEuclidean%2F</url>
-    <content type="text"><![CDATA[它是求最大公约数的算法。 参考链接a x b =c c是a的倍数，a是c的约数。最大公约数就是能够整除几个自然数中的最大的一个 欧几里得算法则是用于计算两个整数的最大公约数，它又被叫做最大公约数 两个整数的最大公约数表示方法：GCD(a,b) 欧几里得的辗转相除法其实可以用来计算任意多整数的最大公约数。 算法描述：GCD(a,b)=c时候，除掉小学时候学的分解这两个数，取共有的公约数，然后把它们相乘之外，还可以用另外一种方法把c求出来——就是用a,b两个数中最大的那个数减去最小的那个数，然后那个最大的数就变成得出的差值，以此循环，直到有一个数变成零为止，另一个不为零的数就是它们的最大公约数。 用辗转相除法算最大公约数效率非常高。 eg: 252 105 的最大公约数 147 105（252-105） 42 105（147-105） 42 63 （105-42） 42 21 （63-42） 21 21 （随便哪边减掉哪边） 0 21 因为在这个辗转相除的过程中，它可以一个数大于另一个数大很多（比如42和105）这时候，105需要减掉2次42才能得到比42更小的数字，所以这里可以考虑除法求余的办法。105 mod 42=21，这样又快又准，还方便。 252 105（252 mod 105） 42 105（105 mod 42） 42 21 （42 mod 21） 0 21 （正好结果是0，所以21是最大公约数） 所以，ua+vb的值的集合，都是c的倍数。—-因为a和b的最大公约数是c，即都能被c整除，这个是贝祖等式提出的定义 a和b的最大公约数叫做a和b的理想的生成元素。这个最大公约数的定义导出了两个现代抽象代数的概念：主理想（由单个元素生成的理想） 以及主理想整环（其每一理想都是主理想的整环）。 GCD(a,b)=1那么这两个数一定互质]]></content>
+      
+      
+        <tags>
+            
+            <tag> RSA算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>欧几里得算法（了解了一下贝祖等式）</title>
+      <link href="/2019/02/20/Euclidean/"/>
+      <url>/2019/02/20/Euclidean/</url>
+      
+        <content type="html"><![CDATA[<p>它是求最大公约数的算法。<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E8%BC%BE%E8%BD%89%E7%9B%B8%E9%99%A4%E6%B3%95#%E8%AE%A1%E7%AE%97%E5%95%86%E5%92%8C%E4%BD%99%E6%95%B0" target="_blank" rel="noopener">参考链接</a><br>a x b =c  c是a的倍数，a是c的约数。<br>最大公约数就是能够整除几个自然数中的最大的一个</p><p>欧几里得算法则是用于计算两个整数的最大公约数，它又被叫做最大公约数</p><p>两个整数的最大公约数表示方法：GCD(a,b)</p><p>欧几里得的辗转相除法其实可以用来计算任意多整数的最大公约数。</p><p>算法描述：GCD(a,b)=c时候，除掉小学时候学的分解这两个数，取共有的公约数，然后把它们相乘之外，还可以用另外一种方法把c求出来——就是用a,b两个数中最大的那个数减去最小的那个数，然后那个最大的数就变成得出的差值，以此循环，直到有一个数变成零为止，另一个不为零的数就是它们的最大公约数。</p><p>用辗转相除法算最大公约数效率非常高。</p><p>eg:</p><pre><code>252 105 的最大公约数147 105（252-105）42  105（147-105）42  63 （105-42）42  21 （63-42）21  21 （随便哪边减掉哪边）0   21</code></pre><p>因为在这个辗转相除的过程中，它可以一个数大于另一个数大很多（比如42和105）这时候，105需要减掉2次42才能得到比42更小的数字，所以这里可以考虑除法求余的办法。105 mod 42=21，这样又快又准，还方便。</p><pre><code>252 105（252 mod 105）42  105（105 mod 42）42  21 （42 mod 21）0   21 （正好结果是0，所以21是最大公约数）</code></pre><p>所以，ua+vb的值的集合，都是c的倍数。—-因为a和b的最大公约数是c，即都能被c整除，这个是贝祖等式提出的定义</p><p>a和b的最大公约数叫做a和b的<strong>理想</strong>的生成元素。这个最大公约数的定义导出了两个现代抽象代数的概念：<strong>主理想（由单个元素生成的理想）</strong> 以及<strong>主理想整环（其每一理想都是主理想的整环）</strong>。</p><p>GCD(a,b)=1那么这两个数一定互质</p>]]></content>
+      
+      
       <categories>
-        <category>RSA公钥加密</category>
-        <category>欧几里得算法/辗转相除法及贝祖等式</category>
+          
+          <category> RSA公钥加密 </category>
+          
+          <category> 欧几里得算法/辗转相除法及贝祖等式 </category>
+          
       </categories>
-      <tags>
-        <tag>欧几里得算法/辗转相除法简略介绍及贝祖等式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[费马小定理]]></title>
-    <url>%2F2019%2F02%2F20%2FdiscreteLogarithm%2F</url>
-    <content type="text"><![CDATA[要想清楚的了解费马，就要先了解同余。 费马小定理：若p为素数，a为整数，(a,p)=1(即两者只有一个公约数1)，则 a^(p-1)≡1（mod p） 如果n是一个素数（只能被1和自身整除的数字），a是小于n的任意正整数，那么a^n mod n 的结果和a mod n一样。a^(n)≡a（mod n） 参考博客 维基百科 费马检查：给一个整数n，然后随机取一个a，这个a要小于n，然后计算a取模n的结果并且用它去和a^n mod n的结果相比，如果两个结果不一样，那么这个n一定不是素数，两个结果一样的话，那么这个n几率很大是素数。通过检查越来越多的a值，结果还是一样的话，这个n是素数的可能性也越大。 费马检测是一个相对可靠的算法，而且在实现大数判断素数时可以提供相对高的效率来工作。 为什么说它相对可靠呢，是因为有些极其罕见的数字，也具备费马定理的特性，然鹅他们并不是素数。能够骗过费马检查的数称为 Carmichael 数。（科普时间）在 100 000 000 之内有 255 个 Carmichael 数，其中最小的几个是 561、1105、1729、2465、2821 和 6601。 费马检查却可以在几秒内判断这么大的数的素性。这一事实成为 Rivset、Shamir 和 Adleman (1977) 提出的一种构造“不可摧毁的密码”的技术基础，这一 RSA 算法已经成为提高电子通信安全性的一种使用广泛的技术]]></content>
+      
+      
+        <tags>
+            
+            <tag> 欧几里得算法/辗转相除法简略介绍及贝祖等式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>费马小定理</title>
+      <link href="/2019/02/20/discreteLogarithm/"/>
+      <url>/2019/02/20/discreteLogarithm/</url>
+      
+        <content type="html"><![CDATA[<p>要想清楚的了解费马，就要先了解同余。</p><p>费马小定理：<br>若p为素数，a为整数，(a,p)=1(即两者只有一个公约数1)，则 a^(p-1)≡1（mod p）</p><p>如果n是一个素数（只能被1和自身整除的数字），a是小于n的任意正整数，那么a^n mod n 的结果和a mod n一样。a^(n)≡a（mod n）</p><a id="more"></a><p><a href="http://www.nowamagic.net/librarys/veda/detail/2329" target="_blank" rel="noopener">参考博客</a></p><p><a href="https://zh.wikipedia.org/wiki/%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">维基百科</a></p><p>费马检查：给一个整数n，然后随机取一个a，这个a要小于n，然后计算a取模n的结果并且用它去和a^n mod n的结果相比，如果两个结果不一样，那么这个n一定不是素数，两个结果一样的话，那么这个n几率很大是素数。通过检查越来越多的a值，结果还是一样的话，这个n是素数的可能性也越大。</p><p>费马检测是一个相对可靠的算法，而且在实现大数判断素数时可以提供相对高的效率来工作。</p><p>为什么说它相对可靠呢，是因为有些极其罕见的数字，也具备费马定理的特性，然鹅他们并不是素数。能够骗过费马检查的数称为 Carmichael 数。（科普时间）在 100 000 000 之内有 255 个 Carmichael 数，其中最小的几个是 561、1105、1729、2465、2821 和 6601。</p><p>费马检查却可以在几秒内判断这么大的数的素性。这一事实成为 Rivset、Shamir 和 Adleman (1977) 提出的一种构造“不可摧毁的密码”的技术基础，这一 RSA 算法已经成为提高电子通信安全性的一种使用广泛的技术</p>]]></content>
+      
+      
       <categories>
-        <category>数论</category>
-        <category>费马小定理</category>
+          
+          <category> 数论 </category>
+          
+          <category> 费马小定理 </category>
+          
       </categories>
-      <tags>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[伽罗瓦域_乘法]]></title>
-    <url>%2F2019%2F02%2F20%2FGaloisField-mult%2F</url>
-    <content type="text"><![CDATA[其中，α=0000 0010转回十进制的数值就是2，所以，α^n时候，n每加一就是该二进制往左移一位。如果超了范围的话，就先左移一位，然后再模100011101，让它的值在固定的范围内。 除零之外的场的每个元素等于α的某个幂。 我们定义的元素α被称为伽罗瓦域的原始元素或生成元。]]></content>
+      
+      
+        <tags>
+            
+            <tag> 数论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>伽罗瓦域_乘法</title>
+      <link href="/2019/02/20/GaloisField-mult/"/>
+      <url>/2019/02/20/GaloisField-mult/</url>
+      
+        <content type="html"><![CDATA[ <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisField-mult/multi.png"></center><p>其中，α=0000 0010转回十进制的数值就是2，所以，α^n时候，n每加一就是该二进制往左移一位。如果超了范围的话，就先左移一位，然后再模100011101，让它的值在固定的范围内。</p><p>除零之外的场的每个元素等于α的某个幂。 我们定义的元素α被称为伽罗瓦域的原始元素或生成元。</p>]]></content>
+      
+      
       <categories>
-        <category>伽罗瓦域/有限域</category>
-        <category>乘法表</category>
+          
+          <category> 伽罗瓦域/有限域 </category>
+          
+          <category> 乘法表 </category>
+          
       </categories>
-      <tags>
-        <tag>伽罗瓦域/有限域</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hexo deploy不报错但是无法显示]]></title>
-    <url>%2F2019%2F02%2F20%2Fhexo-err%2F</url>
-    <content type="text"><![CDATA[hexo g hexo s hexo d 错误描述：三步下来，hexo s这一步是没有错的，也能在本地预览已经生成好的静态页面，但是hexo d之后，不报错，但是就是没法正确部署到github page上面。而且还收到github发来的邮件，说是主题不被支持。 删掉.deploy_git，然后git clean ,接着hexo d -g重新生成这个文件夹，并且将页面部署到github page中]]></content>
+      
+      
+        <tags>
+            
+            <tag> 伽罗瓦域/有限域 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo deploy不报错但是无法显示</title>
+      <link href="/2019/02/20/hexo-err/"/>
+      <url>/2019/02/20/hexo-err/</url>
+      
+        <content type="html"><![CDATA[<pre><code>hexo ghexo shexo d</code></pre><p>错误描述：三步下来，hexo s这一步是没有错的，也能在本地预览已经生成好的静态页面，但是hexo d之后，不报错，但是就是没法正确部署到github page上面。而且还收到github发来的邮件，说是主题不被支持。<br><a id="more"></a></p><p>删掉.deploy_git，然后git clean ,接着hexo d -g重新生成这个文件夹，并且将页面部署到github page中</p>]]></content>
+      
+      
       <categories>
-        <category>hexo错误笔记</category>
-        <category>hexo deploy</category>
+          
+          <category> hexo错误笔记 </category>
+          
+          <category> hexo deploy </category>
+          
       </categories>
-      <tags>
-        <tag>hexo err类型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[俄罗斯农夫算法]]></title>
-    <url>%2F2019%2F02%2F20%2FRussianPeasant%2F</url>
-    <content type="text"><![CDATA[俄罗斯农民乘法是在一个乘数和被乘数之间进行操作，降低运算需要花费的时间。 参考博客 参考代码来源 这个算法流程是：乘数和被乘数，一个乘2一个除2，如果被乘数为奇数，则它除以2后去掉余数。如果被乘数是偶数，则继续往下乘除。等被乘数除以2的结果为1的时候，运算结束，把被乘数为奇数的结果所对应的乘数乘以2的结果相加，最终结果为正确乘积。 52 x 25 104 12 208 6 416 3 832 1 ----------- 52+416+832=1300 以下是位运算代码示例： def gf_mult_noLUT(x, y, prim=0, field_charac_full=256, carryless=True): &#39;&#39;&#39;Galois Field integer multiplication using Russian Peasant Multiplication algorithm (faster than the standard multiplication + modular reduction). If prim is 0 and carryless=False, then the function produces the result for a standard integers multiplication (no carry-less arithmetics nor modular reduction).&#39;&#39;&#39; r = 0 while y: # while y is above 0 if y &amp; 1: r = r ^ x if carryless else r + x # y is odd, then add the corresponding x to r (the sum of all x&#39;s corresponding to odd y&#39;s will give the final product). Note that since we&#39;re in GF(2), the addition is in fact an XOR (very important because in GF(2) the multiplication and additions are carry-less, thus it changes the result!). y = y &gt;&gt; 1 # equivalent to y // 2 x = x &lt;&lt; 1 # equivalent to x*2 if prim &gt; 0 and x &amp; field_charac_full: x = x ^ prim # GF modulo: if x &gt;= 256 then apply modular reduction using the primitive polynomial (we just subtract, but since the primitive number can be above 256 then we directly XOR). return r 其中y&amp;1是用来判断y是奇数还是偶数，if carryless是用来判断这个是普通乘法还是伽罗瓦乘法，然后做出相应的算法 prim &gt; 0是判断是不是伽罗瓦乘法，是的话，再对结果进行相应的处理 x &amp; field_charac_full这个是判断x是否大于field_charac_full，大于的话就模field_charac_full以控制x在相应范围内，小于的话就可以直接输出结果。]]></content>
+      
+      
+        <tags>
+            
+            <tag> hexo err类型 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>俄罗斯农夫算法</title>
+      <link href="/2019/02/20/RussianPeasant/"/>
+      <url>/2019/02/20/RussianPeasant/</url>
+      
+        <content type="html"><![CDATA[<p>  俄罗斯农民乘法是在一个乘数和被乘数之间进行操作，降低运算需要花费的时间。<br>  <a id="more"></a><br><a href="http://www.cnblogs.com/yangqingli/p/4745167.html" target="_blank" rel="noopener">参考博客</a>  </p><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考代码来源</a></p><p>这个算法流程是：乘数和被乘数，一个乘2一个除2，如果被乘数为奇数，则它除以2后去掉余数。如果被乘数是偶数，则继续往下乘除。<br>等被乘数除以2的结果为1的时候，运算结束，把被乘数为奇数的结果所对应的乘数乘以2的结果相加，最终结果为正确乘积。</p><pre><code>  52 x 25  104  12  208   6  416   3  832   1 -----------  52+416+832=1300</code></pre><p>   以下是位运算代码示例： </p><pre><code>def gf_mult_noLUT(x, y, prim=0, field_charac_full=256, carryless=True):&#39;&#39;&#39;Galois Field integer multiplication using Russian Peasant Multiplication algorithm (faster than the standard multiplication + modular reduction).If prim is 0 and carryless=False, then the function produces the result for a standard integers multiplication (no carry-less arithmetics nor modular reduction).&#39;&#39;&#39;    r = 0    while y: # while y is above 0        if y &amp; 1: r = r ^ x if carryless else r + x # y is odd, then add the corresponding x to r (the sum of all x&#39;s corresponding to odd y&#39;s will give the final product). Note that since we&#39;re in GF(2), the addition is in fact an XOR (very important because in GF(2) the multiplication and additions are carry-less, thus it changes the result!).        y = y &gt;&gt; 1 # equivalent to y // 2        x = x &lt;&lt; 1 # equivalent to x*2        if prim &gt; 0 and x &amp; field_charac_full: x = x ^ prim # GF modulo: if x &gt;= 256 then apply modular reduction using the primitive polynomial (we just subtract, but since the primitive number can be above 256 then we directly XOR).return r</code></pre><p>其中y&amp;1是用来判断y是奇数还是偶数，if carryless是用来判断这个是普通乘法还是伽罗瓦乘法，然后做出相应的算法</p><p>prim &gt; 0是判断是不是伽罗瓦乘法，是的话，再对结果进行相应的处理</p><p>x &amp; field_charac_full这个是判断x是否大于field_charac_full，大于的话就模field_charac_full以控制x在相应范围内，小于的话就可以直接输出结果。</p>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>俄罗斯农夫算法</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 俄罗斯农夫算法 </category>
+          
       </categories>
-      <tags>
-        <tag>位运算代码示例</tag>
-        <tag>俄罗斯农夫算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[位运算_汉明距离]]></title>
-    <url>%2F2019%2F02%2F19%2FBitOperation_Hamming%2F</url>
-    <content type="text"><![CDATA[汉明距离是用来计算两个不同字符串之间不同的值有多少个。二进制中就是两个二进制相减，结果中1的个数 def hamming_weight(x): #不同bit的数量 weight = 0 while x &gt; 0: weight += x &amp; 1 x &gt;&gt;= 1 return weight def qr_decode_format(fmt): best_fmt = -1 best_dist = 15 for test_fmt in range(0, 32): test_code = (test_fmt &lt;&lt; 10) ^ qr_check_format(test_fmt &lt;&lt; 10)#得出（0-2^5）左移10位然后能被生成子整除的5bit编码 &#39;&#39;&#39; 计算汉明距离的公式 &#39;&#39;&#39; test_dist = hamming_weight(fmt ^ test_code) if test_dist &lt; best_dist: best_dist = test_dist best_fmt = test_fmt elif test_dist == best_dist: #如多个码字与fmt距离相同，则都不选（就是不止一个与原信息的汉明距离相同） best_fmt = -1 return best_fmt 用fmt^test_code算出fmt和test_code中二进制的不同，再去统计相减结果为1的个数，最后得出汉明距离。（也可以叫做计算出汉明权重） 汉明权重：指一个字符串中非零字符的个数；对于二进制串，即其中‘1’的个数。]]></content>
+      
+      
+        <tags>
+            
+            <tag> 位运算代码示例 </tag>
+            
+            <tag> 俄罗斯农夫算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>位运算_汉明距离</title>
+      <link href="/2019/02/19/BitOperation_Hamming/"/>
+      <url>/2019/02/19/BitOperation_Hamming/</url>
+      
+        <content type="html"><![CDATA[<p>汉明距离是用来计算两个不同字符串之间不同的值有多少个。二进制中就是两个二进制相减，结果中1的个数<br><a id="more"></a></p><pre><code>def hamming_weight(x): #不同bit的数量    weight = 0    while x &gt; 0:        weight += x &amp; 1        x &gt;&gt;= 1return weightdef qr_decode_format(fmt):    best_fmt = -1    best_dist = 15    for test_fmt in range(0, 32):        test_code = (test_fmt &lt;&lt; 10) ^ qr_check_format(test_fmt &lt;&lt; 10)#得出（0-2^5）左移10位然后能被生成子整除的5bit编码        &#39;&#39;&#39;         计算汉明距离的公式        &#39;&#39;&#39;        test_dist = hamming_weight(fmt ^ test_code)        if test_dist &lt; best_dist:            best_dist = test_dist            best_fmt = test_fmt        elif test_dist == best_dist: #如多个码字与fmt距离相同，则都不选（就是不止一个与原信息的汉明距离相同）            best_fmt = -1return best_fmt</code></pre><p>用fmt^test_code算出fmt和test_code中二进制的不同，再去统计相减结果为1的个数，最后得出汉明距离。（也可以叫做计算出汉明权重）</p><p>汉明权重：指一个字符串中非零字符的个数；对于二进制串，即其中‘1’的个数。</p>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>汉明距离</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 汉明距离 </category>
+          
       </categories>
-      <tags>
-        <tag>位运算代码示例</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[位运算_除法]]></title>
-    <url>%2F2019%2F02%2F19%2FBitOperation_divided%2F</url>
-    <content type="text"><![CDATA[这个除法是普通的除法，用来求余的除法。 所以根据该链接中的代码举例: def qr_check_format(fmt): g = 0x537 # = 0b10100110111 in python 2.6+ for i in range(4,-1,-1): if fmt &amp; (1 &lt;&lt; (i+10)): #判断第一位是否为零（二进制除法不需要进位借位） fmt ^= g &lt;&lt; i #开始计算 return fmt 其中for i in range(4,-1,-1)里面i的范围是[4,0]的原因是：上述例子中举例用的生成器10100110111长度和用于和它进行相除的除数000111101011001长度相差为4，所以设置i的范围为[4,0]（其中生成器做被除数）]]></content>
+      
+      
+        <tags>
+            
+            <tag> 位运算代码示例 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>位运算_除法</title>
+      <link href="/2019/02/19/BitOperation_divided/"/>
+      <url>/2019/02/19/BitOperation_divided/</url>
+      
+        <content type="html"><![CDATA[<p>这个除法是普通的除法，用来求余的除法。</p><a id="more"></a><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/BitOperation_divided/divided.png"></center><p>所以根据<a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">该链接中的代码</a>举例:</p><pre><code>def qr_check_format(fmt):    g = 0x537    # = 0b10100110111 in python 2.6+    for i in range(4,-1,-1):        if fmt &amp; (1 &lt;&lt; (i+10)): #判断第一位是否为零（二进制除法不需要进位借位）        fmt ^= g &lt;&lt; i #开始计算return fmt</code></pre><p>其中for i in range(4,-1,-1)里面i的范围是[4,0]的原因是：上述例子中举例用的生成器10100110111长度和用于和它进行相除的除数000111101011001长度相差为4，所以设置i的范围为[4,0]<br>（其中生成器做被除数）</p>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>除法求余</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 除法求余 </category>
+          
       </categories>
-      <tags>
-        <tag>位运算代码示例</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[位运算_乘法]]></title>
-    <url>%2F2019%2F02%2F19%2FBitOperation_mult%2F</url>
-    <content type="text"><![CDATA[伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。 其中乘法运算完成后，结果相加的步骤和普通乘法不一样，它用的是异或 所以根据该链接中的代码举例: def cl_mul(x,y): &#39;&#39;&#39;Bitwise carry-less multiplication on integers&#39;&#39;&#39; z = 0 i = 0 while (y&gt;&gt;i) &gt; 0: if y &amp; (1&lt;&lt;i): #判断y?=1 z ^= x&lt;&lt;i #判断x乘的是y的第几位 i += 1 return z]]></content>
+      
+      
+        <tags>
+            
+            <tag> 位运算代码示例 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>位运算_乘法</title>
+      <link href="/2019/02/19/BitOperation_mult/"/>
+      <url>/2019/02/19/BitOperation_mult/</url>
+      
+        <content type="html"><![CDATA[<p>伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。<br><a id="more"></a></p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/BitOperation_mult/field_multiplication.png"></center><p>其中乘法运算完成后，结果相加的步骤和普通乘法不一样，它用的是异或</p><p>所以根据<a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">该链接中的代码</a>举例:</p><pre><code>def cl_mul(x,y):&#39;&#39;&#39;Bitwise carry-less multiplication on integers&#39;&#39;&#39;    z = 0    i = 0    while (y&gt;&gt;i) &gt; 0:        if y &amp; (1&lt;&lt;i): #判断y?=1            z ^= x&lt;&lt;i #判断x乘的是y的第几位        i += 1return z</code></pre>]]></content>
+      
+      
       <categories>
-        <category>位运算代码示例</category>
-        <category>伽罗瓦域的乘法</category>
+          
+          <category> 位运算代码示例 </category>
+          
+          <category> 伽罗瓦域的乘法 </category>
+          
       </categories>
-      <tags>
-        <tag>位运算的代码示例</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[伽罗瓦域]]></title>
-    <url>%2F2019%2F02%2F18%2FGaloisFields%2F</url>
-    <content type="text"><![CDATA[有限域亦称伽罗瓦域（galois field），是仅含有限个元素的域,它是伽罗瓦(Galois,E.)于18世纪30年代研究代数方程根式求解问题时引出的.（摘自百度百科） 群：其中（D,）是一个群的话，则称G关于运算“ ”形成一个群，*是这个群的运算式。其中，D=那么说明，D这个群是由g这个生成元组成的。 集合+运算=群 给一个集合中的元素定义一种运算“乘法”（这个“乘法”不是数字运算的乘法，而只是借用了这个名字，因此加上了引号），如果这个集合中的元素和这个“乘法”满足： 封闭性：集合中任两个元素相“乘”的结果在这个集合之内； 结合律：这个“乘法”满足(ab)c=a(bc)； 单位元：集合中存在某个元素e，对于任意集合中的其它元素a有ea=ae=a，e被称为单位元； 逆元：对于集合中任意元素a，一定存在集合中的另外一个元素a^(-1)，使得aa^(-1)=a^(-1)a=e，a与a-1互为逆元。 此时，这个集合与这个运算组合在一起被称为“群”。 此下是一个来自知乎上一篇笔记的例子 在里面的ab=ac（a^(-1)ab=a^(-1)ac），推出b=c的过程中，用到了逆元存在这个概念），还用到了单位元存在这个概念 ba=ca（baa^(-1)=caa^(-1)）推出b=c的过程用到了结合率的概念 交换群首先明白这样一个代数结构 双射就是值域和定义域一对一的映射，每个定义域都有唯一一个与之对应的值域 接着这个是交换群的概念 我的理解是，在交换群中，每个数都有它通过相同运算对应的结果，无一例外，就连e也能通过这个运算得到在群内的结果 循环群在讲到循环群的时候，这个笔记里面出现了阶的定理，我目前还不是很清楚阶的定理和循环群的定理有什么关联(如果这个群里面存在阶，就可以称这个群是有限群，否则则成为无限群) 我们给它一个符号 o(a)=n 然后循环群就是每个元素都能写成其中某个元素的i次幂的形式，这个元素就是这个群的生成元。每个循环群都是阿贝尔群 子群我的理解就是大群里面的小群，然后这个小群有着群需要的一切要素。 环与域：在一个集合上定义两种运算“加法”和“乘法”，如果这个集合在这个“加法”下成群，而在这个“乘法”下只满足“封闭性”与“结合律”，则称这个集合与这两种运算构成一个“环”；如果这个集合去除“加法”群下的单位元后形成的新集合在“乘法”下成群，则称这个集合与这两种运算构成一个“域”。显然，“域”是一种特殊的“环”。 ————————————————————————————-摘自zhaohaotong的博文 有限域GF(p)： 在密码学中，有限域GF(p)是一个很重要的域，其中p为素数。简单来说，GF(p)就是 mod p，因为一个数模p后，结果在[0, p-1]之间。对于元素a和b，那么(a+b) mod p和(a*b)mod p，其结果都是域中的元素。GF(p)里面的加法和乘法都是平时用的加法和乘法。GF(p)的加法和乘法单位元分别是0和1，元素的加法和乘法逆元都很容易理解和求得. 有限域GF(2^8)：现在重点讲一下GF(2^n)，特别是GF(2^8)，因为8刚好是一个字节的比特数。 前面说到， GF(p)，p得是一个素数，才能保证集合中的所有元素都有加法和乘法逆元(0除外)。但我们却很希望0到255这256个数字也能组成一个域。因为很多领域需要用到。mod 256的余数范围就是0到255，但256不是素数。小于256的最大素数为251，所以很多人就直接把大于等于251的数截断为250。在图像处理中，经常会这样做。但如果要求图像无损的话，就不能截断。 貌似已经到了死胡同，救星还是有的，那就是GF(p^n)，其中p为素数。在这里我们只需令p为2，n为8，即GF(2^8)。 ——————————————————————————————摘自luotuo44博文 在伽罗瓦域里面，加法和减法都是异或运算，所以两者是相等的，而其他域里面是不会这样的。]]></content>
+      
+      
+        <tags>
+            
+            <tag> 位运算的代码示例 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>伽罗瓦域</title>
+      <link href="/2019/02/18/GaloisFields/"/>
+      <url>/2019/02/18/GaloisFields/</url>
+      
+        <content type="html"><![CDATA[<p>有限域亦称伽罗瓦域（galois field），是仅含有限个元素的域,它是伽罗瓦(Galois,E.)于18世纪30年代研究代数方程根式求解问题时引出的.（摘自百度百科）<br><a id="more"></a></p><h2 id="群："><a href="#群：" class="headerlink" title="群："></a><strong>群</strong>：</h2><p>其中（D,<em>）是一个群的话，则称G关于运算“ </em> ”形成一个群，*是这个群的运算式。其中，D=<g>那么说明，D这个群是由g这个生成元组成的。</g></p><p>集合+运算=群</p><p>给一个集合中的元素定义一种运算“乘法”（这个“乘法”不是数字运算的乘法，而只是借用了这个名字，因此加上了引号），如果这个集合中的元素和这个“乘法”满足：</p><ul><li><p>封闭性：集合中任两个元素相“乘”的结果在这个集合之内；</p></li><li><p>结合律：这个“乘法”满足(a<em>b)</em>c=a<em>(b</em>c)；</p></li><li><p>单位元：集合中存在某个元素e，对于任意集合中的其它元素a有e<em>a=a</em>e=a，e被称为单位元；</p></li><li><p>逆元：对于集合中任意元素a，一定存在集合中的另外一个元素a^(-1)，使得a<em>a^(-1)=a^(-1)</em>a=e，a与a-1互为逆元。</p></li></ul><p>此时，这个集合与这个运算组合在一起被称为“群”。</p><p>此下是一个来自知乎上<a href="https://zhuanlan.zhihu.com/p/30384157" target="_blank" rel="noopener">一篇笔记</a>的例子</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/qunex.png"></center><p>在里面的ab=ac（a^(-1)ab=a^(-1)ac），推出b=c的过程中，用到了<strong>逆元存在</strong>这个概念），还用到了<strong>单位元存在</strong>这个概念</p><p>ba=ca（baa^(-1)=caa^(-1)）推出b=c的过程用到了<strong>结合率</strong>的概念</p><h3 id="交换群"><a href="#交换群" class="headerlink" title="交换群"></a>交换群</h3><p>首先明白这样一个代数结构</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/shuangs.png"></center><p><a href="https://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/">双射</a>就是值域和定义域一对一的映射，每个定义域都有唯一一个与之对应的值域</p><p>接着这个是交换群的概念</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/jiaohuan.png"></center><p>我的理解是，在交换群中，每个数都有它通过相同运算对应的结果，无一例外，就连e也能通过这个运算得到在群内的结果</p><h3 id="循环群"><a href="#循环群" class="headerlink" title="循环群"></a>循环群</h3><p>在讲到循环群的时候，这个<a href="https://zhuanlan.zhihu.com/p/30384157" target="_blank" rel="noopener">笔记</a>里面出现了阶的定理，我目前还不是很清楚阶的定理和循环群的定理有什么关联(如果这个群里面存在阶，就可以称这个群是有限群，否则则成为无限群)</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/jie.png"></center><p>我们给它一个符号 o(a)=n</p><p>然后循环群就是每个元素都能写成其中某个元素的i次幂的形式，这个元素就是这个群的生成元。每个循环群都是阿贝尔群</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/xunhuan.png"></center><h3 id="子群"><a href="#子群" class="headerlink" title="子群"></a>子群</h3><p>我的理解就是大群里面的小群，然后这个小群有着群需要的一切要素。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/GaloisFields/ziqun.png"></center><h2 id="环与域："><a href="#环与域：" class="headerlink" title="环与域："></a><strong>环与域</strong>：</h2><p>在一个集合上定义两种运算“加法”和“乘法”，如果这个集合在这个“加法”下成群，而在这个“乘法”下只满足“封闭性”与“结合律”，则称这个集合与这两种运算构成一个“环”；如果这个集合去除“加法”群下的单位元后形成的新集合在“乘法”下成群，则称这个集合与这两种运算构成一个“域”。显然，“域”是一种特殊的“环”。</p><p>————————————————————————————-<a href="http://blog.sciencenet.cn/blog-409681-1048911.html" target="_blank" rel="noopener">摘自zhaohaotong的博文</a></p><h2 id="有限域GF-p-："><a href="#有限域GF-p-：" class="headerlink" title="有限域GF(p)："></a><strong>有限域GF(p)</strong>：</h2><p>  在密码学中，有限域GF(p)是一个很重要的域，其中p为素数。简单来说，GF(p)就是 mod p，因为一个数模p后，结果在[0, p-1]之间。对于元素a和b，那么(a+b) mod p和(a*b)mod p，其结果都是域中的元素。GF(p)里面的加法和乘法都是平时用的加法和乘法。GF(p)的加法和乘法单位元分别是0和1，元素的加法和乘法逆元都很容易理解和求得.</p><h2 id="有限域GF-2-8-："><a href="#有限域GF-2-8-：" class="headerlink" title="有限域GF(2^8)："></a><strong>有限域GF(2^8)</strong>：</h2><p>现在重点讲一下GF(2^n)，特别是GF(2^8)，因为8刚好是一个字节的比特数。</p><p>前面说到， GF(p)，p得是一个素数，才能保证集合中的所有元素都有加法和乘法逆元(0除外)。但我们却很希望0到255这256个数字也能组成一个域。因为很多领域需要用到。mod 256的余数范围就是0到255，但256不是素数。小于256的最大素数为251，所以很多人就直接把大于等于251的数截断为250。在图像处理中，经常会这样做。但如果要求图像无损的话，就不能截断。</p><p>貌似已经到了死胡同，救星还是有的，那就是GF(p^n)，其中p为素数。在这里我们只需令p为2，n为8，即GF(2^8)。</p><p>——————————————————————————————<a href="https://blog.csdn.net/luotuo44/article/details/41645597" target="_blank" rel="noopener">摘自luotuo44博文</a></p><p>在伽罗瓦域里面，加法和减法都是异或运算，所以两者是相等的，而其他域里面是不会这样的。</p>]]></content>
+      
+      
       <categories>
-        <category>伽罗瓦域/有限域</category>
-        <category>基础定义</category>
+          
+          <category> 伽罗瓦域/有限域 </category>
+          
+          <category> 基础定义 </category>
+          
       </categories>
-      <tags>
-        <tag>伽罗瓦域/有限域</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python_左移]]></title>
-    <url>%2F2019%2F01%2F30%2Fpython_ShiftLeft%2F</url>
-    <content type="text"><![CDATA[都是移位操作，三个符号和两个符号的区别是： “&gt;&gt;” 右移,高位补符号位 “&gt;&gt;&gt;” 无符号右移,高位补0； “&lt;&lt;” 左移 左移一位表示乘2，二位就表示4，就是2的n次方 “^”是异或 a&amp;b时候返回的值是直接赋给a的]]></content>
+      
+      
+        <tags>
+            
+            <tag> 伽罗瓦域/有限域 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python_左移</title>
+      <link href="/2019/01/30/python_ShiftLeft/"/>
+      <url>/2019/01/30/python_ShiftLeft/</url>
+      
+        <content type="html"><![CDATA[<p>都是移位操作，三个符号和两个符号的区别是：</p><a id="more"></a><p>“&gt;&gt;” 右移,高位补符号位</p><p>“&gt;&gt;&gt;” 无符号右移,高位补0；</p><p>“&lt;&lt;” 左移  左移一位表示乘2，二位就表示4，就是2的n次方</p><p>“^”是异或</p><p>a&amp;b时候返回的值是直接赋给a的</p>]]></content>
+      
+      
       <categories>
-        <category>Python</category>
-        <category>&lt;&lt;、&gt;&gt;、^、&amp;</category>
+          
+          <category> Python </category>
+          
+          <category> &lt;&lt;、&gt;&gt;、^、&amp; </category>
+          
       </categories>
-      <tags>
-        <tag>python 语法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python_range的用法]]></title>
-    <url>%2F2019%2F01%2F30%2Fpython_rangeUse%2F</url>
-    <content type="text"><![CDATA[简单的讲了一下range的用法和array[::]的一些用法 参考博文array = [1, 2, 5, 3, 6, 8, 4] 其实这里的顺序标识是 [1, 2, 5, 3, 6, 8, 4] (0，1，2，3，4，5，6) (-7,-6,-5,-4,-3,-2,-1) [::]情况那么两个[::]会是什么那？ array[::2][1, 5, 6, 4] array[2::][5, 3, 6, 8, 4] array[::3][1, 3, 4] array[::4][1, 6] 如果想让他们颠倒形成reverse函数的效果 array[::-1][4, 8, 6, 3, 5, 2, 1] array[::-2][4, 6, 5, 1] [:]情况如果[:]只有一个的时候，那么： array[:-2][8, 4] array[-2:][1, 2, 5, 3, 6] array[2:][5, 3, 6，8,4] array[:2][1,2] (后面的-x是从-1开始计数) 参考博文:函数原型：range（start， end， scan): 参数含义： start:计数从start开始。默认是从0开始。例如range（5）等价于range（0， 5）; end:技术到end结束，但不包括end.例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5 scan：每次跳跃的间距，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1) 所以，两个冒号时候，array[::]其中第一个数是数列的起始位置，第二个数是数列的最终位置，第三个是从第一位置往下数间隔的长度（如果为负数，则是倒过来往前数字符） 在range()中，有三个值，第三个值如果是负数则是减少，正数是增加]]></content>
+      
+      
+        <tags>
+            
+            <tag> python 语法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python_range的用法</title>
+      <link href="/2019/01/30/python_rangeUse/"/>
+      <url>/2019/01/30/python_rangeUse/</url>
+      
+        <content type="html"><![CDATA[<p>简单的讲了一下range的用法和array[::]的一些用法<br><a id="more"></a></p><p><a href="www.cnblogs.com/buro79xxd/archive/2011/05/23/2054493.html">参考博文</a><br>array = [1, 2, 5, 3, 6, 8, 4]</p><p><strong>其实这里的顺序标识是</strong></p><p>[1, 2, 5, 3, 6, 8, 4]</p><p>(0，1，2，3，4，5，6)</p><p>(-7,-6,-5,-4,-3,-2,-1)</p><h1 id="情况"><a href="#情况" class="headerlink" title="[::]情况"></a>[::]情况</h1><p>那么两个[::]会是什么那？</p><blockquote><p>array[::2]<br>[1, 5, 6, 4]</p><p>array[2::]<br>[5, 3, 6, 8, 4]</p><p>array[::3]<br>[1, 3, 4]</p><p>array[::4]<br>[1, 6] </p></blockquote><p>如果想让他们颠倒形成reverse函数的效果</p><blockquote><p>array[::-1]<br>[4, 8, 6, 3, 5, 2, 1]</p><p>array[::-2]<br>[4, 6, 5, 1]</p></blockquote><h1 id="情况-1"><a href="#情况-1" class="headerlink" title="[:]情况"></a>[:]情况</h1><p>如果[:]只有一个的时候，那么：</p><blockquote><p>array[:-2]<br>[8, 4]</p><p>array[-2:]<br>[1, 2, 5, 3, 6]</p><p>array[2:]<br>[5, 3, 6，8,4]</p><p>array[:2]<br>[1,2]</p></blockquote><p>(后面的-x是从-1开始计数)</p><p><a href="https://blog.csdn.net/zhenyu5211314/article/details/19069567" target="_blank" rel="noopener">参考博文</a>:<br>函数原型：range（start， end， scan):</p><p>参数含义：</p><ul><li>start:计数从start开始。默认是从0开始。例如range（5）等价于range（0， 5）;</li><li>end:技术到end结束，但不包括end.例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5</li><li>scan：每次跳跃的间距，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)</li></ul><p><strong>所以，两个冒号时候，array[::]其中第一个数是数列的起始位置，第二个数是数列的最终位置，第三个是从第一位置往下数间隔的长度（如果为负数，则是倒过来往前数字符）</strong></p><p><strong>在range()中，有三个值，第三个值如果是负数则是减少，正数是增加</strong></p>]]></content>
+      
+      
       <categories>
-        <category>Python</category>
-        <category>range()&amp;array[::]</category>
+          
+          <category> Python </category>
+          
+          <category> range()&amp;array[::] </category>
+          
       </categories>
-      <tags>
-        <tag>python的用法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[about_blockchain]]></title>
-    <url>%2F2019%2F01%2F26%2Fabout_blockchain%2F</url>
-    <content type="text"><![CDATA[blockchain 因为之前我没弄懂电子签章的问题，然后问旁边的同学，他很仔细的给了我解释，还帮我找了一篇论文，让我看看前两页，所以在阅读这篇论文时候在此做个笔记。 电子签名在区块链上生成的签名被称为“数字”而不是“电子”。电子签名是“附加的电子声音，符号或过程，或在逻辑上与合同或其他记录相关联，由有意图的人采用“签署记录“（也就是证明自己是自己的东西，并且赋予认定）（referred to：提到） 数字签名数字签名是一种特殊的电子签名，它可以加密被签名的文档并并有助于在后续场合验证其身份，它们是在数字环境中创建的，为公钥加密数据库提供验证和传输层（这样拿到这个数字签名的对方，可以用私钥进行解密，得到摘要并且对自己手中的文档进行一次hash算法，对两者进行比对，这样就能判别该文档是否被第三方篡改过，验证其安全性）]]></content>
+      
+      
+        <tags>
+            
+            <tag> python的用法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>about_blockchain</title>
+      <link href="/2019/01/26/about_blockchain/"/>
+      <url>/2019/01/26/about_blockchain/</url>
+      
+        <content type="html"><![CDATA[<h1 id="blockchain"><a href="#blockchain" class="headerlink" title="blockchain"></a>blockchain</h1><blockquote><p>因为之前我没弄懂电子签章的问题，然后问旁边的同学，他很仔细的给了我解释，还帮我找了一篇论文，让我看看前两页，所以在阅读这篇论文时候在此做个笔记。<br> <a id="more"></a></p></blockquote><h2 id="电子签名"><a href="#电子签名" class="headerlink" title="电子签名"></a>电子签名</h2><p>在区块链上生成的签名被称为“数字”而不是“电子”。电子签名是“附加的电子声音，符号或过程，或在逻辑上与合同或其他记录相关联，由有意图的人采用“签署记录“（也就是证明自己是自己的东西，并且赋予认定）（referred to：提到）</p><h1 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h1><p>数字签名是一种特殊的电子签名，它可以加密被签名的文档并并有助于在后续场合验证其身份，它们是在数字环境中创建的，为公钥加密数据库提供验证和传输层（这样拿到这个数字签名的对方，可以用私钥进行解密，得到摘要并且对自己手中的文档进行一次hash算法，对两者进行比对，这样就能判别该文档是否被第三方篡改过，验证其安全性）</p>]]></content>
+      
+      
       <categories>
-        <category>blockchain</category>
+          
+          <category> blockchain </category>
+          
       </categories>
-      <tags>
-        <tag>blockchain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[了解二维码(三):BCH解码器]]></title>
-    <url>%2F2019%2F01%2F23%2FBCH%2F</url>
-    <content type="text"><![CDATA[这是一类通用的纠错码，BCH码：现代里德 - 所罗门码的父族，以及有基本的检测和校正机制。格式化信息用BCH码编码，该BCH码允许检测和校正一定数量的比特错误。检查编码信息的过程类似于长除法过程，只是使用异或代替减法（a remainder of zero：余数为零） BCHBCH错误检测当格式代码被所谓的代码生成器“分割”时，格式代码应产生的余数为零。QR格式代码使用生成器10100110111. （ demonstrated：示范）（0x前缀表示该数字是十六进制，0b是二进制）用fmt与生成子相除，返回余数 def qr_check_format(fmt): g = 0x537 # = 0b10100110111 in python 2.6+ for i in range(4,-1,-1): if fmt &amp; (1 &lt;&lt; (i+10)): #判断第一位是否为零（二进制除法不需要进位借位） fmt ^= g &lt;&lt; i #开始计算 return fmt 其中for i in range(4,-1,-1)里面i的范围是[4,0]的原因是：上述例子中举例用的生成器10100110111长度和用于和它进行相除的除数000111101011001长度相差为4，所以设置i的范围为[4,0] 1字=2字节(1 word = 2 byte) 1字节=8位(1 byte = 8bit) 这个函数可以用于编码生成5bit的编码信息（就是需要被生成器整除的编码信息） encoded_format = (format&lt;&lt;10) ^ qr_check_format(format&lt;&lt;10) 它利用上面的计算余数的函数得出format&lt;&lt;10除以生成器的余数，然后反推出在信息为format&lt;&lt;10的情况下除以生成器时候余数为零的5bit的编码信息。 如果记格式信息为F，生成子为G，(F&lt;&lt;10)/G的商为Q、余数为R (即F&lt;&lt;10 == Q*G + R)，则最终的编码信息 C = (F &lt;&lt; 10) ^ ((F &lt;&lt; 10) mod G) = (QG + R) - R = QG 从而C应当是能够被G整除的。如果收到的C不能被G整除，说明传输出错了。 BCH纠错汉明距离是使用在数据传输差错控制编码里面的，汉明距离是一个概念，它表示两个（相同长度）字对应位不同的数量，我们以d（x,y）表示两个字x,y之间的汉明距离。对两个字符串进行异或运算，并统计结果为1的个数，那么这个数就是汉明距离。 def qr_check_format(fmt): g = 0x537 # = 0b10100110111 in python 2.6+ for i in range(4, -1, -1): if fmt &amp; (1 &lt;&lt; (i+10)): fmt ^= g &lt;&lt; i return fmt def hamming_weight(x): #不同bit的数量 weight = 0 while x &gt; 0: weight += x &amp; 1 x &gt;&gt;= 1 return weight def qr_decode_format(fmt): best_fmt = -1 best_dist = 15 for test_fmt in range(0, 32): test_code = (test_fmt &lt;&lt; 10) ^ qr_check_format(test_fmt &lt;&lt; 10)#得出（0-2^5）左移10位然后能被生成子整除的5bit编码 test_dist = hamming_weight(fmt ^ test_code) if test_dist &lt; best_dist: best_dist = test_dist best_fmt = test_fmt elif test_dist == best_dist: #如多个码字与fmt距离相同，则都不选（就是不止一个与原信息的汉明距离相同） best_fmt = -1 return best_fmt 代码中用fmt ^ test_code，然后统计结果中1的比特的个数，以此来比较fmt和test_code的汉明距离，倘若有多个与fmt的汉明距离一样的test_code，那么就相当于没有可以用于匹配的值，如果只有一个值的话，那么那个最大相似度的值则就是fmt被损坏前的值 （overflow：溢出；Naively：天真地） We’d like to define addition, subtraction, multiplication, and division for 8-bit bytes and always produce 8-bit bytes as a result, so as to avoid any overflow. Naively, we might attempt to use the normal definitions for these operations, and then mod by 256 to keep results from overflowing. 伽罗瓦域乘法和减法mod2^8就是让加减乘除里面的结果小于2^8，在0-255的区间里面。具体参见笔记伽罗瓦域乘法部分 在伽罗瓦域的乘法中，两个数相乘，它的值可能大于2^8，所以在进行乘法后，会对得出的结果进行取模（就是求余），而其中除数为100011101（0x11d） 100011101（0x11d）是Reed-Solomon代码的通用本原多项式。100011101表示8度多项式，其是“不可约的”（意味着它不能表示为两个较小多项式的乘积）。 素数多项式的附加信息（可以跳过）：什么是素数多项式？ 它相当于素数，但在伽罗瓦域中。 请记住，Galois Field使用的值为2的倍数作为生成器。 当然，在标准算术中，素数不能是2的倍数，但在伽罗瓦域中，它是可能的。 为什么我们需要素数多项式？ 因为要保持在场的边界，我们需要计算Galois场上方任何值的模数。 为什么我们不用Galois Field大小模数？ 因为我们最终会得到许多重复值，并且我们希望在字段中拥有尽可能多的唯一值，因此在使用素数多项式进行模数或XOR时，数字始终只有一个投影。 另外我们可以发现，用加法也能得出我们想要的结果：$\, 2^{x}\, \cdot \, 2^{y}\, =\, 2^{x+y}\, $ 基于对数的乘法（次幂的加法）但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为离散对数（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。） 详细内容请看基于对数的乘除法 多项式维基百科中在介绍RS码前还介绍了伽罗瓦域的多项式，这可能会带来一点混淆，因为伽罗华域的元素本身也是多项式（译注：是系数仅为0、1的多项式） —-直接摘自翻译文档 详细介绍代码 参考资料参考网页 参考网页]]></content>
+      
+      
+        <tags>
+            
+            <tag> blockchain </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>了解二维码(三):BCH解码器</title>
+      <link href="/2019/01/23/BCH/"/>
+      <url>/2019/01/23/BCH/</url>
+      
+        <content type="html"><![CDATA[<p>这是一类通用的纠错码，BCH码：现代里德 - 所罗门码的父族，以及有基本的检测和校正机制。<br>格式化信息用BCH码编码，该BCH码允许检测和校正一定数量的比特错误。<br>检查编码信息的过程类似于长除法过程，只是使用异或代替减法（a remainder of zero：余数为零）<br><a id="more"></a></p><h1 id="BCH"><a href="#BCH" class="headerlink" title="BCH"></a>BCH</h1><h2 id="BCH错误检测"><a href="#BCH错误检测" class="headerlink" title="BCH错误检测"></a>BCH错误检测</h2><p>当格式代码被所谓的代码生成器“分割”时，格式代码应产生的余数为零。<br>QR格式代码使用生成器10100110111.</p><p>（ demonstrated：示范）<br>（0x前缀表示该数字是十六进制，0b是二进制）<br>用fmt与生成子相除，返回余数</p><pre><code>def qr_check_format(fmt):    g = 0x537    # = 0b10100110111 in python 2.6+    for i in range(4,-1,-1):        if fmt &amp; (1 &lt;&lt; (i+10)): #判断第一位是否为零（二进制除法不需要进位借位）        fmt ^= g &lt;&lt; i #开始计算return fmt</code></pre><p>其中for i in range(4,-1,-1)里面i的范围是[4,0]的原因是：上述例子中举例用的生成器10100110111长度和用于和它进行相除的除数000111101011001长度相差为4，所以设置i的范围为[4,0]</p><p>1字=2字节(1 word = 2 byte) </p><p>1字节=8位(1 byte = 8bit) </p><p>这个函数可以用于编码生成5bit的编码信息（就是需要被生成器整除的编码信息）</p><pre><code>encoded_format = (format&lt;&lt;10) ^ qr_check_format(format&lt;&lt;10)</code></pre><p>它利用上面的计算余数的函数得出format&lt;&lt;10除以生成器的余数，然后反推出在信息为format&lt;&lt;10的情况下除以生成器时候余数为零的5bit的编码信息。</p><p>如果记格式信息为F，生成子为G，(F&lt;&lt;10)/G的商为Q、余数为R (即F&lt;&lt;10 == Q*G + R)，则最终的编码信息</p><blockquote><p> C = (F &lt;&lt; 10) ^ ((F &lt;&lt; 10) mod G) = (Q<em>G + R) - R = Q</em>G</p></blockquote><p>从而C应当是能够被G整除的。如果收到的C不能被G整除，说明传输出错了。</p><h2 id="BCH纠错"><a href="#BCH纠错" class="headerlink" title="BCH纠错"></a>BCH纠错</h2><p>汉明距离是使用在数据传输差错控制编码里面的，汉明距离是一个概念，它表示两个（相同长度）字对应位不同的数量，我们以d（x,y）表示两个字x,y之间的汉明距离。对两个字符串进行异或运算，并统计结果为1的个数，那么这个数就是汉明距离。</p><pre><code>def qr_check_format(fmt):    g = 0x537    # = 0b10100110111 in python 2.6+    for i in range(4, -1, -1):        if fmt &amp; (1 &lt;&lt; (i+10)):            fmt ^= g &lt;&lt; ireturn fmtdef hamming_weight(x): #不同bit的数量    weight = 0    while x &gt; 0:        weight += x &amp; 1        x &gt;&gt;= 1return weightdef qr_decode_format(fmt):    best_fmt = -1    best_dist = 15    for test_fmt in range(0, 32):        test_code = (test_fmt &lt;&lt; 10) ^ qr_check_format(test_fmt &lt;&lt; 10)#得出（0-2^5）左移10位然后能被生成子整除的5bit编码        test_dist = hamming_weight(fmt ^ test_code)        if test_dist &lt; best_dist:            best_dist = test_dist            best_fmt = test_fmt        elif test_dist == best_dist: #如多个码字与fmt距离相同，则都不选（就是不止一个与原信息的汉明距离相同）            best_fmt = -1return best_fmt</code></pre><p>代码中用fmt ^ test_code，然后统计结果中1的比特的个数，以此来比较fmt和test_code的汉明距离，倘若有多个与fmt的汉明距离一样的test_code，那么就相当于没有可以用于匹配的值，如果只有一个值的话，那么那个最大相似度的值则就是fmt被损坏前的值</p><p>（overflow：溢出；Naively：天真地）</p><blockquote><p>We’d like to define addition, subtraction, multiplication, and division for 8-bit bytes and always produce 8-bit bytes as a result, so as to avoid any overflow. Naively, we might attempt to use the normal definitions for these operations, and then mod by 256 to keep results from overflowing.</p></blockquote><h2 id="伽罗瓦域乘法和减法"><a href="#伽罗瓦域乘法和减法" class="headerlink" title="伽罗瓦域乘法和减法"></a>伽罗瓦域乘法和减法</h2><p>mod2^8就是让加减乘除里面的结果小于2^8，在0-255的区间里面。具体参见笔记<a href="http://www.aimasa.github.io/2019/02/20/GaloisField-mult/" target="_blank" rel="noopener">伽罗瓦域乘法部分</a></p><p>在伽罗瓦域的乘法中，两个数相乘，它的值可能大于2^8，所以在进行乘法后，会对得出的结果进行取模（就是求余），而其中除数为100011101（0x11d）</p><p>100011101（0x11d）是Reed-Solomon代码的<strong>通用</strong>本原多项式。100011101表示8度多项式，其是“不可约的”（意味着它不能表示为两个较小多项式的乘积）。</p><p>素数多项式的附加信息（可以跳过）：什么是素数多项式？ 它相当于素数，但在伽罗瓦域中。 请记住，Galois Field使用的值为2的倍数作为生成器。 当然，在标准算术中，素数不能是2的倍数，但在伽罗瓦域中，它是可能的。 为什么我们需要素数多项式？ 因为要保持在场的边界，我们需要计算Galois场上方任何值的模数。 为什么我们不用Galois Field大小模数？ 因为我们最终会得到许多重复值，并且我们希望在字段中拥有尽可能多的唯一值，因此在使用素数多项式进行模数或XOR时，数字始终只有一个投影。</p><p>另外我们可以发现，用加法也能得出我们想要的结果：$\, 2^{x}\, \cdot \, 2^{y}\, =\, 2^{x+y}\, $</p><h2 id="基于对数的乘法（次幂的加法）"><a href="#基于对数的乘法（次幂的加法）" class="headerlink" title="基于对数的乘法（次幂的加法）"></a>基于对数的乘法（次幂的加法）</h2><p>但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为<a href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">离散对数</a>（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。）</p><p>   详细内容请看<a href="https://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/">基于对数的乘除法</a></p><h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><p>维基百科中在介绍RS码前还介绍了伽罗瓦域的多项式，这可能会带来一点混淆，因为伽罗华域的元素本身也是多项式（译注：是系数仅为0、1的多项式）</p><p>—-直接摘自<a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">翻译文档</a></p><p><a href="https://aimasa.github.io/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/">详细介绍代码</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
+      
+      
       <categories>
-        <category>QR</category>
-        <category>了解二维码</category>
-        <category>了解二维码(三):BCH解码器</category>
+          
+          <category> QR </category>
+          
+          <category> 了解二维码 </category>
+          
+          <category> 了解二维码(三):BCH解码器 </category>
+          
       </categories>
-      <tags>
-        <tag>QR</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[了解二维码(二):二维码的编码方式]]></title>
-    <url>%2F2019%2F01%2F21%2FQR_detail%2F</url>
-    <content type="text"><![CDATA[了解二维码的编码方式 QR Code码(Quick Response Code)有自动纠错功能，具有超高速识读特点。用CCD二维条码识读设备，每秒可识读30个含有100个字符的QR Code码符号。参考博文链接 QR码支持的编码内容参考博文链接，参考博文链接：该链接中有很详细讲二维码的各部分和它的原理，也有很详细的根据一串字符串生成二维码的算法 数据编码针对不同的数据，QR码设计了 不同的数据编码编码方式 ，我们可以根据数据的种类选择合适的编码方式进行编码。 数字编码（Numeric） ：可编码0-9，10个数字，如果需要编码的数字的个数不是3的倍数，最后剩下的1或2位数会被转成4或7bits，其它的每3位数字会根据不同版本被编成 10，12，14bits（编成多长还得看二维码的尺寸） 字符编码（Alphanumeric) ：可编码0-9,大写的A-Z（没有小写）,以及9个其他的字符(space $ % * + – . / :)编码的过程是把字符两两分组，然后转成下表的45进制，然后转成11bits的二进制，如果最后有一个落单(说明该字符串长度为奇数)的，那就转成6bits的二进制。而编码模式和字符的个数需要根据不同的Version尺寸编成9, 11或13个二进制 8位字节模式(8-bit Byte)：可编码JIS X 0201的8位Latin/Kana字符集 除此之外，QR还提供了其他的编码方式，每一个编码方式都有其独有的id进行标识，这些标识会记录在数据区的前端，使得解码器可以根据二维码使用的编码方式对数据进行解码 QR码支持编码的内容包括纯数字、数字和字符混合编码、8位字节码和包含汉字在内的多字节字符。其中： 数字：每三个为一组压缩成10bit。 字母数字混合:每两个为一组，压缩成11bit。 8bit字节数据：无压缩直接保存。 多字节字符：每一个字符被压缩成13bit。 在QR的图像介绍中说过关于QR数据存储有关的知识，在QR中1码字对应8比特。以下是QR码中总比特的计算方法 补齐码补齐码不同版本和不同纠错级，所容纳的比特数也不同，不同版本和不同纠错级所容纳的比特数见附录四。而补齐码就是在我们确定好QR码的版本和纠错级后，判断数据编码的比特数在此版本和纠错级下能够容纳的数据编码比特数是否相等。不是的话，那么就补11101100 00010001进行填充，如果一次填充还不足的话，可循环再次填充。直到其与比特数相同 数据编码=编码模式+字符长度+编码的数据+结束码+凑8bits整+补齐码。 摘自简书(稍做修改，便于我理解) 纠错码纠错码的等级越高，纠错能力也会越高，这样就会需要更多的纠错码，就会导致能够存储的数据变少。纠错码一共有四个等级，L(7%) 01,M(15%) 00,Q(25%) 11,R(35%) 10 括号里的百分比是能够修正的字符比例 因为变脏，变破损的部位不一定只是码字部位，还有别的地方，所以，在QR码中，还是用相对于全部码字的比率来描述纠错率。 纠错级别的比率，是指全部码字与可以纠错的码字的比率。 纠错码可以纠正两种错误： （错误码位置已知）拒读错误：就是扫描二维码时候有的字符没扫到或者扫描到了却读取不出来，就需要纠错码上场了，这种错误需要一个纠错码 （错误位置未知）替代错误：就是有的字符输入错误，但是不知道是哪个字符，所以就需要纠错码的帮助，需要两个纠错码。 记笔记：虽然纠错码在数学上可能看起来令人生畏，但大多数数学运算都是高等级的（Galois Fields除外，但事实上对于任何程序员来说都是简单和通用的：它只是对整数模运算操作数）。 然而，纠错码背后的数学智慧的复杂性隐藏了非常直观的目标和机制。 让我们以一种我们可以“猜测”数据是否被破坏的方式构建数据，只需“修复”结构就可以了。在数学上，我们使用来自伽罗瓦域的多项式来实现这种结构。（get corrupted：被破坏） 纠错码的主要思路是，我们可以使用较小的一组精心挑选的单词，而不是使用整个单词词典，一个“简化的词典”，这样的每个单词都和别的单词都不一样。（我的理解是，这一组单词是没有重复的词汇，所以每个单词都是独一无二的），我们只需在我们的简化字典中查找 检测哪些单词被破坏（因为它们不在我们的简化字典中） 通过查找字典中最相似的单词来纠正损坏的单词。 这部分我的理解是可以把需要放进去的消息去掉重复的字符，做成一个简易词典，然后在一些词因为破损而没法顺利读取出来时候，就用这个简易词典里面的字符和这些词进行比对，其中差异最小的词就被自动认定为这个词破损前的样子 但是如果简化词典里面有this和that两个单词，但是被损坏只能读取出来的部分是th**(precisely:准确的；separability:分离性) 这个差异，或者更准确地说是我们字典的任何2个单词之间的不同字母的最小数量，被称为我们字典的最大汉明距离。 确保字典的任何2个单词在同一位置仅共享最少数量的字母称为最大可分离性。 最大可分离性：两个单词之间极少部分相同 比如： 请注意，如果词典中的每个单词与其他单词的差异至少为5个字符，因此距离为5.这允许在已知位置中最多4个错误，这些错误称为擦除或未知位置中的2个错误需要更正。【因为如果位置错误有五个的话，就会出现没法用简化词典比对出这个破损的词是什么】 8字符中6个字符的子集有28个[C(8,6)]，所以遍历28个6字符的子集，因为距离为5，所以只有一个能匹配（在被损坏的单词少于或者等于2的时候） 可以看到冗余在恢复丢失信息方面的优势：冗余字符可帮助您恢复原始数据。 前面的例子显示了粗略的纠错方案如何起作用。 Reed-Solomon的核心思想是类似的，将冗余数据附加到基于Galois Field数学的消息中。 原始纠错解码器类似于上面的错误示例，搜索对应于有效消息的接收消息的子集，并选择具有最多匹配的子集作为纠正消息。 这对于较大的消息是不实际的，因此开发了数学算法以在合理的时间内执行纠错。 格式信息掩码掩码过程是被用来避免可能会让扫描器混乱的标志特征出现（比如大区域的黑块，让扫描器无法识别其中内容），所以用掩码反转某些模块（让白色变成黑色，黑色变成白色），而那些特定功能的模块则单独存在，不受掩码的影响。 红色的区域编码了格式信息，并使用了一个固定的掩码模式 使用异或操作可以轻松应用（或者删除）掩码转换（很多编程语言里面用插入符号^表示）逆时针读取二维码中的左上角的定位器模式，我们能够得到下面的比特序列，白色表示0，黑色表示1。（校正图形盖住的部位不需要读取二进制数） 所以：Input：101101101001011Mask ：101010000010010output：000111101011001 格式信息格式信息有两个相同的副本，所以即使其中一份被损坏还是能够有机会识别出来的。第二份副本被分成两部分，放在另外两个定位器周围，并且都还是以逆时针方向读取。 格式信息的前两比特是用来给出用于消息数据的纠错码的纠错等级信息。 格式信息接下来的三位是选择要在数据区中使用的掩码模式，接下来的这张图把这些掩码模式列出来了，包括了根据位置算出的模块为黑色的数学公式（i和j分别是行号和列号，左上角以0开头）。 剩下的十位格式化信息用于对格式信息本身的错误校验。 （duplicate：更正） 从右下角开始读取数据位，并以Z字形图案向上移动两个右侧列。 前三个字节是01000000 11010010 01110101.接下来的两列是向下读取的，因此下一个字节是01000111.到达底部后，向上读取后面的两列。 以这种上下方式一直到符号的左侧（必要时跳过定位模式）。 这是用十六进制表示法表示出来的完整信息。 Message data bytes: 40 d2 75 47 76 17 32 06 27 26 96 c6 c6 96 70 ecError correction bytes: bc 2a 90 13 6b af ef fd 4b e0 解码最后的步骤是把解读信息比特，把它变成可读的信息。前四个比特指示信息应该怎么解码。QR码使用几种不同的编码模式，以至于不同种类的信息能够有效的被存储。（summarize：总结）在模式指示码之后的是长度字段，告诉解码器有多少字符被存储。这个字符的长度取决于指定的编码方案。 [8 bits per character==每个字符八位]上面的长度字段大小仅适用于较小的QR码 所以可以根据上图得出紧跟着0100后面的8个比特的字符串0000 1101是讲的是该存储信息的长度，表明有十三个字符，所以后面跟的00100111和01010100（分别是”‘“和”T”的ascii码）等等十三个字符。 在最后一个数据位之后是另一个4位模式指示符，它可以和第一个4位模式指示符不一样，从而允许在一个QR码中混合多个编码方案，如果没有其他数据了，用0000结尾（如果存储空间不够，可以省略这个标记） 为了使我们的QR码解码器可靠，我们需要能够纠正错误。 本文的下一部分将描述如何通过构造BCH解码器，更具体地说是Reed-Solomon解码器来纠正错误。 二维码之解码器]]></content>
+      
+      
+        <tags>
+            
+            <tag> QR </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>了解二维码(二):二维码的编码方式</title>
+      <link href="/2019/01/21/QR_detail/"/>
+      <url>/2019/01/21/QR_detail/</url>
+      
+        <content type="html"><![CDATA[<h1 id="了解二维码的编码方式"><a href="#了解二维码的编码方式" class="headerlink" title="了解二维码的编码方式"></a>了解二维码的编码方式</h1><hr><blockquote><p>QR Code码(Quick Response Code)有自动纠错功能，具有超高速识读特点。用CCD二维条码识读设备，每秒可识读30个含有100个字符的QR Code码符号。<a href="http://www.labelmx.com/tech/CodeKown/Code/201207/4637.html" target="_blank" rel="noopener">参考博文链接</a></p></blockquote><a id="more"></a><h2 id="QR码支持的编码内容"><a href="#QR码支持的编码内容" class="headerlink" title="QR码支持的编码内容"></a>QR码支持的编码内容</h2><p><a href="https://blog.csdn.net/dekko/article/details/6121899" title="虽然该博客的图看不到，只有这段话值得看一看" target="_blank" rel="noopener">参考博文链接</a>，<a href="https://www.cnblogs.com/magicsoar/p/4483032.html" target="_blank" rel="noopener">参考博文链接</a>：该链接中有很详细讲二维码的各部分和它的原理，也有很详细的根据一串字符串生成二维码的算法</p><h2 id="数据编码"><a href="#数据编码" class="headerlink" title="数据编码"></a>数据编码</h2><p>针对不同的数据，QR码设计了<strong> 不同的数据编码编码方式 </strong>，我们可以根据数据的种类选择合适的编码方式进行编码。</p><ul><li><p>数字编码（Numeric）        ：可编码0-9，10个数字，如果需要编码的数字的个数不是3的倍数，最后剩下的1或2位数会被转成4或7bits，其它的每3位数字会根据不同版本被编成 10，12，14bits（编成多长还得看二维码的尺寸）</p></li><li><p>字符编码（Alphanumeric) ：可编码0-9,大写的A-Z（没有小写）,以及9个其他的字符(space $ % * + – . / :)编码的过程是把字符两两分组，然后转成下表的45进制，然后转成11bits的二进制，如果最后有一个落单(说明该字符串长度为奇数)的，那就转成6bits的二进制。而编码模式和字符的个数需要根据不同的Version尺寸编成9, 11或13个二进制</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/Alphanumeric-mode.png"></center></li><li><p>8位字节模式(8-bit Byte)：可编码JIS X 0201的8位Latin/Kana字符集</p></li></ul><p>除此之外，QR还提供了其他的编码方式，每一个编码方式都有其独有的id进行标识，这些标识会记录在数据区的前端，使得解码器可以根据二维码使用的编码方式对数据进行解码</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/encodeList.png"></center><hr><p>QR码支持编码的内容包括纯数字、数字和字符混合编码、8位字节码和包含汉字在内的多字节字符。其中：</p><ul><li><p>数字：每三个为一组压缩成10bit。</p></li><li><p>字母数字混合:每两个为一组，压缩成11bit。                                  </p></li><li><p>8bit字节数据：无压缩直接保存。</p></li><li><p>多字节字符：每一个字符被压缩成13bit。</p></li></ul><p>在QR的<a href="https://aimasa.github.io/2019/01/21/QR_infor">图像介绍</a>中说过关于QR数据存储有关的知识，在QR中1码字对应8比特。<br>以下是QR码中总比特的计算方法</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/bit_count.png"></center><h2 id="补齐码"><a href="#补齐码" class="headerlink" title="补齐码"></a>补齐码</h2><p>补齐码不同版本和不同纠错级，所容纳的比特数也不同，不同版本和不同纠错级所容纳的比特数见附录四。而补齐码就是在我们确定好QR码的版本和纠错级后，判断数据编码的比特数在此版本和纠错级下能够容纳的数据编码比特数是否相等。不是的话，那么就补11101100  00010001进行填充，如果一次填充还不足的话，可循环再次填充。直到其与比特数相同</p><p>数据编码=编码模式+字符长度+编码的数据+结束码+凑8bits整+补齐码。</p><p><a href="https://www.jianshu.com/p/8a0dcb2e0427" target="_blank" rel="noopener">摘自简书(稍做修改，便于我理解)</a></p><h2 id="纠错码"><a href="#纠错码" class="headerlink" title="纠错码"></a>纠错码</h2><p>纠错码的等级越高，纠错能力也会越高，这样就会需要更多的纠错码，就会导致能够存储的数据变少。纠错码一共有四个等级，L(7%) 01,M(15%) 00,Q(25%) 11,R(35%) 10  <strong>括号里的百分比是能够修正的字符比例</strong></p><p>因为变脏，变破损的部位不一定只是码字部位，还有别的地方，所以，在QR码中，还是用相对于全部码字的比率来描述纠错率。</p><p>纠错级别的比率，是指全部码字与可以纠错的码字的比率。 </p><p>纠错码可以纠正两种错误：</p><ul><li>（错误码位置已知）拒读错误：就是扫描二维码时候有的字符没扫到或者扫描到了却读取不出来，就需要纠错码上场了，这种错误需要一个纠错码</li><li>（错误位置未知）替代错误：就是有的字符输入错误，但是不知道是哪个字符，所以就需要纠错码的帮助，需要两个纠错码。</li></ul><hr><blockquote><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">记笔记</a>：虽然纠错码在数学上可能看起来令人生畏，但大多数数学运算都是高等级的（Galois Fields除外，但事实上对于任何程序员来说都是简单和通用的：它只是对整数模运算操作数）。 然而，纠错码背后的数学智慧的复杂性隐藏了非常直观的目标和机制。</p><p>让我们以一种我们可以“猜测”数据是否被破坏的方式构建数据，只需“修复”结构就可以了。在数学上，我们使用来自伽罗瓦域的多项式来实现这种结构。（get corrupted：被破坏）</p><p>纠错码的主要思路是，我们可以使用较小的一组精心挑选的单词，而不是使用整个单词词典，一个“简化的词典”，这样的每个单词都和别的单词都不一样。（我的理解是，这一组单词是没有重复的词汇，所以每个单词都是独一无二的），我们只需在我们的简化字典中查找</p><ul><li>检测哪些单词被破坏（因为它们不在我们的简化字典中）</li><li>通过查找字典中最相似的单词来纠正损坏的单词。</li></ul></blockquote><hr><p>这部分我的理解是可以把需要放进去的消息去掉重复的字符，做成一个简易词典，然后在一些词因为破损而没法顺利读取出来时候，就用这个简易词典里面的字符和这些词进行比对，其中差异最小的词就被自动认定为这个词破损前的样子</p><p>但是如果简化词典里面有this和that两个单词，但是被损坏只能读取出来的部分是th**(precisely:准确的；separability:分离性)</p><p>这个差异，或者更准确地说是我们字典的任何2个单词之间的不同字母的最小数量，被称为我们字典的最大汉明距离。 确保字典的任何2个单词在同一位置仅共享最少数量的字母称为最大可分离性。</p><p>最大可分离性：两个单词之间极少部分相同</p><p>比如：</p><p>请注意，如果词典中的每个单词与其他单词的差异至少为5个字符，因此距离为5.这允许在已知位置中最多4个错误，这些错误称为擦除或未知位置中的2个错误需要更正。【因为如果位置错误有五个的话，就会出现没法用简化词典比对出这个破损的词是什么】</p><p>8字符中6个字符的子集有28个[C(8,6)]，所以遍历28个6字符的子集，因为距离为5，所以只有一个能匹配（在被损坏的单词少于或者等于2的时候）</p><hr><blockquote><p>可以看到冗余在恢复丢失信息方面的优势：冗余字符可帮助您恢复原始数据。 前面的例子显示了粗略的纠错方案如何起作用。 Reed-Solomon的核心思想是类似的，将冗余数据附加到基于Galois Field数学的消息中。 原始纠错解码器类似于上面的错误示例，搜索对应于有效消息的接收消息的子集，并选择具有最多匹配的子集作为纠正消息。 这对于较大的消息是不实际的，因此开发了数学算法以在合理的时间内执行纠错。</p></blockquote><h2 id="格式信息"><a href="#格式信息" class="headerlink" title="格式信息"></a>格式信息</h2><h3 id="掩码"><a href="#掩码" class="headerlink" title="掩码"></a>掩码</h3><p>掩码过程是被用来避免可能会让扫描器混乱的标志特征出现（比如大区域的黑块，让扫描器无法识别其中内容），所以用掩码反转某些模块（让白色变成黑色，黑色变成白色），而那些特定功能的模块则单独存在，不受掩码的影响。</p><p>红色的区域编码了格式信息，并使用了一个固定的掩码模式</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/masking.png"></center><p>使用异或操作可以轻松应用（或者删除）掩码转换（很多编程语言里面用插入符<br>号^表示）逆时针读取二维码中的左上角的定位器模式，我们能够得到下面的比特序列，白色表示0，黑色表示1。（校正图形盖住的部位不需要读取二进制数）</p><p>所以：<br>Input：101101101001011<br>Mask ：101010000010010<br>output：000111101011001</p><h3 id="格式信息-1"><a href="#格式信息-1" class="headerlink" title="格式信息"></a>格式信息</h3><p>格式信息有两个相同的副本，所以即使其中一份被损坏还是能够有机会识别出来的。第二份副本被分成两部分，放在另外两个定位器周围，并且都还是以逆时针方向读取。</p><p>格式信息的前两比特是用来给出用于消息数据的纠错码的纠错等级信息。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/纠错码.png"></center><p>格式信息接下来的三位是选择要在数据区中使用的掩码模式，接下来的这张图把这些掩码模式列出来了，包括了根据位置算出的模块为黑色的数学公式（i和j分别是行号和列号，左上角以0开头）。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/Mask_num.png"></center><p>剩下的十位格式化信息用于对格式信息本身的错误校验。</p><p>（duplicate：更正）</p><p>从右下角开始读取数据位，并以Z字形图案向上移动两个右侧列。 前三个字节是01000000 11010010 01110101.接下来的两列是向下读取的，因此下一个字节是01000111.到达底部后，向上读取后面的两列。 以这种上下方式一直到符号的左侧（必要时跳过定位模式）。 这是用十六进制表示法表示出来的完整信息。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/unmask.png"></center><p>Message data bytes: 40 d2 75 47 76 17 32 06 27 26 96 c6 c6 96 70 ec<br>Error correction bytes: bc 2a 90 13 6b af ef fd 4b e0</p><h2 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h2><p>最后的步骤是把解读信息比特，把它变成可读的信息。前四个比特指示信息应该怎么解码。QR码使用几种不同的编码模式，以至于不同种类的信息能够有效的被存储。（summarize：总结）在模式指示码之后的是长度字段，告诉解码器有多少字符被存储。这个字符的长度取决于指定的编码方案。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_detail/lenth.png"></center><p>[8 bits per character==每个字符八位]上面的长度字段大小仅适用于较小的QR码</p><p>所以可以根据上图得出紧跟着0100后面的8个比特的字符串0000 1101是讲的是该存储信息的长度，表明有十三个字符，所以后面跟的00100111和01010100（分别是”‘“和”T”的ascii码）等等十三个字符。</p><p>在最后一个数据位之后是另一个4位模式指示符，它可以和第一个4位模式指示符不一样，从而允许在一个QR码中混合多个编码方案，如果没有其他数据了，用0000结尾（如果存储空间不够，可以省略这个标记）</p><p>为了使我们的QR码解码器<strong>可靠</strong>，我们需要能够<strong>纠正</strong>错误。 本文的下一部分将描述如何通过构造BCH解码器，更具体地说是Reed-Solomon解码器来纠正错误。</p><p><a href="https://aimasa.github.io/2019/01/23/BCH/">二维码之解码器</a></p>]]></content>
+      
+      
       <categories>
-        <category>QR</category>
-        <category>了解二维码</category>
-        <category>了解二维码(二):二维码的编码方式</category>
+          
+          <category> QR </category>
+          
+          <category> 了解二维码 </category>
+          
+          <category> 了解二维码(二):二维码的编码方式 </category>
+          
       </categories>
-      <tags>
-        <tag>QR</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[了解二维码(一):二维码的组成部分解释与介绍]]></title>
-    <url>%2F2019%2F01%2F21%2FQR_infor%2F</url>
-    <content type="text"><![CDATA[QR图形介绍 二维码一共有40个尺寸。官方叫版本Version。Version 1是21 x 21的矩阵，Version 2是 25 x 25的矩阵，Version 3是29的尺寸，每增加一个version，就会增加4的尺寸，公式是： (V-1)x4 + 21（V是版本号） 最高Version 40，(40-1)*4+21 = 177，所以最高是177 x 177 的正方形。 功能图形起到定位的作用：参考博客链接，参考博客链接 位置探测图形：最大的正方形就是位置探测图形（由三个黑白相间的大正方形嵌套组成，分别位于二维码左上角、右上角、左下角，目的是为了确定二维码的大小和位置。）这个图形的大小是固定的，不会因为二维码的版本而改变。(它的旁边还有八个加七个的由白块组成的白边，为了更好的定位而存在的) 定位图形：连接着位置探测图形的有规律的黑白相间的那条线（由两条黑白相间的直线组成，便于确定二维码的角度，纠正扭曲。） 定位符是因为二维码有40个版本尺寸,当尺寸过大后需要有根标准线，不然扫描的时候可能会扫歪。 ，它的长度很容易计算出来，一共两条线，用二维码的长度减掉两个位置探测图形的长度就可以得出每条线的长度了。 校正图形：和位置探测图形比起来比较小，和定位图形的黑白相间的小正方形比起来要大的正方形（仅在版本2以上存在，由三个黑白相间的小正方形嵌套组成，便于确定中心，纠正扭曲。） 每个版本的存储数据容量不一样,版本越高就意味着数据容量越大，纠错能力越强 这个图形的大小是固定的，不会因为二维码的版本而改变。 Alignment Patterns(对齐模式)：也是用于定位，只有version2以上才有用。 数据区记录了具体的数据信息，纠错信息与版本信息： 数据和纠错码：把数据码和纠错码的各个8位一组的十进制数（codewords）交替放在一起（跟我的理解是一样的，把数据分组，然后每组数据后面跟一个纠错码），所以就算有图片在二维码中间，二维码还是能扫描出记录在里面的内容(记录了数据信息和相应的纠错码，纠错码的存在使得当二维码的数据出现允许范围内的错误时，也可以正确解码。) 存储容错级别L(7%),M(15%),Q(25%),R(35%) 版本信息：就是记录二维码的规格(仅在版本7以上存在，记录具体的版本信息。)需要预留两块3 x 6的区域存放一些版本信息 格式信息：记录使用的数据掩码和纠错等级，和额外的自身BCH容错码。一条格式信息有15个bit，还有一条格式信息是这条信息的副本，为了防止格式信息被破坏。 Dark Module：这是二维码的标志，每个二维码都有。 此外二维码的外围还留有一圈空白区，主要是为了便于识别而存在。其中在位置探测图形周围有一圈白边（一个单位宽），这是分隔符，位于每个定位标识和编码区域之间用于区分。 纠错码和编码信息除了上述说的这些外，就还只有纠错码和编码了。 那么，QR是怎么对数据码加上纠错码的？首先，我们需要对数据码进行分组，也就是分成不同的Block，然后对各个Block进行纠错编码。 Number of Error Code Correction Blocks ：需要分多少个块。 Error Correction Code Per Blocks：每一个块中的code个数，所谓的code的个数，也就是有多少个8bits的字节。 参考博文 参考博文 QR码中，不同版本不同纠错级别都有相对应的数据存储容量，输入的字符越多，那相对应的QR码就要越大。 以下这个表是根据版本以及纠错级别对应的最佳的输入的数据的字符个数]]></content>
+      
+      
+        <tags>
+            
+            <tag> QR </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>了解二维码(一):二维码的组成部分解释与介绍</title>
+      <link href="/2019/01/21/QR_infor/"/>
+      <url>/2019/01/21/QR_infor/</url>
+      
+        <content type="html"><![CDATA[<h1 id="QR图形介绍"><a href="#QR图形介绍" class="headerlink" title="QR图形介绍"></a>QR图形介绍</h1><hr><blockquote><p> 二维码一共有40个尺寸。官方叫版本Version。Version 1是21 x 21的矩阵，Version 2是 25 x 25的矩阵，Version 3是29的尺寸，每增加一个version，就会增加4的尺寸，公式是：<strong> (V-1)x4 + 21（V是版本号）</strong> 最高Version 40，(40-1)*4+21 = 177，所以最高是177 x 177 的正方形。<br><a id="more"></a></p></blockquote><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_infor/QR_area.png"></center><h3 id="功能图形起到定位的作用："><a href="#功能图形起到定位的作用：" class="headerlink" title="功能图形起到定位的作用："></a>功能图形起到定位的作用：</h3><p><a href="https://www.cnblogs.com/magicsoar/p/4483032.html" title="参考二维码各部分名称的博客链接" target="_blank" rel="noopener">参考博客链接</a>，<a href="https://blog.csdn.net/kelindame/article/details/45155185" title="参考二维码各部分详细介绍" target="_blank" rel="noopener">参考博客链接</a></p><ul><li>位置探测图形：最大的正方形就是位置探测图形（由三个黑白相间的大正方形嵌套组成，分别位于二维码左上角、右上角、左下角，目的是为了确定二维码的大小和位置。）这个图形的大小是固定的，不会因为二维码的版本而改变。(它的旁边还有八个加七个的由白块组成的白边，为了更好的定位而存在的)</li></ul><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_infor/position.jpg"></center><ul><li>定位图形：连接着位置探测图形的有规律的黑白相间的那条线（由<strong>两条</strong>黑白相间的直线组成，便于确定二维码的角度，纠正扭曲。）<strong> 定位符是因为二维码有40个版本尺寸,当尺寸过大后需要有根标准线，不然扫描的时候可能会扫歪。 </strong>，它的长度很容易计算出来，一共两条线，用二维码的长度减掉两个位置探测图形的长度就可以得出每条线的长度了。</li></ul><ul><li>校正图形：和位置探测图形比起来比较小，和定位图形的黑白相间的小正方形比起来要大的正方形（仅在版本2以上存在，由三个黑白相间的小正方形嵌套组成，便于确定中心，纠正扭曲。）<strong> 每个版本的存储数据容量不一样,版本越高就意味着数据容量越大，纠错能力越强 </strong>这个图形的大小是固定的，不会因为二维码的版本而改变。</li></ul><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_infor/position2.jpg"></center><p>Alignment Patterns(对齐模式)：也是用于定位，只有version2以上才有用。</p><h3 id="数据区记录了具体的数据信息，纠错信息与版本信息："><a href="#数据区记录了具体的数据信息，纠错信息与版本信息：" class="headerlink" title="数据区记录了具体的数据信息，纠错信息与版本信息："></a>数据区记录了具体的数据信息，纠错信息与版本信息：</h3><ul><li><p>数据和纠错码：把数据码和纠错码的各个8位一组的十进制数（codewords）交替放在一起（跟我的理解是一样的，把数据分组，然后每组数据后面跟一个纠错码），所以就算有图片在二维码中间，二维码还是能扫描出记录在里面的内容(记录了数据信息和相应的纠错码，纠错码的存在使得当二维码的数据出现允许范围内的错误时，也可以正确解码。)<strong> 存储容错级别L(7%),M(15%),Q(25%),R(35%) </strong></p></li><li><p>版本信息：就是记录二维码的规格(仅在<strong>版本7以上</strong>存在，记录具体的版本信息。)需要预留两块3 x 6的区域存放一些版本信息</p></li><li><p>格式信息：记录使用的数据掩码和纠错等级，和额外的自身BCH容错码。一条格式信息有15个bit，还有一条格式信息是这条信息的副本，为了防止格式信息被破坏。</p></li><li><p>Dark Module：这是二维码的标志，每个二维码都有。</p></li></ul><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_infor/DarkModule.png"></center><p>此外二维码的外围还留有一圈空白区，主要是为了便于识别而存在。其中在位置探测图形周围有一圈白边（一个单位宽），这是分隔符，位于每个定位标识和编码区域之间用于区分。</p><h3 id="纠错码和编码信息"><a href="#纠错码和编码信息" class="headerlink" title="纠错码和编码信息"></a>纠错码和编码信息</h3><p>除了上述说的这些外，就还只有纠错码和编码了。</p><p>那么，QR是怎么对数据码加上纠错码的？首先，我们需要对数据码进行分组，也就是分成不同的Block，然后对各个Block进行纠错编码。</p><ul><li><p>Number of Error Code Correction Blocks ：需要分多少个块。</p></li><li><p>Error Correction Code Per Blocks：每一个块中的code个数，所谓的code的个数，也就是有多少个8bits的字节。</p></li></ul><p><a href="https://blog.csdn.net/u012611878/article/details/53167009" target="_blank" rel="noopener">参考博文</a></p><p><a href="https://coolshell.cn/articles/10590.html" target="_blank" rel="noopener">参考博文</a></p><p>QR码中，不同版本不同纠错级别都有相对应的数据存储容量，输入的字符越多，那相对应的QR码就要越大。</p><p>以下这个表是根据版本以及纠错级别对应的最佳的输入的数据的字符个数</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/QR_infor/QR_data.png"></center>]]></content>
+      
+      
       <categories>
-        <category>QR</category>
-        <category>了解二维码</category>
-        <category>了解二维码(一):二维码的组成部分解释与介绍</category>
+          
+          <category> QR </category>
+          
+          <category> 了解二维码 </category>
+          
+          <category> 了解二维码(一):二维码的组成部分解释与介绍 </category>
+          
       </categories>
-      <tags>
-        <tag>QR</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> QR </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
