@@ -45,11 +45,11 @@ RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\le
 
 除法中
 
- <center>![](chufa.png)</center>
+ <center>{% qnimg RS-code/chufa.png %}</center>
 
 其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。
 
- <center>![](chenfa.png)</center>
+ <center>{% qnimg RS-code/chenfa.png %}</center>
 
 于是得出编码信息为12 34 56 37 e6 78 d9。
 

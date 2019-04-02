@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight: 
@@ -115,7 +115,30 @@ live2d:
     opacityDefault: 0.7
     opacityOnHover: 0.2
     
+qiniu:
+  offline: false
+  sync: true
+  bucket: picture
+  access_key: toPCG9eKiXISfgSqMuEM9j-moNc9leo7Ui2dH3NM
+  secret_key: ctfGat7QcX8dW4V3BpC1FywoR6zqEMauVWOKFpZL
+  dirPrefix: static
+  urlPrefix: http://pp48biywe.bkt.clouddn.com/static
+  up_host: http://upload.qiniu.com
+  local_dir: qiniu_picture
+  update_exist: true
+  image: 
+    folder: images
+    extend: 
+  js:
+    folder: js
+  css:
+    folder: css
 
+# 自动生成sitemap
+sitemap: 
+  path: sitemap.xml
+baidusitemap: 
+  path: baidusitemap.xml
   
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

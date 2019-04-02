@@ -6,6 +6,7 @@ categories:
 - markdown
 - markdown插入公式
 tags:
+- markdown
 ---
 
 实测在[该博客](https://www.jianshu.com/p/054484d0892a)中提到的四种在markdown中插入公式的办法
@@ -15,13 +16,13 @@ tags:
 
 # 办法1：借助[在线公式编辑器](https://www.codecogs.com/latex/eqneditor.php)
 
-<center>![](fangfa1_1.png)</center>
+<center>{% qnimg markdown插入公式/fangfa1_1.png %}</center>
 
 <center>=======></center>
 
-<center>![](fangfa1_2.png)</center>
+<center>{% qnimg markdown插入公式/fangfa1_2.png %}</center>
 
-<center>![](fangfa1_3.png)</center>
+<center>{% qnimg markdown插入公式/fangfa1_3.png %}</center>
 
 # 办法2：借助Google Chart服务器
 
@@ -29,19 +30,19 @@ tags:
 
     <img src="http://chart.googleapis.com/chart?cht=tx&chl= 在此插入Latex公式" style="border:none;">
 
-<center>![](fangfa2.png)</center>
+<center>{% qnimg markdown插入公式/fangfa2.png %}</center>
 
 # 办法3：借助forkosh服务器
 
 与上一方法类似
 
-<center>![](fangfa3.png)</center>
+<center>{% qnimg markdown插入公式/fangfa3.png %}</center>
 
 # 办法4：借助MathJax引擎！
 
 在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式
 
-<center>![](fangfa4.png)</center>
+<center>{% qnimg markdown插入公式/fangfa4.png %}</center>
  
 # 总结
 
@@ -120,3 +121,5 @@ Step 2:
 [该文档提供的下载地址](https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar)
 
 如果该链接打不开，请进入参考文档去寻找正确地址。
+
+[用mathjax对公式进行渲染](https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/)

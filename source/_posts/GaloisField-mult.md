@@ -9,7 +9,7 @@ tags:
 - 伽罗瓦域/有限域
 ---
  
- <center>![](multi.png)</center>
+ <center>{% qnimg GaloisField-mult/multi.png %}</center>
 
 其中，α=0000 0010转回十进制的数值就是2，所以，α^n时候，n每加一就是该二进制往左移一位。如果超了范围的话，就先左移一位，然后再模100011101，让它的值在固定的范围内。
 

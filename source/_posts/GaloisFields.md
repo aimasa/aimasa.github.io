@@ -32,7 +32,7 @@ tags:
 
 此下是一个来自知乎上[一篇笔记](https://zhuanlan.zhihu.com/p/30384157)的例子
 
-<center>![](qunex.png)</center>
+<center>{% qnimg GaloisFields/qunex.png %}</center>
 
 在里面的ab=ac（a^(-1)ab=a^(-1)ac），推出b=c的过程中，用到了**逆元存在**这个概念），还用到了**单位元存在**这个概念
 
@@ -41,13 +41,13 @@ ba=ca（baa^(-1)=caa^(-1)）推出b=c的过程用到了**结合率**的概念
 ### 交换群
 
 首先明白这样一个代数结构
-<center>![](shuangs.png)</center>
+<center>{% qnimg GaloisFields/shuangs.png %}</center>
 
 [双射](https://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/)就是值域和定义域一对一的映射，每个定义域都有唯一一个与之对应的值域
 
 接着这个是交换群的概念
 
-<center>![](jiaohuan.png)</center>
+<center>{% qnimg GaloisFields/jiaohuan.png %}</center>
 
 我的理解是，在交换群中，每个数都有它通过相同运算对应的结果，无一例外，就连e也能通过这个运算得到在群内的结果
 
@@ -55,19 +55,19 @@ ba=ca（baa^(-1)=caa^(-1)）推出b=c的过程用到了**结合率**的概念
 
 在讲到循环群的时候，这个[笔记](https://zhuanlan.zhihu.com/p/30384157)里面出现了阶的定理，我目前还不是很清楚阶的定理和循环群的定理有什么关联(如果这个群里面存在阶，就可以称这个群是有限群，否则则成为无限群)
 
-<center>![](jie.png)</center>
+<center>{% qnimg GaloisFields/jie.png %}</center>
 
 我们给它一个符号 o(a)=n
 
 然后循环群就是每个元素都能写成其中某个元素的i次幂的形式，这个元素就是这个群的生成元。每个循环群都是阿贝尔群
 
-<center>![](xunhuan.png)</center>
+<center>{% qnimg GaloisFields/xunhuan.png %}</center>
 
 ### 子群
 
 我的理解就是大群里面的小群，然后这个小群有着群需要的一切要素。
 
-<center>![](ziqun.png)</center>
+<center>{% qnimg GaloisFields/ziqun.png%}</center>
 
 
 ## **环与域**：

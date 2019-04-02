@@ -31,7 +31,7 @@ tags:
 
 当在类上下文中使用，会触发"名称修饰"，由python解释器强制执行。就是在这个双下划线前面加上"_[包名]"
 
-<center>![](qiandao.png)</center>
+<center>{% qnimg python下划线/qiandao.png %}</center>
 
 # 双前导和双末尾下划线 "__var__"
 

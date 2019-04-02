@@ -13,7 +13,7 @@ tags:
 
 <!--more-->
 
-<center>![](divided.png)</center>
+<center>{% qnimg BitOperation_divided/divided.png %}</center>
 
 所以根据[该链接中的代码](https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders)举例:
 

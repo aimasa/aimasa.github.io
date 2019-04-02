@@ -12,7 +12,8 @@ tags:
 伽罗瓦域的加减法运算都是用异或的方法运算的，所以它的乘法和普通的乘法也是不一样的。
 <!--more-->
 
-<center>![](field_multiplication.png)</center>
+<center>{% qnimg BitOperation_mult/field_multiplication.png %}
+</center>
 
 其中乘法运算完成后，结果相加的步骤和普通乘法不一样，它用的是异或
 

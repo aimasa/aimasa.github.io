@@ -25,13 +25,13 @@ tags:
 * 数字编码（Numeric）        ：可编码0-9，10个数字，如果需要编码的数字的个数不是3的倍数，最后剩下的1或2位数会被转成4或7bits，其它的每3位数字会根据不同版本被编成 10，12，14bits（编成多长还得看二维码的尺寸）
  
 * 字符编码（Alphanumeric) ：可编码0-9,大写的A-Z（没有小写）,以及9个其他的字符(space $ % * + – . / :)编码的过程是把字符两两分组，然后转成下表的45进制，然后转成11bits的二进制，如果最后有一个落单(说明该字符串长度为奇数)的，那就转成6bits的二进制。而编码模式和字符的个数需要根据不同的Version尺寸编成9, 11或13个二进制
-<center>![](Alphanumeric-mode.png)</center>
+<center>{% qnimg QR_detail/Alphanumeric-mode.png %}</center>
 
 * 8位字节模式(8-bit Byte)：可编码JIS X 0201的8位Latin/Kana字符集
 
 除此之外，QR还提供了其他的编码方式，每一个编码方式都有其独有的id进行标识，这些标识会记录在数据区的前端，使得解码器可以根据二维码使用的编码方式对数据进行解码
 
-<center>![](encodeList.png)</center>
+<center>{% qnimg QR_detail/encodeList.png %}</center>
 
 ---
 
@@ -45,9 +45,18 @@ QR码支持编码的内容包括纯数字、数字和字符混合编码、8位�
 
 + 多字节字符：每一个字符被压缩成13bit。
 
-在QR的[图像介绍](https://aimasa.github.io/2019/01/21/QR-infor/)中说过关于QR数据存储有关的知识，在QR中1码字对应8比特。
+在QR的[图像介绍](https://aimasa.github.io/2019/01/21/QR_infor)中说过关于QR数据存储有关的知识，在QR中1码字对应8比特。
 以下是QR码中总比特的计算方法
-<center>![](bit_count.png)</center>
+
+<center>{% qnimg QR_detail/bit_count.png %}</center>
+
+## 补齐码
+
+补齐码不同版本和不同纠错级，所容纳的比特数也不同，不同版本和不同纠错级所容纳的比特数见附录四。而补齐码就是在我们确定好QR码的版本和纠错级后，判断数据编码的比特数在此版本和纠错级下能够容纳的数据编码比特数是否相等。不是的话，那么就补11101100  00010001进行填充，如果一次填充还不足的话，可循环再次填充。直到其与比特数相同
+
+数据编码=编码模式+字符长度+编码的数据+结束码+凑8bits整+补齐码。
+
+[摘自简书(稍做修改，便于我理解)](https://www.jianshu.com/p/8a0dcb2e0427)
 
 
 ## 纠错码
@@ -100,7 +109,7 @@ QR码支持编码的内容包括纯数字、数字和字符混合编码、8位�
 
 红色的区域编码了格式信息，并使用了一个固定的掩码模式
 
-<center>![](masking.png)</center>
+<center>{% qnimg QR_detail/masking.png %}</center>
 
 使用异或操作可以轻松应用（或者删除）掩码转换（很多编程语言里面用插入符
 号^表示）逆时针读取二维码中的左上角的定位器模式，我们能够得到下面的比特序列，白色表示0，黑色表示1。（校正图形盖住的部位不需要读取二进制数）
@@ -116,10 +125,12 @@ output：000111101011001
 
 格式信息的前两比特是用来给出用于消息数据的纠错码的纠错等级信息。
 
-<center>![](纠错码.png)</center>
+<center>{% qnimg QR_detail/纠错码.png %}</center>
+
+
 
 格式信息接下来的三位是选择要在数据区中使用的掩码模式，接下来的这张图把这些掩码模式列出来了，包括了根据位置算出的模块为黑色的数学公式（i和j分别是行号和列号，左上角以0开头）。
-<center>![](Mask_num.png)</center>
+<center>{% qnimg QR_detail/Mask_num.png %}</center>
 
 剩下的十位格式化信息用于对格式信息本身的错误校验。
 
@@ -127,7 +138,7 @@ output：000111101011001
 
 从右下角开始读取数据位，并以Z字形图案向上移动两个右侧列。 前三个字节是01000000 11010010 01110101.接下来的两列是向下读取的，因此下一个字节是01000111.到达底部后，向上读取后面的两列。 以这种上下方式一直到符号的左侧（必要时跳过定位模式）。 这是用十六进制表示法表示出来的完整信息。
 
-<center>![](unmask.png)</center>
+<center>{% qnimg QR_detail/unmask.png %}</center>
 
 Message data bytes: 40 d2 75 47 76 17 32 06 27 26 96 c6 c6 96 70 ec
 Error correction bytes: bc 2a 90 13 6b af ef fd 4b e0
@@ -136,7 +147,7 @@ Error correction bytes: bc 2a 90 13 6b af ef fd 4b e0
 
 最后的步骤是把解读信息比特，把它变成可读的信息。前四个比特指示信息应该怎么解码。QR码使用几种不同的编码模式，以至于不同种类的信息能够有效的被存储。（summarize：总结）在模式指示码之后的是长度字段，告诉解码器有多少字符被存储。这个字符的长度取决于指定的编码方案。
 
-<center>![](lenth.png)</center>
+<center>{% qnimg QR_detail/lenth.png %}</center>
 
 [8 bits per character==每个字符八位]上面的长度字段大小仅适用于较小的QR码
 
