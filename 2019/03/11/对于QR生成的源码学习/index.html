@@ -128,7 +128,7 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-03-28T09:27:02.562Z">
+<meta property="og:updated_time" content="2019-04-02T10:40:13.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对于QR生成的java源码学习(一):关于java语法内容">
 <meta name="twitter:description" content="java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  1.9k
                 </span>
               
 
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  7
                 </span>
               
             </div>
@@ -506,6 +506,49 @@ private static int wordIndex(int bitIndex) {
 <h1 id="native"><a href="#native" class="headerlink" title="native"></a>native</h1><p>native是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。</p>
 <p>因为native是底层实现的，所以它的速度非常快。</p>
 <h1 id="cloneable接口和Serializable接口"><a href="#cloneable接口和Serializable接口" class="headerlink" title="cloneable接口和Serializable接口"></a>cloneable接口和Serializable接口</h1><p>扩展<br>Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自<a href="https://www.cnblogs.com/Qian123/p/5710533.html" target="_blank" rel="noopener">论java中的浅克隆和深克隆</a></p>
+<h1 id="关于序列化"><a href="#关于序列化" class="headerlink" title="关于序列化"></a>关于序列化</h1><p>序列化简单来说就保存对象在内存中的状态,也可以说是实例化变量。这是Java提供的用来保存 Object state，一种保存对象状态的机制。只有实现了serializable接口的类的对象才能被实例化。——-摘自<a href="https://blog.csdn.net/u010486679/article/details/81562344" target="_blank" rel="noopener">序列化是什么</a></p>
+<p>然后我谷歌了一会，理解的意思是，序列化就是把实例化的对象状态用二进制保存到一个文件之类的地方，用的时候再取出来。当然，这个接口只是一种申明，说在这里我要实现对某个实例对象进行序列化，而不包含去序列化东西的一个方法，序列化需要自己去实现。在<a href="https://aimasa.github.io/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">bitSet</a>里面就implement了Serializable这个接口。</p>
+<p>或者又如以下的代码：</p>
+<pre><code>import java.io.*;   
+
+public class Box implements Serializable{   
+    private int width;   
+    private int height;   
+public void setWidth(int width){   
+    this.width = width;   
+}   
+public void setHeight(int height){   
+    this.height = height;   
+}   
+public static void main(String[] args){   
+    Box myBox = new Box();   
+    myBox.setWidth(50);   
+    myBox.setHeight(30);   
+
+    try{   
+        FileOutputStream fs = new FileOutputStream(&quot;foo.ser&quot;);   
+        ObjectOutputStream os = new ObjectOutputStream(fs);   
+        os.writeObject(myBox);   
+        os.close();   
+    }catch(Exception ex){   
+        ex.printStackTrace();   
+    }   
+}   
+
+}   
+</code></pre><p>如果去掉implements Serializable的话，那么下面的writeObject会报错。</p>
+<p>6、相关注意事项 </p>
+<blockquote>
+<ul>
+<li>当一个父类实现序列化，子类自动实现序列化，不需要显式实现Serializable接口； </li>
+<li>当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化； </li>
+<li>并非所有的对象都可以序列化，,至于为什么不可以，有很多原因了,比如： <ul>
+<li>安全方面的原因，比如一个对象拥有private，public等field，对于一个要传输的对象，比如写到文件，或者进行rmi传输 等等，在序列化进行传输的过程中，这个对象的private等域是不受保护的。 </li>
+<li>资源分配方面的原因，比如socket，thread类，如果可以序列化，进行传输或者保存，也无法对他们进行重新的资源分 配，而且，也是没有必要这样实现。 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h1 id="关于克隆clone-方法"><a href="#关于克隆clone-方法" class="headerlink" title="关于克隆clone()方法"></a>关于克隆clone()方法</h1><pre><code>public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。
     mode = Objects.requireNonNull(md);
     Objects.requireNonNull(data);
@@ -561,6 +604,7 @@ final BitBuffer data;
 </code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/quiet-snowy-day/p/6387321.html" target="_blank" rel="noopener">关于Object和Objects的区别</a></p>
 <p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">关于bitSet的源码解读</a></p>
 <p><a href="https://blog.csdn.net/youjianbo_han_87/article/details/2586375" target="_blank" rel="noopener">关于native的用法</a></p>
+<p><a href="https://lixh1986.iteye.com/blog/1767076" target="_blank" rel="noopener">关于序列化的详细说明</a></p>
 
       
     </div>
@@ -580,7 +624,7 @@ final BitBuffer data;
   <p><span>本文标题:</span><a href="/2019/03/11/对于QR生成的源码学习/">对于QR生成的java源码学习(一):关于java语法内容</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年03月11日 - 19:03</p>
-  <p><span>最后更新:</span>2019年03月28日 - 17:03</p>
+  <p><span>最后更新:</span>2019年04月02日 - 18:04</p>
   <p><span>原始链接:</span><a href="/2019/03/11/对于QR生成的源码学习/" title="对于QR生成的java源码学习(一):关于java语法内容">http://aimasa.github.io/2019/03/11/对于QR生成的源码学习/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/03/11/对于QR生成的源码学习/" aria-label="复制成功！"></i></span>
   </p>
@@ -752,7 +796,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -830,7 +874,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-与-Objects-的区别"><span class="nav-number">1.</span> <span class="nav-text">Object 与 Objects 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Matcher"><span class="nav-number">2.</span> <span class="nav-text">关于Matcher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitSet"><span class="nav-number">3.</span> <span class="nav-text">bitSet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert"><span class="nav-number">4.</span> <span class="nav-text">assert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#native"><span class="nav-number">5.</span> <span class="nav-text">native</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cloneable接口和Serializable接口"><span class="nav-number">6.</span> <span class="nav-text">cloneable接口和Serializable接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于克隆clone-方法"><span class="nav-number">7.</span> <span class="nav-text">关于克隆clone()方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于在一段数据后循环添加0xEC和0x11这两个数"><span class="nav-number">8.</span> <span class="nav-text">关于在一段数据后循环添加0xEC和0x11这两个数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于QrSegment这个类"><span class="nav-number">9.</span> <span class="nav-text">关于QrSegment这个类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-与-Objects-的区别"><span class="nav-number">1.</span> <span class="nav-text">Object 与 Objects 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Matcher"><span class="nav-number">2.</span> <span class="nav-text">关于Matcher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitSet"><span class="nav-number">3.</span> <span class="nav-text">bitSet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert"><span class="nav-number">4.</span> <span class="nav-text">assert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#native"><span class="nav-number">5.</span> <span class="nav-text">native</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cloneable接口和Serializable接口"><span class="nav-number">6.</span> <span class="nav-text">cloneable接口和Serializable接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于序列化"><span class="nav-number">7.</span> <span class="nav-text">关于序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于克隆clone-方法"><span class="nav-number">8.</span> <span class="nav-text">关于克隆clone()方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于在一段数据后循环添加0xEC和0x11这两个数"><span class="nav-number">9.</span> <span class="nav-text">关于在一段数据后循环添加0xEC和0x11这两个数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于QrSegment这个类"><span class="nav-number">10.</span> <span class="nav-text">关于QrSegment这个类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -864,7 +908,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">22.9k</span>
   
 </div>
 
@@ -1534,9 +1578,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

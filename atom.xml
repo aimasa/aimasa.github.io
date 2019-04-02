@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-04-02T06:50:01.166Z</updated>
+  <updated>2019-04-02T13:28:21.082Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -17,16 +17,26 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>将博客搬至CSDN</title>
-    <link href="http://aimasa.github.io/2019/04/02/%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN/"/>
-    <id>http://aimasa.github.io/2019/04/02/将博客搬至CSDN/</id>
-    <published>2019-04-02T06:50:01.000Z</published>
-    <updated>2019-04-02T06:50:01.166Z</updated>
+    <title>开始学习spring（二）：试图搭建一个相关项目</title>
+    <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E8%AF%95%E5%9B%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/</id>
+    <published>2019-04-02T13:08:01.000Z</published>
+    <updated>2019-04-02T13:28:21.082Z</updated>
+    
+    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p>]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。&lt;/p&gt;
+    
     </summary>
     
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="搭建项目（初级）" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88%E5%88%9D%E7%BA%A7%EF%BC%89/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
     
   </entry>
   
@@ -35,13 +45,13 @@
     <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
     <id>http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/</id>
     <published>2019-04-02T06:44:53.000Z</published>
-    <updated>2019-04-02T06:47:20.919Z</updated>
+    <updated>2019-04-02T13:09:52.866Z</updated>
     
-    <content type="html"><![CDATA[<p>老师昨天怼我了，我要老实读书了，所以今天开始看spring。</p><a id="more"></a><h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1>]]></content>
+    <content type="html"><![CDATA[<p>现在正式开始学spring了，在此打卡（4.2）</p><a id="more"></a><h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1><p>POJO, or Plain Old Java Object, is a normal Java object class (that is, not a JavaBean, EntityBean etc.) </p><p>POJO（plain Old Java Object）它是一个正规的、简单的java对象，包含了业务逻辑处理和持久化逻辑等，但不是JavaBean、EntityBean等，<strong>不具有任何特殊角色和不继承不实现任何其他java框架的类或接口。</strong></p><p>POJO里面是可以包含业务逻辑处理和持久化逻辑，也可以包含类似与JavaBean属性和对属性访问的set和get方法的。</p><p>代码示例：</p><pre><code>package com.demo.spring;public class DbHello { //简单的Java类，称之为POJO，不继承，不实现接口    private DictionaryDAO dao;    public void setDao(DictionaryDAO dao) {        this.dao = dao;    }}</code></pre><h1 id="什么是javabean"><a href="#什么是javabean" class="headerlink" title="什么是javabean"></a>什么是javabean</h1><p>一种特殊又简单的类，</p><ul><li>这个类必须具有一个公共的(public)无参构造函数；</li><li>所有属性私有化（private）；</li><li>私有化的属性必须通过public类型的方法（getter和setter）暴露给其他程序，并且方法的命名也必须遵循一定的命名规范。 </li><li>这个类应是可序列化的。（比如可以实现Serializable 接口，用于实现bean的持久性）</li></ul><h1 id="EJB是什么"><a href="#EJB是什么" class="headerlink" title="EJB是什么"></a>EJB是什么</h1><p>Enterprise JavaBean又叫企业级JavaBean(听说很老了，以后如果用到的话再回来补。)</p><h1 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h1><p>就是减少依赖。里面牵涉到了依赖倒置（IoC）（这个和设计模式相关，我会找个时间把设计模式的笔记补上。）</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/tonny_guan/article/details/2250134" target="_blank" rel="noopener">关于POJOs</a><br><a href="https://blog.csdn.net/chenchunlin526/article/details/69939337" target="_blank" rel="noopener">关于javabean</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;老师昨天怼我了，我要老实读书了，所以今天开始看spring。&lt;/p&gt;
+      &lt;p&gt;现在正式开始学spring了，在此打卡（4.2）&lt;/p&gt;
     
     </summary>
     
@@ -73,9 +83,9 @@
     <link href="http://aimasa.github.io/2019/03/29/hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/"/>
     <id>http://aimasa.github.io/2019/03/29/hexo博客上传图片/</id>
     <published>2019-03-29T11:15:36.000Z</published>
-    <updated>2019-03-29T11:42:58.853Z</updated>
+    <updated>2019-04-02T13:18:12.642Z</updated>
     
-    <content type="html"><![CDATA[<p>因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……<br>这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。</p><a id="more"></a><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香）</p><p>然后百度教程</p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>下载插件</p><pre><code>npm install hexo-qiniu-sync --save</code></pre><p>然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面</p><pre><code>plugins:  - hexo-qiniu-syncqiniu:  offline: false  sync: true  bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字  access_key: AccessKey # 你在七牛上面账号的密钥管理的key  secret_key: SecretKey # 你在七牛上面账号的密钥管理的key  dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好  urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static    local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。  update_exist: true  image:    folder: images    extend:  js:    folder: js  css:    folder: css</code></pre><p>好了，其他详细的说明下面有指路辽==</p><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>我用的是<img src="http://pp48biywe.bkt.clouddn.com/static/images/xxx.png">这种语法，其他的我不想看辽，目前也用不到。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lwtang.github.io/2018/11/27/qiniu-store-image/" target="_blank" rel="noopener">我觉得很详细的教程</a></p>]]></content>
+    <content type="html"><![CDATA[<p>因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……<br>这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。</p><a id="more"></a><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香）</p><p>然后百度教程</p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>下载插件</p><pre><code>npm install hexo-qiniu-sync --save</code></pre><p>然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面</p><pre><code>plugins:  - hexo-qiniu-syncqiniu:  offline: false  sync: true  bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字  access_key: AccessKey # 你在七牛上面账号的密钥管理的key  secret_key: SecretKey # 你在七牛上面账号的密钥管理的key  dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好  urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static    local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。  update_exist: true  image:    folder: images    extend:  js:    folder: js  css:    folder: css</code></pre><p>好了，其他详细的说明下面有指路辽==</p><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>我用的是</p><pre><code>{% qnimg xxx.png %}</code></pre><p>这种语法，其他的我不想看辽，目前也用不到。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lwtang.github.io/2018/11/27/qiniu-store-image/" target="_blank" rel="noopener">我觉得很详细的教程</a></p>]]></content>
     
     <summary type="html">
     
@@ -196,9 +206,9 @@
     <link href="http://aimasa.github.io/2019/03/11/%E5%AF%B9%E4%BA%8EQR%E7%94%9F%E6%88%90%E7%9A%84%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
     <id>http://aimasa.github.io/2019/03/11/对于QR生成的源码学习/</id>
     <published>2019-03-11T11:53:20.000Z</published>
-    <updated>2019-03-28T09:27:02.562Z</updated>
+    <updated>2019-04-02T10:40:13.459Z</updated>
     
-    <content type="html"><![CDATA[<p>java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。</p><a id="more"></a><h1 id="Object-与-Objects-的区别"><a href="#Object-与-Objects-的区别" class="headerlink" title="Object 与 Objects 的区别"></a>Object 与 Objects 的区别</h1><p>Object 是 Java 中所有类的基类，位于java.lang包。</p><p>Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p><pre><code>Objects.requireNonNull(text);</code></pre><p>其中源码是这样写的：</p><pre><code>public static &lt;T&gt; T requireNonNull(T obj)</code></pre><p>T：obj的相关类型</p><p>obj：要检查是否为空的参数</p><p>return：如果obj不为空就返回obj，如果是空就返回NullPointerException（空指针异常）</p><h1 id="关于Matcher"><a href="#关于Matcher" class="headerlink" title="关于Matcher"></a>关于Matcher</h1><p>源码是这样的：<br>    NUMERIC_REGEX.matcher(text).matches()</p><p>先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配</p><pre><code>public Matcher matcher(CharSequence input)Pattern.matcher(CharSequence input)</code></pre><p>input：需要被转换为匹配模式的字符串</p><p>return：返回这个Pattern的新匹配器</p><pre><code>public boolean matches()</code></pre><p>return：当且仅当整个区域序列匹配此匹配器的模式时才返回true</p><h1 id="bitSet"><a href="#bitSet" class="headerlink" title="bitSet"></a>bitSet</h1><p>一个long长64bit，所以</p><pre><code>private final static int ADDRESS_BITS_PER_WORD = 6;private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><p>其中是在计算bitIndex个bit对应的是第几个long</p><h1 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h1><p>assert()对括号中的条件进行判定，如果条件为真则往下继续运行，条件为假则打印完错误信息然后程序停止运行。</p><h1 id="native"><a href="#native" class="headerlink" title="native"></a>native</h1><p>native是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。</p><p>因为native是底层实现的，所以它的速度非常快。</p><h1 id="cloneable接口和Serializable接口"><a href="#cloneable接口和Serializable接口" class="headerlink" title="cloneable接口和Serializable接口"></a>cloneable接口和Serializable接口</h1><p>扩展<br>Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自<a href="https://www.cnblogs.com/Qian123/p/5710533.html" target="_blank" rel="noopener">论java中的浅克隆和深克隆</a></p><h1 id="关于克隆clone-方法"><a href="#关于克隆clone-方法" class="headerlink" title="关于克隆clone()方法"></a>关于克隆clone()方法</h1><pre><code>public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。    mode = Objects.requireNonNull(md);    Objects.requireNonNull(data);    if (numCh &lt; 0)        throw new IllegalArgumentException(&quot;Invalid value&quot;);    numChars = numCh;    this.data = data.clone();  // 做一个完整的副本（final data）}</code></pre><p>这个clone()方法因为data是BitBuffer这个类，所以调用了BitBuffer这个类里面写的的clone()方法</p><pre><code>public BitBuffer clone() {    try {        BitBuffer result = (BitBuffer)super.clone();//创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。        result.data = (BitSet)result.data.clone();//对BitBuffer这个对象里面成员变量再做一次克隆（到BitSet类中的clone()这个方法去了）        return result;    } catch (CloneNotSupportedException e) {        throw new AssertionError(e);    }}</code></pre><p>为了进行深度克隆，第一次调用的clone()方法时java的Object这个对象的类的克隆，那个属于浅克隆。<br>这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。</p><pre><code>类Object：protected native Object clone() throws CloneNotSupportedException;</code></pre><p>浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。</p><pre><code>类BitSet：public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p>其中result.data指向的是BitSet这个被实例化过一个类，所以去对BitSet data进行了一次克隆，然后data的里面有words的引用，所以再对这个值做一次clone().</p><h1 id="关于在一段数据后循环添加0xEC和0x11这两个数"><a href="#关于在一段数据后循环添加0xEC和0x11这两个数" class="headerlink" title="关于在一段数据后循环添加0xEC和0x11这两个数"></a>关于在一段数据后循环添加0xEC和0x11这两个数</h1><pre><code>for (int padByte = 0xEC; bb.bitLength() &lt; dataCapacityBits; padByte ^= 0xEC ^ 0x11)    bb.appendBits(padByte, 8);</code></pre><p>其中0xEC和0x11是8bit8bit循环添加在bb里面的<br>通过padByte ^= 0xEC ^ 0x11异或，来控制每次添加的8bit，先0xEC然后0x11这样去填充数据编码部分，直到值填满（为什么不能16bit一起填进去？如果16bit的话就会导致填到最后悔有溢出的情况。）</p><h1 id="关于QrSegment这个类"><a href="#关于QrSegment这个类" class="headerlink" title="关于QrSegment这个类"></a>关于QrSegment这个类</h1><p>QrSegment这个类被定义后包括的函数</p><pre><code>public final Mode mode;/** The length of this segment&#39;s unencoded data. Measured in characters for * numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode. * Always zero or positive. Not the same as the data&#39;s bit length. */public final int numChars;// The data bits of this segment. Not null. Accessed through getData().final BitBuffer data;</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/quiet-snowy-day/p/6387321.html" target="_blank" rel="noopener">关于Object和Objects的区别</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">关于bitSet的源码解读</a></p><p><a href="https://blog.csdn.net/youjianbo_han_87/article/details/2586375" target="_blank" rel="noopener">关于native的用法</a></p>]]></content>
+    <content type="html"><![CDATA[<p>java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。</p><a id="more"></a><h1 id="Object-与-Objects-的区别"><a href="#Object-与-Objects-的区别" class="headerlink" title="Object 与 Objects 的区别"></a>Object 与 Objects 的区别</h1><p>Object 是 Java 中所有类的基类，位于java.lang包。</p><p>Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p><pre><code>Objects.requireNonNull(text);</code></pre><p>其中源码是这样写的：</p><pre><code>public static &lt;T&gt; T requireNonNull(T obj)</code></pre><p>T：obj的相关类型</p><p>obj：要检查是否为空的参数</p><p>return：如果obj不为空就返回obj，如果是空就返回NullPointerException（空指针异常）</p><h1 id="关于Matcher"><a href="#关于Matcher" class="headerlink" title="关于Matcher"></a>关于Matcher</h1><p>源码是这样的：<br>    NUMERIC_REGEX.matcher(text).matches()</p><p>先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配</p><pre><code>public Matcher matcher(CharSequence input)Pattern.matcher(CharSequence input)</code></pre><p>input：需要被转换为匹配模式的字符串</p><p>return：返回这个Pattern的新匹配器</p><pre><code>public boolean matches()</code></pre><p>return：当且仅当整个区域序列匹配此匹配器的模式时才返回true</p><h1 id="bitSet"><a href="#bitSet" class="headerlink" title="bitSet"></a>bitSet</h1><p>一个long长64bit，所以</p><pre><code>private final static int ADDRESS_BITS_PER_WORD = 6;private static int wordIndex(int bitIndex) {    return bitIndex &gt;&gt; ADDRESS_BITS_PER_WORD;}</code></pre><p>其中是在计算bitIndex个bit对应的是第几个long</p><h1 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h1><p>assert()对括号中的条件进行判定，如果条件为真则往下继续运行，条件为假则打印完错误信息然后程序停止运行。</p><h1 id="native"><a href="#native" class="headerlink" title="native"></a>native</h1><p>native是c++开发时候用的，java开发是不用它的，它是用来调用操作系统的一些函数的，然而操作系统的函数就是由c++写的，是没有办法看到它的源码的，java对它只能进行调用。是因为这些函数的实现体在DLL中，JDK的源代码中并不包含。</p><p>因为native是底层实现的，所以它的速度非常快。</p><h1 id="cloneable接口和Serializable接口"><a href="#cloneable接口和Serializable接口" class="headerlink" title="cloneable接口和Serializable接口"></a>cloneable接口和Serializable接口</h1><p>扩展<br>Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。——摘自<a href="https://www.cnblogs.com/Qian123/p/5710533.html" target="_blank" rel="noopener">论java中的浅克隆和深克隆</a></p><h1 id="关于序列化"><a href="#关于序列化" class="headerlink" title="关于序列化"></a>关于序列化</h1><p>序列化简单来说就保存对象在内存中的状态,也可以说是实例化变量。这是Java提供的用来保存 Object state，一种保存对象状态的机制。只有实现了serializable接口的类的对象才能被实例化。——-摘自<a href="https://blog.csdn.net/u010486679/article/details/81562344" target="_blank" rel="noopener">序列化是什么</a></p><p>然后我谷歌了一会，理解的意思是，序列化就是把实例化的对象状态用二进制保存到一个文件之类的地方，用的时候再取出来。当然，这个接口只是一种申明，说在这里我要实现对某个实例对象进行序列化，而不包含去序列化东西的一个方法，序列化需要自己去实现。在<a href="https://aimasa.github.io/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">bitSet</a>里面就implement了Serializable这个接口。</p><p>或者又如以下的代码：</p><pre><code>import java.io.*;   public class Box implements Serializable{       private int width;       private int height;   public void setWidth(int width){       this.width = width;   }   public void setHeight(int height){       this.height = height;   }   public static void main(String[] args){       Box myBox = new Box();       myBox.setWidth(50);       myBox.setHeight(30);       try{           FileOutputStream fs = new FileOutputStream(&quot;foo.ser&quot;);           ObjectOutputStream os = new ObjectOutputStream(fs);           os.writeObject(myBox);           os.close();       }catch(Exception ex){           ex.printStackTrace();       }   }   }   </code></pre><p>如果去掉implements Serializable的话，那么下面的writeObject会报错。</p><p>6、相关注意事项 </p><blockquote><ul><li>当一个父类实现序列化，子类自动实现序列化，不需要显式实现Serializable接口； </li><li>当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化； </li><li>并非所有的对象都可以序列化，,至于为什么不可以，有很多原因了,比如： <ul><li>安全方面的原因，比如一个对象拥有private，public等field，对于一个要传输的对象，比如写到文件，或者进行rmi传输 等等，在序列化进行传输的过程中，这个对象的private等域是不受保护的。 </li><li>资源分配方面的原因，比如socket，thread类，如果可以序列化，进行传输或者保存，也无法对他们进行重新的资源分 配，而且，也是没有必要这样实现。 </li></ul></li></ul></blockquote><h1 id="关于克隆clone-方法"><a href="#关于克隆clone-方法" class="headerlink" title="关于克隆clone()方法"></a>关于克隆clone()方法</h1><pre><code>public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。    mode = Objects.requireNonNull(md);    Objects.requireNonNull(data);    if (numCh &lt; 0)        throw new IllegalArgumentException(&quot;Invalid value&quot;);    numChars = numCh;    this.data = data.clone();  // 做一个完整的副本（final data）}</code></pre><p>这个clone()方法因为data是BitBuffer这个类，所以调用了BitBuffer这个类里面写的的clone()方法</p><pre><code>public BitBuffer clone() {    try {        BitBuffer result = (BitBuffer)super.clone();//创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。        result.data = (BitSet)result.data.clone();//对BitBuffer这个对象里面成员变量再做一次克隆（到BitSet类中的clone()这个方法去了）        return result;    } catch (CloneNotSupportedException e) {        throw new AssertionError(e);    }}</code></pre><p>为了进行深度克隆，第一次调用的clone()方法时java的Object这个对象的类的克隆，那个属于浅克隆。<br>这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。</p><pre><code>类Object：protected native Object clone() throws CloneNotSupportedException;</code></pre><p>浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。</p><pre><code>类BitSet：public Object clone() {    if (! sizeIsSticky)        trimToSize();    try {        BitSet result = (BitSet) super.clone();        result.words = words.clone();        result.checkInvariants();        return result;    } catch (CloneNotSupportedException e) {        throw new InternalError(e);    }}</code></pre><p>其中result.data指向的是BitSet这个被实例化过一个类，所以去对BitSet data进行了一次克隆，然后data的里面有words的引用，所以再对这个值做一次clone().</p><h1 id="关于在一段数据后循环添加0xEC和0x11这两个数"><a href="#关于在一段数据后循环添加0xEC和0x11这两个数" class="headerlink" title="关于在一段数据后循环添加0xEC和0x11这两个数"></a>关于在一段数据后循环添加0xEC和0x11这两个数</h1><pre><code>for (int padByte = 0xEC; bb.bitLength() &lt; dataCapacityBits; padByte ^= 0xEC ^ 0x11)    bb.appendBits(padByte, 8);</code></pre><p>其中0xEC和0x11是8bit8bit循环添加在bb里面的<br>通过padByte ^= 0xEC ^ 0x11异或，来控制每次添加的8bit，先0xEC然后0x11这样去填充数据编码部分，直到值填满（为什么不能16bit一起填进去？如果16bit的话就会导致填到最后悔有溢出的情况。）</p><h1 id="关于QrSegment这个类"><a href="#关于QrSegment这个类" class="headerlink" title="关于QrSegment这个类"></a>关于QrSegment这个类</h1><p>QrSegment这个类被定义后包括的函数</p><pre><code>public final Mode mode;/** The length of this segment&#39;s unencoded data. Measured in characters for * numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode. * Always zero or positive. Not the same as the data&#39;s bit length. */public final int numChars;// The data bits of this segment. Not null. Accessed through getData().final BitBuffer data;</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/quiet-snowy-day/p/6387321.html" target="_blank" rel="noopener">关于Object和Objects的区别</a></p><p><a href="https://www.jianshu.com/p/91d75bf588b8" target="_blank" rel="noopener">关于bitSet的源码解读</a></p><p><a href="https://blog.csdn.net/youjianbo_han_87/article/details/2586375" target="_blank" rel="noopener">关于native的用法</a></p><p><a href="https://lixh1986.iteye.com/blog/1767076" target="_blank" rel="noopener">关于序列化的详细说明</a></p>]]></content>
     
     <summary type="html">
     
@@ -236,32 +246,6 @@
     
     
       <category term="python用法" scheme="http://aimasa.github.io/tags/python%E7%94%A8%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo_next图片无法加载问题</title>
-    <link href="http://aimasa.github.io/2019/03/05/hexo_next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
-    <id>http://aimasa.github.io/2019/03/05/hexo_next图片无法加载问题/</id>
-    <published>2019-03-05T11:40:52.000Z</published>
-    <updated>2019-03-27T02:24:18.008Z</updated>
-    
-    <content type="html"><![CDATA[<p>错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现</p><pre><code>！[]()</code></pre><p>无法被hexo g解析生成图片链接</p><a id="more"></a><p>用谷歌不管怎么搜索关键词都没有用，所以我直接删掉了”.deploy_git”，然后再用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p><p>但是有时候这个办法还是会失效，然后我参考了<a href="https://850552586.github.io/2018/11/15/hexo%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" target="_blank" rel="noopener">这篇博客的做法</a>替换掉了hexo-asset-image下载后生成的index.js这个文件（我把它的代码复制到这）</p><pre><code>&#39;use strict&#39;;var cheerio = require(&#39;cheerio&#39;);// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-stringfunction getPosition(str, m, i) {  return str.split(m, i).join(m).length;}var version = String(hexo.version).split(&#39;.&#39;);hexo.extend.filter.register(&#39;after_post_render&#39;, function(data){  var config = hexo.config;  if(config.post_asset_folder){        var link = data.permalink;    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)       var beginPos = getPosition(link, &#39;/&#39;, 1) + 1;    else       var beginPos = getPosition(link, &#39;/&#39;, 3) + 1;    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.    var endPos = link.lastIndexOf(&#39;/&#39;) + 1;    link = link.substring(beginPos, endPos);    var toprocess = [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];    for(var i = 0; i &lt; toprocess.length; i++){      var key = toprocess[i];      var $ = cheerio.load(data[key], {        ignoreWhitespace: false,        xmlMode: false,        lowerCaseTags: false,        decodeEntities: false      });      $(&#39;img&#39;).each(function(){        if ($(this).attr(&#39;src&#39;)){            // For windows style path, we replace &#39;\&#39; to &#39;/&#39;.            var src = $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;/&#39;);            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;               !/^\s*\//.test(src)) {              // For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.              // In addition, to support multi-level local directory.              var linkArray = link.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39;;              });              var srcArray = src.split(&#39;/&#39;).filter(function(elem){                return elem != &#39;&#39; &amp;&amp; elem != &#39;.&#39;;              });                  if(srcArray.length &gt; 1)                srcArray.shift();              src = srcArray.join(&#39;/&#39;);              $(this).attr(&#39;src&#39;, config.root + link + src);              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);            }        }else{            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);            console.info&amp;&amp;console.info($(this));        }      });      data[key] = $.html();    }  }});</code></pre><p>然后再去删掉”.deploy_git”，用</p><pre><code>hexo d -g</code></pre><p>重新生成静态页面并且部署在网站上，然后图片成功生成了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;错误描述：自从加入了可以插入公式的插件后，经常碰到图片无法显示的问题，去查看页面代码，发现&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;！[]()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;无法被hexo g解析生成图片链接&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo错误笔记" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="hexo_next图片无法加载问题" scheme="http://aimasa.github.io/categories/hexo%E9%94%99%E8%AF%AF%E7%AC%94%E8%AE%B0/hexo-next%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
-    
-    
-      <category term="hexo err类型" scheme="http://aimasa.github.io/tags/hexo-err%E7%B1%BB%E5%9E%8B/"/>
     
   </entry>
   
@@ -485,6 +469,30 @@
     
     
       <category term="原根" scheme="http://aimasa.github.io/tags/%E5%8E%9F%E6%A0%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>互质关系</title>
+    <link href="http://aimasa.github.io/2019/02/22/MutRela/"/>
+    <id>http://aimasa.github.io/2019/02/22/MutRela/</id>
+    <published>2019-02-22T08:09:32.000Z</published>
+    <updated>2019-02-26T07:23:43.070Z</updated>
+    
+    <content type="html"><![CDATA[<p>互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。</p><a id="more"></a><p><a href="http://www.wikiwand.com/zh-sg/%E4%BA%92%E8%B3%AA" target="_blank" rel="noopener">参考资料</a><br>通过观察可以发现在以下的情况下，两个数一定会互质。</p><ul><li>两个不同的素数一定互质。例如，2与7、13与19。</li><li>一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。</li><li>1和任何一个自然数都互质。如1和9908。</li><li>2的幂和任何一个奇数都互质。如32和75、256与315。</li><li>相邻两个自然数互质。如15与16。</li><li>相邻两个奇数互质。如49与51。</li><li>较大数是素数，则两个数互质。如97与88。</li><li>两数和是素数，则两个数互质。如52与45。</li><li>两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。</li><li>两数积是无平方数约数的数，则两个数互质。如154与195。</li><li>较大数除以较小数的余数是1或-1，则两个数互质。如440与63。</li><li><strong>辗转相除法</strong>。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。</li><li><p><strong>p是大于1的整数，则p和p-1构成互质关系</strong>，比如57和56。</p></li><li><p><strong>p是大于1的奇数，则p和p-2构成互质关系</strong>，比如17和15。</p></li><li>一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。</li><li>两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。</li><li>两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。</li></ul><p><a href="https://zhidao.baidu.com/question/105237827.html" target="_blank" rel="noopener">素因数</a>：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。</p><p><a href="https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0" target="_blank" rel="noopener">合数</a>：（又叫合成数）每个大于1的整数如果不是质数就是合数。</p><p>1不是素数，最小的质数是2</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
+    
+    
+      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/tags/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
     
   </entry>
   

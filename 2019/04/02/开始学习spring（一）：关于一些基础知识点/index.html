@@ -120,18 +120,18 @@
 
 
 
-<meta name="description" content="老师昨天怼我了，我要老实读书了，所以今天开始看spring。">
+<meta name="description" content="现在正式开始学spring了，在此打卡（4.2）">
 <meta name="keywords" content="spring相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开始学习spring（一）：关于一些基础知识点">
 <meta property="og:url" content="http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/index.html">
 <meta property="og:site_name" content="aimasa的个人博客">
-<meta property="og:description" content="老师昨天怼我了，我要老实读书了，所以今天开始看spring。">
+<meta property="og:description" content="现在正式开始学spring了，在此打卡（4.2）">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-04-02T06:47:20.919Z">
+<meta property="og:updated_time" content="2019-04-02T13:09:52.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始学习spring（一）：关于一些基础知识点">
-<meta name="twitter:description" content="老师昨天怼我了，我要老实读书了，所以今天开始看spring。">
+<meta name="twitter:description" content="现在正式开始学spring了，在此打卡（4.2）">
 
 
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  26
+                  381
                 </span>
               
 
@@ -477,9 +477,31 @@
       
 
       
-        <p>老师昨天怼我了，我要老实读书了，所以今天开始看spring。</p>
+        <p>现在正式开始学spring了，在此打卡（4.2）</p>
 <a id="more"></a>
-<h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1>
+<h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1><p>POJO, or Plain Old Java Object, is a normal Java object class (that is, not a JavaBean, EntityBean etc.) </p>
+<p>POJO（plain Old Java Object）它是一个正规的、简单的java对象，包含了业务逻辑处理和持久化逻辑等，但不是JavaBean、EntityBean等，<strong>不具有任何特殊角色和不继承不实现任何其他java框架的类或接口。</strong></p>
+<p>POJO里面是可以包含业务逻辑处理和持久化逻辑，也可以包含类似与JavaBean属性和对属性访问的set和get方法的。</p>
+<p>代码示例：</p>
+<pre><code>package com.demo.spring;
+
+public class DbHello { //简单的Java类，称之为POJO，不继承，不实现接口
+    private DictionaryDAO dao;
+    public void setDao(DictionaryDAO dao) {
+        this.dao = dao;
+    }
+}
+</code></pre><h1 id="什么是javabean"><a href="#什么是javabean" class="headerlink" title="什么是javabean"></a>什么是javabean</h1><p>一种特殊又简单的类，</p>
+<ul>
+<li>这个类必须具有一个公共的(public)无参构造函数；</li>
+<li>所有属性私有化（private）；</li>
+<li>私有化的属性必须通过public类型的方法（getter和setter）暴露给其他程序，并且方法的命名也必须遵循一定的命名规范。 </li>
+<li>这个类应是可序列化的。（比如可以实现Serializable 接口，用于实现bean的持久性）</li>
+</ul>
+<h1 id="EJB是什么"><a href="#EJB是什么" class="headerlink" title="EJB是什么"></a>EJB是什么</h1><p>Enterprise JavaBean又叫企业级JavaBean(听说很老了，以后如果用到的话再回来补。)</p>
+<h1 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h1><p>就是减少依赖。里面牵涉到了依赖倒置（IoC）（这个和设计模式相关，我会找个时间把设计模式的笔记补上。）</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/tonny_guan/article/details/2250134" target="_blank" rel="noopener">关于POJOs</a><br><a href="https://blog.csdn.net/chenchunlin526/article/details/69939337" target="_blank" rel="noopener">关于javabean</a></p>
+
       
     </div>
     
@@ -498,7 +520,7 @@
   <p><span>本文标题:</span><a href="/2019/04/02/开始学习spring（一）：关于一些基础知识点/">开始学习spring（一）：关于一些基础知识点</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年04月02日 - 14:04</p>
-  <p><span>最后更新:</span>2019年04月02日 - 14:04</p>
+  <p><span>最后更新:</span>2019年04月02日 - 21:04</p>
   <p><span>原始链接:</span><a href="/2019/04/02/开始学习spring（一）：关于一些基础知识点/" title="开始学习spring（一）：关于一些基础知识点">http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/" aria-label="复制成功！"></i></span>
   </p>
@@ -562,8 +584,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/02/将博客搬至CSDN/" rel="prev" title="将博客搬至CSDN">
-                将博客搬至CSDN <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/" rel="prev" title="开始学习spring（二）：试图搭建一个相关项目">
+                开始学习spring（二）：试图搭建一个相关项目 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -670,7 +692,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -748,7 +770,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是POJOs"><span class="nav-number">1.</span> <span class="nav-text">什么是POJOs</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是POJOs"><span class="nav-number">1.</span> <span class="nav-text">什么是POJOs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是javabean"><span class="nav-number">2.</span> <span class="nav-text">什么是javabean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EJB是什么"><span class="nav-number">3.</span> <span class="nav-text">EJB是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖注入（DI）"><span class="nav-number">4.</span> <span class="nav-text">依赖注入（DI）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -782,7 +804,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">22.9k</span>
   
 </div>
 
@@ -1452,9 +1474,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
