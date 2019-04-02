@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-03-30T07:51:49.732Z</updated>
+  <updated>2019-04-02T06:50:01.166Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将博客搬至CSDN</title>
+    <link href="http://aimasa.github.io/2019/04/02/%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN/"/>
+    <id>http://aimasa.github.io/2019/04/02/将博客搬至CSDN/</id>
+    <published>2019-04-02T06:50:01.000Z</published>
+    <updated>2019-04-02T06:50:01.166Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>开始学习spring（一）：关于一些基础知识点</title>
+    <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    <id>http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/</id>
+    <published>2019-04-02T06:44:53.000Z</published>
+    <updated>2019-04-02T06:47:20.919Z</updated>
+    
+    <content type="html"><![CDATA[<p>老师昨天怼我了，我要老实读书了，所以今天开始看spring。</p><a id="more"></a><h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;老师昨天怼我了，我要老实读书了，所以今天开始看spring。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="基础指示点" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80%E6%8C%87%E7%A4%BA%E7%82%B9/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo公式渲染</title>
@@ -447,57 +485,6 @@
     
     
       <category term="原根" scheme="http://aimasa.github.io/tags/%E5%8E%9F%E6%A0%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>互质关系</title>
-    <link href="http://aimasa.github.io/2019/02/22/MutRela/"/>
-    <id>http://aimasa.github.io/2019/02/22/MutRela/</id>
-    <published>2019-02-22T08:09:32.000Z</published>
-    <updated>2019-02-26T07:23:43.070Z</updated>
-    
-    <content type="html"><![CDATA[<p>互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。</p><a id="more"></a><p><a href="http://www.wikiwand.com/zh-sg/%E4%BA%92%E8%B3%AA" target="_blank" rel="noopener">参考资料</a><br>通过观察可以发现在以下的情况下，两个数一定会互质。</p><ul><li>两个不同的素数一定互质。例如，2与7、13与19。</li><li>一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。</li><li>1和任何一个自然数都互质。如1和9908。</li><li>2的幂和任何一个奇数都互质。如32和75、256与315。</li><li>相邻两个自然数互质。如15与16。</li><li>相邻两个奇数互质。如49与51。</li><li>较大数是素数，则两个数互质。如97与88。</li><li>两数和是素数，则两个数互质。如52与45。</li><li>两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。</li><li>两数积是无平方数约数的数，则两个数互质。如154与195。</li><li>较大数除以较小数的余数是1或-1，则两个数互质。如440与63。</li><li><strong>辗转相除法</strong>。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。</li><li><p><strong>p是大于1的整数，则p和p-1构成互质关系</strong>，比如57和56。</p></li><li><p><strong>p是大于1的奇数，则p和p-2构成互质关系</strong>，比如17和15。</p></li><li>一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。</li><li>两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。</li><li>两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。</li></ul><p><a href="https://zhidao.baidu.com/question/105237827.html" target="_blank" rel="noopener">素因数</a>：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。</p><p><a href="https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0" target="_blank" rel="noopener">合数</a>：（又叫合成数）每个大于1的整数如果不是质数就是合数。</p><p>1不是素数，最小的质数是2</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
-    
-      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
-    
-    
-      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/tags/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>欧拉函数</title>
-    <link href="http://aimasa.github.io/2019/02/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/"/>
-    <id>http://aimasa.github.io/2019/02/22/欧拉函数/</id>
-    <published>2019-02-22T07:24:26.000Z</published>
-    <updated>2019-03-29T11:09:38.132Z</updated>
-    
-    <content type="html"><![CDATA[<p>欧拉函数：</p><p>若正整数 a , n 互质，则  aφ(n) ≡ 1(mod n)   其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。</p><p>欧拉定理：</p><p>如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立</p><a id="more"></a><p><a href="https://www.kancloud.cn/kancloud/rsa_algorithm/48487" target="_blank" rel="noopener">参考资料</a></p><p><a href="https://aimasa.github.io/2019/02/22/MutRela/">互质关系</a></p><h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>用来思考的问题：<br>任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p><p>n=1时候，φ(n=1)=1,因为1和任何数互质。</p><p>n为素数的时候，φ(n)=n-1，因为素数和每个小于自己的数都互质。</p><p>n=p^k,p为素数时候，p^k中存在很多和p有倍数关系的数字，1 x p，2 x p，……p^(k-1) x p。由列出的公式看出，一共有p^(k-1)个和p有倍数关系的数字，所以φ(p^k)=p^(k)-p^(k-1)</p><p>如果n能分解成两个互质的整数之积，n=p1 x p2,则φ(n) = φ(p1p2) = φ(p1)φ(p2).(即积的欧拉函数等于各个因子的欧拉函数之积。比如，φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24。)</p><p>以上这四个方法，可以任意运用来得出自己想要的结果</p><h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>如果正整数a和n互为质数，那么n的欧拉公式φ(n)可以让下列公式成立：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/欧拉函数/Eular.png"></center><p>这样，a^(φ(n))减掉1就能被n整除了。</p><p>而且，欧拉定理的特殊情况就是<a href="https://aimasa.github.io/2019/02/20/discreteLogarithm/">费马小定理</a></p><h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>就是正整数a和n互为质数，那么一定存在b使得</p><p>ab ≡ 1(mod n)</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;欧拉函数：&lt;/p&gt;
-&lt;p&gt;若正整数 a , n 互质，则  aφ(n) ≡ 1(mod n)   其中 φ(n) 是欧拉函数（1~n) 与 n 互质的数。&lt;/p&gt;
-&lt;p&gt;欧拉定理：&lt;/p&gt;
-&lt;p&gt;如果两个正整数互质，则n的欧拉函数φ(n) 可以让下面的等式成立&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
-    
-      <category term="欧拉函数&amp;欧拉定理" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
-    
-    
-      <category term="欧拉函数&amp;欧拉定理" scheme="http://aimasa.github.io/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/"/>
     
   </entry>
   

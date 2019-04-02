@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[将博客搬至CSDN]]></title>
+    <url>%2F2019%2F04%2F02%2F%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[开始学习spring（一）：关于一些基础知识点]]></title>
+    <url>%2F2019%2F04%2F02%2F%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[老师昨天怼我了，我要老实读书了，所以今天开始看spring。 什么是POJOs]]></content>
+      <categories>
+        <category>spring相关</category>
+        <category>基础指示点</category>
+      </categories>
+      <tags>
+        <tag>spring相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo公式渲染]]></title>
     <url>%2F2019%2F03%2F30%2Fhexo%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%2F</url>
     <content type="text"></content>
