@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MavenInstall错误类型（一）]]></title>
+    <url>%2F2019%2F04%2F03%2FMavenInstall%E9%94%99%E8%AF%AF%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[工具：STS 在Maven Install加载pom.xml里面添加的依赖时候，结果出了错误：Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1 我百度了一会，各种方法都试过，却没有用，结果发现是我之前点击Spring Boot App这里让这个项目运行起来了，但是却没有关闭，然后再点击Maven Install，所以报错了。]]></content>
+      <categories>
+        <category>运行error</category>
+        <category>Maven Install错误类型：Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1</category>
+      </categories>
+      <tags>
+        <tag>Maven Install error</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[开始学习spring（二）：试图搭建一个相关项目]]></title>
     <url>%2F2019%2F04%2F02%2F%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E8%AF%95%E5%9B%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE%2F</url>
-    <content type="text"><![CDATA[看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。 在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。 然后我箭头指的地方是我做过些许改动的地方，接着点击Next。 再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。]]></content>
+    <content type="text"><![CDATA[看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。 新建项目 在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。 然后我箭头指的地方是我做过些许改动的地方，接着点击Next。 再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。 添加代码让项目成功运行在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码： @Controller public class exampleControl { @RequestMapping(&quot;/&quot;) public String Index(Locale locale, Model model) { Date date = new Date(); DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale); String formatDate = dateFormat.format(date); model.addAttribute(&quot;serverTime&quot;,formatDate); return &quot;Index&quot;; } 然后再在src/main/resources/templates里面新建一个HTML文件：index.html &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Insert title here&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt; &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt; &lt;/body&gt; &lt;/html&gt; 接着去原项目根目录下的pom.xml里面添上这样一行: &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt; &lt;/dependency&gt; 不然会显示： 在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。 结果输出]]></content>
       <categories>
         <category>spring相关</category>
         <category>搭建项目（初级）</category>
@@ -25,14 +37,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo公式渲染]]></title>
-    <url>%2F2019%2F03%2F30%2Fhexo%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[hexo博客上传图片]]></title>
     <url>%2F2019%2F03%2F29%2Fhexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%2F</url>
-    <content type="text"><![CDATA[因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。 准备工作去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香） 然后百度教程 开始下载插件 npm install hexo-qiniu-sync --save 然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面 plugins: - hexo-qiniu-sync qiniu: offline: false sync: true bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字 access_key: AccessKey # 你在七牛上面账号的密钥管理的key secret_key: SecretKey # 你在七牛上面账号的密钥管理的key dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好 urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。 update_exist: true image: folder: images extend: js: folder: js css: folder: css 好了，其他详细的说明下面有指路辽== 插入图片我用的是 {% qnimg xxx.png %} 这种语法，其他的我不想看辽，目前也用不到。 参考资料我觉得很详细的教程]]></content>
+    <content type="text"><![CDATA[因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。 准备工作去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香） 然后百度教程 开始下载插件 npm install hexo-qiniu-sync --save 然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面 #plugins: #- hexo-qiniu-sync（这部分要删掉的，不然会报错） qiniu: offline: false sync: true bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字 access_key: AccessKey # 你在七牛上面账号的密钥管理的key secret_key: SecretKey # 你在七牛上面账号的密钥管理的key dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好 urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。 update_exist: true image: folder: images extend: js: folder: js css: folder: css 好了，其他详细的说明下面有指路辽== 插入图片我用的是 {% qnimg xxx.png %} 这种语法，其他的我不想看辽，目前也用不到。 上传图片到七牛云先去博客本地生成的存图的文件夹（上面有注解），然后博客文里面对它进行引用。然后上传图片去七牛云本地时候，就用： hexo qiniu s 这个语法即可。 参考资料我觉得很详细的教程]]></content>
       <categories>
         <category>hexo更新配置</category>
         <category>hexo插入图片</category>

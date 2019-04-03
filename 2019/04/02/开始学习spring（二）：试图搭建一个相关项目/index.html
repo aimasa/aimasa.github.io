@@ -131,7 +131,9 @@
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png">
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png">
 <meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png">
-<meta property="og:updated_time" content="2019-04-02T13:28:21.082Z">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png">
+<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png">
+<meta property="og:updated_time" content="2019-04-03T03:20:52.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始学习spring（二）：试图搭建一个相关项目">
 <meta name="twitter:description" content="看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。">
@@ -444,7 +446,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  171
+                  439
                 </span>
               
 
@@ -483,7 +485,7 @@
       
         <p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p>
 <a id="more"></a>
-<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center>
+<h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center>
 
 <p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p>
 <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center>
@@ -492,6 +494,39 @@
 <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center>
 
 <p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p>
+<h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p>
+<pre><code>@Controller
+public class exampleControl {
+    @RequestMapping(&quot;/&quot;)
+    public String Index(Locale locale, Model model) {
+        Date date = new Date();
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+        String formatDate = dateFormat.format(date);
+        model.addAttribute(&quot;serverTime&quot;,formatDate);
+        return &quot;Index&quot;;
+
+    }
+</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;
+    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>接着去原项目根目录下的pom.xml里面添上这样一行:</p>
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+</code></pre><p>不然会显示：</p>
+<img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png">
+<p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p>
+<h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png">
 
       
     </div>
@@ -511,7 +546,7 @@
   <p><span>本文标题:</span><a href="/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/">开始学习spring（二）：试图搭建一个相关项目</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年04月02日 - 21:04</p>
-  <p><span>最后更新:</span>2019年04月02日 - 21:04</p>
+  <p><span>最后更新:</span>2019年04月03日 - 11:04</p>
   <p><span>原始链接:</span><a href="/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/" title="开始学习spring（二）：试图搭建一个相关项目">http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/" aria-label="复制成功！"></i></span>
   </p>
@@ -574,6 +609,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/03/MavenInstall错误类型（一）/" rel="prev" title="MavenInstall错误类型（一）">
+                MavenInstall错误类型（一） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -654,8 +693,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -681,7 +729,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -692,7 +740,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -739,6 +787,22 @@ var jiathis_config={
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#新建项目"><span class="nav-number">1.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加代码让项目成功运行"><span class="nav-number">2.</span> <span class="nav-text">添加代码让项目成功运行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果输出"><span class="nav-number">3.</span> <span class="nav-text">结果输出</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -766,7 +830,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.9k</span>
+    <span title="Site words total count">23.4k</span>
   
 </div>
 
@@ -1436,9 +1500,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

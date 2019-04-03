@@ -128,7 +128,7 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-04-02T13:18:12.642Z">
+<meta property="og:updated_time" content="2019-04-03T03:26:57.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客上传图片">
 <meta name="twitter:description" content="因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  470
+                  548
                 </span>
               
 
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -484,8 +484,8 @@
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>下载插件</p>
 <pre><code>npm install hexo-qiniu-sync --save
 </code></pre><p>然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面</p>
-<pre><code>plugins:
-  - hexo-qiniu-sync
+<pre><code>#plugins:
+  #- hexo-qiniu-sync（这部分要删掉的，不然会报错）
 
 qiniu:
   offline: false
@@ -508,6 +508,9 @@ qiniu:
 <h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>我用的是</p>
 <pre><code>{% qnimg xxx.png %}
 </code></pre><p>这种语法，其他的我不想看辽，目前也用不到。</p>
+<h1 id="上传图片到七牛云"><a href="#上传图片到七牛云" class="headerlink" title="上传图片到七牛云"></a>上传图片到七牛云</h1><p>先去博客本地生成的存图的文件夹（上面有注解），然后博客文里面对它进行引用。然后上传图片去七牛云本地时候，就用：</p>
+<pre><code>hexo qiniu s
+</code></pre><p>这个语法即可。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lwtang.github.io/2018/11/27/qiniu-store-image/" target="_blank" rel="noopener">我觉得很详细的教程</a></p>
 
       
@@ -528,7 +531,7 @@ qiniu:
   <p><span>本文标题:</span><a href="/2019/03/29/hexo博客上传图片/">hexo博客上传图片</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年03月29日 - 19:03</p>
-  <p><span>最后更新:</span>2019年04月02日 - 21:04</p>
+  <p><span>最后更新:</span>2019年04月03日 - 11:04</p>
   <p><span>原始链接:</span><a href="/2019/03/29/hexo博客上传图片/" title="hexo博客上传图片">http://aimasa.github.io/2019/03/29/hexo博客上传图片/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/03/29/hexo博客上传图片/" aria-label="复制成功！"></i></span>
   </p>
@@ -592,8 +595,8 @@ qiniu:
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/30/hexo公式渲染/" rel="prev" title="hexo公式渲染">
-                hexo公式渲染 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/开始学习spring（一）：关于一些基础知识点/" rel="prev" title="开始学习spring（一）：关于一些基础知识点">
+                开始学习spring（一）：关于一些基础知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -711,7 +714,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -722,7 +725,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -778,7 +781,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入图片"><span class="nav-number">3.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入图片"><span class="nav-number">3.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传图片到七牛云"><span class="nav-number">4.</span> <span class="nav-text">上传图片到七牛云</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -812,7 +815,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.9k</span>
+    <span title="Site words total count">23.4k</span>
   
 </div>
 
@@ -1482,9 +1485,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
