@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-04-03T01:03:09.646Z</updated>
+  <updated>2019-04-04T08:21:58.076Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>注解</title>
+    <link href="http://aimasa.github.io/2019/04/04/%E6%B3%A8%E8%A7%A3/"/>
+    <id>http://aimasa.github.io/2019/04/04/注解/</id>
+    <published>2019-04-04T06:49:42.000Z</published>
+    <updated>2019-04-04T08:21:58.076Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：@Override、@Deprecated、@SuppressWarnning等</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等。</li></ul><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。&lt;/p&gt;
+&lt;h1 id=&quot;元注解&quot;&gt;&lt;a href=&quot;#元注解&quot; class=&quot;headerlink&quot;
+      
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="注解" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开始学习spring（三）：注解</title>
+    <link href="http://aimasa.github.io/2019/04/04/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E8%A7%A3/"/>
+    <id>http://aimasa.github.io/2019/04/04/开始学习spring（三）：注解/</id>
+    <published>2019-04-04T06:49:42.000Z</published>
+    <updated>2019-04-04T09:29:51.561Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><p>现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.</p><p>当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。</p><a id="more"></a><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）如java内置注解：@Override、@SuppressWarnning等</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等，如java内置注解：@Deprecated(用于标明已经过时的方法或类)等。</li></ul><h1 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h1><p>@Documented 被修饰的注解会生成到javadoc中</p><h1 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h1><p>可以让注解被继承，但这并不是真的继承，只是通过使用@Inherited，可以让子类Class对象使用getAnnotations()获取父类被@Inherited修饰的注解。</p><h1 id="关于自定义注解里面的一些语句"><a href="#关于自定义注解里面的一些语句" class="headerlink" title="关于自定义注解里面的一些语句"></a>关于自定义注解里面的一些语句</h1><pre><code>String name() default &quot;&quot;;//指定义了name这个属性，默认是空字符串。</code></pre><p>声明注解类型时候，不能用包装类型，只能用基本类型去声明</p><p>我们定义了自己的注解并将其应用在业务逻辑的方法上。所以就需要我们写一个用户程序调用我们的注解。这里需要使用<strong>反射机制</strong>。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p><p><a href="http://www.importnew.com/10294.html" target="_blank" rel="noopener">注解是什么</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。&lt;/p&gt;
+&lt;p&gt;现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.&lt;/p&gt;
+&lt;p&gt;当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="注解" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>MavenInstall错误类型（一）</title>
@@ -46,9 +100,9 @@
     <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E8%AF%95%E5%9B%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE/"/>
     <id>http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/</id>
     <published>2019-04-02T13:08:01.000Z</published>
-    <updated>2019-04-03T03:20:52.969Z</updated>
+    <updated>2019-04-04T06:50:05.358Z</updated>
     
-    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p><h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;Index&quot;;    }</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p><pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>接着去原项目根目录下的pom.xml里面添上这样一行:</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p>不然会显示：</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png"><p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p><h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png">]]></content>
+    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p><h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;Index&quot;;    }</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p><pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>接着得记住去原项目根目录下的pom.xml里面添上这样一行:</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p>之后就才显示</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"><p>不然会显示：</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png"><p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p><h1 id="关于该项目用到的注解"><a href="#关于该项目用到的注解" class="headerlink" title="关于该项目用到的注解"></a>关于该项目用到的注解</h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><p>根据代码中给出的解释就是，带了这个注释的类就是控制器，允许通过类路径扫描自动检测实现类，通常与@ResponseMapping这类注释结合使用。</p><p>我刚刚谷歌了一下这方面的知识，用@Controller其实大部分是用来返回字符串，或者是字符串匹配的模板名称，即直接渲染视图，和HTML结合使用的，但是这个前提前后端配合度要高。（单用@Controller并且不做别的处理的话，返回的字符串没有对应的HTML页面的话，就会报错，出现Whitelabel Error Page这个页面）</p><h3 id="在-Controller这个注解里面的-AliasFor"><a href="#在-Controller这个注解里面的-AliasFor" class="headerlink" title="在@Controller这个注解里面的@AliasFor"></a>在@Controller这个注解里面的@AliasFor</h3><pre><code>@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.METHOD)@Documentedpublic @interface AliasFor {    /**     * Alias for {@link #attribute}.     * &lt;p&gt;Intended to be used instead of {@link #attribute} when {@link #annotation}     * is not declared &amp;mdash; for example: {@code @AliasFor(&quot;value&quot;)} instead of     * {@code @AliasFor(attribute = &quot;value&quot;)}.     */    @AliasFor(&quot;attribute&quot;)    String value() default &quot;&quot;;    /**     * The name of the attribute that &lt;em&gt;this&lt;/em&gt; attribute is an alias for.     * @see #value     */    @AliasFor(&quot;value&quot;)    String attribute() default &quot;&quot;;}</code></pre><p>就相当于value的用法和attribute的用法是一样的，值也是一样的，在这里来给注解的属性起别名，使它们互为别名，意义相同</p><h3 id="返回字符串对应的html"><a href="#返回字符串对应的html" class="headerlink" title="返回字符串对应的html"></a>返回字符串对应的html</h3><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;index&quot;;    } }</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h3 id="返回json格式数据"><a href="#返回json格式数据" class="headerlink" title="返回json格式数据"></a>返回json格式数据</h3><p>如果想用@Controller这个注释可以返回json的话，就要在返回json的方法前面加上@ResponseBody，这样就会在浏览器页面输出json的格式。</p><p>user类：</p><pre><code>public class User {    private String name;    public void setName(String name) {        this.name = name;    }    public String getName() {        return this.name;    }}</code></pre><p>controller层：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    @ResponseBody    public User userTest() {        User user = new User();        user.setName(&quot;haha&quot;);        return user;    }}</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result2.png"></center><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>这个注解和@Controller不一样，是由@Controller和@ResponseBody合在一起的，返回的是一个对象（字符串也可，json格式数据也可等等），其实和@Controller放在类上面，然后在需要返回json格式数据的方法上面加一个@ResponseBody的效果一样，只是一个是整体，一个是局部。（这个可以返回Restful风格—-我也不知道什么风格，但是看到还要配置才能用，所以等以后用到了再来补吧。）</p><h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b534b394dc7a" target="_blank" rel="noopener">关于@Controller和@RestController</a></p>]]></content>
     
     <summary type="html">
     
@@ -456,54 +510,6 @@
     
     
       <category term="双射单射满射" scheme="http://aimasa.github.io/tags/%E5%8F%8C%E5%B0%84%E5%8D%95%E5%B0%84%E6%BB%A1%E5%B0%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>原根</title>
-    <link href="http://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/"/>
-    <id>http://aimasa.github.io/2019/02/26/原根/</id>
-    <published>2019-02-26T07:30:32.000Z</published>
-    <updated>2019-03-29T12:17:08.313Z</updated>
-    
-    <content type="html"><![CDATA[<p>其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根<br><a id="more"></a></p><p><a href="https://zh.wikipedia.org/wiki/%E5%8E%9F%E6%A0%B9" target="_blank" rel="noopener">参考定理</a></p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/yuangen.png"></center><p>就是在值最小的时候满足欧拉定理的式子，同时还要和欧拉函数的值一样,才能称作式子中这两个互质的数，一个是模另一个原根。</p><p>所以，对于任意数m可以有很多个原根，也可以一个原根也没有（其中a是可变的）</p><p>存在原根的模乘法群称为循环群。</p><p>原根性质：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/原根/xinzhi.png"></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;其中，如果正整数$(a,m)=1$和正整数$\,d\; \left ( d\leqslant m\, -\, 1 \right )$满足$a^{d}\,\equiv 1(mod m)$那么满足这个式子的正整数$\,d\,$最小正整数$\,x\,$，$\,x\,=\,Ord_{m}\left ( a \right )$。如果$\,x\,=\,\Phi \left ( m \right )$那么就说这个$\,a\,$是$\,m\,$的原根&lt;br&gt;
-    
-    </summary>
-    
-      <category term="离散对数" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
-    
-      <category term="原根" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/%E5%8E%9F%E6%A0%B9/"/>
-    
-    
-      <category term="原根" scheme="http://aimasa.github.io/tags/%E5%8E%9F%E6%A0%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>互质关系</title>
-    <link href="http://aimasa.github.io/2019/02/22/MutRela/"/>
-    <id>http://aimasa.github.io/2019/02/22/MutRela/</id>
-    <published>2019-02-22T08:09:32.000Z</published>
-    <updated>2019-02-26T07:23:43.070Z</updated>
-    
-    <content type="html"><![CDATA[<p>互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。</p><a id="more"></a><p><a href="http://www.wikiwand.com/zh-sg/%E4%BA%92%E8%B3%AA" target="_blank" rel="noopener">参考资料</a><br>通过观察可以发现在以下的情况下，两个数一定会互质。</p><ul><li>两个不同的素数一定互质。例如，2与7、13与19。</li><li>一个素数，另一个不为它的倍数，这两个数互质。例如，3与10、5与 26。</li><li>1和任何一个自然数都互质。如1和9908。</li><li>2的幂和任何一个奇数都互质。如32和75、256与315。</li><li>相邻两个自然数互质。如15与16。</li><li>相邻两个奇数互质。如49与51。</li><li>较大数是素数，则两个数互质。如97与88。</li><li>两数和是素数，则两个数互质。如52与45。</li><li>两数差是素数，两个数都不是两数差的倍数，则两个数互质。如140与171。</li><li>两数积是无平方数约数的数，则两个数互质。如154与195。</li><li>较大数除以较小数的余数是1或-1，则两个数互质。如440与63。</li><li><strong>辗转相除法</strong>。如255与182。255－182=73，182－（73×2）=36，73－（36×2）=1，则（255，182）=1。故这两数互质。</li><li><p><strong>p是大于1的整数，则p和p-1构成互质关系</strong>，比如57和56。</p></li><li><p><strong>p是大于1的奇数，则p和p-2构成互质关系</strong>，比如17和15。</p></li><li>一个数的素因数都小于某数，另一个数素因数都大于同一个数，则两个数互质。如180与2431、5040与4301。</li><li>两数都是合数（二数差较大），较小数所有的素因数，都不是较大数的因数，这两个数互质。如357与715，357=3×7×17，而3、7和17都不是715的因数，故这两数互质。</li><li>两数都是合数（二数差较小），这两数之差的所有素因数都不是较小数的因数，这两个数互质。如85和78。85－78=7，7不是78的因数，故这两数互质。</li></ul><p><a href="https://zhidao.baidu.com/question/105237827.html" target="_blank" rel="noopener">素因数</a>：一个整数会有很多个因数，其中因数约数只能由1和他本身相乘产生。</p><p><a href="https://zh.wikipedia.org/wiki/%E5%90%88%E6%95%B0" target="_blank" rel="noopener">合数</a>：（又叫合成数）每个大于1的整数如果不是质数就是合数。</p><p>1不是素数，最小的质数是2</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;互质又称是互素，两个整数的公约数除了它们本身的乘积外只有1，那么称这两个数互质。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="RSA公钥加密" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/"/>
-    
-      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/categories/RSA%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
-    
-    
-      <category term="互质关系（互素关系）" scheme="http://aimasa.github.io/tags/%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB%EF%BC%88%E4%BA%92%E7%B4%A0%E5%85%B3%E7%B3%BB%EF%BC%89/"/>
     
   </entry>
   
