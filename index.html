@@ -479,65 +479,14 @@
 
       
         
-          
-            <p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p>
-<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p>
-<ul>
-<li>@Document</li>
-<li>@Target</li>
-<li>@Retention</li>
-<li>@Inherited</li>
-</ul>
-<h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p>
-<pre><code>public enum ElementType {
-    /** Class, interface (including annotation type), or enum declaration */
-    TYPE,
-
-    /** Field declaration (includes enum constants) */
-    FIELD,
-
-    /** Method declaration */
-    METHOD,
-
-    /** Formal parameter declaration */
-    PARAMETER,
-
-    /** Constructor declaration */
-    CONSTRUCTOR,
-
-    /** Local variable declaration */
-    LOCAL_VARIABLE,
-
-    /** 用于另外一个注解上 */
-    ANNOTATION_TYPE,
-
-    /** Package declaration */
-    PACKAGE,
-
-    /**
-     * Type parameter declaration
-     *
-     * @since 1.8
-     */
-    TYPE_PARAMETER,
-
-    /**
-     * Use of a type
-     *
-     * @since 1.8
-     */
-    TYPE_USE
-}
-</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p>
-<h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p>
-<ul>
-<li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）</li>
-<li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：@Override、@Deprecated、@SuppressWarnning等</li>
-<li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等。</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p>
-
-          
+          <p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/04/注解/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -3320,9 +3269,9 @@
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
