@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-04-08T11:12:49.099Z</updated>
+  <updated>2019-04-29T09:08:47.598Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -17,23 +17,183 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>注解</title>
-    <link href="http://aimasa.github.io/2019/04/04/%E6%B3%A8%E8%A7%A3/"/>
-    <id>http://aimasa.github.io/2019/04/04/注解/</id>
-    <published>2019-04-04T06:49:42.000Z</published>
-    <updated>2019-04-08T11:12:49.099Z</updated>
+    <title>java打包供maven使用</title>
+    <link href="http://aimasa.github.io/2019/04/28/java%E6%89%93%E5%8C%85%E4%BE%9Bmaven%E4%BD%BF%E7%94%A8/"/>
+    <id>http://aimasa.github.io/2019/04/28/java打包供maven使用/</id>
+    <published>2019-04-28T12:36:08.000Z</published>
+    <updated>2019-04-29T09:08:47.598Z</updated>
     
-    <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><a id="more"></a><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：@Override、@Deprecated、@SuppressWarnning等</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等。</li></ul><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p>]]></content>
+    <content type="html"><![CDATA[<p>因为之前老师说好的说让我自己试试怎么对项目打包，然后把包封装成相关依赖，这样可以直接在maven里面添加依赖，然后对包进行调用。</p><a id="more"></a><h1 id="把项目打包"><a href="#把项目打包" class="headerlink" title="把项目打包"></a>把项目打包</h1><p>用的是fatjar对项目进行的打包，又快又方便。</p><p>我用的是eclipse4.4版本，对项目右键会有build FatJar的选项，然后点进去，选择好生成jar包的位置【注意：包存放的文件夹名中间不能有空格，不然包转成依赖语句会报错】，然后jar包就生成了。</p><h1 id="把包转换成依赖"><a href="#把包转换成依赖" class="headerlink" title="把包转换成依赖"></a>把包转换成依赖</h1><p>首先win+R进入cmd命令行，然后cd到该jar包存放的位置，再然后输入以下命令行</p><pre><code>mvn install:install-file -Dfile=jar包的位置 -DgroupId=上面的groupId -DartifactId=上面的artifactId -Dversion=上面的version -Dpackaging=jar</code></pre><p>—————————————————-<a href="https://blog.csdn.net/u012759397/article/details/53437502" target="_blank" rel="noopener">摘自博客</a></p><p>然后回车，一顿操作猛如虎，再新建一个项目，添加：</p><pre><code>&lt;dependency&gt;&lt;groupId&gt;com.qrcode&lt;/groupId&gt;&lt;!--DgroupId等于的参数值--&gt;&lt;artifactId&gt;qr&lt;/artifactId&gt;&lt;!--DartifactId等于的参数值--&gt;&lt;version&gt;0.1&lt;/version&gt;&lt;!--Dversion等于的参数值--&gt;&lt;/dependency&gt;</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/u012759397/article/details/53437502" target="_blank" rel="noopener">博客</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。&lt;/p&gt;
+      &lt;p&gt;因为之前老师说好的说让我自己试试怎么对项目打包，然后把包封装成相关依赖，这样可以直接在maven里面添加依赖，然后对包进行调用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java语法" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/"/>
+    
+      <category term="java打包供maven使用" scheme="http://aimasa.github.io/categories/java%E8%AF%AD%E6%B3%95/java%E6%89%93%E5%8C%85%E4%BE%9Bmaven%E4%BD%BF%E7%94%A8/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java版本太低</title>
+    <link href="http://aimasa.github.io/2019/04/28/java%E7%89%88%E6%9C%AC%E5%A4%AA%E4%BD%8E/"/>
+    <id>http://aimasa.github.io/2019/04/28/java版本太低/</id>
+    <published>2019-04-28T11:32:56.000Z</published>
+    <updated>2019-04-28T12:35:05.900Z</updated>
+    
+    <content type="html"><![CDATA[<p>导入一个本来是没有语法错误的项目，然后IDE到处报错，说是jdk版本太高，要更改成低版本。</p><a id="more"></a><p>对着被导入的项目点击右键-&gt; properties-&gt;java build path</p><p>然后双击JRE System Library，然后更换jre的版本号（和本地装的jre的版本号一致）</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/java版本太低/confi.png"></center><p>然后成功</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;导入一个本来是没有语法错误的项目，然后IDE到处报错，说是jdk版本太高，要更改成低版本。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="运行error" scheme="http://aimasa.github.io/categories/%E8%BF%90%E8%A1%8Cerror/"/>
+    
+      <category term="java版本太低" scheme="http://aimasa.github.io/categories/%E8%BF%90%E8%A1%8Cerror/java%E7%89%88%E6%9C%AC%E5%A4%AA%E4%BD%8E/"/>
+    
+    
+      <category term="运行error" scheme="http://aimasa.github.io/tags/%E8%BF%90%E8%A1%8Cerror/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim的使用心得</title>
+    <link href="http://aimasa.github.io/2019/04/23/vim%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
+    <id>http://aimasa.github.io/2019/04/23/vim的使用心得/</id>
+    <published>2019-04-23T08:20:24.000Z</published>
+    <updated>2019-04-23T12:16:45.053Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为最近不是b站后台源码被泄露了嘛，然后它用的是go语言，我又不想在windows系统里面装go语言的IDE，然后就在虚拟机里面配置go语言的环境，过程中在里面我用到了一些对vim的操作，在这里特地记录一下。</p><a id="more"></a><h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><p>直接按<strong>s</strong>键，然后又可以插入，也可以对其中的内容进行修改。</p><h1 id="保存并且推出"><a href="#保存并且推出" class="headerlink" title="保存并且推出"></a>保存并且推出</h1><ul><li>保存：按住esc键，然后输入<strong>:w</strong></li><li>退出：按住esc键，然后输入<strong>:q</strong></li><li>保存且退出：按住esc键，然后输入<strong>:wq</strong></li></ul><h1 id="目前只用到了这些操作方法，所以暂时如此记录"><a href="#目前只用到了这些操作方法，所以暂时如此记录" class="headerlink" title="目前只用到了这些操作方法，所以暂时如此记录"></a>目前只用到了这些操作方法，所以暂时如此记录</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为最近不是b站后台源码被泄露了嘛，然后它用的是go语言，我又不想在windows系统里面装go语言的IDE，然后就在虚拟机里面配置go语言的环境，过程中在里面我用到了一些对vim的操作，在这里特地记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ubuntu的使用" scheme="http://aimasa.github.io/categories/ubuntu%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="vim的使用心得" scheme="http://aimasa.github.io/categories/ubuntu%E7%9A%84%E4%BD%BF%E7%94%A8/vim%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
+    
+    
+      <category term="关于ubuntu" scheme="http://aimasa.github.io/tags/%E5%85%B3%E4%BA%8Eubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>eclipse调字体大小</title>
+    <link href="http://aimasa.github.io/2019/04/23/eclipse%E8%B0%83%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F/"/>
+    <id>http://aimasa.github.io/2019/04/23/eclipse调字体大小/</id>
+    <published>2019-04-23T07:19:48.000Z</published>
+    <updated>2019-04-23T07:19:48.632Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于maven</title>
+    <link href="http://aimasa.github.io/2019/04/18/%E5%85%B3%E4%BA%8Emaven/"/>
+    <id>http://aimasa.github.io/2019/04/18/关于maven/</id>
+    <published>2019-04-18T07:07:41.000Z</published>
+    <updated>2019-04-29T07:13:58.353Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面<dependencies>&lt;/dependencies&gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了<dependencies></dependencies>还有别的，所以就去查了一些资料，然后总结在这。</dependencies></p><a id="more"></a><p>Maven 主要帮助用户完成以下 3 个方面的工作：</p><ul><li>生命周期管理，便捷的构建过程；</li><li>依赖管理，方便引入所需依赖 Jar 包；</li><li>仓库管理，提供统一管理所有 Jar 包的工具；</li></ul><p>————-(<a href="https://www.jianshu.com/p/b4ef9978d85d" target="_blank" rel="noopener">摘自博客</a>)</p><p>在建了一个maven项目之后，会发现在项目里面有一个pom.xml文档</p><h1 id="什么是pom"><a href="#什么是pom" class="headerlink" title="什么是pom"></a>什么是pom</h1><p>项目对象模型或POM是Maven的基本工作单元。 它是一个XML文件，其中包含有关Maven用于构建项目的项目和配置详细信息的信息。 它包含大多数项目的默认值。 这方面的例子是：target是构建目录;构建源目录是src / main / java; src / test / java是测试源目录。执行任务时，Maven在当前目录中查找POM。 它读取POM，获取所需的配置信息，然后执行目标。</p><p>maven install时候，会自动把pom里面添加的依赖下载下来。</p><h1 id="maven的生命周期"><a href="#maven的生命周期" class="headerlink" title="maven的生命周期"></a>maven的生命周期</h1><p>maven内部有三个构建生命周期：分别是：clean, default, site</p><p>我在那个博客里面找到了这张展示default构建生命周期核心阶段的图：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/关于maven/life.png"></center><p>当执行mvn install时候，maven就会自动执行生命周期中的validate, compile, test, package, verify, install这些阶段，并将 package 生成的包发布到本地仓库中。</p><p>Maven 将构建过程定义为 default lifecycle</p><h2 id="阶段和插件的关系"><a href="#阶段和插件的关系" class="headerlink" title="阶段和插件的关系"></a>阶段和插件的关系</h2><p>就像上面说的那样，maven把构建过程定义成default lifecycle，并且将它里面的一个个阶段划分为phase，但是这些phase只是规定执行顺序，对于每个阶段做什么工作，就要看pom.xml里面的插件（plugins）了。</p><p>pom.xml里面有这么个元素叫<plugins>，它是用来把phase和做的目标<goal>绑定在一起，当要执行某个<phase>时候，就会调用插件来完成绑定的目标，一个阶段里面可以绑定好多个目标，也可以不绑定目标。</phase></goal></plugins></p><p>但是不配置<plugins>也可以，因为maven有默认的<plugins>。</plugins></plugins></p><p>在输出日志里面，会有一系列的 插件(plugin):版本号:<goal>(phase) 输出，可以根据日志里面的这种输出去观察哪些阶段会调用插件去完成那些<goal>了。</goal></goal></p><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>在<dependencies></dependencies>里面的依赖一般都是这种形式出现：</p><pre><code>    &lt;dependency&gt;    &lt;groupId&gt;mysql&lt;/groupId&gt;    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;    &lt;scope&gt;runtime&lt;/scope&gt;    &lt;/dependency&gt;</code></pre><h2 id="关于maven整体"><a href="#关于maven整体" class="headerlink" title="关于maven整体"></a>关于maven整体</h2><p>| groupId|一般用该项目的组织或团体的域名来标识，例如:org.apache.maven.plugins  |</p><p>| artifactId | 代表唯一的工程名 |</p><p>|version| 版本号|</p><p>|packaging| 标识打包的类型，例如有:jar, war, tar |</p><p>|dependencies| 该工程内依赖的其他 jar 包|</p><h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p>如果 Maven 在中央仓库中也找不到依赖的库文件，它会停止构建过程并输出错误信息到控制台。为避免这种情况，Maven 提供了远程仓库的概念，它是开发人员自己定制仓库，包含了所需要的代码库或者其他工程中用到的 jar 文件。</p><h2 id=""><a href="#" class="headerlink" title=""></a><respositories></respositories></h2><p>我的理解就是可以通过这个repositories节点，去访问给出的url地址上的这个仓库，去下载自己需要的库，因为这个库在可能是自己的远程仓库里面，就没法从中央仓库里面下载到这个库，所以就使用这个节点，里面配置各种你可能需要用到的远程库。</p><pre><code>&lt;repositories&gt;    &lt;repository&gt;        &lt;id&gt;spring-snapshots&lt;/id&gt;        &lt;name&gt;Spring Snapshots&lt;/name&gt;        &lt;url&gt;https://repo.spring.io/snapshot&lt;/url&gt;        &lt;snapshots&gt;            &lt;enabled&gt;true&lt;/enabled&gt;        &lt;/snapshots&gt;    &lt;/repository&gt;</code></pre><h2 id="Maven-依赖搜索顺序"><a href="#Maven-依赖搜索顺序" class="headerlink" title="Maven 依赖搜索顺序"></a>Maven 依赖搜索顺序</h2><p>当我们执行 Maven 构建命令时，Maven 开始按照以下顺序查找依赖的库：</p><ul><li>步骤 1 － 在本地仓库中搜索，如果找不到，执行步骤 2，如果找到了则执行其他操作。</li><li>步骤 2 － 在中央仓库中搜索，如果找不到，并且有一个或多个远程仓库已经设置，则执行步骤 4，如果找到了则下载到本地仓库中已被将来引用。</li><li>步骤 3 － 如果远程仓库没有被设置，Maven 将简单的停滞处理并抛出错误（无法找到依赖的文件）。</li><li>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。</li></ul><p>———————————<a href="https://wiki.jikexueyuan.com/project/maven/repositories.html" target="_blank" rel="noopener">摘自极客学院maven教程</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b4ef9978d85d" target="_blank" rel="noopener">maven入门</a></p><p><a href="https://www.jianshu.com/p/fd43b3d0fdb0" target="_blank" rel="noopener">maven生命周期</a></p><p><a href="https://wiki.jikexueyuan.com/project/maven/repositories.html" target="_blank" rel="noopener">极客学院maven教程</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面&lt;dependencies&gt;&amp;lt;/dependencies&amp;gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了&lt;dependencies&gt;&lt;/dependencies&gt;还有别的，所以就去查了一些资料，然后总结在这。&lt;/dependencies&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="maven" scheme="http://aimasa.github.io/categories/maven/"/>
+    
+    
+      <category term="maven" scheme="http://aimasa.github.io/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开始学习spring（五）：连接数据库</title>
+    <link href="http://aimasa.github.io/2019/04/17/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://aimasa.github.io/2019/04/17/开始学习spring（五）：连接数据库/</id>
+    <published>2019-04-17T03:01:44.000Z</published>
+    <updated>2019-04-29T09:17:54.904Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为这边都用的是jooq框架来对数据库进行操作，然后我就开始学jooq框架惹==。我暑假还是想好好的活着，不想再像上个暑假一样痛苦。</p><p>不过刚开始接触这个框架，坑也没少踩，我会在下面分别列出来。</p><p>用的是maven</p><a id="more"></a><h1 id="第一步：装依赖"><a href="#第一步：装依赖" class="headerlink" title="第一步：装依赖"></a>第一步：装依赖</h1><p>在jooq的官网看，首先第一步，在pom中要加上这三个依赖</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-meta&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-codegen&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><ul><li>jooq ：核心包，CRUD（增删查改）核心类所在大本营。</li><li>jooq-meta ：数据管理和操作的核心代码。</li><li>jooq-codegen ：负责数据库代码生成，主要负责JOOQ的代码生成功能。</li></ul><h1 id="第二步：加插件"><a href="#第二步：加插件" class="headerlink" title="第二步：加插件"></a>第二步：加插件</h1><pre><code>        &lt;plugin&gt;            &lt;groupId&gt;org.jooq&lt;/groupId&gt;            &lt;artifactId&gt;jooq-codegen-maven&lt;/artifactId&gt;            &lt;executions&gt;                &lt;execution&gt;                    &lt;goals&gt;                        &lt;goal&gt;generate&lt;/goal&gt;                    &lt;/goals&gt;                &lt;/execution&gt;            &lt;/executions&gt;            &lt;dependencies&gt;                &lt;dependency&gt;                    &lt;groupId&gt;mysql&lt;/groupId&gt;                    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;                    &lt;version&gt;5.1.39&lt;/version&gt;                &lt;/dependency&gt;            &lt;/dependencies&gt;            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- The destination package of your generated classes (within the                             destination directory) --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- The destination directory of your generated classes --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;        &lt;/plugin&gt;</code></pre><p>这一部分是用来生成数据库映射代码的插件。</p><p>里面是对数据库的信息进行配置：</p><pre><code>            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;&lt;!--点后面的所有文件--&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;!--映射的数据库的架构名（就是你的表是放在哪个架构下的）--&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- 你数据库映射出来的表打算放在代码里面的哪个包下 --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- 这个包是应该在哪个class下面 --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;</code></pre><p>这里面配置这段就是把数据库中的表映射出来的。</p><pre><code>                         &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;</code></pre><p>这段代码是用来映射时间戳的，其中</p><pre><code>&lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;</code></pre><p>是放有映射方法的包，没有放映射方法的话，那这段无效==。可以按ctrl进去，查看这个包，如果无法查看的话，那么说明这个包不是需要的。</p><h1 id="数据库的架构"><a href="#数据库的架构" class="headerlink" title="数据库的架构"></a>数据库的架构</h1><p>放张图就很详细了：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（五）：连接数据库/schema.png"></center><h1 id="出错地方"><a href="#出错地方" class="headerlink" title="出错地方"></a>出错地方</h1><p>这样配置完成后，我的这个项目名旁边跟了一个红<strong>×</strong>，所以就右键项目，选中<strong>maven</strong>，出现子目录，选中<strong>update project</strong>，点击，如果配置没有错误的话，红<strong>×</strong>会自然消失。</p><p>然后就是maven install的问题了，显示BUILD FAILED失败，里面有一句话，翻译过来是问我有没有配置错jdk，所以我就去perferences里面的 java-&gt;install JREs看了看里面的包是不是配置的jdk包，如果不是，点击add-&gt;Standard VM-&gt;next-&gt;选择jdk的包</p><p>再然后maven install就没有再出问题了，同时，也将我数据库里的表转换成了pojo的包里的java类了。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.mysunshinedreams.com/orm%E7%9A%84%E5%B0%8F%E6%B8%85%E6%96%B0-jooq/" target="_blank" rel="noopener">参考博客</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为这边都用的是jooq框架来对数据库进行操作，然后我就开始学jooq框架惹==。我暑假还是想好好的活着，不想再像上个暑假一样痛苦。&lt;/p&gt;
+&lt;p&gt;不过刚开始接触这个框架，坑也没少踩，我会在下面分别列出来。&lt;/p&gt;
+&lt;p&gt;用的是maven&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="连接数据库" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开始学习spring（四）：Junit测试</title>
+    <link href="http://aimasa.github.io/2019/04/10/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AJunit%E6%B5%8B%E8%AF%95/"/>
+    <id>http://aimasa.github.io/2019/04/10/开始学习spring（四）：Junit测试/</id>
+    <published>2019-04-10T03:11:31.000Z</published>
+    <updated>2019-04-12T07:51:27.480Z</updated>
+    
+    <content type="html"><![CDATA[<p>跟着<a href="http://blog.didispace.com/spring-boot-learning-1/" target="_blank" rel="noopener">博客</a>开始学怎么用Junit对写出的部分代码进行单元测试。</p><a id="more"></a><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>跟着它给的代码：</p><pre><code>@RunWith(SpringJUnit4ClassRunner.class)@SpringBootTest(classes=MockServletContext.class)@WebAppConfigurationpublic class DemoApplicationTests {    private MockMvc mvc;    @Before    public void Setup() throws Exception {        mvc = MockMvcBuilders.standaloneSetup(new exampleController()).build();    }    @Test    public void contextLoads() throws Exception{        mvc.perform(MockMvcRequestBuilders.get(&quot;/&quot;).accept(MediaType.APPLICATION_JSON))                .andExpect(status().isOk())                .andExpect(content().string(equalTo(&quot;index&quot;))).andDo(print());    }}</code></pre><p>但是很奇怪的是一直在</p><pre><code> .andExpect(content().string(equalTo(&quot;index&quot;))).andDo(print());</code></pre><p>这个部分报错，说<strong>The method content()/equalTo() is ambiguous for the type DemoApplicationTests</strong></p><p>结果我发现在我直接敲入这段代码时候，eclipse会直接帮忙自动导入对应的包：</p><pre><code>import static org.hamcrest.CoreMatchers.equalTo;import static org.hamcrest.Matchers.equalTo;import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;</code></pre><p>里面会有不同包里面的同名称的类文件，在这里我们选用：</p><pre><code>import static org.hamcrest.Matchers.equalTo;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;</code></pre><h1 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="MockMvcBuilders"><a href="#MockMvcBuilders" class="headerlink" title="MockMvcBuilders"></a>MockMvcBuilders</h3><p>这个是用来构造MockMvc的构造器，主要是有两种实现，分别是StandaloneMockMvcBuilder和DefaultMockMvcBuilder一种是独立安装和集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）。</p><p>较新版的Spring Boot取消了@SpringApplicationConfiguration这个注解，用@SpringBootTest就可以了</p><h3 id="集成web环境测试"><a href="#集成web环境测试" class="headerlink" title="集成web环境测试"></a>集成web环境测试</h3><p>MockMvcBuilders.webAppContextSetup(WebAppContext webAppContext):指定的webAPPContext会从<strong>上下文中去获取相应的控制器</strong>并得到相应的MockMvc</p><p>怎么获取呢？所以就在测试的程序前面加上@ContextConfiguration(classes = xxx.class)（xxx.class是自己定义的配置类，继承WebMvcConfigurerAdapter 这个类的类，新版spring boot不用继承这类再去使用了，会报错，它改成直接用接口形式implements这个类，并且去使用，还有一个方法来着去使用这个类，但是我忘了，可以直接谷歌一下，WebMvcConfigurerAdapter配置类其实是Spring内部的一种配置方式，采用JavaBean的形式来代替传统的xml配置文件形式进行针对框架个性化定制，它是对需要进行拦截的地方是要使用的拦截器配好对）。</p><p>（拦截器是什么：拦截器相当于把一部分会需要经常改动的代码提取出来，然后对一些固有操作执行前进行拦截，去运行在不同情况下需要运行的代码。减少代码的冗余度，提高重用率。也就是AOP的一种运用。）</p><p>如果没有@ContextConfiguration是会报错的。</p><p>@WebAppConfiguration：测试环境使用，用来表示测试环境使用的ApplicationContext将是WebApplicationContext类型的；value指定web应用的根；</p><p>@Autowired WebApplicationContext wac:注入web环境的applicationContext容器；</p><p>然后通过MockMvcBuilders.webAppContextSetup(this.wac).build();创建一个MockMvc去测试。</p><h3 id="独立测试方式"><a href="#独立测试方式" class="headerlink" title="独立测试方式"></a>独立测试方式</h3><p>这个MockMvcBuilders.standaloneSetup(Object… controllers)可以通过参数去指定一组或者一个控制器，而不需要上下文获取了。</p><p>只需两个步骤：创建相应的控制器，然后注入相应的依赖；通过MockMvcBuilders.standaloneSetup(Object… controllers).bulid()去获取一个MockMvc去测试。</p><h2 id="RequestBuilder"><a href="#RequestBuilder" class="headerlink" title="RequestBuilder"></a>RequestBuilder</h2><p>RequestBuilder这个是用来存放模拟输入的命令的。比如在这里我要测试控制层的输出结果是不是我想要的，然后我会用RequestBuilder.get/post/put…(/网址/).param()…这样去模拟数据输入，进而测试程序有没有错误。</p><pre><code>        request = get(&quot;/users/&quot;);</code></pre><p>RequestBuilder执行完这一步之后，里面会存放如下参数：</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png"></center><p>可以从图中看到里面有我刚开始设置进去的网址”/users”,然后其他值设置之类地方都是显示null，或者[]或者{}。</p><h1 id="关于content-string-equalTo-xxx"><a href="#关于content-string-equalTo-xxx" class="headerlink" title="关于content().string(equalTo(xxx))"></a>关于content().string(equalTo(xxx))</h1><p>跟着敲完对控制层的测试类之后，一直报错，我debug发现，不是程序里面的问题，是我参数出的问题。</p><p>我里面的参数不是少了对字符串的外标的双引号，就是字符串的排列顺序不对</p><p>我设置的返回值是对User实例化后的字符串的值的返回</p><pre><code>public class User {    private String name;    private long id;    private Integer age;}</code></pre><p>里面按照顺序需要：name 、 id 、 age这个顺序返回值，然后碰到字符串时候，需要上标双引号，但是因为本身我就是设置它需要根据我给出的字符串去比较是不是我想要的结果，所以在content().string(equalTo(xxx))里面，xxx这个字符串中的双引号需要转义字符：\”</p><pre><code>content().string(equalTo(&quot;[{\&quot;name\&quot;:\&quot;nana\&quot;,\&quot;id\&quot;:1,\&quot;age\&quot;:12}]&quot;))).andDo(print())</code></pre><h2 id="测试部分"><a href="#测试部分" class="headerlink" title="测试部分"></a>测试部分</h2><p>perform：执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；</p><p>andExpect：添加ResultMatcher验证规则，验证控制器执行完成后结果是否正确；</p><p>andDo：添加ResultHandler结果处理器，比如调试时打印结果到控制台；</p><p>andReturn：最后返回相应的MvcResult；然后进行自定义验证/进行下一步的异步处理；</p><p>accept：接收的返回的信息格式，这里是接收的是json类型数据。</p><p>ContentResultMatchers content()：得到响应内容验证器；</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/cankingapp/article/details/7626566" target="_blank" rel="noopener">关于拦截器讲解比较详细的博客</a></p><p><a href="https://www.cnblogs.com/lyy-2016/p/6122144.html" target="_blank" rel="noopener">关于测试部分讲解详细的博客</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;跟着&lt;a href=&quot;http://blog.didispace.com/spring-boot-learning-1/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;博客&lt;/a&gt;开始学怎么用Junit对写出的部分代码进行单元测试。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="Junit测试" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/Junit%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开始学习spring（三）：注解2</title>
+    <link href="http://aimasa.github.io/2019/04/08/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E8%A7%A32/"/>
+    <id>http://aimasa.github.io/2019/04/08/开始学习spring（三）：注解2/</id>
+    <published>2019-04-08T13:14:34.000Z</published>
+    <updated>2019-04-12T12:13:35.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然明白注解是怎么一回事了，但是还是好奇它的反射机制是怎么实现的，所以谷歌了一下，之后可能会试着自己看看源码。</p><p>注：在 Spring 中，构成应用程序主干并由Spring IoC容器管理的对象称为bean。bean是一个由Spring IoC容器实例化、组装和管理的对象。</p><p><a href="https://www.awaimai.com/2596.html" target="_blank" rel="noopener">关于IoC(控制反转)</a></p><a id="more"></a><h1 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h1><p>这个是用来处理请求地址映射的注解，它的注解有六个属性：</p><h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p><strong>value</strong>：指定请求的实际地址</p><p><strong>method</strong>： 指定请求的method类型， GET、POST、PUT、DELETE等；</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（三）：注解2/method.png"></center><p><strong>consumes</strong>：指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</p><p><strong>produces</strong>: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</p><p><strong>params</strong>： 指定request中必须包含某些参数值是，才让该方法处理。</p><p><strong>headers</strong>： 指定request中必须包含某些指定的header值，才能让该方法处理请求。</p><p>———————-<a href="https://blog.csdn.net/walkerJong/article/details/7994326" target="_blank" rel="noopener">摘自博客</a>等我用了一遍再回来补充。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然明白注解是怎么一回事了，但是还是好奇它的反射机制是怎么实现的，所以谷歌了一下，之后可能会试着自己看看源码。&lt;/p&gt;
+&lt;p&gt;注：在 Spring 中，构成应用程序主干并由Spring IoC容器管理的对象称为bean。bean是一个由Spring IoC容器实例化、组装和管理的对象。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.awaimai.com/2596.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;关于IoC(控制反转)&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
       <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
     
       <category term="注解" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/"/>
+    
+      <category term="spring注解" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/spring%E6%B3%A8%E8%A7%A3/"/>
     
     
       <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
@@ -45,21 +205,24 @@
     <link href="http://aimasa.github.io/2019/04/04/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E8%A7%A3/"/>
     <id>http://aimasa.github.io/2019/04/04/开始学习spring（三）：注解/</id>
     <published>2019-04-04T06:49:42.000Z</published>
-    <updated>2019-04-04T09:29:51.561Z</updated>
+    <updated>2019-04-08T13:49:14.008Z</updated>
     
-    <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><p>现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.</p><p>当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。</p><a id="more"></a><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）如java内置注解：@Override、@SuppressWarnning等</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等，如java内置注解：@Deprecated(用于标明已经过时的方法或类)等。</li></ul><h1 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h1><p>@Documented 被修饰的注解会生成到javadoc中</p><h1 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h1><p>可以让注解被继承，但这并不是真的继承，只是通过使用@Inherited，可以让子类Class对象使用getAnnotations()获取父类被@Inherited修饰的注解。</p><h1 id="关于自定义注解里面的一些语句"><a href="#关于自定义注解里面的一些语句" class="headerlink" title="关于自定义注解里面的一些语句"></a>关于自定义注解里面的一些语句</h1><pre><code>String name() default &quot;&quot;;//指定义了name这个属性，默认是空字符串。</code></pre><p>声明注解类型时候，不能用包装类型，只能用基本类型去声明</p><p>我们定义了自己的注解并将其应用在业务逻辑的方法上。所以就需要我们写一个用户程序调用我们的注解。这里需要使用<strong>反射机制</strong>。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p><p><a href="http://www.importnew.com/10294.html" target="_blank" rel="noopener">注解是什么</a></p>]]></content>
+    <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><p>现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.</p><p>当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。</p><p>bean 是组件的意思。</p><a id="more"></a><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）如java内置注解：@Override、@SuppressWarnning等</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等，如java内置注解：@Deprecated(用于标明已经过时的方法或类)等。</li></ul><h1 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h1><p>@Documented 被修饰的注解会生成到javadoc中</p><h1 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h1><p>可以让注解被继承，但这并不是真的继承，只是通过使用@Inherited，可以让子类Class对象使用getAnnotations()获取父类被@Inherited修饰的注解。</p><h1 id="关于自定义注解里面的一些语句"><a href="#关于自定义注解里面的一些语句" class="headerlink" title="关于自定义注解里面的一些语句"></a>关于自定义注解里面的一些语句</h1><pre><code>String name() default &quot;&quot;;//指定义了name这个属性，默认是空字符串。</code></pre><p>声明注解类型时候，不能用包装类型，只能用基本类型去声明</p><pre><code>@Target({ElementType.TYPE})@Retention(RetentionPolicy.RUNTIME)@Documented@Componentpublic @interface Controller {    @AliasFor(annotation = Component.class)    String value() default &quot;&quot;;}</code></pre><p>因为上面除掉元注解外还有@component，说明@controller这个注解属于@component这个注解</p><p>我们定义了自己的注解并将其应用在业务逻辑的方法上。所以就需要我们写一个用户程序调用我们的注解。这里需要使用<strong>反射机制</strong>。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p><p><a href="http://www.importnew.com/10294.html" target="_blank" rel="noopener">注解是什么</a></p>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。&lt;/p&gt;
 &lt;p&gt;现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.&lt;/p&gt;
 &lt;p&gt;当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。&lt;/p&gt;
+&lt;p&gt;bean 是组件的意思。&lt;/p&gt;
     
     </summary>
     
       <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
     
       <category term="注解" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/"/>
+    
+      <category term="注解大体简介" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%E5%A4%A7%E4%BD%93%E7%AE%80%E4%BB%8B/"/>
     
     
       <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
@@ -121,9 +284,9 @@
     <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E8%AF%95%E5%9B%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE/"/>
     <id>http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/</id>
     <published>2019-04-02T13:08:01.000Z</published>
-    <updated>2019-04-04T06:50:05.358Z</updated>
+    <updated>2019-04-11T06:50:22.030Z</updated>
     
-    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p><h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;Index&quot;;    }</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p><pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>接着得记住去原项目根目录下的pom.xml里面添上这样一行:</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p>之后就才显示</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"><p>不然会显示：</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png"><p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p><h1 id="关于该项目用到的注解"><a href="#关于该项目用到的注解" class="headerlink" title="关于该项目用到的注解"></a>关于该项目用到的注解</h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><p>根据代码中给出的解释就是，带了这个注释的类就是控制器，允许通过类路径扫描自动检测实现类，通常与@ResponseMapping这类注释结合使用。</p><p>我刚刚谷歌了一下这方面的知识，用@Controller其实大部分是用来返回字符串，或者是字符串匹配的模板名称，即直接渲染视图，和HTML结合使用的，但是这个前提前后端配合度要高。（单用@Controller并且不做别的处理的话，返回的字符串没有对应的HTML页面的话，就会报错，出现Whitelabel Error Page这个页面）</p><h3 id="在-Controller这个注解里面的-AliasFor"><a href="#在-Controller这个注解里面的-AliasFor" class="headerlink" title="在@Controller这个注解里面的@AliasFor"></a>在@Controller这个注解里面的@AliasFor</h3><pre><code>@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.METHOD)@Documentedpublic @interface AliasFor {    /**     * Alias for {@link #attribute}.     * &lt;p&gt;Intended to be used instead of {@link #attribute} when {@link #annotation}     * is not declared &amp;mdash; for example: {@code @AliasFor(&quot;value&quot;)} instead of     * {@code @AliasFor(attribute = &quot;value&quot;)}.     */    @AliasFor(&quot;attribute&quot;)    String value() default &quot;&quot;;    /**     * The name of the attribute that &lt;em&gt;this&lt;/em&gt; attribute is an alias for.     * @see #value     */    @AliasFor(&quot;value&quot;)    String attribute() default &quot;&quot;;}</code></pre><p>就相当于value的用法和attribute的用法是一样的，值也是一样的，在这里来给注解的属性起别名，使它们互为别名，意义相同</p><h3 id="返回字符串对应的html"><a href="#返回字符串对应的html" class="headerlink" title="返回字符串对应的html"></a>返回字符串对应的html</h3><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;index&quot;;    } }</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h3 id="返回json格式数据"><a href="#返回json格式数据" class="headerlink" title="返回json格式数据"></a>返回json格式数据</h3><p>如果想用@Controller这个注释可以返回json的话，就要在返回json的方法前面加上@ResponseBody，这样就会在浏览器页面输出json的格式。</p><p>user类：</p><pre><code>public class User {    private String name;    public void setName(String name) {        this.name = name;    }    public String getName() {        return this.name;    }}</code></pre><p>controller层：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    @ResponseBody    public User userTest() {        User user = new User();        user.setName(&quot;haha&quot;);        return user;    }}</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result2.png"></center><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>这个注解和@Controller不一样，是由@Controller和@ResponseBody合在一起的，返回的是一个对象（字符串也可，json格式数据也可等等），其实和@Controller放在类上面，然后在需要返回json格式数据的方法上面加一个@ResponseBody的效果一样，只是一个是整体，一个是局部。（这个可以返回Restful风格—-我也不知道什么风格，但是看到还要配置才能用，所以等以后用到了再来补吧。）</p><h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b534b394dc7a" target="_blank" rel="noopener">关于@Controller和@RestController</a></p>]]></content>
+    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p><h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;Index&quot;;    }</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p><pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>接着得记住去原项目根目录下的pom.xml里面添上这样一行:</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p>Thymeleaf是一个XML/XHTML/HTML5模板引擎，用来渲染页面的。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。<br>之后就才显示</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"><p>不然会显示：</p><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png"><p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p><h1 id="运行后出现page-no-find"><a href="#运行后出现page-no-find" class="headerlink" title="运行后出现page no find"></a>运行后出现page no find</h1><p>默认情况下spring boot只会扫描启动类当前包和以下的包，在如果配置正确，但是还是没有运行出现自己想要的界面的情况下，可能有原因是在Application.class这个类扫描时候没有扫描到你的controller控制类，所以你可以在你的Application.class这个类里面@SpringBootApplication下面加上@componentscan(controller所在的包。)</p><p>@SpringBootApplication<br>@componentscan(basePackages = “com.didispace.*”)</p><h1 id="关于该项目用到的注解"><a href="#关于该项目用到的注解" class="headerlink" title="关于该项目用到的注解"></a>关于该项目用到的注解</h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><p>根据代码中给出的解释就是，带了这个注释的类就是控制器，允许通过类路径扫描自动检测实现类，通常与@ResponseMapping这类注释结合使用。</p><p>我刚刚谷歌了一下这方面的知识，用@Controller其实大部分是用来返回字符串，或者是字符串匹配的模板名称，即直接渲染视图，和HTML结合使用的，但是这个前提前后端配合度要高。（单用@Controller并且不做别的处理的话，返回的字符串没有对应的HTML页面的话，就会报错，出现Whitelabel Error Page这个页面）</p><h3 id="在-Controller这个注解里面的-AliasFor"><a href="#在-Controller这个注解里面的-AliasFor" class="headerlink" title="在@Controller这个注解里面的@AliasFor"></a>在@Controller这个注解里面的@AliasFor</h3><pre><code>@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.METHOD)@Documentedpublic @interface AliasFor {    /**     * Alias for {@link #attribute}.     * &lt;p&gt;Intended to be used instead of {@link #attribute} when {@link #annotation}     * is not declared &amp;mdash; for example: {@code @AliasFor(&quot;value&quot;)} instead of     * {@code @AliasFor(attribute = &quot;value&quot;)}.     */    @AliasFor(&quot;attribute&quot;)    String value() default &quot;&quot;;    /**     * The name of the attribute that &lt;em&gt;this&lt;/em&gt; attribute is an alias for.     * @see #value     */    @AliasFor(&quot;value&quot;)    String attribute() default &quot;&quot;;}</code></pre><p>就相当于value的用法和attribute的用法是一样的，值也是一样的，在这里来给注解的属性起别名，使它们互为别名，意义相同</p><h3 id="返回字符串对应的html"><a href="#返回字符串对应的html" class="headerlink" title="返回字符串对应的html"></a>返回字符串对应的html</h3><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;index&quot;;    } }</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h3 id="返回json格式数据"><a href="#返回json格式数据" class="headerlink" title="返回json格式数据"></a>返回json格式数据</h3><p>如果想用@Controller这个注释可以返回json的话，就要在返回json的方法前面加上@ResponseBody，这样就会在浏览器页面输出json的格式。</p><p>user类：</p><pre><code>public class User {    private String name;    public void setName(String name) {        this.name = name;    }    public String getName() {        return this.name;    }}</code></pre><p>controller层：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    @ResponseBody    public User userTest() {        User user = new User();        user.setName(&quot;haha&quot;);        return user;    }}</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result2.png"></center><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>这个注解和@Controller不一样，是由@Controller和@ResponseBody合在一起的，返回的是一个对象（字符串也可，json格式数据也可等等），其实和@Controller放在类上面，然后在需要返回json格式数据的方法上面加一个@ResponseBody的效果一样，只是一个是整体，一个是局部。（这个可以返回Restful风格—-我也不知道什么风格，但是看到还要配置才能用，所以等以后用到了再来补吧。）</p><h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b534b394dc7a" target="_blank" rel="noopener">关于@Controller和@RestController</a><br><a href="http://blog.didispace.com/springbootweb/" target="_blank" rel="noopener">关于spring boot的学习</a></p>]]></content>
     
     <summary type="html">
     
@@ -332,178 +495,6 @@
     
     
       <category term="python用法" scheme="http://aimasa.github.io/tags/python%E7%94%A8%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>了解二维码(四)：Reed-Solomon code</title>
-    <link href="http://aimasa.github.io/2019/03/05/RS-code/"/>
-    <id>http://aimasa.github.io/2019/03/05/RS-code/</id>
-    <published>2019-03-05T08:31:59.000Z</published>
-    <updated>2019-03-29T11:03:35.525Z</updated>
-    
-    <content type="html"><![CDATA[<p>在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.</p><p>也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。</p><a id="more"></a><p>与BCH码类似，Reed-Solomon码通过将表示消息的多项式除以不可约的生成多项式来编码，然后余数是RS码，我们将其附加到原始消息。</p><p>我们之前曾说过，BCH码和大多数其他纠错码背后的原理是使用一个缩小的词典，其中包含非常不同的词，以便最大化词之间的距离，而更长的词有更大的距离：这里的原理是相同的，首先是因为我们用增加距离的附加符号（余数）来延长原始信息，其次因为余数几乎是唯一的（由于精心设计的不可约生成多项式），因此可以通过巧妙的算法利用它来推导部分原始消息。</p><p>总结一下，就像加密一样：我们的生成多项式是我们的编码字典，多项式除法是使用字典（生成多项式）将我们的消息转换为RS代码的运算符。（我们的消息是明文，按多项式除法使用编码字典这个算法而转化为RS代码的运算符）</p><blockquote><p>加密：对原来为明文的文件或者数据按照某种算法进行处理，使之变成一段不可读的代码，这段代码一般被叫做密文。只有在输入对应的密钥之后才能显示出本来内容。</p></blockquote><h1 id="RS生成多项式"><a href="#RS生成多项式" class="headerlink" title="RS生成多项式"></a>RS生成多项式</h1><p>RS码使用类似于BCH码的方法去生成多项式，生成多项式是$\,\left (x-a^{n} \right)\,$的乘积，在QR码中从$\,n=0\,$开始，例如：</p><blockquote><p>$\,g_{4}\, =\, \left (x-\alpha ^{0}  \right )\left (x-\alpha ^{1}  \right )\left (x-\alpha ^{2}  \right )\left (x-\alpha ^{3}  \right )=  01 x^{4} + 0f x^{3} + 36 x^{2} + 78 x + 40\,$</p></blockquote><p>这是一个计算了指定n个纠错符号的RS码需要的生成多项式。</p><pre><code>def rs_generator_poly(nsym):    g = [1]    for i in range(0, nsym):        g = gf_poly_mul(g, [1, gf_pow(2, i)])return g</code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p><h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chufa.png"></center><p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p> <center><img src="http://pp48biywe.bkt.clouddn.com/static/images/RS-code/chenfa.png"></center><p>于是得出编码信息为12 34 56 37 e6 78 d9。</p><pre><code>def gf_poly_div(dividend, divisor):    &#39;&#39;&#39;Fast polynomial division by using Extended Synthetic Division and optimized for GF(2^p) computations    (doesn&#39;t work with standard polynomials outside of this galois field, see the Wikipedia article for generic algorithm).&#39;&#39;&#39;    # CAUTION: this function expects polynomials to follow the opposite convention at decoding:    # the terms must go from the biggest to lowest degree (while most other functions here expect    # a list from lowest to biggest degree). eg: 1 + 2x + 5x^2 = [5, 2, 1], NOT [1, 2, 5]    msg_out = list(dividend) # Copy the dividend    #normalizer = divisor[0] # precomputing for performance    for i in range(0, len(dividend) - (len(divisor)-1)):# 因为余数得比除数小。所以就让余数的长度比除数小1.        #msg_out[i] /= normalizer # for general polynomial division (when polynomials are non-monic), the usual way of using        # synthetic division is to divide the divisor g(x) with its leading coefficient, but not needed here.        coef = msg_out[i] # precaching        if coef != 0: # log(0) is undefined, so we need to avoid that case explicitly (and it&#39;s also a good optimization).            for j in range(1, len(divisor)): # in synthetic division, we always skip the first coefficient of the divisior,                                          # because it&#39;s only used to normalize the dividend coefficient                if divisor[j] != 0: # log(0) is undefined                    msg_out[i + j] ^= gf_mul(divisor[j], coef) # 这里因为伽罗瓦域中多项式除法的特殊性，所以直接跳过divisor[0]，因为第一个数是为了量定除数需要乘多少去与被除数求余。然后后面的商就依次根据divisor[j]去确定。                    # (but xoring directly is faster): msg_out[i + j] += -divisor[j] * coef# The resulting msg_out contains both the quotient and the remainder, the remainder being the size of the divisor# (the remainder has necessarily the same degree as the divisor -- not length but degree == length-1 -- since it&#39;s# what we couldn&#39;t divide from the dividend), so we compute the index where this separation is, and return the quotient and remainder.    separator = -(len(divisor)-1)    return msg_out[:separator], msg_out[separator:] # 返回商和余数，再在后面的公式把商加在msg_out数组前头</code></pre><p>然后出来了一个高效的编码方法：</p><pre><code>def rs_encode_msg(msg_in, nsym):    &#39;&#39;&#39;Reed-Solomon 主要的编码功能, 用的是多项式长除法 (algorithm Extended Synthetic Division)&#39;&#39;&#39;    if (len(msg_in) + nsym) &gt; 255: raise ValueError(&quot;Message is too long (%i when max is 255)&quot; % (len(msg_in)+nsym))    gen = rs_generator_poly(nsym)    # Init msg_out with the values inside msg_in and pad with len(gen)-1 bytes (which is the number of ecc symbols).    msg_out = [0] * (len(msg_in) + len(gen)-1)    # Initializing the Synthetic Division with the dividend (= input message     polynomial)    msg_out[:len(msg_in)] = msg_in    # Synthetic division main loop    for i in range(len(msg_in)):        # Note that it&#39;s msg_out here, not msg_in. Thus, we reuse the updated     value at each iteration        # (this is how Synthetic Division works: instead of storing in a temporary register the intermediate values,        # we directly commit them to the output).        coef = msg_out[i]        # log(0) is undefined, so we need to manually check for this case. There&#39;s no need to check        # the divisor here because we know it can&#39;t be 0 since we generated it.        if coef != 0:            # in synthetic division, we always skip the first coefficient of the divisior, because it&#39;s only used to normalize the dividend coefficient (which is here useless since the divisor, the generator polynomial, is always monic)            for j in range(1, len(gen)):                msg_out[i+j] ^= gf_mul(gen[j], coef) # equivalent to msg_out[i+j] += gf_mul(gen[j], coef)    # At this point, the Extended Synthetic Divison is done, msg_out contains the quotient in msg_out[:len(msg_in)]    # and the remainder in msg_out[len(msg_in):]. Here for RS encoding, we don&#39;t need the quotient but only the remainder    # (which represents the RS code), so we can just overwrite the quotient with the input message, so that we get    # our complete codeword composed of the message + code.    msg_out[:len(msg_in)] = msg_in    return msg_out</code></pre><p>这段新的代码把编码和长除法功能加在了一起，语句更简短。</p><p>这种算法速度更快，但在实际应用中仍然很慢，特别是在Python中。 有一些方法可以通过使用各种技巧来优化速度，例如内联（而不是gf_mul，替换为操作以避免调用），通过预计算（gen和coef的对数，甚至通过生成乘法表 -  通过使用内存视图（比如通过更改所有列表），使用静态类型构造（将gf_log和gf_exp分配给array.array（’i’，[…]）），但似乎后者在Python中效果不佳 通过使用PyPy运行它，或者将算法转换为Cython或C扩展名</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式.&lt;/p&gt;
-&lt;p&gt;也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="QR" scheme="http://aimasa.github.io/categories/QR/"/>
-    
-      <category term="了解二维码" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
-    
-      <category term="了解二维码(四)：Reed-Solomon code" scheme="http://aimasa.github.io/categories/QR/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81/%E4%BA%86%E8%A7%A3%E4%BA%8C%E7%BB%B4%E7%A0%81-%E5%9B%9B-%EF%BC%9AReed-Solomon-code/"/>
-    
-    
-      <category term="QR" scheme="http://aimasa.github.io/tags/QR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于对数</title>
-    <link href="http://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/"/>
-    <id>http://aimasa.github.io/2019/03/05/基于对数/</id>
-    <published>2019-03-05T08:00:58.000Z</published>
-    <updated>2019-03-29T12:17:52.146Z</updated>
-    
-    <content type="html"><![CDATA[<p>它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧</p><a id="more"></a><h1 id="基于对数"><a href="#基于对数" class="headerlink" title="基于对数"></a>基于对数</h1><p>其中的gf_mult_noLUT(x, 2, prim)源自<a href="https://aimasa.github.io/2019/02/20/RussianPeasant/">俄罗斯农夫算法</a></p><h2 id="基于对数的乘法（次幂的加法）"><a href="#基于对数的乘法（次幂的加法）" class="headerlink" title="基于对数的乘法（次幂的加法）"></a>基于对数的乘法（次幂的加法）</h2><p>但是我们怎么样才能知道10001001是α的几次幂呢？这个问题被称为<a href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">离散对数</a>（离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。）</p><pre><code>gf_exp = [0] * 512 # Create list of 512 elements. In Python 2.6+, consider using bytearraygf_log = [0] * 256def init_tables(prim=0x11d):&#39;&#39;&#39;Precompute the logarithm and anti-log tables for faster computation later, using the provided primitive polynomial.&#39;&#39;&#39;    # prim is the primitive (binary) polynomial. Since it&#39;s a polynomial in the binary sense,    # it&#39;s only in fact a single galois field value between 0 and 255, and not a list of gf values.    global gf_exp, gf_log    gf_exp = [0] * 512 # 就是和gf_log相反的表（gf_log值是下标，gf_log的下标是它的值）    gf_log = [0] * 256 # (把2的幂和它对应的幂会生成的值通过这个下标和对应的值的关系连在一起)    # For each possible value in the galois field 2^8, we will pre-compute the logarithm and anti-logarithm (exponential) of this value    x = 1    for i in range(0, 255):        gf_exp[i] = x # compute anti-log for this value and store it in a table        gf_log[x] = i # compute log at the same time        x = gf_mult_noLUT(x, 2, prim)    # If you use only generator==2 or a power of 2, you can use the following which is faster than gf_mult_noLUT():    #x &lt;&lt;= 1 # multiply by 2 (change 1 by another number y to multiply by a power of 2^y)    #if x &amp; 0x100: #类似于x&gt; = 256，但速度要快得多        #(because 0x100 == 256)        #x ^= prim # substract the primary polynomial to the current value (instead of 255, so that we get a unique set made of coprime numbers), this is the core of the tables generation    #优化：反日志表的大小加倍，这样我们就不需要修改255来保持在边界内    #（因为我们主要使用这个表来增加两个GF数，不再增加）。    for i in range(255, 512):        gf_exp[i] = gf_exp[i - 255]    return [gf_log, gf_exp]</code></pre><p>这段代码会生成一个表，这个表里面是0-256对应的2的这些次幂的答案，然后如果要计算乘法的话，对方给出了一个大值然后用gf_log[x]找出对应的次幂，再进行加法运算。最后的一个循环是为了防止运算出来的幂相加的值超过255，所以把上限改成了512.（$\,2^{255}\,=\,00000001$然后又开始新一轮的循环2次幂。）</p><pre><code>def gf_mul(x,y):if x==0 or y==0:    return 0return gf_exp[gf_log[x] + gf_log[y]]#这样就可以不用再多一步%255去防止gf_exp溢出了的运算了。</code></pre><h2 id="基于对数的除法"><a href="#基于对数的除法" class="headerlink" title="基于对数的除法"></a>基于对数的除法</h2><pre><code>def gf_div(x,y):    if y==0:        raise ZeroDivisionError()    if x==0:        return 0    return gf_exp[(gf_log[x] + 255 - gf_log[y])% 255]</code></pre><p>如果x对应的次幂比y对应的要小的话，加上255找到之后对应的幂还是和本身一样，最后求255的模的意思是让幂保持在0-255之间。0-254内的数值与255-510内的值</p><h2 id="基于对数的次幂"><a href="#基于对数的次幂" class="headerlink" title="基于对数的次幂"></a>基于对数的次幂</h2><pre><code>def gf_pow(x, power):    return gf_exp[(gf_log[x] * power) % 255]</code></pre><h2 id="基于对数的导数"><a href="#基于对数的导数" class="headerlink" title="基于对数的导数"></a>基于对数的导数</h2><pre><code>def gf_inverse(x):    return gf_exp[255 - gf_log[x]] # gf_inverse(x) == gf_div(1, x)</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;它是在伽罗瓦域中将2的幂次方计算出来并存在相应的表中，随时查找到2的不同的幂次方对应的不同的值，然后让乘法除法更加简单快捷。所以这个不属于位运算，只是一个算法的代码示例，以后等更了解一点这些了，再好好细分，现在就这样吧&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="位运算代码示例" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"/>
-    
-      <category term="基于对数乘除法" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0%E4%B9%98%E9%99%A4%E6%B3%95/"/>
-    
-    
-      <category term="基于对数乘除法" scheme="http://aimasa.github.io/tags/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0%E4%B9%98%E9%99%A4%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多项式</title>
-    <link href="http://aimasa.github.io/2019/03/05/%E5%A4%9A%E9%A1%B9%E5%BC%8F/"/>
-    <id>http://aimasa.github.io/2019/03/05/多项式/</id>
-    <published>2019-03-05T07:47:53.000Z</published>
-    <updated>2019-03-29T12:18:04.831Z</updated>
-    
-    <content type="html"><![CDATA[<p>其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。</p><p>其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。</p><a id="more"></a><h1 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h1><p>其中gf_mul(p[i], x)该方法源自<a href="https://aimasa.github.io/2019/03/05/%E5%9F%BA%E4%BA%8E%E5%AF%B9%E6%95%B0/">基于对数的乘法</a></p><h2 id="多项式的加法"><a href="#多项式的加法" class="headerlink" title="多项式的加法"></a>多项式的加法</h2><pre><code>def gf_poly_add(p,q):    r = [0] * max(len(p),len(q))    for i in range(0,len(p)):        r[i+len(r)-len(p)] = p[i]        for i in range(0,len(q)):            r[i+len(r)-len(q)] ^= q[i]#让在伽罗瓦域内的q和p两个多项式相加return r</code></pre><p>多项式相加就是幂次相同的系数相加，所以该方法将两个多项式的不同幂的系数均按幂次大小顺序排序，然后按顺序进行相加。</p><h2 id="多项式的乘法（和一个普通系数的乘法）"><a href="#多项式的乘法（和一个普通系数的乘法）" class="headerlink" title="多项式的乘法（和一个普通系数的乘法）"></a>多项式的乘法（和一个普通系数的乘法）</h2><pre><code>def gf_poly_scale(p,x):    r = [0] * len(p)    for i in range(0, len(p)):        r[i] = gf_mul(p[i], x)# 该方法见基于对数的乘法部分内return r</code></pre><p>就是按照普通多项式乘法进行相乘，让x系数和多项式中各级幂的系数在伽罗瓦域内和x相乘</p><h2 id="两个多项式间的乘法"><a href="#两个多项式间的乘法" class="headerlink" title="两个多项式间的乘法"></a>两个多项式间的乘法</h2><pre><code>def gf_poly_mul(p,q):    &#39;&#39;&#39;Multiply two polynomials, inside Galois Field&#39;&#39;&#39;    # Pre-allocate the result array    r = [0] * (len(p)+len(q)-1)    # Compute the polynomial multiplication (just like the outer product of two vectors,    # we multiply each coefficients of p with all coefficients of q)    for j in range(0, len(q)):        for i in range(0, len(p)):            r[i+j] ^= gf_mul(p[i], q[j]) # equivalent to: r[i + j] = gf_add(r[i+j], gf_mul(p[i], q[j]))    # -- you can see it&#39;s your usual polynomial multiplicationreturn r</code></pre><p>就是两个普通的多项式相乘时候，系数分别相乘（比如$\,\left (5x^{2}+4x+1 \right )\cdot \left ( 7x^{2}+9x+1 \right )\,$）其中$\,\left (7x^{2}  \right)  \cdot \left ( 5x^{2}+4x+1  \right )\,$以此类推……</p><p>然后其中i+j的意味着相同次幂的系数，所以在该代码中对他们进行了相加（异或）。</p><p>在该代码中展示的仅仅是在伽罗瓦域中的系数的乘法然后再相加，所以用的是循环i和j，让所有的系数都能互相乘并且相加。</p><h2 id="秦九韶算法"><a href="#秦九韶算法" class="headerlink" title="秦九韶算法"></a>秦九韶算法</h2><p>这也是对多项式求解的一种算法，就是从$\,f \left ( x \right)\,=\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1 \,$中快速得出$\,f \left ( x \right)\,$的解。 <a href="https://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/">详细介绍</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders" target="_blank" rel="noopener">参考网页</a></p><p><a href="https://www.felix021.com/blog/read.php?2116" target="_blank" rel="noopener">参考网页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;其实这个不是位运算，只是把作为多项式的加法和乘法代码示例来进行解释，这是在伽罗瓦域中的加法和乘法，所以其中的加法和乘法均为异或算法。&lt;/p&gt;
-&lt;p&gt;其中的乘法是根据基于对数的乘法来进行的计算，是把被乘数转换成2的幂次方，然后将2的幂次方直接进行相加，最后根据得出的幂次方相加的结果去得出的对数表中找到相应的结果。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="位运算代码示例" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"/>
-    
-      <category term="多项式的加法和乘法" scheme="http://aimasa.github.io/categories/%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%B3%95%E5%92%8C%E4%B9%98%E6%B3%95/"/>
-    
-    
-      <category term="多项式的加法和乘法" scheme="http://aimasa.github.io/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%B3%95%E5%92%8C%E4%B9%98%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>秦九韶算法</title>
-    <link href="http://aimasa.github.io/2019/03/04/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
-    <id>http://aimasa.github.io/2019/03/04/秦九韶算法/</id>
-    <published>2019-03-04T11:14:58.000Z</published>
-    <updated>2019-03-29T12:17:14.720Z</updated>
-    
-    <content type="html"><![CDATA[<p>用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高<br><a id="more"></a></p><h1 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h1><p>普通方法对于多项式（$\,a_{n}x^{n}+a_{n-1}x^{n-1}+…+a_{2}x^{2}+a_{1}x+1\,$）的解是把x的幂次方得出的结果和a乘起来，最后再相加</p><p>而秦九韶的解法是将多项式中的x一层一层的提取出来：$\left ( \left (\left ( a_{n}x+a_{n-1} \right )x+a_{n-2}  \right )x+… \right )x+1$.</p><p>也就相当于在程序中用递归：</p><blockquote><p>$\,f_{1}\,=\,a_{n}x+a_{n-1}\,$</p><p>$\,f_{2}\,=\,f_{1}x+a_{n-2}\,$</p><p>……</p><p>$\,f_{n-1}=f_{n-2}x+a_{1}\,$</p><p>$\,f_{n}=f_{n-1}x+1\,$ </p></blockquote><p>$\,f_{n}\,$为所求</p><p>自然效率会比普通的算法要快许多。</p><h1 id="代码用例"><a href="#代码用例" class="headerlink" title="代码用例"></a>代码用例</h1><pre><code>def gf_poly_eval(poly, x):    &#39;&#39;&#39;基于有限域的秦九韶算法的代码（所以乘法和加法都是一样的意思--都是异或）.&#39;&#39;&#39;    y = poly[0]    for i in range(1, len(poly)):        y = gf_mul(y, x) ^ poly[i]return y</code></pre><p>代码中的gf_mul(x,y)是基于对数表中的乘法中，见<a href="https://aimasa.github.io/2019/01/23/BCH/">笔记</a>的基于对数表的乘法该处。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zh.wikipedia.org/wiki/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">参考维基百科</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用秦九韶算法和普通的计算多项式的算法比起来更为快捷，效率更高&lt;br&gt;
-    
-    </summary>
-    
-      <category term="伽罗瓦域/有限域" scheme="http://aimasa.github.io/categories/%E4%BC%BD%E7%BD%97%E7%93%A6%E5%9F%9F-%E6%9C%89%E9%99%90%E5%9F%9F/"/>
-    
-      <category term="秦九韶算法" scheme="http://aimasa.github.io/categories/%E4%BC%BD%E7%BD%97%E7%93%A6%E5%9F%9F-%E6%9C%89%E9%99%90%E5%9F%9F/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="秦九韶算法" scheme="http://aimasa.github.io/tags/%E7%A7%A6%E4%B9%9D%E9%9F%B6%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多源异构数据采集及实体链接算法研究</title>
-    <link href="http://aimasa.github.io/2019/03/01/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
-    <id>http://aimasa.github.io/2019/03/01/多源异构数据采集及实体链接算法研究/</id>
-    <published>2019-03-01T02:47:17.000Z</published>
-    <updated>2019-03-01T11:04:13.477Z</updated>
-    
-    <content type="html"><![CDATA[<p>老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。</p><a id="more"></a><h1 id="多源异构数据"><a href="#多源异构数据" class="headerlink" title="多源异构数据"></a>多源异构数据</h1><p>就是不同数据库中的数据，在企业信息化建设过程中，因为各业务系统建设和实施数据管理系统的阶段性、技术性和一些其他因素的影响，让企业在发展过程中大量采用不同存储方式的业务数据，而且采用的数据管理系统也不一样，从简单的文件数据库到复杂的网络数据库，它们构成了企业的异构数据源。</p><h1 id="实体链接"><a href="#实体链接" class="headerlink" title="实体链接"></a>实体链接</h1><p>一个实体可以用多个文本表达（多词一义），同一文本可能表达出多个不同的实体（一词多义）。通过进行实体链接，就是让文本中的实体指称和知识库中的实体进行链接。能够让文本中的数据转化为带有实体标注的文本。进而帮助人和计算机理解文本的具体含义。</p><p>个人理解是实体链接就是让文本中的一个词对应一个具体的实体</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/30940524" target="_blank" rel="noopener">参考博客</a></p><p><a href="https://bbs.csdn.net/topics/390383619" target="_blank" rel="noopener">参考帖子</a></p><p><a href="https://www.1xuezhe.exuezhe.com/Qk/art/585002?dbcode=1&amp;flag=2" target="_blank" rel="noopener">参考文献</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;老师叫我帮她整理两个方向的资料，我就边整理边做点笔记好了，多了解一点东西总是好的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="多源异构数据采集及实体链接算法研究" scheme="http://aimasa.github.io/categories/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
-    
-    
-      <category term="多源异构数据采集及实体链接算法研究" scheme="http://aimasa.github.io/tags/%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%8F%8A%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>markdown插入公式</title>
-    <link href="http://aimasa.github.io/2019/02/27/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
-    <id>http://aimasa.github.io/2019/02/27/markdown插入公式/</id>
-    <published>2019-02-27T07:22:31.000Z</published>
-    <updated>2019-03-30T07:55:58.421Z</updated>
-    
-    <content type="html"><![CDATA[<p>实测在<a href="https://www.jianshu.com/p/054484d0892a" target="_blank" rel="noopener">该博客</a>中提到的四种在markdown中插入公式的办法</p><a id="more"></a><h1 id="办法1：借助在线公式编辑器"><a href="#办法1：借助在线公式编辑器" class="headerlink" title="办法1：借助在线公式编辑器"></a>办法1：借助<a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线公式编辑器</a></h1><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_1.png"></center><center>=======></center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_2.png"></center><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa1_3.png"></center><h1 id="办法2：借助Google-Chart服务器"><a href="#办法2：借助Google-Chart服务器" class="headerlink" title="办法2：借助Google Chart服务器"></a>办法2：借助Google Chart服务器</h1><p>在需要插入公式的位置键入如下代码，并在“在此插入Latex公式”中改写成公式即可。</p><pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= 在此插入Latex公式&quot; style=&quot;border:none;&quot;&gt;</code></pre><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa2.png"></center><h1 id="办法3：借助forkosh服务器"><a href="#办法3：借助forkosh服务器" class="headerlink" title="办法3：借助forkosh服务器"></a>办法3：借助forkosh服务器</h1><p>与上一方法类似</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa3.png"></center><h1 id="办法4：借助MathJax引擎！"><a href="#办法4：借助MathJax引擎！" class="headerlink" title="办法4：借助MathJax引擎！"></a>办法4：借助MathJax引擎！</h1><p>在首部添加脚本代码，然后就可以在该文内像在latex中一样书写公式</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/markdown插入公式/fangfa4.png"></center><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>只有方法1和方法4可行，方法1代码多，但是书写简单，无需记住数学公式的参考代码，但是达不到我想要的效果。方法4简单方便。只要你记住数学公式的书写代码，就没有问题了。</p><p>但是他们都是会让数学公式独占一行，所以我谷歌了一下怎么办，根据<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这篇博文</a>去更改了我博客hexo框架和next主题的设置</p><p>（还有根着<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">这个博文</a>改了一下渲染什么的，我也不知道有什么用.）</p><h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>下载插件</p><pre><code>$ npm install hexo-math --save</code></pre><p>在站点配置文件 _config.yml 中添加：</p><pre><code>math:  engine: &#39;mathjax&#39; # or &#39;katex&#39;  mathjax:    # src: custom_mathjax_source    config:      # MathJax config</code></pre><p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:</p><pre><code># MathJax Supportmathjax:  enable: true  per_page: false  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>就是在数学公式的书写代码前面后面各加一个$符号。</p><p>然后弄完了之后我的有些图片能显示有些图片不能，我也不知道为什么，所以我经过激烈的心理斗争，决定，算了，不用这个方法了，前面的方法也挺好用的。</p><h2 id="最后的使用办法"><a href="#最后的使用办法" class="headerlink" title="最后的使用办法"></a>最后的使用办法</h2><p>我找到了<a href="https://blog.csdn.net/emptyset110/article/details/50123231" target="_blank" rel="noopener">这个博客</a><br>根据它里面教我的去执行</p><pre><code>npm install hexo-math --savehexo math install</code></pre><p>然后更改</p><p>用编辑器打开marked.js（在./node_modules/marked/lib/中）</p><p>Step 1:<br>    escape: /^\([\`*{}[]()# +-.!_&gt;])/,</p><p>替换成</p><pre><code>escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</code></pre><p>这一步是在原基础上取消了对\\,\{,\}的转义(escape)</p><p>Step 2:<br>    em: /^\b_((?:<sup><a href="#fn__" id="reffn__">_</a></sup>|__)+?)_\b|^*((?:**|[\s\S])+?)*(?!*)/,</p><p>替换成</p><pre><code>em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</code></pre><p>这样一来MathJax就能与marked.js共存了。</p><p>就这样，我又能很好地插入数学公式了。</p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><p><a href="https://juejin.im/post/5a6721bd518825733201c4a2" target="_blank" rel="noopener">参考文档</a></p><p><a href="https://link.juejin.im/?target=http%3A%2F%2Ffiles.cnblogs.com%2Fhoukai%2FLATEX%25E6%2595%25B0%25E5%25AD%25A6%25E7%25AC%25A6%25E5%258F%25B7%25E8%25A1%25A8.rar" target="_blank" rel="noopener">该文档提供的下载地址</a></p><p>如果该链接打不开，请进入参考文档去寻找正确地址。</p><p><a href="https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/" target="_blank" rel="noopener">用mathjax对公式进行渲染</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;实测在&lt;a href=&quot;https://www.jianshu.com/p/054484d0892a&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;该博客&lt;/a&gt;中提到的四种在markdown中插入公式的办法&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="markdown" scheme="http://aimasa.github.io/categories/markdown/"/>
-    
-      <category term="markdown插入公式" scheme="http://aimasa.github.io/categories/markdown/markdown%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/"/>
-    
-    
-      <category term="markdown" scheme="http://aimasa.github.io/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>离散对数(Discrete logarithm)</title>
-    <link href="http://aimasa.github.io/2019/02/27/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
-    <id>http://aimasa.github.io/2019/02/27/离散对数/</id>
-    <published>2019-02-27T06:49:07.000Z</published>
-    <updated>2019-03-29T12:17:46.352Z</updated>
-    
-    <content type="html"><![CDATA[<p>设g为素数p的模循环群的<a href="https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/">原根</a>,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$</p><p>对任意的a，计算： $b=g^{a} mod  p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。</p><p>因为a、b均为整数，不像实数那么“连续”，故称离散对数。</p><a id="more"></a><p><a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a></p><h1 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h1><h2 id="加密方法1—标准Diffie-Hellman算法"><a href="#加密方法1—标准Diffie-Hellman算法" class="headerlink" title="加密方法1—标准Diffie-Hellman算法"></a>加密方法1—标准Diffie-Hellman算法</h2><p>A发送消息m（0&lt;m&lt;p）给B</p><p>A选取一个随机数$\, c\, $作为自己的私钥，然后这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。接着计算$\,X\, = \, m^{c} \, mod \, q\,$，把X的值发送给A</p><p>B选取一个随机数$\, d\, $作为自己的私钥，这个随机数$\, 1\, &lt; \, c\, &lt; \, q\, $并且与$\, q\,-\,1\, $互质。然后拿着从A处得到的X值进行计算：$\, Y\, = \, X^{b}\, mod \, p\, $，得到Y值（其中可以把公式拆开来变成$ \, m^{cd} \, mod \, q\,$）并且把得到的Y发给A</p><p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p><p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p><h2 id="加密方法2—T-ElGamal算法"><a href="#加密方法2—T-ElGamal算法" class="headerlink" title="加密方法2—T. ElGamal算法"></a>加密方法2—T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa1.png"></center><p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p><h2 id="加密方法3—密钥交换"><a href="#加密方法3—密钥交换" class="headerlink" title="加密方法3—密钥交换"></a>加密方法3—密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p><center><img src="http://pp48biywe.bkt.clouddn.com/static/images/离散对数/fangfa2.png"></center><p>这个方法比较容易被程序实现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a} mod  p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;设g为素数p的模循环群的&lt;a href=&quot;https://aimasa.github.io/2019/02/26/%E5%8E%9F%E6%A0%B9/&quot;&gt;原根&lt;/a&gt;,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$&lt;/p&gt;
-&lt;p&gt;对任意的a，计算： $b=g^{a} mod  p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。&lt;/p&gt;
-&lt;p&gt;因为a、b均为整数，不像实数那么“连续”，故称离散对数。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="离散对数" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/"/>
-    
-      <category term="离散对数加密解密" scheme="http://aimasa.github.io/categories/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/"/>
-    
-    
-      <category term="离散对数加密解密" scheme="http://aimasa.github.io/tags/%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/"/>
     
   </entry>
   
