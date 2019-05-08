@@ -128,16 +128,16 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="QR图形介绍   二维码一共有40个尺寸。官方叫版本Version。Version 1是21 x 21的矩阵，Version 2是 25 x 25的矩阵，Version 3是29的尺寸，每增加一个version，就会增加4的尺寸，公式是： (V-1)x4 + 21（V是版本号） 最高Version 40，(40-1)*4+21 = 177，所以最高是177 x 177 的正方形。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/QR_area.png">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/position.jpg">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/position2.jpg">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/DarkModule.png">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/QR_data.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/QR_infor/QR_area.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/QR_infor/position.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/QR_infor/position2.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/QR_infor/DarkModule.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/QR_infor/QR_data.png">
 <meta property="og:updated_time" content="2019-03-29T11:02:30.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解二维码(一):二维码的组成部分解释与介绍">
 <meta name="twitter:description" content="QR图形介绍   二维码一共有40个尺寸。官方叫版本Version。Version 1是21 x 21的矩阵，Version 2是 25 x 25的矩阵，Version 3是29的尺寸，每增加一个version，就会增加4的尺寸，公式是： (V-1)x4 + 21（V是版本号） 最高Version 40，(40-1)*4+21 = 177，所以最高是177 x 177 的正方形。">
-<meta name="twitter:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/QR_area.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/QR_infor/QR_area.png">
 
 
 
@@ -498,13 +498,13 @@
 <blockquote>
 <p> 二维码一共有40个尺寸。官方叫版本Version。Version 1是21 x 21的矩阵，Version 2是 25 x 25的矩阵，Version 3是29的尺寸，每增加一个version，就会增加4的尺寸，公式是：<strong> (V-1)x4 + 21（V是版本号）</strong> 最高Version 40，(40-1)*4+21 = 177，所以最高是177 x 177 的正方形。<br><a id="more"></a></p>
 </blockquote>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/QR_area.png"></center>
+<center><img src="http://pictures.aimasa.club/static/images/QR_infor/QR_area.png"></center>
 
 <h3 id="功能图形起到定位的作用："><a href="#功能图形起到定位的作用：" class="headerlink" title="功能图形起到定位的作用："></a>功能图形起到定位的作用：</h3><p><a href="https://www.cnblogs.com/magicsoar/p/4483032.html" title="参考二维码各部分名称的博客链接" target="_blank" rel="noopener">参考博客链接</a>，<a href="https://blog.csdn.net/kelindame/article/details/45155185" title="参考二维码各部分详细介绍" target="_blank" rel="noopener">参考博客链接</a></p>
 <ul>
 <li>位置探测图形：最大的正方形就是位置探测图形（由三个黑白相间的大正方形嵌套组成，分别位于二维码左上角、右上角、左下角，目的是为了确定二维码的大小和位置。）这个图形的大小是固定的，不会因为二维码的版本而改变。(它的旁边还有八个加七个的由白块组成的白边，为了更好的定位而存在的)</li>
 </ul>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/position.jpg"></center>
+<center><img src="http://pictures.aimasa.club/static/images/QR_infor/position.jpg"></center>
 
 <ul>
 <li>定位图形：连接着位置探测图形的有规律的黑白相间的那条线（由<strong>两条</strong>黑白相间的直线组成，便于确定二维码的角度，纠正扭曲。）<strong> 定位符是因为二维码有40个版本尺寸,当尺寸过大后需要有根标准线，不然扫描的时候可能会扫歪。 </strong>，它的长度很容易计算出来，一共两条线，用二维码的长度减掉两个位置探测图形的长度就可以得出每条线的长度了。</li>
@@ -512,7 +512,7 @@
 <ul>
 <li>校正图形：和位置探测图形比起来比较小，和定位图形的黑白相间的小正方形比起来要大的正方形（仅在版本2以上存在，由三个黑白相间的小正方形嵌套组成，便于确定中心，纠正扭曲。）<strong> 每个版本的存储数据容量不一样,版本越高就意味着数据容量越大，纠错能力越强 </strong>这个图形的大小是固定的，不会因为二维码的版本而改变。</li>
 </ul>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/position2.jpg"></center>
+<center><img src="http://pictures.aimasa.club/static/images/QR_infor/position2.jpg"></center>
 
 <p>Alignment Patterns(对齐模式)：也是用于定位，只有version2以上才有用。</p>
 <h3 id="数据区记录了具体的数据信息，纠错信息与版本信息："><a href="#数据区记录了具体的数据信息，纠错信息与版本信息：" class="headerlink" title="数据区记录了具体的数据信息，纠错信息与版本信息："></a>数据区记录了具体的数据信息，纠错信息与版本信息：</h3><ul>
@@ -525,7 +525,7 @@
 <li><p>Dark Module：这是二维码的标志，每个二维码都有。</p>
 </li>
 </ul>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/DarkModule.png"></center>
+<center><img src="http://pictures.aimasa.club/static/images/QR_infor/DarkModule.png"></center>
 
 <p>此外二维码的外围还留有一圈空白区，主要是为了便于识别而存在。其中在位置探测图形周围有一圈白边（一个单位宽），这是分隔符，位于每个定位标识和编码区域之间用于区分。</p>
 <h3 id="纠错码和编码信息"><a href="#纠错码和编码信息" class="headerlink" title="纠错码和编码信息"></a>纠错码和编码信息</h3><p>除了上述说的这些外，就还只有纠错码和编码了。</p>
@@ -540,7 +540,7 @@
 <p><a href="https://coolshell.cn/articles/10590.html" target="_blank" rel="noopener">参考博文</a></p>
 <p>QR码中，不同版本不同纠错级别都有相对应的数据存储容量，输入的字符越多，那相对应的QR码就要越大。</p>
 <p>以下这个表是根据版本以及纠错级别对应的最佳的输入的数据的字符个数</p>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/QR_infor/QR_data.png"></center>
+<center><img src="http://pictures.aimasa.club/static/images/QR_infor/QR_data.png"></center>
 
 
       

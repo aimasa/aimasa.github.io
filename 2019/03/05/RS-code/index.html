@@ -128,13 +128,13 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式. 也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/RS-code/chufa.png">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/RS-code/chenfa.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/RS-code/chufa.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/RS-code/chenfa.png">
 <meta property="og:updated_time" content="2019-03-29T11:03:35.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解二维码(四)：Reed-Solomon code">
 <meta name="twitter:description" content="在前面我们学习了有限域和多项式，可是为什么要学习它们呢，是因为这是像Reed-Solomon这样的纠错码的主要见解：我们不是仅仅将消息视为一系列（ASCII）数字，而是将其视为遵循非常明确的有限域算法规则的多项式. 也就是通过多项式和有限域算法表示数据，我们给数据添加了一个结构，消息的值仍然不变，而且这个结构还能让我们通过它利用定义良好的数学规则对损坏的消息进行修复操作。">
-<meta name="twitter:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/RS-code/chufa.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/RS-code/chufa.png">
 
 
 
@@ -512,10 +512,10 @@
 return g
 </code></pre><p>这个是根据nsym是判断多项式需要nsym个$\,\left (x-a^{n} \right)\,$的乘积</p>
 <h1 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h1><p>除法中</p>
- <center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/RS-code/chufa.png"></center>
+ <center><img src="http://pictures.aimasa.club/static/images/RS-code/chufa.png"></center>
 
 <p>其中除数与商之间的乘法就是用的在有限域中的乘法，如果乘积太大，就mod一个不可约多项式（通常是100011101）然后把得出的乘积控制在256的范围内，再继续往下计算。以下是其中一部分的乘法得出的乘积再放进除法公式中继续运算。</p>
- <center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/RS-code/chenfa.png"></center>
+ <center><img src="http://pictures.aimasa.club/static/images/RS-code/chenfa.png"></center>
 
 <p>于是得出编码信息为12 34 56 37 e6 78 d9。</p>
 <pre><code>def gf_poly_div(dividend, divisor):

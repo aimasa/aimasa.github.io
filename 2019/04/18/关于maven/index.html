@@ -128,12 +128,12 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面&amp;lt;/dependencies&amp;gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了还有别的，所以就去查了一些资料，然后总结在这。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/关于maven/life.png">
 <meta property="og:updated_time" content="2019-04-30T08:32:30.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于maven">
 <meta name="twitter:description" content="之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面&amp;lt;/dependencies&amp;gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了还有别的，所以就去查了一些资料，然后总结在这。">
-<meta name="twitter:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/关于maven/life.png">
 
 
 
@@ -482,7 +482,7 @@
 <p>maven install时候，会自动把pom里面添加的依赖下载下来。</p>
 <h1 id="maven的生命周期"><a href="#maven的生命周期" class="headerlink" title="maven的生命周期"></a>maven的生命周期</h1><p>maven内部有三个构建生命周期：分别是：clean, default, site</p>
 <p>我在那个博客里面找到了这张展示default构建生命周期核心阶段的图：</p>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png"></center>
+<center><img src="http://pictures.aimasa.club/static/images/关于maven/life.png"></center>
 
 <p>当执行mvn install时候，maven就会自动执行生命周期中的validate, compile, test, package, verify, install这些阶段，并将 package 生成的包发布到本地仓库中。</p>
 <p>Maven 将构建过程定义为 default lifecycle</p>

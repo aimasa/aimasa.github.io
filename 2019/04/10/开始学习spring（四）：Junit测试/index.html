@@ -128,12 +128,12 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="跟着博客开始学怎么用Junit对写出的部分代码进行单元测试。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png">
 <meta property="og:updated_time" content="2019-04-12T07:51:27.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始学习spring（四）：Junit测试">
 <meta name="twitter:description" content="跟着博客开始学怎么用Junit对写出的部分代码进行单元测试。">
-<meta name="twitter:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png">
 
 
 
@@ -525,7 +525,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 <h2 id="RequestBuilder"><a href="#RequestBuilder" class="headerlink" title="RequestBuilder"></a>RequestBuilder</h2><p>RequestBuilder这个是用来存放模拟输入的命令的。比如在这里我要测试控制层的输出结果是不是我想要的，然后我会用RequestBuilder.get/post/put…(/网址/).param()…这样去模拟数据输入，进而测试程序有没有错误。</p>
 <pre><code>        request = get(&quot;/users/&quot;);
 </code></pre><p>RequestBuilder执行完这一步之后，里面会存放如下参数：</p>
-<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png"></center>
+<center><img src="http://pictures.aimasa.club/static/images/开始学习spring（四）：Junit测试/RequestBuilder.png"></center>
 
 <p>可以从图中看到里面有我刚开始设置进去的网址”/users”,然后其他值设置之类地方都是显示null，或者[]或者{}。</p>
 <h1 id="关于content-string-equalTo-xxx"><a href="#关于content-string-equalTo-xxx" class="headerlink" title="关于content().string(equalTo(xxx))"></a>关于content().string(equalTo(xxx))</h1><p>跟着敲完对控制层的测试类之后，一直报错，我debug发现，不是程序里面的问题，是我参数出的问题。</p>
