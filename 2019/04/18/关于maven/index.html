@@ -128,12 +128,12 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面&amp;lt;/dependencies&amp;gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了还有别的，所以就去查了一些资料，然后总结在这。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="http://pp48biywe.bkt.clouddn.com/static/images/关于maven/life.png">
-<meta property="og:updated_time" content="2019-04-29T07:13:58.353Z">
+<meta property="og:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png">
+<meta property="og:updated_time" content="2019-04-30T08:32:30.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于maven">
 <meta name="twitter:description" content="之前一直只是单纯的知道maven是用来加载库的，然后去代码里面调用它。里面&amp;lt;/dependencies&amp;gt;这里面是存放需要被调用的库的依赖。但是maven里面包括的内容除了还有别的，所以就去查了一些资料，然后总结在这。">
-<meta name="twitter:image" content="http://pp48biywe.bkt.clouddn.com/static/images/关于maven/life.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png">
 
 
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  1.4k
                 </span>
               
 
@@ -447,7 +447,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  5
                 </span>
               
             </div>
@@ -482,7 +482,7 @@
 <p>maven install时候，会自动把pom里面添加的依赖下载下来。</p>
 <h1 id="maven的生命周期"><a href="#maven的生命周期" class="headerlink" title="maven的生命周期"></a>maven的生命周期</h1><p>maven内部有三个构建生命周期：分别是：clean, default, site</p>
 <p>我在那个博客里面找到了这张展示default构建生命周期核心阶段的图：</p>
-<center><img src="http://pp48biywe.bkt.clouddn.com/static/images/关于maven/life.png"></center>
+<center><img src="http://pictures.aimasa.club.qiniudns.com/static/images/关于maven/life.png"></center>
 
 <p>当执行mvn install时候，maven就会自动执行生命周期中的validate, compile, test, package, verify, install这些阶段，并将 package 生成的包发布到本地仓库中。</p>
 <p>Maven 将构建过程定义为 default lifecycle</p>
@@ -520,6 +520,11 @@
 <li>步骤 4 － 在一个或多个远程仓库中搜索依赖的文件，如果找到则下载到本地仓库已被将来引用，否则 Maven 将停止处理并抛出错误（无法找到依赖的文件）。</li>
 </ul>
 <p>———————————<a href="https://wiki.jikexueyuan.com/project/maven/repositories.html" target="_blank" rel="noopener">摘自极客学院maven教程</a></p>
+<h1 id="关于-xxx-version"><a href="#关于-xxx-version" class="headerlink" title="关于${xxx.version}"></a>关于${xxx.version}</h1><p>一般，会经常看到官网上放出的写maven依赖中有个语句是</p>
+<pre><code>&lt;version&gt;${xxx.version}&lt;version&gt;
+</code></pre><p>但是maven总是报错，是因为你这里没有指明这个添加的依赖的版本，maven是不会自动给你找到相关依赖的最新版本的包并且去下载的，所以你需要在<properties></properties>里面加上  </p>
+<pre><code>&lt;xxx.version&gt;1.3.0.Final&lt;/xxx.version&gt;
+</code></pre><p>这样的话，就是<strong>${xxx.version}</strong>的值就是对应给出的<strong>1.3.0.Final</strong>了。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b4ef9978d85d" target="_blank" rel="noopener">maven入门</a></p>
 <p><a href="https://www.jianshu.com/p/fd43b3d0fdb0" target="_blank" rel="noopener">maven生命周期</a></p>
 <p><a href="https://wiki.jikexueyuan.com/project/maven/repositories.html" target="_blank" rel="noopener">极客学院maven教程</a></p>
@@ -542,7 +547,7 @@
   <p><span>本文标题:</span><a href="/2019/04/18/关于maven/">关于maven</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年04月18日 - 15:04</p>
-  <p><span>最后更新:</span>2019年04月29日 - 15:04</p>
+  <p><span>最后更新:</span>2019年04月30日 - 16:04</p>
   <p><span>原始链接:</span><a href="/2019/04/18/关于maven/" title="关于maven">http://aimasa.github.io/2019/04/18/关于maven/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/04/18/关于maven/" aria-label="复制成功！"></i></span>
   </p>
@@ -714,7 +719,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -792,7 +797,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是pom"><span class="nav-number">1.</span> <span class="nav-text">什么是pom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maven的生命周期"><span class="nav-number">2.</span> <span class="nav-text">maven的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#阶段和插件的关系"><span class="nav-number">2.1.</span> <span class="nav-text">阶段和插件的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于maven整体"><span class="nav-number">2.3.</span> <span class="nav-text">关于maven整体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">2.4.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-依赖搜索顺序"><span class="nav-number">2.6.</span> <span class="nav-text">Maven 依赖搜索顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是pom"><span class="nav-number">1.</span> <span class="nav-text">什么是pom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maven的生命周期"><span class="nav-number">2.</span> <span class="nav-text">maven的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#阶段和插件的关系"><span class="nav-number">2.1.</span> <span class="nav-text">阶段和插件的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于maven整体"><span class="nav-number">2.3.</span> <span class="nav-text">关于maven整体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">2.4.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-依赖搜索顺序"><span class="nav-number">2.6.</span> <span class="nav-text">Maven 依赖搜索顺序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于-xxx-version"><span class="nav-number">3.</span> <span class="nav-text">关于${xxx.version}</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -826,7 +831,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.9k</span>
+    <span title="Site words total count">30.1k</span>
   
 </div>
 
@@ -1496,9 +1501,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
