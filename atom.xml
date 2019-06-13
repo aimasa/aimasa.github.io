@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-05-10T12:18:16.900Z</updated>
+  <updated>2019-06-13T09:27:48.609Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -17,17 +17,170 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>寻找两个有序数组的中位数</title>
+    <link href="http://aimasa.github.io/2019/06/10/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
+    <id>http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/</id>
+    <published>2019-06-10T13:58:46.000Z</published>
+    <updated>2019-06-13T09:27:48.609Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p><p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p><p>你可以假设 nums1 和 nums2 不会同时为空。</p><pre><code>nums1 = [1, 3]nums2 = [2]</code></pre><p>中位数是：2.0</p><a id="more"></a><p>我自己的解法是用的归并排序，先把两个有序数组排好序放到另一个数组中，再用位运算找到中位，求解，然后结果是运行速度极慢。</p><p>就去看了官方的结题思路</p><p>因为官方有直接的答案，我就在这写写我的理解(ps：其中一些公式什么的是直接从官网复制黏贴来的，图片也是直接截的，手打太费事了)【简要概述】：</p><h1 id="结题思路"><a href="#结题思路" class="headerlink" title="结题思路"></a>结题思路</h1><p>把nums1和nums2都分成两个部分，然后nums1左边的部分和nums2左边的部分，nums1右边的部分nums2右边的部分放在一块，最后左边的部分总数要和右边部分的总数一样多,如下图：</p><center><img src="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png"></center><p>根据这张图里面的左边和右边的部分，我们假设已知$\,i\,$和$\,m\,$还有$\,n\,$的值，然后用公式把$\,j\,$表示出来,其中：</p><ul><li>$len(left_part)=len(right_part)$</li><li>$\max(\text{left_part}) \leq \min(\text{right_part})max(left_part)≤min(right_part)$</li></ul><p>为了保证数据不溢出，所以要保证nums1的长度要小于nums2，这样先对nums1选中i的指向位置后，根据公式算出j的时候就不会发生j指向的nums2数据溢出了。</p><p>这个题目的本质就是，把这两个数组统一分成两部分，前面那个部分都要比后面的部分小，所以，我们必须确保：</p><p>B[j−1]≤A[i] 以及 \text{A}[i-1] \leq \text{B}[j]A[i−1]≤B[j]</p><p>然后i和j的算法公式：</p><p>$ i=0∼m, j=\frac{m+n+1}{2}−i$</p><p>所以，得出i和j之后，我们就可以根据nums1[]和nums2[]这两个有序数组的大小去寻找中位数了。</p><p>其中m+n+1是为了保证中位数落在分割线的左边，如果中位数在中位线的右边的话，很容易因为数据溢出而报错。</p><p>因为很多时候，i会等于nums1[].lenth()，或者j会等于nums2[].lenth()，所以我们在循环保证i的指向是我们想要的地方之后（或者刚好溢出后），进入判断环节。</p><p>如果i等于nums1[].lenth()，那么则意味着j的指向的数字是我们所需要的中位数之一（之所以说是之一，是因为这两个数组长度加在一起是奇数，不然i是不会等于nums1[].lenth()），j也是这样。</p><p>如果i等于0的时候，那么意味着j现在指向的就是中位数，而不需要继续去寻找中位数了。j等于0的时候也是如此。（i或者j指向0，这种情况在两个数组长度为奇数或者偶数的情况下都会出现）</p><p>讲的有点零散，所以我决定直接把代码连接放出来！<br><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-shu-b/" target="_blank" rel="noopener">见官网</a></p><h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays" target="_blank" rel="noopener">力扣（LeetCode）</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。&lt;/p&gt;
+&lt;p&gt;请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。&lt;/p&gt;
+&lt;p&gt;你可以假设 nums1 和 nums2 不会同时为空。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nums1 = [1, 3]
+nums2 = [2]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;中位数是：2.0&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="寻找两个有序数组的中位数" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
+    
+    
+      <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud学习</title>
+    <link href="http://aimasa.github.io/2019/06/05/SpringCloud%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://aimasa.github.io/2019/06/05/SpringCloud学习/</id>
+    <published>2019-06-05T06:28:23.000Z</published>
+    <updated>2019-06-05T08:33:47.760Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前我写的代码都是单架构模式，就是把多个功能放在同一个应用里面，就像之前写的小程序后台一样</p><p>修改了部分代码，就得整体再重新打包编译，没有修改的部分，甚至不需要使用到这部分代码的功能也因为重新打包编译而全部不能使用……</p><p>所以要通过分布式和集群的方式把单架构模式改造一下</p><a id="more"></a><h1 id="微服务概念"><a href="#微服务概念" class="headerlink" title="微服务概念"></a>微服务概念</h1><p>一个springboot就是一个微服务，而且这个springboot做的事情很单一。在我的理解里面，就是把之前的一个整体的分层架构的springboot分成controller、service、dao这三个部分，</p><h1 id="微服务注册"><a href="#微服务注册" class="headerlink" title="微服务注册"></a>微服务注册</h1><p>虽然把springboot分了三部分，但这三部分应该怎么建立连接，相互之间应该怎么进行联络，所以就要引入一个微服务注册中心的概念了。这个微服务注册中心在 springcloud 里就叫做 eureka server, 通过它把就可以把微服务注册起来，以供将来调用。</p><h1 id="微服务访问"><a href="#微服务访问" class="headerlink" title="微服务访问"></a>微服务访问</h1><p>一个服务通过微服务注册中心定位并访问另外一个微服务。</p><h1 id="分布式概念"><a href="#分布式概念" class="headerlink" title="分布式概念"></a>分布式概念</h1><p>博客里介绍：本来一个spring boot就能完成的任务现在分布在多个spring boot里面做。<br>就是不同的部分的微服务可以由不同的团队去开发，耦合度低。</p><h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>就是同样的功能，但是用的端口不一样，如果8080挂了，我可以用8081这个端口的这个功能的微服务，这叫高可用==。</p><h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="http://how2j.cn/k/springcloud/springcloud-distribution/2037.html" target="_blank" rel="noopener">Spring Cloud入门（对这篇博客做的笔记）</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前我写的代码都是单架构模式，就是把多个功能放在同一个应用里面，就像之前写的小程序后台一样&lt;/p&gt;
+&lt;p&gt;修改了部分代码，就得整体再重新打包编译，没有修改的部分，甚至不需要使用到这部分代码的功能也因为重新打包编译而全部不能使用……&lt;/p&gt;
+&lt;p&gt;所以要通过分布式和集群的方式把单架构模式改造一下&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Spring Cloud学习（一）" scheme="http://aimasa.github.io/categories/Spring-Cloud%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    
+      <category term="微服务的概念" scheme="http://aimasa.github.io/categories/Spring-Cloud%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
+    
+    
+      <category term="Spring Cloud" scheme="http://aimasa.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springBootTest注入失败</title>
+    <link href="http://aimasa.github.io/2019/06/05/springBootTest%E6%B3%A8%E5%85%A5%E5%A4%B1%E8%B4%A5/"/>
+    <id>http://aimasa.github.io/2019/06/05/springBootTest注入失败/</id>
+    <published>2019-06-05T01:26:51.000Z</published>
+    <updated>2019-06-05T01:41:11.417Z</updated>
+    
+    <content type="html"><![CDATA[<p>在用测试测dao层时候，虽然都有用注解:dao层用注解@Repository标记，Test类里面注入用@Autowired标记。</p><p>但是还是显示注入失败。</p><a id="more"></a><p>查了半天方法，最后去了spring boot的运行类里面加上了指定包扫描@ComponentScan(basePackages = {“扫描的包的共有的包名部分”})</p><p>然后刚刚发现，之所以扫不出来是因为我包名的命名错误</p><img src="http://pictures.aimasa.club/static/images/springBootTest注入失败/package.png">]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在用测试测dao层时候，虽然都有用注解:dao层用注解@Repository标记，Test类里面注入用@Autowired标记。&lt;/p&gt;
+&lt;p&gt;但是还是显示注入失败。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="Test" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/Test/"/>
+    
+      <category term="SpringBootTest注入失败" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/Test/SpringBootTest%E6%B3%A8%E5%85%A5%E5%A4%B1%E8%B4%A5/"/>
+    
+    
+      <category term="运行error" scheme="http://aimasa.github.io/tags/%E8%BF%90%E8%A1%8Cerror/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>态势感知</title>
+    <link href="http://aimasa.github.io/2019/05/31/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
+    <id>http://aimasa.github.io/2019/05/31/态势感知/</id>
+    <published>2019-05-31T09:31:11.000Z</published>
+    <updated>2019-05-31T09:31:11.351Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传到mongdb的方法</title>
+    <link href="http://aimasa.github.io/2019/05/23/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0mongdb%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://aimasa.github.io/2019/05/23/文件上传到mongdb的方法/</id>
+    <published>2019-05-23T08:38:02.000Z</published>
+    <updated>2019-05-24T06:03:48.951Z</updated>
+    
+    <content type="html"><![CDATA[<p>思路：先构造一个请求体，然后获取文件类型，进行比对，如果不是excel类型拒绝，是则存入请求体.</p><p>把文件内容转成输入流，再从输入流中读取转成二进制byteArray类型</p><p>对这个二进制数组做哈希</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;思路：先构造一个请求体，然后获取文件类型，进行比对，如果不是excel类型拒绝，是则存入请求体.&lt;/p&gt;
+&lt;p&gt;把文件内容转成输入流，再从输入流中读取转成二进制byteArray类型&lt;/p&gt;
+&lt;p&gt;对这个二进制数组做哈希&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="mongodb存储" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/mongodb%E5%AD%98%E5%82%A8/"/>
+    
+    
+      <category term="mongodb" scheme="http://aimasa.github.io/tags/mongodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一种基于结构划分概率的口令攻击方法</title>
+    <link href="http://aimasa.github.io/2019/05/10/%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8E%E7%BB%93%E6%9E%84%E5%88%92%E5%88%86%E6%A6%82%E7%8E%87%E7%9A%84%E5%8F%A3%E4%BB%A4%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/"/>
+    <id>http://aimasa.github.io/2019/05/10/一种基于结构划分概率的口令攻击方法/</id>
+    <published>2019-05-10T12:26:08.000Z</published>
+    <updated>2019-06-12T09:16:48.178Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一种基于结构划分概率的口令攻击方法研究，里面牵涉到了上下文无关文法</p><p>它分析了现在存储用户口令的方法，然后优化了对口令的攻击方法，节约了很多时间</p><a id="more"></a><h1 id="论文大体介绍"><a href="#论文大体介绍" class="headerlink" title="论文大体介绍"></a>论文大体介绍</h1><p>现在的系统大部分是保存口令的Hash值，用户登录时候，会通过<strong>单向函数</strong>（单向函数给定输入值进行输出很简单，但是很难从输出值去推算回输入值）对输入的口令进行运算，再把得到的Hash值去和存储的哈希值进行对比，如果相等，那么就登录成功了。</p><p>也有一些系统是采用加盐值（就是给你的密码加一串随机数，然后再进行哈希运算，得出一串哈希值，这样对于去破解密码的人来说，运算量很大，很难被破解）的方法去进一步保证系统的安全性。</p><p>因为攻击难度提高了，所以攻击者换了个角度，开始从人对口令的记忆方面去思考攻击方法，提高攻击效率。</p><p>这篇论文是重在考虑基于口令划分概率的口令攻击方法。它和另一个方法相比提高了百分之二十到百分之三十的命中率</p><p>这个方法也具有学习功能，能够根据攻击结果更新使用的字典，提高攻击效率。</p><h1 id="近来口令分析简介"><a href="#近来口令分析简介" class="headerlink" title="近来口令分析简介"></a>近来口令分析简介</h1><ul><li><p>结合词典，根据刚开始定义的变形规则去改变刚开始的单词，生成口令。</p><ul><li>但是变形规则简单，数量有限，要人工自己编写</li><li>口令搜索空间有限，它依赖于已经有的字典和变形规则，变形规则简单，虽然可以根据攻击者自己想变形规则去形成复杂口令，但效率不高。</li></ul></li><li><p>基于马尔科夫链的时间存储折中攻击</p><ul><li>（没看）</li></ul></li><li><p>基于概率上下文无关文法口令攻击方法</p><ul><li>用概率上下文无关文法去定义口令结构，就分块定义，然后对每个块的密码内容进行概率排序，然后产生半终端结构（就是比如我分块是A、B、C、D三个块，A概率最大的值是1，那么按A概率排的半终端结构就是1BCD）</li><li>各个块进行概率排序，然后各个按概率大小组合在一起，形成的结构再按概率插入队列</li><li>有了更多的变形规则，搜索空间更大了</li><li>据统计，高概率的具体结构长度大部分都小于等于3（就分的块小于等于分出了三个块）</li><li>命中率低（但相对于前面的，已经提高了命中率）</li></ul></li></ul><h1 id="口令结构分析"><a href="#口令结构分析" class="headerlink" title="口令结构分析"></a>口令结构分析</h1><p>详细数据表明，大部分人都会把口令只划分为一个部分（也就是比较单一）当然还有少部分会使用其他结构</p><p>对口令按具体结构进行初次划分时候，不会把口令结构划分的很小。</p><p>根据数据分析，虽然结构长的口令比较难被攻击者猜测出来，但是很少有用户会选择结构长的口令。</p><h1 id="基于结构划分概率的方法"><a href="#基于结构划分概率的方法" class="headerlink" title="基于结构划分概率的方法"></a>基于结构划分概率的方法</h1><p>所以该文决定对高概率的口令组合结构根据用户习惯进行再次划分</p><p>主要步骤：</p><ul><li>预处理</li><li>口令攻击阶段</li></ul><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><ul><li>具体结构：就是根据用户设置的口令而划分的结构（没有被处理过的那种）</li><li>抽取子结构：就是从具体结构中划分出来的小结构再分类别归类，从而形成了抽取子结构。eg:A（字母）、D（数字），具体结构是：ADAD =&gt; {AA，DD}（分类别归类），其中抽取子结构为：$\bar{A}\, =\, AA\,$</li><li>再对具体结构根据它对应的抽取子结构进行归类，再计算该结构的使用概率。</li></ul><p>论文中使用了一种概率统计方法：</p><p>$p\, =\frac{NUM_{ss_{i}}} {NUM_{es_{j}}}$ </p><p>其中分母表示的是具有这个抽取子结构的数目，分子是对应的具有此划分子结构数目（就是对具体子结构分类别归类后，不同结构组成同一抽取子结构的结构）</p><p>$\,ss_{i}\,$表示第i个划分子结构,$\,es_{j}\,$表示二对应的第j个抽取子结构.</p><p>由论文总结的数据可以得知：用户口令单一结构的组成占大多数。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] 邹静,林东岱,郝春辉.一种基于结构划分概率的口令攻击方法[J].计算机学报,2014,37(05):1206-1215.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一种基于结构划分概率的口令攻击方法研究，里面牵涉到了上下文无关文法&lt;/p&gt;
+&lt;p&gt;它分析了现在存储用户口令的方法，然后优化了对口令的攻击方法，节约了很多时间&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数学导论" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
+    
+      <category term="上下文无关文法" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/"/>
+    
+      <category term="论文赏析（只有赏）" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/%E8%AE%BA%E6%96%87%E8%B5%8F%E6%9E%90%EF%BC%88%E5%8F%AA%E6%9C%89%E8%B5%8F%EF%BC%89/"/>
+    
+    
+      <category term="数学导论" scheme="http://aimasa.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>学习爬虫（一）：安装selenium和ChromeDriver</title>
     <link href="http://aimasa.github.io/2019/05/10/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AE%89%E8%A3%85selenium%E5%92%8CChromeDriver/"/>
     <id>http://aimasa.github.io/2019/05/10/学习爬虫（一）：安装selenium和ChromeDriver/</id>
     <published>2019-05-10T09:33:44.000Z</published>
-    <updated>2019-05-10T12:18:16.900Z</updated>
+    <updated>2019-06-12T09:14:44.057Z</updated>
     
-    <content type="html"><![CDATA[<p>和老师说了好久的要学机器学习，今天终于开始学了。先是从网上找教程，从selenium这个库开始学。</p><a id="more"></a><h1 id="关于selenium"><a href="#关于selenium" class="headerlink" title="关于selenium"></a>关于selenium</h1><p>先是</p><pre><code>pip install selenium</code></pre><p>安装完这个，我以为就odk了，然后在pycharm编译器里面跟着网上给的代码敲了一段</p><pre><code>from selenium import webdriverbrowser = webdriver.Chrome()browser.get(&#39;https://www.baidu.com&#39;)</code></pre><p>结果报错了</p><pre><code>This inspection detects names that should resolve but don&#39;t. Due to dynamic dispatch and duck typing, this is possible in a limited but useful number of cases. Top-level and class-level items are supported better than instance items.</code></pre><p>大体意思就是模块不存在，然后我以为是pip install时候出错了，就回去再pip install一遍，结果发现，还是没有用。</p><p>然后上网找解决方案，跟着网上的教程去看了pycharm这个IDE里面设置的python环境的路径：</p><ul><li><strong>File &gt; settings &gt; project:xxxxxxx(你导入pycharm的文件夹)  &gt; project Interpreter</strong></li></ul><p>就发现我pip install下载下来的selenium库地址和之前设置在IDE里面python环境的地址不一样，所以没法找到selenium这个模块。</p><p>然后去对这个IDE里面的python路径进行更改。</p><h2 id="更改"><a href="#更改" class="headerlink" title="更改"></a>更改</h2><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/pycharm.png"></center><p>点<strong>show all……</strong></p><p>接着</p><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/add.png"></center><p>找到对应python-pip的相关python目录所在地，然后更改IDE依赖环境目录。</p><h2 id="查找目录所在地"><a href="#查找目录所在地" class="headerlink" title="查找目录所在地"></a>查找目录所在地</h2><p>我是再次pip install selenium，然后看到了selenium存的位置，再根据这个位置找到相关信息。</p><h1 id="ChromeDriver"><a href="#ChromeDriver" class="headerlink" title="ChromeDriver"></a>ChromeDriver</h1><p>我弄好了，发现不再显示该模块不存在的信息了之后，运行了一遍，发现还是报错了。</p><pre><code>Service chromedriver unexpectedly exited</code></pre><p>出现了这个报错信息。</p><h2 id="装插件"><a href="#装插件" class="headerlink" title="装插件"></a>装插件</h2><p>所以我去安装chromedriver驱动<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">下载地址</a></p><p>下载好了之后，解压，再新建一个文件夹，里面只放解压出来的exe文件，再去控制面板里面配置环境path</p><p>然后再运行，成功调出了Chrome浏览器，并且让它自动进入百度搜索页面。</p><h1 id="browser-get"><a href="#browser-get" class="headerlink" title="browser.get()"></a>browser.get()</h1><p>browser.get()括号里面的字符串必须填写完整的网址，不然会显示无效网址的错误提示。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_41188944/article/details/79039690" target="_blank" rel="noopener">参考资料</a></p>]]></content>
+    <content type="html"><![CDATA[<p>关于爬虫的学习，先从selenium这个库开始学。</p><a id="more"></a><h1 id="关于selenium"><a href="#关于selenium" class="headerlink" title="关于selenium"></a>关于selenium</h1><p>先是</p><pre><code>pip install selenium</code></pre><p>安装完这个，我以为就odk了，然后在pycharm编译器里面跟着网上给的代码敲了一段</p><pre><code>from selenium import webdriverbrowser = webdriver.Chrome()browser.get(&#39;https://www.baidu.com&#39;)</code></pre><p>结果报错了</p><pre><code>This inspection detects names that should resolve but don&#39;t. Due to dynamic dispatch and duck typing, this is possible in a limited but useful number of cases. Top-level and class-level items are supported better than instance items.</code></pre><p>大体意思就是模块不存在，然后我以为是pip install时候出错了，就回去再pip install一遍，结果发现，还是没有用。</p><p>然后上网找解决方案，跟着网上的教程去看了pycharm这个IDE里面设置的python环境的路径：</p><ul><li><strong>File &gt; settings &gt; project:xxxxxxx(你导入pycharm的文件夹)  &gt; project Interpreter</strong></li></ul><p>就发现我pip install下载下来的selenium库地址和之前设置在IDE里面python环境的地址不一样，所以没法找到selenium这个模块。</p><p>然后去对这个IDE里面的python路径进行更改。</p><h2 id="更改"><a href="#更改" class="headerlink" title="更改"></a>更改</h2><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/pycharm.png"></center><p>点<strong>show all……</strong></p><p>接着</p><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/add.png"></center><p>找到对应python-pip的相关python目录所在地，然后更改IDE依赖环境目录。</p><h2 id="查找目录所在地"><a href="#查找目录所在地" class="headerlink" title="查找目录所在地"></a>查找目录所在地</h2><p>我是再次pip install selenium，然后看到了selenium存的位置，再根据这个位置找到相关信息。</p><h1 id="ChromeDriver"><a href="#ChromeDriver" class="headerlink" title="ChromeDriver"></a>ChromeDriver</h1><p>我弄好了，发现不再显示该模块不存在的信息了之后，运行了一遍，发现还是报错了。</p><pre><code>Service chromedriver unexpectedly exited</code></pre><p>出现了这个报错信息。</p><h2 id="装插件"><a href="#装插件" class="headerlink" title="装插件"></a>装插件</h2><p>所以我去安装chromedriver驱动<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">下载地址</a></p><p>下载好了之后，解压，再新建一个文件夹，里面只放解压出来的exe文件，再去控制面板里面配置环境path</p><p>然后再运行，成功调出了Chrome浏览器，并且让它自动进入百度搜索页面。</p><h1 id="browser-get"><a href="#browser-get" class="headerlink" title="browser.get()"></a>browser.get()</h1><p>browser.get()括号里面的字符串必须填写完整的网址，不然会显示无效网址的错误提示。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_41188944/article/details/79039690" target="_blank" rel="noopener">参考资料</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;和老师说了好久的要学机器学习，今天终于开始学了。先是从网上找教程，从selenium这个库开始学。&lt;/p&gt;
+      &lt;p&gt;关于爬虫的学习，先从selenium这个库开始学。&lt;/p&gt;
     
     </summary>
     
@@ -239,9 +392,9 @@
     <link href="http://aimasa.github.io/2019/04/17/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     <id>http://aimasa.github.io/2019/04/17/开始学习spring（五）：连接数据库/</id>
     <published>2019-04-17T03:01:44.000Z</published>
-    <updated>2019-04-29T09:17:54.904Z</updated>
+    <updated>2019-05-25T11:26:18.516Z</updated>
     
-    <content type="html"><![CDATA[<p>因为这边都用的是jooq框架来对数据库进行操作，然后我就开始学jooq框架惹==。我暑假还是想好好的活着，不想再像上个暑假一样痛苦。</p><p>不过刚开始接触这个框架，坑也没少踩，我会在下面分别列出来。</p><p>用的是maven</p><a id="more"></a><h1 id="第一步：装依赖"><a href="#第一步：装依赖" class="headerlink" title="第一步：装依赖"></a>第一步：装依赖</h1><p>在jooq的官网看，首先第一步，在pom中要加上这三个依赖</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-meta&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-codegen&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><ul><li>jooq ：核心包，CRUD（增删查改）核心类所在大本营。</li><li>jooq-meta ：数据管理和操作的核心代码。</li><li>jooq-codegen ：负责数据库代码生成，主要负责JOOQ的代码生成功能。</li></ul><h1 id="第二步：加插件"><a href="#第二步：加插件" class="headerlink" title="第二步：加插件"></a>第二步：加插件</h1><pre><code>        &lt;plugin&gt;            &lt;groupId&gt;org.jooq&lt;/groupId&gt;            &lt;artifactId&gt;jooq-codegen-maven&lt;/artifactId&gt;            &lt;executions&gt;                &lt;execution&gt;                    &lt;goals&gt;                        &lt;goal&gt;generate&lt;/goal&gt;                    &lt;/goals&gt;                &lt;/execution&gt;            &lt;/executions&gt;            &lt;dependencies&gt;                &lt;dependency&gt;                    &lt;groupId&gt;mysql&lt;/groupId&gt;                    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;                    &lt;version&gt;5.1.39&lt;/version&gt;                &lt;/dependency&gt;            &lt;/dependencies&gt;            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- The destination package of your generated classes (within the                             destination directory) --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- The destination directory of your generated classes --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;        &lt;/plugin&gt;</code></pre><p>这一部分是用来生成数据库映射代码的插件。</p><p>里面是对数据库的信息进行配置：</p><pre><code>            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;&lt;!--点后面的所有文件--&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;!--映射的数据库的架构名（就是你的表是放在哪个架构下的）--&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- 你数据库映射出来的表打算放在代码里面的哪个包下 --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- 这个包是应该在哪个class下面 --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;</code></pre><p>这里面配置这段就是把数据库中的表映射出来的。</p><pre><code>                         &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;</code></pre><p>这段代码是用来映射时间戳的，其中</p><pre><code>&lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;</code></pre><p>是放有映射方法的包，没有放映射方法的话，那这段无效==。可以按ctrl进去，查看这个包，如果无法查看的话，那么说明这个包不是需要的。</p><h1 id="数据库的架构"><a href="#数据库的架构" class="headerlink" title="数据库的架构"></a>数据库的架构</h1><p>放张图就很详细了：</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（五）：连接数据库/schema.png"></center><h1 id="出错地方"><a href="#出错地方" class="headerlink" title="出错地方"></a>出错地方</h1><p>这样配置完成后，我的这个项目名旁边跟了一个红<strong>×</strong>，所以就右键项目，选中<strong>maven</strong>，出现子目录，选中<strong>update project</strong>，点击，如果配置没有错误的话，红<strong>×</strong>会自然消失。</p><p>然后就是maven install的问题了，显示BUILD FAILED失败，里面有一句话，翻译过来是问我有没有配置错jdk，所以我就去perferences里面的 java-&gt;install JREs看了看里面的包是不是配置的jdk包，如果不是，点击add-&gt;Standard VM-&gt;next-&gt;选择jdk的包</p><p>再然后maven install就没有再出问题了，同时，也将我数据库里的表转换成了pojo的包里的java类了。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.mysunshinedreams.com/orm%E7%9A%84%E5%B0%8F%E6%B8%85%E6%96%B0-jooq/" target="_blank" rel="noopener">参考博客</a></p>]]></content>
+    <content type="html"><![CDATA[<p>因为这边都用的是jooq框架来对数据库进行操作，然后我就开始学jooq框架惹==。我暑假还是想好好的活着，不想再像上个暑假一样痛苦。</p><p>不过刚开始接触这个框架，坑也没少踩，我会在下面分别列出来。</p><p>用的是maven</p><a id="more"></a><h1 id="第一步：装依赖"><a href="#第一步：装依赖" class="headerlink" title="第一步：装依赖"></a>第一步：装依赖</h1><p>在jooq的官网看，首先第一步，在pom中要加上这三个依赖</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-meta&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.jooq&lt;/groupId&gt;        &lt;artifactId&gt;jooq-codegen&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><ul><li>jooq ：核心包，CRUD（增删查改）核心类所在大本营。</li><li>jooq-meta ：数据管理和操作的核心代码。</li><li>jooq-codegen ：负责数据库代码生成，主要负责JOOQ的代码生成功能。</li></ul><h1 id="第二步：加插件"><a href="#第二步：加插件" class="headerlink" title="第二步：加插件"></a>第二步：加插件</h1><pre><code>        &lt;plugin&gt;            &lt;groupId&gt;org.jooq&lt;/groupId&gt;            &lt;artifactId&gt;jooq-codegen-maven&lt;/artifactId&gt;            &lt;executions&gt;                &lt;execution&gt;                    &lt;goals&gt;                        &lt;goal&gt;generate&lt;/goal&gt;                    &lt;/goals&gt;                &lt;/execution&gt;            &lt;/executions&gt;            &lt;dependencies&gt;                &lt;dependency&gt;                    &lt;groupId&gt;mysql&lt;/groupId&gt;                    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;                    &lt;version&gt;5.1.39&lt;/version&gt;                &lt;/dependency&gt;            &lt;/dependencies&gt;            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- The destination package of your generated classes (within the                             destination directory) --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- The destination directory of your generated classes --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;        &lt;/plugin&gt;</code></pre><p>这一部分是用来生成数据库映射代码的插件。</p><p>里面是对数据库的信息进行配置：</p><pre><code>            &lt;configuration&gt;                &lt;jdbc&gt;                    &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;                    &lt;url&gt;jdbc:mysql://localhost:3306/exercise_test?useSSL=true&lt;/url&gt;                    &lt;user&gt;root&lt;/user&gt;                    &lt;password&gt;&lt;/password&gt;                &lt;/jdbc&gt;                &lt;generator&gt;                    &lt;database&gt;                        &lt;name&gt;org.jooq.util.mysql.MySQLDatabase&lt;/name&gt;                        &lt;includes&gt;.*&lt;/includes&gt;&lt;!--点后面的所有文件--&gt;                        &lt;excludes&gt;&lt;/excludes&gt;                        &lt;!--映射的数据库的架构名（就是你的表是放在哪个架构下的）--&gt;                        &lt;inputSchema&gt;exercise_test&lt;/inputSchema&gt;                        &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;                    &lt;/database&gt;                    &lt;target&gt;                        &lt;!-- 你数据库映射出来的表打算放在代码里面的哪个包下 --&gt;                        &lt;packageName&gt;com.example.pojo&lt;/packageName&gt;                        &lt;!-- 这个包是应该在哪个class下面 --&gt;                        &lt;directory&gt;/src/main/java&lt;/directory&gt;                    &lt;/target&gt;                    &lt;generate&gt;                        &lt;pojos&gt;true&lt;/pojos&gt;                        &lt;daos&gt;true&lt;/daos&gt;                        &lt;deprecated&gt;false&lt;/deprecated&gt;                    &lt;/generate&gt;                &lt;/generator&gt;            &lt;/configuration&gt;</code></pre><p>这里面配置这段就是把数据库中的表映射出来的。</p><pre><code>                         &lt;forcedTypes&gt;                            &lt;forcedType&gt;                                &lt;userType&gt;java.util.Date&lt;/userType&gt;                                &lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;                                &lt;types&gt;datetime&lt;/types&gt;                            &lt;/forcedType&gt;                        &lt;/forcedTypes&gt;</code></pre><p>这段代码是用来映射时间戳的，其中</p><pre><code>&lt;converter&gt;com.example.util.DateConverter&lt;/converter&gt;</code></pre><p>是放有映射方法的包，没有放映射方法的话，那这段无效==。可以按ctrl进去，查看这个包，如果无法查看的话，那么说明这个包不是需要的。</p><h1 id="数据库的架构"><a href="#数据库的架构" class="headerlink" title="数据库的架构"></a>数据库的架构</h1><p>放张图就很详细了：</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（五）：连接数据库/schema.jpg"></center><h1 id="出错地方"><a href="#出错地方" class="headerlink" title="出错地方"></a>出错地方</h1><p>这样配置完成后，我的这个项目名旁边跟了一个红<strong>×</strong>，所以就右键项目，选中<strong>maven</strong>，出现子目录，选中<strong>update project</strong>，点击，如果配置没有错误的话，红<strong>×</strong>会自然消失。</p><p>然后就是maven install的问题了，显示BUILD FAILED失败，里面有一句话，翻译过来是问我有没有配置错jdk，所以我就去perferences里面的 java-&gt;install JREs看了看里面的包是不是配置的jdk包，如果不是，点击add-&gt;Standard VM-&gt;next-&gt;选择jdk的包</p><p>再然后maven install就没有再出问题了，同时，也将我数据库里的表转换成了pojo的包里的java类了。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.mysunshinedreams.com/orm%E7%9A%84%E5%B0%8F%E6%B8%85%E6%96%B0-jooq/" target="_blank" rel="noopener">参考博客</a></p>]]></content>
     
     <summary type="html">
     
@@ -289,9 +442,9 @@
     <link href="http://aimasa.github.io/2019/04/08/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E8%A7%A32/"/>
     <id>http://aimasa.github.io/2019/04/08/开始学习spring（三）：注解2/</id>
     <published>2019-04-08T13:14:34.000Z</published>
-    <updated>2019-05-06T09:00:01.009Z</updated>
+    <updated>2019-05-24T01:56:35.433Z</updated>
     
-    <content type="html"><![CDATA[<p>虽然明白注解是怎么一回事了，但是还是好奇它的反射机制是怎么实现的，所以谷歌了一下，之后可能会试着自己看看源码。</p><p>注：在 Spring 中，构成应用程序主干并由Spring IoC容器管理的对象称为bean。bean是一个由Spring IoC容器实例化、组装和管理的对象。</p><p><a href="https://www.awaimai.com/2596.html" target="_blank" rel="noopener">关于IoC(控制反转)</a></p><a id="more"></a><h1 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h1><p>这个是用来处理请求地址映射的注解，它的注解有六个属性：</p><h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p><strong>value</strong>：指定请求的实际地址</p><p><strong>method</strong>： 指定请求的method类型， GET、POST、PUT、DELETE等；</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（三）：注解2/method.png"></center><p><strong>consumes</strong>：指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</p><p><strong>produces</strong>: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</p><p><strong>params</strong>： 指定request中必须包含某些参数值是，才让该方法处理。</p><p><strong>headers</strong>： 指定request中必须包含某些指定的header值，才能让该方法处理请求。</p><h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>对服务类进行注解标记，让@componentScan将这些类装载注入到Spring的bean容器中，或者如果没有@ComponentScan这个注解的话，spring会自动去扫描Application这个类所在的包列表下面的类，如果含有@Service标注，那么被看做是服务类被装入spring的bean容器里面。</p><h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>@Repository标记该类为数据层，Dao层。</p><h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><p>@Controller层用于标记该类为控制层。</p><h2 id="Autowired"><a href="#Autowired" class="headerlink" title="Autowired"></a>Autowired</h2><p>———————-<a href="https://blog.csdn.net/walkerJong/article/details/7994326" target="_blank" rel="noopener">摘自博客</a>等我用了一遍再回来补充。</p>]]></content>
+    <content type="html"><![CDATA[<p>虽然明白注解是怎么一回事了，但是还是好奇它的反射机制是怎么实现的，所以谷歌了一下，之后可能会试着自己看看源码。</p><p>注：在 Spring 中，构成应用程序主干并由Spring IoC容器管理的对象称为bean。bean是一个由Spring IoC容器实例化、组装和管理的对象。</p><p><a href="https://www.awaimai.com/2596.html" target="_blank" rel="noopener">关于IoC(控制反转)</a></p><a id="more"></a><h1 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h1><p>这个是用来处理请求地址映射的注解，它的注解有六个属性：</p><h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p><strong>value</strong>：指定请求的实际地址</p><p><strong>method</strong>： 指定请求的method类型， GET、POST、PUT、DELETE等；</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（三）：注解2/method.png"></center><p><strong>consumes</strong>：指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</p><p><strong>produces</strong>: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</p><p><strong>params</strong>： 指定request中必须包含某些参数值是，才让该方法处理。</p><p><strong>headers</strong>： 指定request中必须包含某些指定的header值，才能让该方法处理请求。</p><h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>对服务类进行注解标记，让@componentScan将这些类装载注入到Spring的bean容器中，或者如果没有@ComponentScan这个注解的话，spring会自动去扫描Application这个类所在的包列表下面的类，如果含有@Service标注，那么被看做是服务类被装入spring的bean容器里面。</p><h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>@Repository标记该类为数据层，Dao层。</p><h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><p>@Controller层用于标记该类为控制层。</p><h2 id="Autowired"><a href="#Autowired" class="headerlink" title="Autowired"></a>Autowired</h2><p>———————-<a href="https://blog.csdn.net/walkerJong/article/details/7994326" target="_blank" rel="noopener">摘自博客</a>等我用了一遍再回来补充。</p><h2 id="ResponseStatus"><a href="#ResponseStatus" class="headerlink" title="@ResponseStatus"></a>@ResponseStatus</h2><p>@ResponseStatus这个注解是做异常处理的，然后可以自定义异常。当我们的Controller抛出异常，并且没有被处理的时候，他将返回HTTP STATUS 为指定值的 HTTP RESPONSE.</p>]]></content>
     
     <summary type="html">
     
@@ -317,7 +470,7 @@
     <link href="http://aimasa.github.io/2019/04/04/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E8%A7%A3/"/>
     <id>http://aimasa.github.io/2019/04/04/开始学习spring（三）：注解/</id>
     <published>2019-04-04T06:49:42.000Z</published>
-    <updated>2019-04-08T13:49:14.008Z</updated>
+    <updated>2019-05-24T01:55:59.421Z</updated>
     
     <content type="html"><![CDATA[<p>因为spring Boot项目里面一直要用到注解，所以我特地开了一篇文章来介绍元注解和自定义注解。关于@ResponseMapping这类经常用到的注解可能会零开一篇去写。</p><p>现有的spring提供了大量的注解，而且点进去会发现它的源码很短，注解中用到的Annotations元注解其实只是元数据，和业务逻辑一点关系都没有，既然和业务逻辑没有关系，那么就必须有人来实现这些逻辑。Annotations仅仅提供它定义的属性(类/方法/包/域)的信息.</p><p>当我们使用Java的标注Annotations(例如@Override)时，JVM就是一个用户，它在字节码层面工作。</p><p>bean 是组件的意思。</p><a id="more"></a><h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>一共有以下个元注解</p><ul><li>@Document</li><li>@Target</li><li>@Retention</li><li>@Inherited</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h2><p>它是用来约束注解的使用范围的，可以用ElementType类型去给它定义使用范围，一下是它的源代码：</p><pre><code>public enum ElementType {    /** Class, interface (including annotation type), or enum declaration */    TYPE,    /** Field declaration (includes enum constants) */    FIELD,    /** Method declaration */    METHOD,    /** Formal parameter declaration */    PARAMETER,    /** Constructor declaration */    CONSTRUCTOR,    /** Local variable declaration */    LOCAL_VARIABLE,    /** 用于另外一个注解上 */    ANNOTATION_TYPE,    /** Package declaration */    PACKAGE,    /**     * Type parameter declaration     *     * @since 1.8     */    TYPE_PARAMETER,    /**     * Use of a type     *     * @since 1.8     */    TYPE_USE}</code></pre><p>如果这个注解中@Target没有被申明，那么意思是它可以被应用在任何元素之上。</p><h1 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h1><p>这个元注解是用来约束注解的生命周期的。里面有三个状态，一个是源码级别（source）、一个是类文件级别（class）、还一个是运行时级别（runtime）</p><ul><li>source ： 注解将被编译器丢弃（这个类型的注解信息只保留在源码里面，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class里面。）如java内置注解：@Override、@SuppressWarnning等</li><li>class ： 注解在class文件里可用，但是会被vm（虚拟机）抛弃（这个类型的注解信息只会保存在源码里面和class文件里面，在运行时候，不会载入虚拟机里面），<strong>当注解没有定义Retention的时候，会默认是class</strong>，如java内置注解：</li><li>runtime ： 注解信息将在运行期（JVM）中也保留，因此可以通过反射机制读取注解的信息。（源码、class文件和虚拟机中都有注解的信息。）如SpringMvc中的@Controller、@Autowired、@RequestMapping等，如java内置注解：@Deprecated(用于标明已经过时的方法或类)等。</li></ul><h1 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h1><p>@Documented 被修饰的注解会生成到javadoc中</p><h1 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h1><p>可以让注解被继承，但这并不是真的继承，只是通过使用@Inherited，可以让子类Class对象使用getAnnotations()获取父类被@Inherited修饰的注解。</p><h1 id="关于自定义注解里面的一些语句"><a href="#关于自定义注解里面的一些语句" class="headerlink" title="关于自定义注解里面的一些语句"></a>关于自定义注解里面的一些语句</h1><pre><code>String name() default &quot;&quot;;//指定义了name这个属性，默认是空字符串。</code></pre><p>声明注解类型时候，不能用包装类型，只能用基本类型去声明</p><pre><code>@Target({ElementType.TYPE})@Retention(RetentionPolicy.RUNTIME)@Documented@Componentpublic @interface Controller {    @AliasFor(annotation = Component.class)    String value() default &quot;&quot;;}</code></pre><p>因为上面除掉元注解外还有@component，说明@controller这个注解属于@component这个注解</p><p>我们定义了自己的注解并将其应用在业务逻辑的方法上。所以就需要我们写一个用户程序调用我们的注解。这里需要使用<strong>反射机制</strong>。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/javazejian/article/details/71860633" target="_blank" rel="noopener">我觉得写得很详细的</a></p><p><a href="http://www.importnew.com/10294.html" target="_blank" rel="noopener">注解是什么</a></p>]]></content>
     
@@ -338,152 +491,6 @@
     
     
       <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二分排序法</title>
-    <link href="http://aimasa.github.io/2019/04/03/%E4%BA%8C%E5%88%86%E6%8E%92%E5%BA%8F%E6%B3%95/"/>
-    <id>http://aimasa.github.io/2019/04/03/二分排序法/</id>
-    <published>2019-04-03T03:29:45.000Z</published>
-    <updated>2019-04-04T10:34:15.751Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是很久前写的一篇博文，现在转移了地址，就一起把这篇博文转过来。</p><p>二分排序法书上的讲解用的是借抓<br>扑克牌这个模式讲的</p><a id="more"></a><h1 id="二分法排序"><a href="#二分法排序" class="headerlink" title="二分法排序"></a>二分法排序</h1><pre><code>public class B {    public void BinarySort(int[] a) {        for (int i = 1; i &lt; a.length; i++) {            int tmp = a[i];            int left = 0;            int right = i - 1;            while (left &lt;= right) {                int mid = (right + left)&gt;&gt;1;                if (a[mid] &gt; tmp) {                    right = mid - 1;                } else {                    left = mid + 1;                }            }            for (int j = i - 1; j &gt;= left; j--) {                a[j + 1] = a[j];            }            a[left] = tmp;        }    }}public class test {    public static void main(String[] args) {        int[] a= {1,24,5,6,3,2,7,8,2};        B b=new B();        b.BinarySort(a);        for(int i=0;i&lt;a.length;i++){        System.out.println(a[i]);}    }}</code></pre><p> 就是先从低位开始排序，从i=1开始大循环，从已经排好序的left和right中折中取中间数，然后再和还未排序的数字进行比较大小，如果是大于中间数的话那么更改left指向位置（指向中间数后一个数据），依次循环，如果right小于left的话终止比较（这样就不会忘记把right指向的数据和需要排序的数据进行比较）。接着就插入，像插入排序那样进行数据交换，把这个未排序的数字插入该插入的地方。</p><p>ps:求left和right之间的mid的等式是：（left+right）&gt;&gt;1！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是很久前写的一篇博文，现在转移了地址，就一起把这篇博文转过来。&lt;/p&gt;
-&lt;p&gt;二分排序法书上的讲解用的是借抓&lt;br&gt;扑克牌这个模式讲的&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="二分排序法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%8E%92%E5%BA%8F%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MavenInstall错误类型（一）</title>
-    <link href="http://aimasa.github.io/2019/04/03/MavenInstall%E9%94%99%E8%AF%AF%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://aimasa.github.io/2019/04/03/MavenInstall错误类型（一）/</id>
-    <published>2019-04-03T00:57:51.000Z</published>
-    <updated>2019-04-03T01:03:09.646Z</updated>
-    
-    <content type="html"><![CDATA[<p>工具：STS</p><p>在Maven Install加载pom.xml里面添加的依赖时候，结果出了错误：Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1</p><a id="more"></a><p>我百度了一会，各种方法都试过，却没有用，结果发现是我之前点击Spring Boot App这里让这个项目运行起来了，但是却没有关闭，然后再点击Maven Install，所以报错了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;工具：STS&lt;/p&gt;
-&lt;p&gt;在Maven Install加载pom.xml里面添加的依赖时候，结果出了错误：Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="运行error" scheme="http://aimasa.github.io/categories/%E8%BF%90%E8%A1%8Cerror/"/>
-    
-      <category term="Maven Install错误类型：Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1" scheme="http://aimasa.github.io/categories/%E8%BF%90%E8%A1%8Cerror/Maven-Install%E9%94%99%E8%AF%AF%E7%B1%BB%E5%9E%8B%EF%BC%9AFailed-to-execute-goal-org-apache-maven-plugins-maven-surefire-plugin-2-22-1/"/>
-    
-    
-      <category term="Maven Install error" scheme="http://aimasa.github.io/tags/Maven-Install-error/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开始学习spring（二）：试图搭建一个相关项目</title>
-    <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E8%AF%95%E5%9B%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE/"/>
-    <id>http://aimasa.github.io/2019/04/02/开始学习spring（二）：试图搭建一个相关项目/</id>
-    <published>2019-04-02T13:08:01.000Z</published>
-    <updated>2019-04-11T06:50:22.030Z</updated>
-    
-    <content type="html"><![CDATA[<p>看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。</p><a id="more"></a><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/new.png"></center><p>在新建-&gt;project里面的弹出框选择Spring Starter Project去新建一个project。</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/then.png"></center><p>然后我箭头指的地方是我做过些许改动的地方，接着点击Next。</p><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/next.png"></center><p>再在红色框框框住的地方选择自己想要的插件，这样maven会自动在pom.xml里面自动填写相关代码去下载需要的配件的安装包，最后点击Finish，就完成了新建spring Boot的任务。</p><h1 id="添加代码让项目成功运行"><a href="#添加代码让项目成功运行" class="headerlink" title="添加代码让项目成功运行"></a>添加代码让项目成功运行</h1><p>在src/main/java下面新建一个类，命名为xxxcontroller.java，然后在这个类里面写上如下代码：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;Index&quot;;    }</code></pre><p>然后再在src/main/resources/templates里面新建一个HTML文件：index.html</p><pre><code>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h3&gt;Spring Boot and Spring MVC&lt;/h3&gt;    &lt;P th:text=&quot;&#39;The time on the server is &#39; + ${serverTime}&quot;&gt;&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>接着得记住去原项目根目录下的pom.xml里面添上这样一行:</p><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p>Thymeleaf是一个XML/XHTML/HTML5模板引擎，用来渲染页面的。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。<br>之后就才显示</p><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"><p>不然会显示：</p><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/404.png"><p>在正在运行时的状态下，修改代码是不会直接反馈到浏览器上显示的，所以得停止运行，再重启。</p><h1 id="运行后出现page-no-find"><a href="#运行后出现page-no-find" class="headerlink" title="运行后出现page no find"></a>运行后出现page no find</h1><p>默认情况下spring boot只会扫描启动类当前包和以下的包，在如果配置正确，但是还是没有运行出现自己想要的界面的情况下，可能有原因是在Application.class这个类扫描时候没有扫描到你的controller控制类，所以你可以在你的Application.class这个类里面@SpringBootApplication下面加上@componentscan(controller所在的包。)</p><p>@SpringBootApplication<br>@componentscan(basePackages = “com.didispace.*”)</p><h1 id="关于该项目用到的注解"><a href="#关于该项目用到的注解" class="headerlink" title="关于该项目用到的注解"></a>关于该项目用到的注解</h1><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><p>根据代码中给出的解释就是，带了这个注释的类就是控制器，允许通过类路径扫描自动检测实现类，通常与@ResponseMapping这类注释结合使用。</p><p>我刚刚谷歌了一下这方面的知识，用@Controller其实大部分是用来返回字符串，或者是字符串匹配的模板名称，即直接渲染视图，和HTML结合使用的，但是这个前提前后端配合度要高。（单用@Controller并且不做别的处理的话，返回的字符串没有对应的HTML页面的话，就会报错，出现Whitelabel Error Page这个页面）</p><h3 id="在-Controller这个注解里面的-AliasFor"><a href="#在-Controller这个注解里面的-AliasFor" class="headerlink" title="在@Controller这个注解里面的@AliasFor"></a>在@Controller这个注解里面的@AliasFor</h3><pre><code>@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.METHOD)@Documentedpublic @interface AliasFor {    /**     * Alias for {@link #attribute}.     * &lt;p&gt;Intended to be used instead of {@link #attribute} when {@link #annotation}     * is not declared &amp;mdash; for example: {@code @AliasFor(&quot;value&quot;)} instead of     * {@code @AliasFor(attribute = &quot;value&quot;)}.     */    @AliasFor(&quot;attribute&quot;)    String value() default &quot;&quot;;    /**     * The name of the attribute that &lt;em&gt;this&lt;/em&gt; attribute is an alias for.     * @see #value     */    @AliasFor(&quot;value&quot;)    String attribute() default &quot;&quot;;}</code></pre><p>就相当于value的用法和attribute的用法是一样的，值也是一样的，在这里来给注解的属性起别名，使它们互为别名，意义相同</p><h3 id="返回字符串对应的html"><a href="#返回字符串对应的html" class="headerlink" title="返回字符串对应的html"></a>返回字符串对应的html</h3><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    public String Index(Locale locale, Model model) {        Date date = new Date();        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);        String formatDate = dateFormat.format(date);        model.addAttribute(&quot;serverTime&quot;,formatDate);        return &quot;index&quot;;    } }</code></pre><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h3 id="返回json格式数据"><a href="#返回json格式数据" class="headerlink" title="返回json格式数据"></a>返回json格式数据</h3><p>如果想用@Controller这个注释可以返回json的话，就要在返回json的方法前面加上@ResponseBody，这样就会在浏览器页面输出json的格式。</p><p>user类：</p><pre><code>public class User {    private String name;    public void setName(String name) {        this.name = name;    }    public String getName() {        return this.name;    }}</code></pre><p>controller层：</p><pre><code>@Controllerpublic class exampleControl {    @RequestMapping(&quot;/&quot;)    @ResponseBody    public User userTest() {        User user = new User();        user.setName(&quot;haha&quot;);        return user;    }}</code></pre><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/result2.png"></center><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>这个注解和@Controller不一样，是由@Controller和@ResponseBody合在一起的，返回的是一个对象（字符串也可，json格式数据也可等等），其实和@Controller放在类上面，然后在需要返回json格式数据的方法上面加一个@ResponseBody的效果一样，只是一个是整体，一个是局部。（这个可以返回Restful风格—-我也不知道什么风格，但是看到还要配置才能用，所以等以后用到了再来补吧。）</p><h1 id="结果输出"><a href="#结果输出" class="headerlink" title="结果输出"></a>结果输出</h1><center><img src="http://pictures.aimasa.club/static/images/开始学习spring（二）：试图搭建一个相关项目/result.png"></center><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/b534b394dc7a" target="_blank" rel="noopener">关于@Controller和@RestController</a><br><a href="http://blog.didispace.com/springbootweb/" target="_blank" rel="noopener">关于spring boot的学习</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;看了很多东西，但是概念太多了，脑壳痛，所以先搭一个spring Boot的项目，运行一下，再深入学习一下。在别人推荐下我用的是STS（Spring Tool Suite）去搭建的这个项目。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="搭建项目（初级）" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88%E5%88%9D%E7%BA%A7%EF%BC%89/"/>
-    
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开始学习spring（一）：关于一些基础知识点</title>
-    <link href="http://aimasa.github.io/2019/04/02/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0spring%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    <id>http://aimasa.github.io/2019/04/02/开始学习spring（一）：关于一些基础知识点/</id>
-    <published>2019-04-02T06:44:53.000Z</published>
-    <updated>2019-04-02T13:09:52.866Z</updated>
-    
-    <content type="html"><![CDATA[<p>现在正式开始学spring了，在此打卡（4.2）</p><a id="more"></a><h1 id="什么是POJOs"><a href="#什么是POJOs" class="headerlink" title="什么是POJOs"></a>什么是POJOs</h1><p>POJO, or Plain Old Java Object, is a normal Java object class (that is, not a JavaBean, EntityBean etc.) </p><p>POJO（plain Old Java Object）它是一个正规的、简单的java对象，包含了业务逻辑处理和持久化逻辑等，但不是JavaBean、EntityBean等，<strong>不具有任何特殊角色和不继承不实现任何其他java框架的类或接口。</strong></p><p>POJO里面是可以包含业务逻辑处理和持久化逻辑，也可以包含类似与JavaBean属性和对属性访问的set和get方法的。</p><p>代码示例：</p><pre><code>package com.demo.spring;public class DbHello { //简单的Java类，称之为POJO，不继承，不实现接口    private DictionaryDAO dao;    public void setDao(DictionaryDAO dao) {        this.dao = dao;    }}</code></pre><h1 id="什么是javabean"><a href="#什么是javabean" class="headerlink" title="什么是javabean"></a>什么是javabean</h1><p>一种特殊又简单的类，</p><ul><li>这个类必须具有一个公共的(public)无参构造函数；</li><li>所有属性私有化（private）；</li><li>私有化的属性必须通过public类型的方法（getter和setter）暴露给其他程序，并且方法的命名也必须遵循一定的命名规范。 </li><li>这个类应是可序列化的。（比如可以实现Serializable 接口，用于实现bean的持久性）</li></ul><h1 id="EJB是什么"><a href="#EJB是什么" class="headerlink" title="EJB是什么"></a>EJB是什么</h1><p>Enterprise JavaBean又叫企业级JavaBean(听说很老了，以后如果用到的话再回来补。)</p><h1 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h1><p>就是减少依赖。里面牵涉到了依赖倒置（IoC）（这个和设计模式相关，我会找个时间把设计模式的笔记补上。）</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/tonny_guan/article/details/2250134" target="_blank" rel="noopener">关于POJOs</a><br><a href="https://blog.csdn.net/chenchunlin526/article/details/69939337" target="_blank" rel="noopener">关于javabean</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;现在正式开始学spring了，在此打卡（4.2）&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="基础指示点" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80%E6%8C%87%E7%A4%BA%E7%82%B9/"/>
-    
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/tags/spring%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客上传图片</title>
-    <link href="http://aimasa.github.io/2019/03/29/hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/"/>
-    <id>http://aimasa.github.io/2019/03/29/hexo博客上传图片/</id>
-    <published>2019-03-29T11:15:36.000Z</published>
-    <updated>2019-04-03T03:26:57.110Z</updated>
-    
-    <content type="html"><![CDATA[<p>因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……<br>这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。</p><a id="more"></a><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>去七牛云注册了一个账号（前不久他们特地打电话过来关怀一下注册了账号就不见人影的我，我还嘚瑟的和他们说我不用你们的产品，真香）</p><p>然后百度教程</p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>下载插件</p><pre><code>npm install hexo-qiniu-sync --save</code></pre><p>然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面</p><pre><code>#plugins:  #- hexo-qiniu-sync（这部分要删掉的，不然会报错）qiniu:  offline: false  sync: true  bucket: bucket_name # 你在七牛上面设置的存储图片的存储空间的名字  access_key: AccessKey # 你在七牛上面账号的密钥管理的key  secret_key: SecretKey # 你在七牛上面账号的密钥管理的key  dirPrefix: static #自动在你七牛的那个存储空间里面新建一个这个文件夹，听说是加个文件夹比较好  urlPrefix: http://7xqb0u.com1.z0.glb.clouddn.com/static    local_dir: xxx # 当你hexo qiniu s时候，这个文件夹的东西会自动上传到你七牛云里头创建的static文件夹里面。  update_exist: true  image:    folder: images    extend:  js:    folder: js  css:    folder: css</code></pre><p>好了，其他详细的说明下面有指路辽==</p><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>我用的是</p><pre><code>{% qnimg xxx.png %}</code></pre><p>这种语法，其他的我不想看辽，目前也用不到。</p><h1 id="上传图片到七牛云"><a href="#上传图片到七牛云" class="headerlink" title="上传图片到七牛云"></a>上传图片到七牛云</h1><p>先去博客本地生成的存图的文件夹（上面有注解），然后博客文里面对它进行引用。然后上传图片去七牛云本地时候，就用：</p><pre><code>hexo qiniu s</code></pre><p>这个语法即可。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://lwtang.github.io/2018/11/27/qiniu-store-image/" target="_blank" rel="noopener">我觉得很详细的教程</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;因为之前用插件在本地导入图片到博客上这个方法因为别的缘故，不能很稳定的让图片插入进去……&lt;br&gt;这就要从我开始装数学公式的插件说起了，反正我不想再折腾了，听说本地导入图片的方法也会导致项目过大然后会受github项目仓库的限制，所以我干脆卸载了本地导入图片的这个插件，换成了用七牛云去在线导入图片。当然这个过程不太顺畅。特此记录一下。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo更新配置" scheme="http://aimasa.github.io/categories/hexo%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="hexo插入图片" scheme="http://aimasa.github.io/categories/hexo%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/"/>
-    
-    
-      <category term="hexo" scheme="http://aimasa.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为Next主题添加统计阅读量的功能以及开评论</title>
-    <link href="http://aimasa.github.io/2019/03/29/%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E7%9A%84%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8A%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
-    <id>http://aimasa.github.io/2019/03/29/为Next主题添加统计阅读量的功能以及开评论/</id>
-    <published>2019-03-29T01:09:00.000Z</published>
-    <updated>2019-05-08T08:07:33.853Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="需要准备工作"><a href="#需要准备工作" class="headerlink" title="需要准备工作"></a>需要准备工作</h1><p>我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。</p><a id="more"></a><h1 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h1><h2 id="开放评论"><a href="#开放评论" class="headerlink" title="开放评论"></a>开放评论</h2><p>注册完这个账号，然后创建项目（企业开发的话要钱，所以选择个人开发）。接着去Next主题里面设置</p><pre><code>valine:  enable: true  appid:  # your leancloud application appid你点进你leancloud账号里新建的项目里面，然后点进设置，会看到项目自动生成的appid，然后复制过来  appkey: # your leancloud application appkey它的位置就在appid下面一行  notify: false # mail notifier , https://github.com/xCss/Valine/wiki通知  verify: false # Verification code验证码（评论前要输入的）  placeholder: Just go go # comment box placeholder评论框提示你输入的话语  avatar: mm # gravatar style默认头像  guest_info: nick,mail # custom comment header评论前要输入的信息  pageSize: 10 # pagination size一页默认展示的评论数</code></pre><p>然后就能开评论了，因为我刚开始设置输入错了appid和appkey，出现了402错误（反正会提示你哪错了，就不做解释辽。）</p><h3 id="给评论加上邮件通知"><a href="#给评论加上邮件通知" class="headerlink" title="给评论加上邮件通知"></a>给评论加上邮件通知</h3><p>这个是跟着<a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank" rel="noopener">这个博客</a>的方法来的，虽然之前的博客教我怎么用leancloud自带的邮件通知功能去提醒别人评论已回复，但是说是因为是正在开发的功能，还不太稳定，同时还会被要求开验证码，觉得很不方便，所以我换了个博客跟着用第三方的邮件提醒功能。</p><p>因为过程有些繁琐，我也只是跟着它的方法来的，所以就只在这放个链接好了。这是个开源项目。</p><h2 id="添加统计阅读量功能"><a href="#添加统计阅读量功能" class="headerlink" title="添加统计阅读量功能"></a>添加统计阅读量功能</h2><p>在你新建的项目的存储里面，新建一个叫Counter的class，ACL权限选择无限制，里面的appid和appkey和上面获取的是一样的，在这里就不讲是怎么去获取的了。</p><pre><code># Show number of visitors to each article.# You can visit https://leancloud.cn get AppID and AppKey.leancloud_visitors:  enable: true  app_id: #AppID  app_key: #AppKey</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://valine.js.org/notify.html" target="_blank" rel="noopener">参考博客(添加统计阅读量功能)</a></p><p><a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">参考博客(让博客支持评论功能)</a></p><p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/高级配置.md#自定义邮件模板" target="_blank" rel="noopener">第三方邮件回复自带定时器</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;需要准备工作&quot;&gt;&lt;a href=&quot;#需要准备工作&quot; class=&quot;headerlink&quot; title=&quot;需要准备工作&quot;&gt;&lt;/a&gt;需要准备工作&lt;/h1&gt;&lt;p&gt;我先在leancloud注册了一个账号，用来统计阅读量和去Next主题里设置开放评论用。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo更新配置" scheme="http://aimasa.github.io/categories/hexo%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="添加统计阅读量以及打开评论" scheme="http://aimasa.github.io/categories/hexo%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE/%E6%B7%BB%E5%8A%A0%E7%BB%9F%E8%AE%A1%E9%98%85%E8%AF%BB%E9%87%8F%E4%BB%A5%E5%8F%8A%E6%89%93%E5%BC%80%E8%AF%84%E8%AE%BA/"/>
-    
-    
-      <category term="hexo" scheme="http://aimasa.github.io/tags/hexo/"/>
     
   </entry>
   
