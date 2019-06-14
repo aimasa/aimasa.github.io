@@ -28,8 +28,8 @@ tags:
 
 然后去！！！！hexo下面的_config.yml里面加上qiniu的配置！！！！是hexo下面不是next下面
 
-    plugins:
-      - hexo-qiniu-sync
+    #plugins:
+      #- hexo-qiniu-sync（这部分要删掉的，不然会报错）
 
     qiniu:
       offline: false
@@ -53,7 +53,19 @@ tags:
 
 # 插入图片
 
-我用的是{% qnimg xxx.png %}这种语法，其他的我不想看辽，目前也用不到。
+我用的是
+    
+    {% qnimg xxx.png %}
+
+这种语法，其他的我不想看辽，目前也用不到。
+
+# 上传图片到七牛云
+
+先去博客本地生成的存图的文件夹（上面有注解），然后博客文里面对它进行引用。然后上传图片去七牛云本地时候，就用：
+
+    hexo qiniu s
+
+这个语法即可。
 
 # 参考资料
 

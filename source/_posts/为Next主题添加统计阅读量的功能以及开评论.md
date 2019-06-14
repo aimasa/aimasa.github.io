@@ -3,7 +3,7 @@ title: 为Next主题添加统计阅读量的功能以及开评论
 copyright: true
 date: 2019-03-29 09:09:00
 categories:
-- hexo 更新配置
+- hexo更新配置
 - 添加统计阅读量以及打开评论
 tags:
 - hexo

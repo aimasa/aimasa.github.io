@@ -122,7 +122,7 @@ qiniu:
   access_key: toPCG9eKiXISfgSqMuEM9j-moNc9leo7Ui2dH3NM
   secret_key: ctfGat7QcX8dW4V3BpC1FywoR6zqEMauVWOKFpZL
   dirPrefix: static
-  urlPrefix: http://pp48biywe.bkt.clouddn.com/static
+  urlPrefix: http://pictures.aimasa.club/static
   up_host: http://upload.qiniu.com
   local_dir: qiniu_picture
   update_exist: true

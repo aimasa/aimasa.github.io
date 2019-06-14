@@ -3,7 +3,7 @@ title: markdown插入公式
 copyright: true
 date: 2019-02-27 15:22:31
 categories:
-- markdown
+- hexo更新配置
 - markdown插入公式
 tags:
 - markdown
@@ -123,3 +123,5 @@ Step 2:
 如果该链接打不开，请进入参考文档去寻找正确地址。
 
 [用mathjax对公式进行渲染](https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/)
+
+[公式编辑器](https://www.codecogs.com/latex/eqneditor.php)

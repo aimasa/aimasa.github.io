@@ -77,6 +77,52 @@ native是c++开发时候用的，java开发是不用它的，它是用来调用�
 扩展
 Java语言提供的Cloneable接口和Serializable接口的代码非常简单，它们都是空接口，这种空接口也称为标识接口，标识接口中没有任何方法的定义，其作用是告诉JRE这些接口的实现类是否具有某个功能，如是否支持克隆、是否支持序列化等。----摘自[论java中的浅克隆和深克隆](https://www.cnblogs.com/Qian123/p/5710533.html)
 
+# 关于序列化
+
+序列化简单来说就保存对象在内存中的状态,也可以说是实例化变量。这是Java提供的用来保存 Object state，一种保存对象状态的机制。只有实现了serializable接口的类的对象才能被实例化。-----摘自[序列化是什么](https://blog.csdn.net/u010486679/article/details/81562344)
+
+然后我谷歌了一会，理解的意思是，序列化就是把实例化的对象状态用二进制保存到一个文件之类的地方，用的时候再取出来。当然，这个接口只是一种申明，说在这里我要实现对某个实例对象进行序列化，而不包含去序列化东西的一个方法，序列化需要自己去实现。在[bitSet](https://aimasa.github.io/2019/03/14/bitSet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/)里面就implement了Serializable这个接口。
+
+或者又如以下的代码：
+
+    import java.io.*;   
+  
+    public class Box implements Serializable{   
+        private int width;   
+        private int height;   
+    public void setWidth(int width){   
+        this.width = width;   
+    }   
+    public void setHeight(int height){   
+        this.height = height;   
+    }   
+    public static void main(String[] args){   
+        Box myBox = new Box();   
+        myBox.setWidth(50);   
+        myBox.setHeight(30);   
+  
+        try{   
+            FileOutputStream fs = new FileOutputStream("foo.ser");   
+            ObjectOutputStream os = new ObjectOutputStream(fs);   
+            os.writeObject(myBox);   
+            os.close();   
+        }catch(Exception ex){   
+            ex.printStackTrace();   
+        }   
+    }   
+  
+    }   
+
+如果去掉implements Serializable的话，那么下面的writeObject会报错。
+
+6、相关注意事项 
+
+> * 当一个父类实现序列化，子类自动实现序列化，不需要显式实现Serializable接口； 
+* 当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化； 
+* 并非所有的对象都可以序列化，,至于为什么不可以，有很多原因了,比如： 
+ *  安全方面的原因，比如一个对象拥有private，public等field，对于一个要传输的对象，比如写到文件，或者进行rmi传输 等等，在序列化进行传输的过程中，这个对象的private等域是不受保护的。 
+  * 资源分配方面的原因，比如socket，thread类，如果可以序列化，进行传输或者保存，也无法对他们进行重新的资源分 配，而且，也是没有必要这样实现。 
+
 # 关于克隆clone()方法
 
 	public QrSegment(Mode md, int numCh, BitBuffer data) {//numCh=想在二维码中展示的字的长度。
@@ -158,3 +204,5 @@ QrSegment这个类被定义后包括的函数
 [关于bitSet的源码解读](https://www.jianshu.com/p/91d75bf588b8)
 
 [关于native的用法](https://blog.csdn.net/youjianbo_han_87/article/details/2586375)
+
+[关于序列化的详细说明](https://lixh1986.iteye.com/blog/1767076)
