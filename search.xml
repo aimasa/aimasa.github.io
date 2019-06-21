@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>最长回文串</title>
+      <link href="/2019/06/18/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2/"/>
+      <url>/2019/06/18/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[<p>终于弄懂了最长回文串，在做题的时候，总是在暴力破解的思路里出不去，总想着两个for循环，空间复杂度为o($n^{2}$)然后解题思路里面讲了Manacher’s algorithm这个算法，把复杂度降低到了o(n)。</p><a id="more"></a><p>首先看张图（我为了图方便，都先预处理了字符串，不是按官方给的判断回文子串的奇偶方法）</p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/time.png"></center><p>上面那行是我用暴力破解用的时间，下面那行是用Manacher’s algorithm这个算法花的时间，可以很明显的看到emm差距。</p><p>（想说一点[题外话]：记得老师说以空间换时间和以时间换空间的这句话，所以我们需要在时间和空间中找到一个平衡点以达到我们想要的效率）</p><h1 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h1><p>这个算法很简单，就是简单粗暴的双循环，接着判断是不是回文串，再判断是不是最长的回文串。</p><p>我用的是先预处理字符串，在字符串中间加入”#”号，字符串首尾也加上这个</p><p>eg：abcd  =====&gt; #a#b#c#d#</p><p>这样就能保证字符串长度一定为奇数了（如果字符串原长3，那么就需要插入4个”#”，那么奇数加偶数一定是奇数了）</p><p>然后根据循环到的位置，扩散开来判断是否是回文串，是的话记录长度，就能够寻找到最长的回文串了。</p><h1 id="Manacher’s-algorithm"><a href="#Manacher’s-algorithm" class="headerlink" title="Manacher’s algorithm"></a>Manacher’s algorithm</h1><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>首先预处理字符串，让字符串保证长度为奇数<br>eg：aba  =====&gt; #a#b#a#</p><h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>先假设<strong>当前最长回文串</strong></p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/table.png"></center><p>里面的p[i]是指当前回文串的半径（其实p[i] - 1就是当前回文串的真实长度）</p><p>所以，p[i]是最后得出最长回文串的关键。</p><p>所以我们需要求出p[i]（ci的位置就是为p[i]服务的）</p><p>先假设ci是<strong>当前</strong>最长回文串的中心点，那么由它开始往外扩展，判断这个最长回文串里面是否有新的回文串，如果有的话，首先判断新的回文串是不是被这个最大回文串包含了。</p><p>从i=0开始往后遍历，同时开始判断当前最长的回文串，然后ci的位置根据最长回文串的最右边界的位置而开始发生改变。</p><p>接着就要开始讨论关于i的位置处于最长回文串的笼罩范围内的情况了：</p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/lenth.png"></center><p>这里列举的是i存在的回文串<strong>处于最长回文串笼罩的范围内的情况</strong>。</p><p>在这里我们没有必要去一个个比较去判断在最长回文串内的i的情况，我们可以直接对i对应ci的另一边的i的映射（我们称为j，j = 2* ci - i）j的p[j]的长度，如果p[j]的回文串长度如上图所示的话，那么p[i]=p[j],然后跳出循环，去遍历下一个i</p><p>除了刚刚那种情况，那就还有剩下的一种情况了：i存在的回文串<strong>长于最长回文串笼罩的范围内的情况</strong></p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/overLenth.png"></center><p>其中j的回文子串的右边比ci所对应的回文串的最右边长（如图），那么我们就需要判断一下j对应的i的回文字符串有多长，所以首先我们要知道l的长度，因为对应的j的那个部分是回文字符串，所以在没有超出ci的最长回文串的最右边界的部分，i的那段一定是回文字符串，所以我们就需要在基于l长度的回文字符串的基础下，继续往后比较。</p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/final.png"></center><p>如果i的回文串的最右边界超出了ci原本对应的最长回文串的边界</p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/realFinal.png"></center><p>那么就令ci的值变成i的值。</p><p>当然，在对ci做改变时候，要记住随时记录p[i]的值，并且随时记录p[i]里面的最大值。</p><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>所以最后就根据p[i]的最大值找到对应的字符子串，这个子串就是最大回文串</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/" target="_blank" rel="noopener">参考官方资料</a></p><p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/longestpalindrome" target="_blank" rel="noopener">本文代码</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> 最长回文串 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>寻找两个有序数组的中位数</title>
       <link href="/2019/06/10/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
       <url>/2019/06/10/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/</url>
@@ -91,9 +118,23 @@
       <link href="/2019/05/31/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
       <url>/2019/05/31/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>在找研究方向时候，有人推荐我看看态势感知，所以记个笔记</p><p>我对态势感知的理解就是：对网络里来往的流量进行分析，排除噪声，通过各种手段通过分析得出安全情况，然后进行防护。</p><p>网络安全态势感知NSSA（network security situation awareness）<br><a id="more"></a></p><h1 id="态势感知"><a href="#态势感知" class="headerlink" title="态势感知"></a>态势感知</h1><p> 态势是各种状态的综合，是一个整体和全局的概念。它强调的是系统和系统对象之间的关系,下图是态势感知的系统要素内容（我jio的就是单纯的流程，就是从收集到的原始数据，然后进行处理得到的数据，再从这些数据里面用技术去分析，得到相关不同的进行了的活动，再去针对不同的活动进行不同的分析，最后的状态评估，进行预测，不同的活动会对系统中的各个对象产生的作用）</p><center><img src="http://pictures.aimasa.club/static/images/态势感知/struct.png"></center><h2 id="数据融合"><a href="#数据融合" class="headerlink" title="数据融合"></a>数据融合</h2>]]></content>
       
       
+      <categories>
+          
+          <category> 态势感知相关 </category>
+          
+          <category> 态势感知 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 态势感知 </tag>
+            
+        </tags>
       
     </entry>
     
