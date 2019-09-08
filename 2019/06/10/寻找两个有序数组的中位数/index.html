@@ -129,7 +129,7 @@
 <meta property="og:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 nums1 = [1, 3] nums2 = [2] 中位数是：2.0">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png">
-<meta property="og:updated_time" content="2019-06-13T09:27:48.609Z">
+<meta property="og:updated_time" content="2019-07-15T01:34:12.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻找两个有序数组的中位数">
 <meta name="twitter:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 nums1 = [1, 3] nums2 = [2] 中位数是：2.0">
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  780
+                  790
                 </span>
               
 
@@ -499,7 +499,7 @@ nums2 = [2]
 </ul>
 <p>为了保证数据不溢出，所以要保证nums1的长度要小于nums2，这样先对nums1选中i的指向位置后，根据公式算出j的时候就不会发生j指向的nums2数据溢出了。</p>
 <p>这个题目的本质就是，把这两个数组统一分成两部分，前面那个部分都要比后面的部分小，所以，我们必须确保：</p>
-<p>B[j−1]≤A[i] 以及 \text{A}[i-1] \leq \text{B}[j]A[i−1]≤B[j]</p>
+<p>B[j−1]≤A[i] 以及 $\text{A}[i-1] \leq \text{B}[j],A[i−1]≤B[j]$</p>
 <p>然后i和j的算法公式：</p>
 <p>$ i=0∼m, j=\frac{m+n+1}{2}−i$</p>
 <p>所以，得出i和j之后，我们就可以根据nums1[]和nums2[]这两个有序数组的大小去寻找中位数了。</p>
@@ -508,6 +508,7 @@ nums2 = [2]
 <p>如果i等于nums1[].lenth()，那么则意味着j的指向的数字是我们所需要的中位数之一（之所以说是之一，是因为这两个数组长度加在一起是奇数，不然i是不会等于nums1[].lenth()），j也是这样。</p>
 <p>如果i等于0的时候，那么意味着j现在指向的就是中位数，而不需要继续去寻找中位数了。j等于0的时候也是如此。（i或者j指向0，这种情况在两个数组长度为奇数或者偶数的情况下都会出现）</p>
 <p>讲的有点零散，所以我决定直接把代码连接放出来！<br><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-shu-b/" target="_blank" rel="noopener">见官网</a></p>
+<p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/findmediansortedarrays" target="_blank" rel="noopener">和我github上面的代码实现</a></p>
 <h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
 
       
@@ -528,7 +529,7 @@ nums2 = [2]
   <p><span>本文标题:</span><a href="/2019/06/10/寻找两个有序数组的中位数/">寻找两个有序数组的中位数</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年06月10日 - 21:06</p>
-  <p><span>最后更新:</span>2019年06月13日 - 17:06</p>
+  <p><span>最后更新:</span>2019年07月15日 - 09:07</p>
   <p><span>原始链接:</span><a href="/2019/06/10/寻找两个有序数组的中位数/" title="寻找两个有序数组的中位数">http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/" aria-label="复制成功！"></i></span>
   </p>
@@ -700,7 +701,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -711,7 +712,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -722,7 +723,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -812,7 +813,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">40.2k</span>
   
 </div>
 

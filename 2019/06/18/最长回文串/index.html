@@ -134,7 +134,7 @@
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/overLenth.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/final.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/realFinal.png">
-<meta property="og:updated_time" content="2019-06-21T00:47:32.729Z">
+<meta property="og:updated_time" content="2019-07-18T02:01:03.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长回文串">
 <meta name="twitter:description" content="终于弄懂了最长回文串，在做题的时候，总是在暴力破解的思路里出不去，总想着两个for循环，空间复杂度为o($n^{2}$)然后解题思路里面讲了Manacher’s algorithm这个算法，把复杂度降低到了o(n)。">
@@ -495,34 +495,34 @@
 <p>我用的是先预处理字符串，在字符串中间加入”#”号，字符串首尾也加上这个</p>
 <p>eg：abcd  =====&gt; #a#b#c#d#</p>
 <p>这样就能保证字符串长度一定为奇数了（如果字符串原长3，那么就需要插入4个”#”，那么奇数加偶数一定是奇数了）</p>
-<p>然后根据循环到的位置，扩散开来判断是否是回文串，是的话记录长度，就能够寻找到最长的回文串了。</p>
+<p>然后根据循环到的位置，扩散开来判断是否是回文串，是的话同时记录长度和下标，就能够寻找到最长的回文串了。</p>
 <h1 id="Manacher’s-algorithm"><a href="#Manacher’s-algorithm" class="headerlink" title="Manacher’s algorithm"></a>Manacher’s algorithm</h1><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>首先预处理字符串，让字符串保证长度为奇数<br>eg：aba  =====&gt; #a#b#a#</p>
 <h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>先假设<strong>当前最长回文串</strong></p>
 <center><img src="http://pictures.aimasa.club/static/images/最长回文串/table.png"></center>
 
 
 <p>里面的p[i]是指当前回文串的半径（其实p[i] - 1就是当前回文串的真实长度）</p>
-<p>所以，p[i]是最后得出最长回文串的关键。</p>
-<p>所以我们需要求出p[i]（ci的位置就是为p[i]服务的）</p>
+<p>所以，p[j]是最后得出最长回文串的关键。</p>
+<p>所以我们需要求出p[j]（ci的位置就是为p[i]服务的）</p>
 <p>先假设ci是<strong>当前</strong>最长回文串的中心点，那么由它开始往外扩展，判断这个最长回文串里面是否有新的回文串，如果有的话，首先判断新的回文串是不是被这个最大回文串包含了。</p>
-<p>从i=0开始往后遍历，同时开始判断当前最长的回文串，然后ci的位置根据最长回文串的最右边界的位置而开始发生改变。</p>
-<p>接着就要开始讨论关于i的位置处于最长回文串的笼罩范围内的情况了：</p>
+<p>从j=0开始往后遍历，同时开始判断当前最长的回文串，然后ci的位置根据最长回文串的最右边界的位置而开始发生改变。</p>
+<p>接着就要开始讨论关于j的位置处于最长回文串的笼罩范围内的情况了：</p>
 <center><img src="http://pictures.aimasa.club/static/images/最长回文串/lenth.png"></center>
 
-<p>这里列举的是i存在的回文串<strong>处于最长回文串笼罩的范围内的情况</strong>。</p>
-<p>在这里我们没有必要去一个个比较去判断在最长回文串内的i的情况，我们可以直接对i对应ci的另一边的i的映射（我们称为j，j = 2* ci - i）j的p[j]的长度，如果p[j]的回文串长度如上图所示的话，那么p[i]=p[j],然后跳出循环，去遍历下一个i</p>
-<p>除了刚刚那种情况，那就还有剩下的一种情况了：i存在的回文串<strong>长于最长回文串笼罩的范围内的情况</strong></p>
+<p>这里列举的是j存在的回文串<strong>处于最长回文串笼罩的范围内的情况</strong>。</p>
+<p>在这里我们没有必要去一个个比较去判断在最长回文串内的i的情况，我们可以直接对j对应ci的另一边的j的映射（我们称为i，i = 2* ci - j）i的p[i]的长度，如果p[i]的回文串长度如上图所示的话，那么p[j]=p[i],然后跳出循环，去遍历下一个j</p>
+<p>除了刚刚那种情况，那就还有剩下的一种情况了：j存在的回文串<strong>长于最长回文串笼罩的范围内的情况</strong></p>
 <center><img src="http://pictures.aimasa.club/static/images/最长回文串/overLenth.png"></center>
 
-<p>其中j的回文子串的右边比ci所对应的回文串的最右边长（如图），那么我们就需要判断一下j对应的i的回文字符串有多长，所以首先我们要知道l的长度，因为对应的j的那个部分是回文字符串，所以在没有超出ci的最长回文串的最右边界的部分，i的那段一定是回文字符串，所以我们就需要在基于l长度的回文字符串的基础下，继续往后比较。</p>
+<p>其中j的回文子串的右边比ci所对应的回文串的最右边长（如图），那么我们就需要判断一下j对应的i的回文字符串有多长，所以首先我们要知道l的长度，因为对应的i的那个部分是回文字符串，所以在没有超出ci的最长回文串的最右边界的部分，j的那段一定是回文字符串，所以我们就需要在基于l长度的回文字符串的基础下，继续往后比较。</p>
 <center><img src="http://pictures.aimasa.club/static/images/最长回文串/final.png"></center>
 
-<p>如果i的回文串的最右边界超出了ci原本对应的最长回文串的边界</p>
+<p>如果j的回文串的最右边界超出了ci原本对应的最长回文串的边界</p>
 <center><img src="http://pictures.aimasa.club/static/images/最长回文串/realFinal.png"></center>
 
-<p>那么就令ci的值变成i的值。</p>
-<p>当然，在对ci做改变时候，要记住随时记录p[i]的值，并且随时记录p[i]里面的最大值。</p>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>所以最后就根据p[i]的最大值找到对应的字符子串，这个子串就是最大回文串</p>
+<p>那么就令ci的值变成j的值。</p>
+<p>当然，在对ci做改变时候，要记住随时记录p[j]的值，并且随时记录p[j]里面的最大值。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>所以最后就根据p[j]的最大值找到对应的字符子串，这个子串就是最大回文串</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/" target="_blank" rel="noopener">参考官方资料</a></p>
 <p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/longestpalindrome" target="_blank" rel="noopener">本文代码</a></p>
 
@@ -544,7 +544,7 @@
   <p><span>本文标题:</span><a href="/2019/06/18/最长回文串/">最长回文串</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年06月18日 - 20:06</p>
-  <p><span>最后更新:</span>2019年06月21日 - 08:06</p>
+  <p><span>最后更新:</span>2019年07月18日 - 10:07</p>
   <p><span>原始链接:</span><a href="/2019/06/18/最长回文串/" title="最长回文串">http://aimasa.github.io/2019/06/18/最长回文串/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/06/18/最长回文串/" aria-label="复制成功！"></i></span>
   </p>
@@ -607,6 +607,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/21/机器学习之线性回归/" rel="prev" title="机器学习之线性回归">
+                机器学习之线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -712,7 +716,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -723,7 +727,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -734,7 +738,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -824,7 +828,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.4k</span>
+    <span title="Site words total count">40.2k</span>
   
 </div>
 
