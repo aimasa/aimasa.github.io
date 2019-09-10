@@ -130,12 +130,12 @@
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\first.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getcomicname.png">
-<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.png">
-<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.png">
-<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.png">
-<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.png">
-<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.png">
-<meta property="og:updated_time" content="2019-09-09T06:34:34.909Z">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.jpg">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.jpg">
+<meta property="og:updated_time" content="2019-09-10T02:05:40.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lezhin爬虫使用">
 <meta name="twitter:description" content="Lezhin爬虫使用方法lezhin爬虫配置文件介绍">
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  992
+                  993
                 </span>
               
 
@@ -491,19 +491,36 @@
 <p>注：配置文件后缀名为 .ini，也可以是.config</p>
 <p>该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10），运行之后，想中断运行的话按<code>ctrl+c</code></p>
 <p>只能爬取自己已经购买了的漫画，或者网站确定为免费的漫画。</p>
-<h2 id="配置参数详解："><a href="#配置参数详解：" class="headerlink" title="配置参数详解："></a>配置参数详解：</h2><h3 id="comic-name、comic-id"><a href="#comic-name、comic-id" class="headerlink" title="comic_name、comic_id"></a>comic_name、comic_id</h3><p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\first.png"></center><br>点进去之后就能在浏览器的路径上找到对应漫画的comic_name</p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getcomicname.png"></center><br>接着往下拉，按下F12点，进想要下载的漫画的第一话（随便哪话都能找到以下信息）</p>
-<p>=========================================================================================================</p>
-<p>重点分割线</p>
-<p>======================================================================================================</p>
-<p>点开<code>NetWork</code>这栏</p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.png"></center><br>找到红框中的链接内容，点开之后会在旁边弹出一个小框</p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.png"></center><br>在这个小框中，划拉到<code>header</code>这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的<code>comic_name</code>，<code>_</code>的值就是配置文件里的<code>comic_id</code>【ps:<code>comic_id</code>是我命名有问题，我也不知道<code>_</code>是代表什么。】</p>
+<h2 id="配置参数详解："><a href="#配置参数详解：" class="headerlink" title="配置参数详解："></a>配置参数详解：</h2><h3 id="comic-name、comic-id"><a href="#comic-name、comic-id" class="headerlink" title="comic_name、comic_id"></a>comic_name、comic_id</h3><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\first.png"></center>
+点进去之后就能在浏览器的路径上找到对应漫画的comic_name
+
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getcomicname.png"></center>
+接着往下拉，按下F12点，进想要下载的漫画的第一话（随便哪话都能找到以下信息）
+
+=========================================================================================================
+
+重点分割线
+
+======================================================================================================
+
+
+
+点开`NetWork`这栏
+
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.jpg"></center>
+找到红框中的链接内容，点开之后会在旁边弹出一个小框
+
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.jpg"></center>
+
+<p>在这个小框中，划拉到<code>header</code>这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的<code>comic_name</code>，<code>_</code>的值就是配置文件里的<code>comic_id</code>【ps:<code>comic_id</code>是我命名有问题，我也不知道<code>_</code>是代表什么。】</p>
 <h3 id="lezhin-cookie"><a href="#lezhin-cookie" class="headerlink" title="lezhin_cookie"></a>lezhin_cookie</h3><p>在<code>header</code>这栏中间会看到<code>cookie</code>，这个值是<code>lezhin_cookie</code></p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.png"></center></p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.png"></center></p>
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.jpg"></center>
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.jpg"></center>
+
 <h3 id="access-token"><a href="#access-token" class="headerlink" title="access_token"></a>access_token</h3><p>按<code>F5</code>刷新，切换按钮到红框指定的位置，根据下图的指示，能够找到配置文件中<code>access_token</code>对应的值。</p>
-<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.png"></center><br>【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】</p>
+<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.jpg"></center>
+
+<p>【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】</p>
 <h3 id="comic-chinese-name、series-id-first、series-id-last、zip-type、folder-name-header、spare-time"><a href="#comic-chinese-name、series-id-first、series-id-last、zip-type、folder-name-header、spare-time" class="headerlink" title="comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time"></a>comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time</h3><p>这些参数都是自己可以随便定义的。</p>
 <p><code>comic_chinese_name</code>：自己定义的漫画的中文名</p>
 <p><code>series_id_first、series_id_last</code>：想要下载漫画的集数范围。例：如果想要下载该漫画1-15集，那么<code>series_id_first=1</code>，<code>series_id_last=15</code>  ;如果只想下载15集，那么<code>series_id_first = 15</code>，<code>series_id_last=15</code></p>
@@ -537,7 +554,7 @@
   <p><span>本文标题:</span><a href="/2019/09/08/lezhincomic/">Lezhin爬虫使用</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年09月08日 - 18:09</p>
-  <p><span>最后更新:</span>2019年09月09日 - 14:09</p>
+  <p><span>最后更新:</span>2019年09月10日 - 10:09</p>
   <p><span>原始链接:</span><a href="/2019/09/08/lezhincomic/" title="Lezhin爬虫使用">http://aimasa.github.io/2019/09/08/lezhincomic/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/09/08/lezhincomic/" aria-label="复制成功！"></i></span>
   </p>
@@ -1487,9 +1504,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
