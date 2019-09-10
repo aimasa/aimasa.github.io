@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Lezhin爬虫使用]]></title>
-    <url>%2F2019%2F09%2F08%2Flezhincomic%2F</url>
-    <content type="text"><![CDATA[Lezhin爬虫使用方法lezhin爬虫配置文件介绍 配置文件模板123456789101112131415161718192021222324#需要爬的漫画信息[comic_info]comic_chinese_name = 我的哥哥我的老师comic_name = mybromyssamseries_id_first = 25series_id_last = 25; ---------------------------------; 需要存放的文件路径以及压缩格式[folder_info]zip_type = zipfolder_name_header = H:/; ----------------------------------; 账号登录网站后得到的必要信息[comic_request_info]access_token = comic_id = lezhin_cookie = ;------------------------------------;下载完一话漫画下第二话需要等待时间[spare_time]spare_time = 10 注：配置文件后缀名为 .ini，也可以是.config 该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10），运行之后，想中断运行的话按ctrl+c 只能爬取自己已经购买了的漫画，或者网站确定为免费的漫画。 配置参数详解：comic_name、comic_id点进去之后就能在浏览器的路径上找到对应漫画的comic_name 接着往下拉，按下F12点，进想要下载的漫画的第一话（随便哪话都能找到以下信息） ========================================================================================================= 重点分割线 ====================================================================================================== 点开NetWork这栏 找到红框中的链接内容，点开之后会在旁边弹出一个小框 在这个小框中，划拉到header这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的comic_name，_的值就是配置文件里的comic_id【ps:comic_id是我命名有问题，我也不知道_是代表什么。】 lezhin_cookie在header这栏中间会看到cookie，这个值是lezhin_cookie access_token按F5刷新，切换按钮到红框指定的位置，根据下图的指示，能够找到配置文件中access_token对应的值。 【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】 comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time这些参数都是自己可以随便定义的。 comic_chinese_name：自己定义的漫画的中文名 series_id_first、series_id_last：想要下载漫画的集数范围。例：如果想要下载该漫画1-15集，那么series_id_first=1，series_id_last=15 ;如果只想下载15集，那么series_id_first = 15，series_id_last=15 zip_type：想压缩成的格式。例：zip_type = zip，文件则被压缩成zip格式 folder_name_header：想要存储的地址前缀。例：想要把我的哥哥我的老师漫画全部存在D:/comic里面，然后folder_name_header = D:/comic，运行此脚本，会在D:/comic里面生成一个我的哥哥我的老师这个总文件夹，里面会有你下载的漫画集数（下载下来的图片是分集装好）。 spare_time：爬完上一话，继续爬下一话时候的间隔时间。因为怕爬取漫画过快，被检测发现是用了脚本在爬，所以加了一个spare_time，可以spare_time=0，但是可能会有被封号的风险哟。spare_time=1，就意思是间隔时间为1s。 eg: alias : myxxxx =&gt; comic_name = myxxxx 接着把自己的配置文件在本地的存放位置在程序开始时填一下，如：配置文件名为：lezhin.config，放在电脑的D:/configfile这个文件夹下面，运行程序，出现配置文件路径：的字样时候，输入D:/配置文件/lezhin.config。好了，回车，开始爬数据了，如果突然闪退，可以看log里面的记录。 总结这个脚本对我来说现阶段最麻烦的就是cookie和access_token这两个参数需要手动获取。emmm看看能不能改进吧。 因为是在闲暇时候摸鱼写出来的脚本，可能会有很多不足，欢迎大家给我提issue。 爬虫代码lezhin爬虫 注：禁止用此爬虫爬下来的漫画进行二次贩卖！！！！！！！！！！请尊重他人版权！！！！！！！！！！！！！！！！此爬虫仅做学习用途！！！！！！！！！！！！！注：禁止用此爬虫爬下来的漫画进行二次贩卖！！！！！！！！！！请尊重他人版权！！！！！！！！！！！！！！！！此爬虫仅做学习用途！！！！！！！！！！！！！]]></content>
-      <categories>
-        <category>爬虫</category>
-        <category>漫画</category>
-      </categories>
-      <tags>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[python语法记录]]></title>
     <url>%2F2019%2F08%2F21%2Fpython%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[这是在学习kmeans时候碰到的一些语法问题，先记下来，方便日后使用 1power(vector2 - vector1, 2) power是numpy这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以power(x,y)是计算$\,x^{y}\,$这个公式的. 1sum(power(vector2 - vector1, 2)) sum也是numpy这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），num(x,y)运算是$x + y$，所以里面就是power(vector2 - vector1, 2)计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试sum的括号里放多行两列数组）]]></content>
