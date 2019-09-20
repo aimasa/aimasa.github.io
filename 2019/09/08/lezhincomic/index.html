@@ -135,7 +135,7 @@
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.jpg">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.jpg">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.jpg">
-<meta property="og:updated_time" content="2019-09-10T02:05:40.494Z">
+<meta property="og:updated_time" content="2019-09-20T02:45:08.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lezhin爬虫使用">
 <meta name="twitter:description" content="Lezhin爬虫使用方法lezhin爬虫配置文件介绍">
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  993
+                  1.2k
                 </span>
               
 
@@ -464,7 +464,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -489,38 +489,35 @@
 <a id="more"></a>
 <h2 id="配置文件模板"><a href="#配置文件模板" class="headerlink" title="配置文件模板"></a>配置文件模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#需要爬的漫画信息</span><br><span class="line">[comic_info]</span><br><span class="line">comic_chinese_name = 我的哥哥我的老师</span><br><span class="line">comic_name = mybromyssam</span><br><span class="line">series_id_first = 25</span><br><span class="line">series_id_last = 25</span><br><span class="line">; ---------------------------------</span><br><span class="line">; 需要存放的文件路径以及压缩格式</span><br><span class="line">[folder_info]</span><br><span class="line">zip_type = zip</span><br><span class="line">folder_name_header = H:/</span><br><span class="line"></span><br><span class="line">; ----------------------------------</span><br><span class="line">; 账号登录网站后得到的必要信息</span><br><span class="line">[comic_request_info]</span><br><span class="line">access_token = </span><br><span class="line">comic_id = </span><br><span class="line">lezhin_cookie = </span><br><span class="line"></span><br><span class="line">;------------------------------------</span><br><span class="line">;下载完一话漫画下第二话需要等待时间</span><br><span class="line">[spare_time]</span><br><span class="line">spare_time = 10</span><br></pre></td></tr></table></figure>
 <p>注：配置文件后缀名为 .ini，也可以是.config</p>
-<p>该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10），运行之后，想中断运行的话按<code>ctrl+c</code></p>
+<p><strong>小白使用方法</strong></p>
+<ul>
+<li>该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10）</li>
+<li>新建配置文件在自己电脑里（文件名格式：xxx.ini 或 xxx.config 。ps：没试过用中文的文件名，你们可以试试。）</li>
+<li>运行之后，输入配置文件地址</li>
+<li>中断运行的话按<code>ctrl+c</code></li>
+</ul>
+<p><strong>开发者使用方法</strong></p>
+<ul>
+<li>下载源码，里面缺失的python包都能通过<code>pip install xxx</code>下载得到。</li>
+<li>新建配置文件在自己电脑里（文件名格式：xxx.ini 或 xxx.config 。ps：没试过用中文的文件名，你们可以试试。）</li>
+<li>入口地址为main.py。当然run.py里面也有入口，emmm我自己写着调试的，可以不用管它。</li>
+<li>运行后会要求输入配置文件地址，按配置文件在自己电脑里存放的位置输入即可。</li>
+</ul>
 <p>只能爬取自己已经购买了的漫画，或者网站确定为免费的漫画。</p>
-<h2 id="配置参数详解："><a href="#配置参数详解：" class="headerlink" title="配置参数详解："></a>配置参数详解：</h2><h3 id="comic-name、comic-id"><a href="#comic-name、comic-id" class="headerlink" title="comic_name、comic_id"></a>comic_name、comic_id</h3><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\first.png"></center>
-点进去之后就能在浏览器的路径上找到对应漫画的comic_name
-
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getcomicname.png"></center>
-接着往下拉，按下F12点，进想要下载的漫画的第一话（随便哪话都能找到以下信息）
-
-=========================================================================================================
-
-重点分割线
-
-======================================================================================================
-
-
-
-点开`NetWork`这栏
-
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.jpg"></center>
-找到红框中的链接内容，点开之后会在旁边弹出一个小框
-
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.jpg"></center>
-
-<p>在这个小框中，划拉到<code>header</code>这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的<code>comic_name</code>，<code>_</code>的值就是配置文件里的<code>comic_id</code>【ps:<code>comic_id</code>是我命名有问题，我也不知道<code>_</code>是代表什么。】</p>
+<p>打包后的脚本并未开放。</p>
+<h2 id="配置参数详解："><a href="#配置参数详解：" class="headerlink" title="配置参数详解："></a>配置参数详解：</h2><h3 id="comic-name、comic-id"><a href="#comic-name、comic-id" class="headerlink" title="comic_name、comic_id"></a>comic_name、comic_id</h3><p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\first.png"></center><br>点进去之后就能在浏览器的路径上找到对应漫画的comic_name</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getcomicname.png"></center><br>接着往下拉，按下F12点，进想要下载的漫画的第一话（随便哪话都能找到以下信息）</p>
+<p>=========================================================================================================</p>
+<p>重点分割线</p>
+<p>======================================================================================================</p>
+<p>点开<code>NetWork</code>这栏</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getLezhincookie.jpg"></center><br>找到红框中的链接内容，点开之后会在旁边弹出一个小框</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\comic_nameandid.jpg"></center><br>在这个小框中，划拉到<code>header</code>这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的<code>comic_name</code>，<code>_</code>的值就是配置文件里的<code>comic_id</code>【ps:<code>comic_id</code>是我命名有问题，我也不知道<code>_</code>是代表什么。】</p>
 <h3 id="lezhin-cookie"><a href="#lezhin-cookie" class="headerlink" title="lezhin_cookie"></a>lezhin_cookie</h3><p>在<code>header</code>这栏中间会看到<code>cookie</code>，这个值是<code>lezhin_cookie</code></p>
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.jpg"></center>
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.jpg"></center>
-
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\cookie.jpg"></center></p>
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\togetaccesstoken.jpg"></center></p>
 <h3 id="access-token"><a href="#access-token" class="headerlink" title="access_token"></a>access_token</h3><p>按<code>F5</code>刷新，切换按钮到红框指定的位置，根据下图的指示，能够找到配置文件中<code>access_token</code>对应的值。</p>
-<center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.jpg"></center>
-
-<p>【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/GitReadMePicture\LezhinComic\getaccesstoken.jpg"></center><br>【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】</p>
 <h3 id="comic-chinese-name、series-id-first、series-id-last、zip-type、folder-name-header、spare-time"><a href="#comic-chinese-name、series-id-first、series-id-last、zip-type、folder-name-header、spare-time" class="headerlink" title="comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time"></a>comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time</h3><p>这些参数都是自己可以随便定义的。</p>
 <p><code>comic_chinese_name</code>：自己定义的漫画的中文名</p>
 <p><code>series_id_first、series_id_last</code>：想要下载漫画的集数范围。例：如果想要下载该漫画1-15集，那么<code>series_id_first=1</code>，<code>series_id_last=15</code>  ;如果只想下载15集，那么<code>series_id_first = 15</code>，<code>series_id_last=15</code></p>
@@ -554,7 +551,7 @@
   <p><span>本文标题:</span><a href="/2019/09/08/lezhincomic/">Lezhin爬虫使用</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年09月08日 - 18:09</p>
-  <p><span>最后更新:</span>2019年09月10日 - 10:09</p>
+  <p><span>最后更新:</span>2019年09月20日 - 10:09</p>
   <p><span>原始链接:</span><a href="/2019/09/08/lezhincomic/" title="Lezhin爬虫使用">http://aimasa.github.io/2019/09/08/lezhincomic/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/09/08/lezhincomic/" aria-label="复制成功！"></i></span>
   </p>
@@ -834,7 +831,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">41.2k</span>
+    <span title="Site words total count">41.4k</span>
   
 </div>
 
