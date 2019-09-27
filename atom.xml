@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-09-20T02:45:08.872Z</updated>
+  <updated>2019-09-26T09:28:39.674Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Http协议</title>
+    <link href="http://aimasa.github.io/2019/09/25/Http%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://aimasa.github.io/2019/09/25/Http协议/</id>
+    <published>2019-09-25T01:38:23.000Z</published>
+    <updated>2019-09-26T09:28:39.674Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Lezhin爬虫使用</title>
@@ -532,30 +546,6 @@ nums2 = [2]
     
     
       <category term="数学导论" scheme="http://aimasa.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习爬虫（一）：安装selenium和ChromeDriver</title>
-    <link href="http://aimasa.github.io/2019/05/10/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AE%89%E8%A3%85selenium%E5%92%8CChromeDriver/"/>
-    <id>http://aimasa.github.io/2019/05/10/学习爬虫（一）：安装selenium和ChromeDriver/</id>
-    <published>2019-05-10T09:33:44.000Z</published>
-    <updated>2019-06-12T09:14:44.057Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于爬虫的学习，先从selenium这个库开始学。</p><a id="more"></a><h1 id="关于selenium"><a href="#关于selenium" class="headerlink" title="关于selenium"></a>关于selenium</h1><p>先是</p><pre><code>pip install selenium</code></pre><p>安装完这个，我以为就odk了，然后在pycharm编译器里面跟着网上给的代码敲了一段</p><pre><code>from selenium import webdriverbrowser = webdriver.Chrome()browser.get(&#39;https://www.baidu.com&#39;)</code></pre><p>结果报错了</p><pre><code>This inspection detects names that should resolve but don&#39;t. Due to dynamic dispatch and duck typing, this is possible in a limited but useful number of cases. Top-level and class-level items are supported better than instance items.</code></pre><p>大体意思就是模块不存在，然后我以为是pip install时候出错了，就回去再pip install一遍，结果发现，还是没有用。</p><p>然后上网找解决方案，跟着网上的教程去看了pycharm这个IDE里面设置的python环境的路径：</p><ul><li><strong>File &gt; settings &gt; project:xxxxxxx(你导入pycharm的文件夹)  &gt; project Interpreter</strong></li></ul><p>就发现我pip install下载下来的selenium库地址和之前设置在IDE里面python环境的地址不一样，所以没法找到selenium这个模块。</p><p>然后去对这个IDE里面的python路径进行更改。</p><h2 id="更改"><a href="#更改" class="headerlink" title="更改"></a>更改</h2><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/pycharm.png"></center><p>点<strong>show all……</strong></p><p>接着</p><center><img src="http://pictures.aimasa.club/static/images/学习爬虫（一）：安装selenium和ChromeDriver/add.png"></center><p>找到对应python-pip的相关python目录所在地，然后更改IDE依赖环境目录。</p><h2 id="查找目录所在地"><a href="#查找目录所在地" class="headerlink" title="查找目录所在地"></a>查找目录所在地</h2><p>我是再次pip install selenium，然后看到了selenium存的位置，再根据这个位置找到相关信息。</p><h1 id="ChromeDriver"><a href="#ChromeDriver" class="headerlink" title="ChromeDriver"></a>ChromeDriver</h1><p>我弄好了，发现不再显示该模块不存在的信息了之后，运行了一遍，发现还是报错了。</p><pre><code>Service chromedriver unexpectedly exited</code></pre><p>出现了这个报错信息。</p><h2 id="装插件"><a href="#装插件" class="headerlink" title="装插件"></a>装插件</h2><p>所以我去安装chromedriver驱动<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">下载地址</a></p><p>下载好了之后，解压，再新建一个文件夹，里面只放解压出来的exe文件，再去控制面板里面配置环境path</p><p>然后再运行，成功调出了Chrome浏览器，并且让它自动进入百度搜索页面。</p><h1 id="browser-get"><a href="#browser-get" class="headerlink" title="browser.get()"></a>browser.get()</h1><p>browser.get()括号里面的字符串必须填写完整的网址，不然会显示无效网址的错误提示。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_41188944/article/details/79039690" target="_blank" rel="noopener">参考资料</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于爬虫的学习，先从selenium这个库开始学。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="爬虫、python" scheme="http://aimasa.github.io/categories/%E7%88%AC%E8%99%AB%E3%80%81python/"/>
-    
-      <category term="安装selenium和ChromeDriver" scheme="http://aimasa.github.io/categories/%E7%88%AC%E8%99%AB%E3%80%81python/%E5%AE%89%E8%A3%85selenium%E5%92%8CChromeDriver/"/>
-    
-    
-      <category term="爬虫" scheme="http://aimasa.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
