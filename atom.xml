@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-09-26T09:28:39.674Z</updated>
+  <updated>2019-10-17T00:55:18.705Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -15,6 +15,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>k个一组翻转链表</title>
+    <link href="http://aimasa.github.io/2019/10/16/k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>http://aimasa.github.io/2019/10/16/k个一组翻转链表/</id>
+    <published>2019-10-16T14:11:20.000Z</published>
+    <updated>2019-10-17T00:55:18.705Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。</p><p>k 是一个正整数，它的值小于或等于链表的长度。</p><p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p><p>示例 :</p><p><code>给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</code></p><p><code>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</code></p><p><code>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</code></p><p>说明 :</p><p>你的算法只能使用常数的额外空间。<br>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><a id="more"></a><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>写这道题目可以用递归，但对递归不太了解，所以明天打算写一下递归的专题，暂时不在这道题上耗时间了，等递归用的顺手的时候再回来写它。</p><h2 id="学到的点："><a href="#学到的点：" class="headerlink" title="学到的点："></a>学到的点：</h2><p>1、计算时间复杂度，虽然我在一个大循环里面包了两个不同的小循环，但是时间复杂度加在一起，一共是$f(2l-\frac{l}{k})$,并不是我想的会复杂度很高。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;p&gt;给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。&lt;/p&gt;
+&lt;p&gt;k 是一个正整数，它的值小于或等于链表的长度。&lt;/p&gt;
+&lt;p&gt;如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。&lt;/p&gt;
+&lt;p&gt;示例 :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;1-&amp;gt;4-&amp;gt;5&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;说明 :&lt;/p&gt;
+&lt;p&gt;你的算法只能使用常数的额外空间。&lt;br&gt;你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="k个一组翻转链表" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    
+    
+      <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leedcode算法题" scheme="http://aimasa.github.io/tags/leedcode%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爬虫心得</title>
+    <link href="http://aimasa.github.io/2019/10/15/%E7%88%AC%E8%99%AB%E5%BF%83%E5%BE%97/"/>
+    <id>http://aimasa.github.io/2019/10/15/爬虫心得/</id>
+    <published>2019-10-15T06:04:43.000Z</published>
+    <updated>2019-10-16T14:11:47.602Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为毕业设计的缘故，网上没有现成的数据库，所以要自己想办法去爬取数据。所以</p><p>毕业设计step1:</p><ol><li>书写爬虫爬取文本</li></ol><p>之前试着写了一个爬漫画的爬虫练手（书写思路另会写一条博客详细说明），那时候是对页面漫画的内容进行爬取，但是这次写的爬虫是对页面<code>html</code>的信息进行爬取。</p><a id="more"></a><p>拟使用的库是<code>requests_html</code>和<code>PyQuery</code>，但是<code>PyQuery</code>这个单独的库好像就能满足我的需求。</p><p>其中</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br></pre></td></tr></table></figure><p>从<code>PyQuery</code>导入<code>pyquery</code>的方法模块。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pq(link)</span><br></pre></td></tr></table></figure><p>这句话的意思是获取这个<code>link</code>对应的页面的<code>html</code>文件。但是我这样写的时候却出现了乱码。</p><p>要根据网站的编码方式再去进行解码，所以我直接去获取这个网址对应的<code>html</code>信息是会返回乱码的。所以要把这句话改成：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pq(link,encoding=<span class="string">""</span>)</span><br></pre></td></tr></table></figure><p>现在我们就需要知道网站编码格式是什么了，我们打开<code>link</code>对应的那个网站页面，点击<code>f12</code>看它的页面元素（位置一般在<code>&lt;head&gt;</code>这个标签里面）：</p><p><img src="G:\blog\tmp_myBlog\qiniu_picture\images\爬虫心得\content.png" alt="content"></p><p>由此可知，<code>encoding=&quot;gb2312&quot;</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为毕业设计的缘故，网上没有现成的数据库，所以要自己想办法去爬取数据。所以&lt;/p&gt;
+&lt;p&gt;毕业设计step1:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;书写爬虫爬取文本&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之前试着写了一个爬漫画的爬虫练手（书写思路另会写一条博客详细说明），那时候是对页面漫画的内容进行爬取，但是这次写的爬虫是对页面&lt;code&gt;html&lt;/code&gt;的信息进行爬取。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://aimasa.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="爬取html信息" scheme="http://aimasa.github.io/categories/%E7%88%AC%E8%99%AB/%E7%88%AC%E5%8F%96html%E4%BF%A1%E6%81%AF/"/>
+    
+    
+      <category term="爬虫" scheme="http://aimasa.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>两两交换链表中的节点</title>
+    <link href="http://aimasa.github.io/2019/10/14/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    <id>http://aimasa.github.io/2019/10/14/两两交换链表中的节点/</id>
+    <published>2019-10-14T13:00:45.000Z</published>
+    <updated>2019-10-16T14:13:05.529Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p><p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><p>示例:</p><p>给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.</p><a id="more"></a><p>这题的话用之前的思路也是行得通的，就是两两交换的思路可以通过<code>while</code>进行循环，然后两两节点换位置，类似于普通参数换位置，因为它可以分解成一个个重复的小问题，所以这题还能用递归去解决。</p><p>因为我递归总是不太熟，所以在这里特地写了个笔记。</p><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p><img src="G:\blog\tmp_myBlog\qiniu_picture\images\新建文件夹\buzou.png" alt="buzou"></p><p>把这个题目的大问题划分成一个个重复的子问题（对链表头进行节点互换），然后再限定条件，找到出口点（节点不能为空，节点的<code>.next</code>不能为空）</p><p>然后根据这个思路把代码表示出来。</p><p>在<a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs" target="_blank" rel="noopener">leedcode</a>网站中，标准题解中对递归解释是这样的：递归写法要观察本级递归的解决过程，形成抽象模型，因为递归本质就是不断重复相同的事情。而不是去思考完整的调用栈，一级又一级，无从下手。如图所示，我们应该关注一级调用小单元的情况，也就是单个f(x)。</p><h2 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h2><p><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs" target="_blank" rel="noopener">力扣</a></p><h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/swappairs" target="_blank" rel="noopener">代码</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;p&gt;给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。&lt;/p&gt;
+&lt;p&gt;你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。&lt;/p&gt;
+&lt;p&gt;示例:&lt;/p&gt;
+&lt;p&gt;给定 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, 你应该返回 2-&amp;gt;1-&amp;gt;4-&amp;gt;3.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="两两交换链表中的节点" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    
+    
+      <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leedcode算法题" scheme="http://aimasa.github.io/tags/leedcode%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>Http协议</title>
@@ -59,19 +151,19 @@
     <link href="http://aimasa.github.io/2019/08/21/python%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
     <id>http://aimasa.github.io/2019/08/21/python语法记录/</id>
     <published>2019-08-21T03:17:19.000Z</published>
-    <updated>2019-09-09T06:34:34.909Z</updated>
+    <updated>2019-10-14T03:01:58.012Z</updated>
     
-    <content type="html"><![CDATA[<p>这是在学习kmeans时候碰到的一些语法问题，先记下来，方便日后使用</p><a id="more"></a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure><p><code>power</code>是<code>numpy</code>这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以<code>power(x,y)</code>是计算$\,x^{y}\,$这个公式的.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(power(vector2 - vector1, <span class="number">2</span>))</span><br></pre></td></tr></table></figure><p><code>sum</code>也是<code>numpy</code>这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），<code>num(x,y)</code>运算是$x + y$，所以里面就是<code>power(vector2 - vector1, 2)</code>计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试<code>sum</code>的括号里放多行两列数组）</p>]]></content>
+    <content type="html"><![CDATA[<p>这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用</p><a id="more"></a><h2 id="numpy语法记录"><a href="#numpy语法记录" class="headerlink" title="numpy语法记录"></a>numpy语法记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure><p><code>power</code>是<code>numpy</code>这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以<code>power(x,y)</code>是计算$\,x^{y}\,$这个公式的.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(power(vector2 - vector1, <span class="number">2</span>))</span><br></pre></td></tr></table></figure><p><code>sum</code>也是<code>numpy</code>这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），<code>num(x,y)</code>运算是$x + y$，所以里面就是<code>power(vector2 - vector1, 2)</code>计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试<code>sum</code>的括号里放多行两列数组）</p><h2 id="pandas语法记录"><a href="#pandas语法记录" class="headerlink" title="pandas语法记录"></a>pandas语法记录</h2><p><code>read_csv()</code>：默认返回值是<code>DataFrame</code></p><p>而加上了<code>chunksize=xxx</code>这个参数之后返回值就变成了：<code>TextFileReader</code></p><p>在试运行文本处理的程序时候需要进行数据预处理，作者说是先在本机几条数据看看效果，所以我通过加参数<code>chunksize</code>把数据分块成小块这样，注意：并不是单纯的分割出来前多少条数据。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.DataFrame(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>).get_chunk(<span class="number">1</span>))</span><br></pre></td></tr></table></figure><p>这是取分块成功后的第一块（就是前一千条哦）。是从1开始计数的。</p><p><code>G:/Data using/new_data/new_data/test_set.csv</code>这是我存放数据的地址。</p><p>​        </p><p>除掉这种<code>pd.DataFrame().get_chunk(1)</code>的办法还有拼接的办法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.concat(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>), ignore_index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure><h2 id="requests-html"><a href="#requests-html" class="headerlink" title="requests_html"></a>requests_html</h2><h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="https://stackoverflow.com/questions/39386458/how-to-read-data-in-python-dataframe-without-concatenating" target="_blank" rel="noopener">pandas TextFileReader  to DataFrame</a></p><p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank" rel="noopener">pandas官方文档</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;这是在学习kmeans时候碰到的一些语法问题，先记下来，方便日后使用&lt;/p&gt;
+      &lt;p&gt;这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用&lt;/p&gt;
     
     </summary>
     
       <category term="python语法" scheme="http://aimasa.github.io/categories/python%E8%AF%AD%E6%B3%95/"/>
     
-      <category term="numpy语法记录" scheme="http://aimasa.github.io/categories/python%E8%AF%AD%E6%B3%95/numpy%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
+      <category term="各大库的琐碎语法记录" scheme="http://aimasa.github.io/categories/python%E8%AF%AD%E6%B3%95/%E5%90%84%E5%A4%A7%E5%BA%93%E7%9A%84%E7%90%90%E7%A2%8E%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
     
     
       <category term="python语法" scheme="http://aimasa.github.io/tags/python%E8%AF%AD%E6%B3%95/"/>
@@ -463,89 +555,6 @@ nums2 = [2]
     
     
       <category term="运行error" scheme="http://aimasa.github.io/tags/%E8%BF%90%E8%A1%8Cerror/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>态势感知</title>
-    <link href="http://aimasa.github.io/2019/05/31/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
-    <id>http://aimasa.github.io/2019/05/31/态势感知/</id>
-    <published>2019-05-31T09:31:11.000Z</published>
-    <updated>2019-09-09T06:34:34.911Z</updated>
-    
-    <content type="html"><![CDATA[<p>在找研究方向时候，有人推荐我看看态势感知，所以记个笔记</p><p>我对态势感知的理解就是：对网络里来往的流量进行分析，排除噪声，通过各种手段通过分析得出安全情况，然后进行防护。</p><p>网络安全态势感知NSSA（network security situation awareness）<br><a id="more"></a></p><h1 id="态势感知"><a href="#态势感知" class="headerlink" title="态势感知"></a>态势感知</h1><p> 态势是各种状态的综合，是一个整体和全局的概念。它强调的是系统和系统对象之间的关系,下图是态势感知的系统要素内容（我jio的就是单纯的流程，就是从收集到的原始数据，然后进行处理得到的数据，再从这些数据里面用技术去分析，得到相关不同的进行了的活动，再去针对不同的活动进行不同的分析，最后的状态评估，进行预测，不同的活动会对系统中的各个对象产生的作用）</p><center><img src="http://pictures.aimasa.club/static/images/态势感知/struct.png"></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在找研究方向时候，有人推荐我看看态势感知，所以记个笔记&lt;/p&gt;
-&lt;p&gt;我对态势感知的理解就是：对网络里来往的流量进行分析，排除噪声，通过各种手段通过分析得出安全情况，然后进行防护。&lt;/p&gt;
-&lt;p&gt;网络安全态势感知NSSA（network security situation awareness）&lt;br&gt;
-    
-    </summary>
-    
-      <category term="态势感知相关" scheme="http://aimasa.github.io/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="态势感知" scheme="http://aimasa.github.io/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E7%9B%B8%E5%85%B3/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
-    
-    
-      <category term="态势感知" scheme="http://aimasa.github.io/tags/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文件上传到mongdb的方法</title>
-    <link href="http://aimasa.github.io/2019/05/23/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0mongdb%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://aimasa.github.io/2019/05/23/文件上传到mongdb的方法/</id>
-    <published>2019-05-23T08:38:02.000Z</published>
-    <updated>2019-05-24T06:03:48.951Z</updated>
-    
-    <content type="html"><![CDATA[<p>思路：先构造一个请求体，然后获取文件类型，进行比对，如果不是excel类型拒绝，是则存入请求体.</p><p>把文件内容转成输入流，再从输入流中读取转成二进制byteArray类型</p><p>对这个二进制数组做哈希</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;思路：先构造一个请求体，然后获取文件类型，进行比对，如果不是excel类型拒绝，是则存入请求体.&lt;/p&gt;
-&lt;p&gt;把文件内容转成输入流，再从输入流中读取转成二进制byteArray类型&lt;/p&gt;
-&lt;p&gt;对这个二进制数组做哈希&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="mongodb存储" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/mongodb%E5%AD%98%E5%82%A8/"/>
-    
-    
-      <category term="mongodb" scheme="http://aimasa.github.io/tags/mongodb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一种基于结构划分概率的口令攻击方法</title>
-    <link href="http://aimasa.github.io/2019/05/10/%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8E%E7%BB%93%E6%9E%84%E5%88%92%E5%88%86%E6%A6%82%E7%8E%87%E7%9A%84%E5%8F%A3%E4%BB%A4%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/"/>
-    <id>http://aimasa.github.io/2019/05/10/一种基于结构划分概率的口令攻击方法/</id>
-    <published>2019-05-10T12:26:08.000Z</published>
-    <updated>2019-06-12T09:16:48.178Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一种基于结构划分概率的口令攻击方法研究，里面牵涉到了上下文无关文法</p><p>它分析了现在存储用户口令的方法，然后优化了对口令的攻击方法，节约了很多时间</p><a id="more"></a><h1 id="论文大体介绍"><a href="#论文大体介绍" class="headerlink" title="论文大体介绍"></a>论文大体介绍</h1><p>现在的系统大部分是保存口令的Hash值，用户登录时候，会通过<strong>单向函数</strong>（单向函数给定输入值进行输出很简单，但是很难从输出值去推算回输入值）对输入的口令进行运算，再把得到的Hash值去和存储的哈希值进行对比，如果相等，那么就登录成功了。</p><p>也有一些系统是采用加盐值（就是给你的密码加一串随机数，然后再进行哈希运算，得出一串哈希值，这样对于去破解密码的人来说，运算量很大，很难被破解）的方法去进一步保证系统的安全性。</p><p>因为攻击难度提高了，所以攻击者换了个角度，开始从人对口令的记忆方面去思考攻击方法，提高攻击效率。</p><p>这篇论文是重在考虑基于口令划分概率的口令攻击方法。它和另一个方法相比提高了百分之二十到百分之三十的命中率</p><p>这个方法也具有学习功能，能够根据攻击结果更新使用的字典，提高攻击效率。</p><h1 id="近来口令分析简介"><a href="#近来口令分析简介" class="headerlink" title="近来口令分析简介"></a>近来口令分析简介</h1><ul><li><p>结合词典，根据刚开始定义的变形规则去改变刚开始的单词，生成口令。</p><ul><li>但是变形规则简单，数量有限，要人工自己编写</li><li>口令搜索空间有限，它依赖于已经有的字典和变形规则，变形规则简单，虽然可以根据攻击者自己想变形规则去形成复杂口令，但效率不高。</li></ul></li><li><p>基于马尔科夫链的时间存储折中攻击</p><ul><li>（没看）</li></ul></li><li><p>基于概率上下文无关文法口令攻击方法</p><ul><li>用概率上下文无关文法去定义口令结构，就分块定义，然后对每个块的密码内容进行概率排序，然后产生半终端结构（就是比如我分块是A、B、C、D三个块，A概率最大的值是1，那么按A概率排的半终端结构就是1BCD）</li><li>各个块进行概率排序，然后各个按概率大小组合在一起，形成的结构再按概率插入队列</li><li>有了更多的变形规则，搜索空间更大了</li><li>据统计，高概率的具体结构长度大部分都小于等于3（就分的块小于等于分出了三个块）</li><li>命中率低（但相对于前面的，已经提高了命中率）</li></ul></li></ul><h1 id="口令结构分析"><a href="#口令结构分析" class="headerlink" title="口令结构分析"></a>口令结构分析</h1><p>详细数据表明，大部分人都会把口令只划分为一个部分（也就是比较单一）当然还有少部分会使用其他结构</p><p>对口令按具体结构进行初次划分时候，不会把口令结构划分的很小。</p><p>根据数据分析，虽然结构长的口令比较难被攻击者猜测出来，但是很少有用户会选择结构长的口令。</p><h1 id="基于结构划分概率的方法"><a href="#基于结构划分概率的方法" class="headerlink" title="基于结构划分概率的方法"></a>基于结构划分概率的方法</h1><p>所以该文决定对高概率的口令组合结构根据用户习惯进行再次划分</p><p>主要步骤：</p><ul><li>预处理</li><li>口令攻击阶段</li></ul><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><ul><li>具体结构：就是根据用户设置的口令而划分的结构（没有被处理过的那种）</li><li>抽取子结构：就是从具体结构中划分出来的小结构再分类别归类，从而形成了抽取子结构。eg:A（字母）、D（数字），具体结构是：ADAD =&gt; {AA，DD}（分类别归类），其中抽取子结构为：$\bar{A}\, =\, AA\,$</li><li>再对具体结构根据它对应的抽取子结构进行归类，再计算该结构的使用概率。</li></ul><p>论文中使用了一种概率统计方法：</p><p>$p\, =\frac{NUM<em>{ss</em>{i}}} {NUM<em>{es</em>{j}}}$ </p><p>其中分母表示的是具有这个抽取子结构的数目，分子是对应的具有此划分子结构数目（就是对具体子结构分类别归类后，不同结构组成同一抽取子结构的结构）</p><p>$\,ss<em>{i}\,$表示第i个划分子结构,$\,es</em>{j}\,$表示二对应的第j个抽取子结构.</p><p>由论文总结的数据可以得知：用户口令单一结构的组成占大多数。</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] 邹静,林东岱,郝春辉.一种基于结构划分概率的口令攻击方法[J].计算机学报,2014,37(05):1206-1215.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一种基于结构划分概率的口令攻击方法研究，里面牵涉到了上下文无关文法&lt;/p&gt;
-&lt;p&gt;它分析了现在存储用户口令的方法，然后优化了对口令的攻击方法，节约了很多时间&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数学导论" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
-    
-      <category term="上下文无关文法" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/"/>
-    
-      <category term="论文赏析（只有赏）" scheme="http://aimasa.github.io/categories/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/%E8%AE%BA%E6%96%87%E8%B5%8F%E6%9E%90%EF%BC%88%E5%8F%AA%E6%9C%89%E8%B5%8F%EF%BC%89/"/>
-    
-    
-      <category term="数学导论" scheme="http://aimasa.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   

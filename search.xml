@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[k个一组翻转链表]]></title>
+    <url>%2F2019%2F10%2F16%2Fk%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。 如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。 示例 : 给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5 当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5 当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5 说明 : 你的算法只能使用常数的额外空间。你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。 心得写这道题目可以用递归，但对递归不太了解，所以明天打算写一下递归的专题，暂时不在这道题上耗时间了，等递归用的顺手的时候再回来写它。 学到的点：1、计算时间复杂度，虽然我在一个大循环里面包了两个不同的小循环，但是时间复杂度加在一起，一共是$f(2l-\frac{l}{k})$,并不是我想的会复杂度很高。]]></content>
+      <categories>
+        <category>算法</category>
+        <category>k个一组翻转链表</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>leedcode算法题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[爬虫心得]]></title>
+    <url>%2F2019%2F10%2F15%2F%E7%88%AC%E8%99%AB%E5%BF%83%E5%BE%97%2F</url>
+    <content type="text"><![CDATA[因为毕业设计的缘故，网上没有现成的数据库，所以要自己想办法去爬取数据。所以 毕业设计step1: 书写爬虫爬取文本 之前试着写了一个爬漫画的爬虫练手（书写思路另会写一条博客详细说明），那时候是对页面漫画的内容进行爬取，但是这次写的爬虫是对页面html的信息进行爬取。 拟使用的库是requests_html和PyQuery，但是PyQuery这个单独的库好像就能满足我的需求。 其中 1from pyquery import PyQuery as pq 从PyQuery导入pyquery的方法模块。 1pq(link) 这句话的意思是获取这个link对应的页面的html文件。但是我这样写的时候却出现了乱码。 要根据网站的编码方式再去进行解码，所以我直接去获取这个网址对应的html信息是会返回乱码的。所以要把这句话改成： 1pq(link,encoding="") 现在我们就需要知道网站编码格式是什么了，我们打开link对应的那个网站页面，点击f12看它的页面元素（位置一般在&lt;head&gt;这个标签里面）： 由此可知，encoding=&quot;gb2312&quot;]]></content>
+      <categories>
+        <category>爬虫</category>
+        <category>爬取html信息</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[两两交换链表中的节点]]></title>
+    <url>%2F2019%2F10%2F14%2F%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。 示例: 给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3. 这题的话用之前的思路也是行得通的，就是两两交换的思路可以通过while进行循环，然后两两节点换位置，类似于普通参数换位置，因为它可以分解成一个个重复的小问题，所以这题还能用递归去解决。 因为我递归总是不太熟，所以在这里特地写了个笔记。 分析 把这个题目的大问题划分成一个个重复的子问题（对链表头进行节点互换），然后再限定条件，找到出口点（节点不能为空，节点的.next不能为空） 然后根据这个思路把代码表示出来。 在leedcode网站中，标准题解中对递归解释是这样的：递归写法要观察本级递归的解决过程，形成抽象模型，因为递归本质就是不断重复相同的事情。而不是去思考完整的调用栈，一级又一级，无从下手。如图所示，我们应该关注一级调用小单元的情况，也就是单个f(x)。 参考网站力扣 参考代码代码]]></content>
+      <categories>
+        <category>算法</category>
+        <category>两两交换链表中的节点</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>leedcode算法题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Http协议]]></title>
     <url>%2F2019%2F09%2F25%2FHttp%E5%8D%8F%E8%AE%AE%2F</url>
     <content type="text"></content>
@@ -20,10 +58,10 @@
   <entry>
     <title><![CDATA[python语法记录]]></title>
     <url>%2F2019%2F08%2F21%2Fpython%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[这是在学习kmeans时候碰到的一些语法问题，先记下来，方便日后使用 1power(vector2 - vector1, 2) power是numpy这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以power(x,y)是计算$\,x^{y}\,$这个公式的. 1sum(power(vector2 - vector1, 2)) sum也是numpy这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），num(x,y)运算是$x + y$，所以里面就是power(vector2 - vector1, 2)计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试sum的括号里放多行两列数组）]]></content>
+    <content type="text"><![CDATA[这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用 numpy语法记录1power(vector2 - vector1, 2) power是numpy这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以power(x,y)是计算$\,x^{y}\,$这个公式的. 1sum(power(vector2 - vector1, 2)) sum也是numpy这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），num(x,y)运算是$x + y$，所以里面就是power(vector2 - vector1, 2)计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试sum的括号里放多行两列数组） pandas语法记录read_csv()：默认返回值是DataFrame 而加上了chunksize=xxx这个参数之后返回值就变成了：TextFileReader 在试运行文本处理的程序时候需要进行数据预处理，作者说是先在本机几条数据看看效果，所以我通过加参数chunksize把数据分块成小块这样，注意：并不是单纯的分割出来前多少条数据。 12import pandas as pdtest_data = pd.DataFrame(pd.read_csv('G:/Data using/new_data/new_data/test_set.csv',chunksize= 1000).get_chunk(1)) 这是取分块成功后的第一块（就是前一千条哦）。是从1开始计数的。 G:/Data using/new_data/new_data/test_set.csv这是我存放数据的地址。 ​ 除掉这种pd.DataFrame().get_chunk(1)的办法还有拼接的办法： 12import pandas as pdtest_data = pd.concat(pd.read_csv('G:/Data using/new_data/new_data/test_set.csv',chunksize= 1000), ignore_index=True) requests_html参考博客pandas TextFileReader to DataFrame pandas官方文档]]></content>
       <categories>
         <category>python语法</category>
-        <category>numpy语法记录</category>
+        <category>各大库的琐碎语法记录</category>
       </categories>
       <tags>
         <tag>python语法</tag>
