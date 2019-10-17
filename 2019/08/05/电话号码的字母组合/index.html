@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="算法,">
+  <meta name="keywords" content="算法,leedcode算法题,">
 
 
 
@@ -120,21 +120,21 @@
 
 
 
-<meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。     题目来源">
-<meta name="keywords" content="算法">
+<meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。    题目来源">
+<meta name="keywords" content="算法,leedcode算法题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="电话号码的字母组合">
 <meta property="og:url" content="http://aimasa.github.io/2019/08/05/电话号码的字母组合/index.html">
 <meta property="og:site_name" content="aimasa的个人博客">
-<meta property="og:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。     题目来源">
+<meta property="og:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。    题目来源">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/电话号码的字母组合/problem.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/电话号码的字母组合/tree.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/电话号码的字母组合/info.png">
-<meta property="og:updated_time" content="2019-09-09T06:34:34.913Z">
+<meta property="og:updated_time" content="2019-10-17T01:00:53.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="电话号码的字母组合">
-<meta name="twitter:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。     题目来源">
+<meta name="twitter:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。    题目来源">
 <meta name="twitter:image" content="http://pictures.aimasa.club/static/images/电话号码的字母组合/problem.png">
 
 
@@ -486,7 +486,6 @@
 <center><img src="http://pictures.aimasa.club/static/images/电话号码的字母组合/problem.png"></center>
 
 
-
 <p><a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">题目来源</a></p>
 <a id="more"></a>
 <h1 id="解答方法"><a href="#解答方法" class="headerlink" title="解答方法"></a>解答方法</h1><p>这个题目暴力破解的话至少要双重循环，更甚，然后我在这题里面学习了一下怎么用递归。</p>
@@ -499,17 +498,13 @@
 </ol>
 <p>里面重要的还是对递归问题进行提取重复逻辑。</p>
 <p>因为我对递归不是很了解，所以我打算在这记一下我跟着官方题解弄懂的怎么缩小大的问题规模</p>
-<h2 id="分析逻辑"><a href="#分析逻辑" class="headerlink" title="分析逻辑"></a>分析逻辑</h2><center><img src="http://pictures.aimasa.club/static/images/电话号码的字母组合/tree.png"></center>
-
-<p>假设输入的数字是“23“，然后”2“分支出去”abc“，三个支，再由”abc“分支，每个支都会连接到3里面的每个分支。</p>
+<h2 id="分析逻辑"><a href="#分析逻辑" class="headerlink" title="分析逻辑"></a>分析逻辑</h2><p><center><img src="http://pictures.aimasa.club/static/images/电话号码的字母组合/tree.png"></center><br>假设输入的数字是“23“，然后”2“分支出去”abc“，三个支，再由”abc“分支，每个支都会连接到3里面的每个分支。</p>
 <p>这就是可以被提取出来的重复逻辑。</p>
 <p>可以从“2”中的分支递归。我们先把重复逻辑提取出来，重复的逻辑就是把数字对应的字母分支开来，然后继续分支下去，如此循环往复。</p>
 <p>所以就用到了for循环，先对分支的顶端进行处理，也就是“2”分出来的“abc”三个分支。</p>
 <p>我们要把结果存储到list列表里面，那么在递归结束后，要把输出的结果add进list中</p>
 <p>流程就变成了这样：</p>
-<center><img src="http://pictures.aimasa.club/static/images/电话号码的字母组合/info.png"></center>
-
-<p>【注：里面有错别字：是==第一个循环==】</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/电话号码的字母组合/info.png"></center><br>【注：里面有错别字：是==第一个循环==】</p>
 <p>这样就能把这个分支用递归的办法全部遍历一遍了。</p>
 <p>也就是：我从第一层开始就对“2”指向的全部字母进行一个循环，循环中我再对跟在“2”后面的“3”指向的字母再次进行一个循环（也就是循环中进行递归），在循环的过程中，如果“3”后面还跟有其他数字的话，那我继续对“3”后面跟着的数字指向的字母进行循环，但如果“3”是最后一个数字的话，我把“3”指向的字母遍历完就可以返回上一层递归了，直到最后返回到最顶层，返回最终的结果。</p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://blog.csdn.net/HD243608836/article/details/79973010" target="_blank" rel="noopener">关于递归的特点以及注意点</a></p>
@@ -533,7 +528,7 @@
   <p><span>本文标题:</span><a href="/2019/08/05/电话号码的字母组合/">电话号码的字母组合</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年08月05日 - 11:08</p>
-  <p><span>最后更新:</span>2019年09月09日 - 14:09</p>
+  <p><span>最后更新:</span>2019年10月17日 - 09:10</p>
   <p><span>原始链接:</span><a href="/2019/08/05/电话号码的字母组合/" title="电话号码的字母组合">http://aimasa.github.io/2019/08/05/电话号码的字母组合/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/08/05/电话号码的字母组合/" aria-label="复制成功！"></i></span>
   </p>
@@ -575,6 +570,8 @@
         <div class="post-tags">
           
             <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/tags/leedcode算法题/" rel="tag"><i class="fa fa-tag"></i> leedcode算法题</a>
           
         </div>
       
@@ -705,7 +702,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -727,7 +724,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -817,7 +814,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.6k</span>
+    <span title="Site words total count">42.5k</span>
   
 </div>
 

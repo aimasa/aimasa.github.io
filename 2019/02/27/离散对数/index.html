@@ -130,7 +130,7 @@
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/离散对数/fangfa1.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/离散对数/fangfa2.png">
-<meta property="og:updated_time" content="2019-03-29T12:17:46.352Z">
+<meta property="og:updated_time" content="2019-10-17T01:07:17.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="离散对数(Discrete logarithm)">
 <meta name="twitter:description" content="设g为素数p的模循环群的原根,那就意思是$\, g\, $的循环群的大小$\,=\, \Phi \left ( p \right )$,又因为$\,p\,$是素数，所以循环群大小为：$\, \left ( p\,-\,1 \right )$ 对任意的a，计算： $b=g^{a}\ mod \ p$正推是很容易的，但是在只知道b而去求a的情况下，是非常难的。 因为a、b均为整数，不像实数那么“连续”">
@@ -491,13 +491,9 @@
 <p>A对从B处发来的Y进行计算：$\, Z\, =\, Y^{-c}\, $（可以把公式拆开得到：$ \, m^{cd\left ( -c \right )} \, mod \, q\,$，因为其中$\,cc^{-1}\,≡\,1(mod \,p-1)$，因为(c,p-1)=1，所以逆元素$c^{-1}$必存在。<a href="http://aimasa.github.io/2019/02/18/GaloisFields/">参见群的定义</a>）</p>
 <p>然后把Z值发回给B，让B根据这个值得到被加密的消息m。$z^{d^{-1}}=m^{dd^{-1}}\,mod\,p= m\,$因为m&lt;p-1。$dd^{-1}$与前面$cc^{-1}$同理</p>
 <h2 id="加密方法2—T-ElGamal算法"><a href="#加密方法2—T-ElGamal算法" class="headerlink" title="加密方法2—T. ElGamal算法"></a>加密方法2—T. ElGamal算法</h2><p>因为比较容易懂，所以就不打出来了，直接贴截图把，也可以进<a href="https://blog.csdn.net/chen77716/article/details/7106485" target="_blank" rel="noopener">参考博文</a>直接看。</p>
-<center><img src="http://pictures.aimasa.club/static/images/离散对数/fangfa1.png"></center>
-
-<p>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/离散对数/fangfa1.png"></center><br>这里只需要进行两次通信，但是通信的内容和加密方法1比起来要多了一个群元素。</p>
 <h2 id="加密方法3—密钥交换"><a href="#加密方法3—密钥交换" class="headerlink" title="加密方法3—密钥交换"></a>加密方法3—密钥交换</h2><p>它就是相当于两边共享一个秘钥，然后用这个秘钥对信息进行加解密（对称加密）</p>
-<center><img src="http://pictures.aimasa.club/static/images/离散对数/fangfa2.png"></center>
-
-<p>这个方法比较容易被程序实现。</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/离散对数/fangfa2.png"></center><br>这个方法比较容易被程序实现。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个加密算法难被破解的原因在于$b=g^{a}\ mod \ p$在这个公式中，只知道其中的b，p就算知道g，反推a也是非常的难，因为数据量之大，是没办法运算完成的。</p>
 
       
@@ -518,7 +514,7 @@
   <p><span>本文标题:</span><a href="/2019/02/27/离散对数/">离散对数(Discrete logarithm)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年02月27日 - 14:02</p>
-  <p><span>最后更新:</span>2019年03月29日 - 20:03</p>
+  <p><span>最后更新:</span>2019年10月17日 - 09:10</p>
   <p><span>原始链接:</span><a href="/2019/02/27/离散对数/" title="离散对数(Discrete logarithm)">http://aimasa.github.io/2019/02/27/离散对数/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/02/27/离散对数/" aria-label="复制成功！"></i></span>
   </p>
@@ -690,7 +686,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -712,7 +708,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -802,7 +798,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.6k</span>
+    <span title="Site words total count">42.5k</span>
   
 </div>
 

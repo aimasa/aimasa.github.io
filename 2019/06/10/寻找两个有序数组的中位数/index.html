@@ -129,7 +129,7 @@
 <meta property="og:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 nums1 = [1, 3] nums2 = [2] 中位数是：2.0">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png">
-<meta property="og:updated_time" content="2019-09-09T06:34:34.911Z">
+<meta property="og:updated_time" content="2019-10-17T01:01:18.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻找两个有序数组的中位数">
 <meta name="twitter:description" content="给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。 你可以假设 nums1 和 nums2 不会同时为空。 nums1 = [1, 3] nums2 = [2] 中位数是：2.0">
@@ -490,9 +490,7 @@ nums2 = [2]
 <p>就去看了官方的结题思路</p>
 <p>因为官方有直接的答案，我就在这写写我的理解(ps：其中一些公式什么的是直接从官网复制黏贴来的，图片也是直接截的，手打太费事了)【简要概述】：</p>
 <h1 id="结题思路"><a href="#结题思路" class="headerlink" title="结题思路"></a>结题思路</h1><p>把nums1和nums2都分成两个部分，然后nums1左边的部分和nums2左边的部分，nums1右边的部分nums2右边的部分放在一块，最后左边的部分总数要和右边部分的总数一样多,如下图：</p>
-<center><img src="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png"></center>
-
-<p>根据这张图里面的左边和右边的部分，我们假设已知$\,i\,$和$\,m\,$还有$\,n\,$的值，然后用公式把$\,j\,$表示出来,其中：</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png"></center><br>根据这张图里面的左边和右边的部分，我们假设已知$\,i\,$和$\,m\,$还有$\,n\,$的值，然后用公式把$\,j\,$表示出来,其中：</p>
 <ul>
 <li>$len(left_part)=len(right_part)$</li>
 <li>$\max(\text{left_part}) \leq \min(\text{right_part})max(left_part)≤min(right_part)$</li>
@@ -529,7 +527,7 @@ nums2 = [2]
   <p><span>本文标题:</span><a href="/2019/06/10/寻找两个有序数组的中位数/">寻找两个有序数组的中位数</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年06月10日 - 21:06</p>
-  <p><span>最后更新:</span>2019年09月09日 - 14:09</p>
+  <p><span>最后更新:</span>2019年10月17日 - 09:10</p>
   <p><span>原始链接:</span><a href="/2019/06/10/寻找两个有序数组的中位数/" title="寻找两个有序数组的中位数">http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/" aria-label="复制成功！"></i></span>
   </p>
@@ -701,7 +699,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -723,7 +721,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -813,7 +811,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.6k</span>
+    <span title="Site words total count">42.5k</span>
   
 </div>
 
