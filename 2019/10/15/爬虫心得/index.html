@@ -128,12 +128,12 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="因为毕业设计的缘故，网上没有现成的数据库，所以要自己想办法去爬取数据。所以 毕业设计step1:  书写爬虫爬取文本  之前试着写了一个爬漫画的爬虫练手（书写思路另会写一条博客详细说明），那时候是对页面漫画的内容进行爬取，但是这次写的爬虫是对页面html的信息进行爬取。">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="g:/blog/tmp_myBlog/qiniu_picture/images/爬虫心得/content.png">
-<meta property="og:updated_time" content="2019-10-17T00:59:42.781Z">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/爬虫心得\content.png">
+<meta property="og:updated_time" content="2019-10-24T02:44:50.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="爬虫心得">
 <meta name="twitter:description" content="因为毕业设计的缘故，网上没有现成的数据库，所以要自己想办法去爬取数据。所以 毕业设计step1:  书写爬虫爬取文本  之前试着写了一个爬漫画的爬虫练手（书写思路另会写一条博客详细说明），那时候是对页面漫画的内容进行爬取，但是这次写的爬虫是对页面html的信息进行爬取。">
-<meta name="twitter:image" content="g:/blog/tmp_myBlog/qiniu_picture/images/爬虫心得/content.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/爬虫心得\content.png">
 
 
 
@@ -495,7 +495,8 @@
 <p>要根据网站的编码方式再去进行解码，所以我直接去获取这个网址对应的<code>html</code>信息是会返回乱码的。所以要把这句话改成：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pq(link,encoding=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
 <p>现在我们就需要知道网站编码格式是什么了，我们打开<code>link</code>对应的那个网站页面，点击<code>f12</code>看它的页面元素（位置一般在<code>&lt;head&gt;</code>这个标签里面）：</p>
-<p><img src="G:\blog\tmp_myBlog\qiniu_picture\images\爬虫心得\content.png" alt="content"></p>
+<center><img src="http://pictures.aimasa.club/static/images/爬虫心得\content.png"></center>
+
 <p>由此可知，<code>encoding=&quot;gb2312&quot;</code></p>
 
       
@@ -516,7 +517,7 @@
   <p><span>本文标题:</span><a href="/2019/10/15/爬虫心得/">爬虫心得</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年10月15日 - 14:10</p>
-  <p><span>最后更新:</span>2019年10月17日 - 08:10</p>
+  <p><span>最后更新:</span>2019年10月24日 - 10:10</p>
   <p><span>原始链接:</span><a href="/2019/10/15/爬虫心得/" title="爬虫心得">http://aimasa.github.io/2019/10/15/爬虫心得/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/10/15/爬虫心得/" aria-label="复制成功！"></i></span>
   </p>
@@ -1445,9 +1446,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

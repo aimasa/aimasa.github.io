@@ -134,7 +134,7 @@
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/overLenth.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/final.png">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/最长回文串/realFinal.png">
-<meta property="og:updated_time" content="2019-10-17T01:01:53.951Z">
+<meta property="og:updated_time" content="2019-10-24T02:45:01.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长回文串">
 <meta name="twitter:description" content="终于弄懂了最长回文串，在做题的时候，总是在暴力破解的思路里出不去，总想着两个for循环，空间复杂度为o($n^{2}$)然后解题思路里面讲了Manacher’s algorithm这个算法，把复杂度降低到了o(n)。">
@@ -487,37 +487,16 @@
         <p>终于弄懂了最长回文串，在做题的时候，总是在暴力破解的思路里出不去，总想着两个for循环，空间复杂度为o($n^{2}$)然后解题思路里面讲了Manacher’s algorithm这个算法，把复杂度降低到了o(n)。</p>
 <a id="more"></a>
 <p>首先看张图（我为了图方便，都先预处理了字符串，不是按官方给的判断回文子串的奇偶方法）</p>
-<center><img src="http://pictures.aimasa.club/static/images/最长回文串/time.png"></center>
-上面那行是我用暴力破解用的时间，下面那行是用Manacher's algorithm这个算法花的时间，可以很明显的看到emm差距。
-
-（想说一点[题外话]：记得老师说以空间换时间和以时间换空间的这句话，所以我们需要在时间和空间中找到一个平衡点以达到我们想要的效率）
-
-# 暴力破解
-
-这个算法很简单，就是简单粗暴的双循环，接着判断是不是回文串，再判断是不是最长的回文串。
-
-我用的是先预处理字符串，在字符串中间加入"#"号，字符串首尾也加上这个
-
-eg：abcd  =====> #a#b#c#d#
-
-这样就能保证字符串长度一定为奇数了（如果字符串原长3，那么就需要插入4个"#"，那么奇数加偶数一定是奇数了）
-
-然后根据循环到的位置，扩散开来判断是否是回文串，是的话同时记录长度和下标，就能够寻找到最长的回文串了。
-
-# Manacher's algorithm
-
-## 预处理
-
-首先预处理字符串，让字符串保证长度为奇数
-eg：aba  =====> #a#b#a#
-
-## 主要思路
-
-先假设**当前最长回文串**
-
-<center><img src="http://pictures.aimasa.club/static/images/最长回文串/table.png"></center>
-
-<p>里面的p[i]是指当前回文串的半径（其实p[i] - 1就是当前回文串的真实长度）</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/time.png"></center><br>上面那行是我用暴力破解用的时间，下面那行是用Manacher’s algorithm这个算法花的时间，可以很明显的看到emm差距。</p>
+<p>（想说一点[题外话]：记得老师说以空间换时间和以时间换空间的这句话，所以我们需要在时间和空间中找到一个平衡点以达到我们想要的效率）</p>
+<h1 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h1><p>这个算法很简单，就是简单粗暴的双循环，接着判断是不是回文串，再判断是不是最长的回文串。</p>
+<p>我用的是先预处理字符串，在字符串中间加入”#”号，字符串首尾也加上这个</p>
+<p>eg：abcd  =====&gt; #a#b#c#d#</p>
+<p>这样就能保证字符串长度一定为奇数了（如果字符串原长3，那么就需要插入4个”#”，那么奇数加偶数一定是奇数了）</p>
+<p>然后根据循环到的位置，扩散开来判断是否是回文串，是的话同时记录长度和下标，就能够寻找到最长的回文串了。</p>
+<h1 id="Manacher’s-algorithm"><a href="#Manacher’s-algorithm" class="headerlink" title="Manacher’s algorithm"></a>Manacher’s algorithm</h1><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>首先预处理字符串，让字符串保证长度为奇数<br>eg：aba  =====&gt; #a#b#a#</p>
+<h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>先假设<strong>当前最长回文串</strong></p>
+<p><center><img src="http://pictures.aimasa.club/static/images/最长回文串/table.png"></center><br>里面的p[i]是指当前回文串的半径（其实p[i] - 1就是当前回文串的真实长度）</p>
 <p>所以，p[j]是最后得出最长回文串的关键。</p>
 <p>所以我们需要求出p[j]（ci的位置就是为p[i]服务的）</p>
 <p>先假设ci是<strong>当前</strong>最长回文串的中心点，那么由它开始往外扩展，判断这个最长回文串里面是否有新的回文串，如果有的话，首先判断新的回文串是不是被这个最大回文串包含了。</p>
@@ -552,7 +531,7 @@ eg：aba  =====> #a#b#a#
   <p><span>本文标题:</span><a href="/2019/06/18/最长回文串/">最长回文串</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年06月18日 - 20:06</p>
-  <p><span>最后更新:</span>2019年10月17日 - 09:10</p>
+  <p><span>最后更新:</span>2019年10月24日 - 10:10</p>
   <p><span>原始链接:</span><a href="/2019/06/18/最长回文串/" title="最长回文串">http://aimasa.github.io/2019/06/18/最长回文串/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/06/18/最长回文串/" aria-label="复制成功！"></i></span>
   </p>
@@ -802,7 +781,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾"><span class="nav-number">1.</span> <span class="nav-text">结尾</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#暴力破解"><span class="nav-number">1.</span> <span class="nav-text">暴力破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manacher’s-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Manacher’s algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理"><span class="nav-number">2.1.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思路"><span class="nav-number">2.2.</span> <span class="nav-text">主要思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结尾"><span class="nav-number">2.3.</span> <span class="nav-text">结尾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1506,9 +1485,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
