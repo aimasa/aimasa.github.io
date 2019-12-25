@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-10-17T03:13:48.588Z</updated>
+  <updated>2019-12-10T08:39:48.101Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -17,13 +17,85 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>手写字体识别走过的坑</title>
+    <link href="http://aimasa.github.io/2019/12/04/%E6%89%8B%E5%86%99%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/"/>
+    <id>http://aimasa.github.io/2019/12/04/手写字体识别走过的坑/</id>
+    <published>2019-12-04T07:18:35.000Z</published>
+    <updated>2019-12-10T08:39:48.101Z</updated>
+    
+    <content type="html"><![CDATA[<p>运行的代码是：<a href="https://github.com/HuiyanWen/bysj_hit" target="_blank" rel="noopener">哈工大大佬毕设代码</a></p><p>因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip" target="_blank" rel="noopener">数据集trn</a>，<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip" target="_blank" rel="noopener">数据集tst</a></p><h1 id="开门第一坑：缺少验证集"><a href="#开门第一坑：缺少验证集" class="headerlink" title="开门第一坑：缺少验证集"></a>开门第一坑：缺少验证集</h1><p>自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑</p><h1 id="开门第二坑：tf-data-TFRecordDataset-的使用"><a href="#开门第二坑：tf-data-TFRecordDataset-的使用" class="headerlink" title="开门第二坑：tf.data.TFRecordDataset()的使用"></a>开门第二坑：tf.data.TFRecordDataset()的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.TFRecordDataset(filename)</span><br></pre></td></tr></table></figure><p>我傻了吧唧的以为，这个可以直接把地址列表输入进去，它会自动按地址去读取那些对应的图片，事实证明我错的离谱……这个只会读取存有TFRecord文件地址的列表……所以才会报错：record被损坏……</p><p>这个<code>TFRecordDataset</code>里面的<code>filename</code>只能是<code>TFRecord</code>类型文件的地址==。</p><p>所以现在先进行数据预处理。</p><p>TFRecord是一种将图像数据和标签放在一起的二进制文件，适合以串行的方式读取大批量数据，虽然它的内部格式复杂，但是它可以很好地利用内存，方便地复制和移动，更符合TensorFlow执行引擎的方式。<a href="https://blog.csdn.net/JinbaoSite/article/details/75194226" target="_blank" rel="noopener">该句来源</a></p><p><a href="https://blog.csdn.net/hujiameihuxu/article/details/79944366" target="_blank" rel="noopener">代码参考博客</a></p><p>关于代码中的<code>tf.python_io.TFRecordWriter(path, options=None)</code>，括号中间的<code>path</code>是填写转换好的内容的存储地址的,<code>option</code>是用来定义<code>TFRecord</code>文件保存的压缩格式的，是<code>TFRecordOptions</code>对象。[注意哦，TensorFlow的v2.0版本和v2.0以下版本的语法不同哟~反正我觉得TensorFlowv2.0的bug有点多，不敢用。而且我看了一下别人提交的push，好多是修改语法的……emmm还是等它稳定点，再试着用用吧。]</p><p>将普通图片数据转换成<code>TFRecord</code>格式数据需要注意的一点就是：读取<code>TFRecord</code>文件的时候，读取字典的<code>key</code>是要根据转换成<code>TFRecord</code>格式时候的字典的<code>key</code>对应上的。</p><p>【==我对tfrecord的理解有问题，需要修改==</p><p>好，接着进入第三坑。【暂缓</p><h1 id="对TensorFlow不了解的坑"><a href="#对TensorFlow不了解的坑" class="headerlink" title="对TensorFlow不了解的坑"></a>对TensorFlow不了解的坑</h1><ol><li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.dropout(x, dropout)</span><br></pre></td></tr></table></figure><p>其中</p><p>x是输入的，需要dropout进行概率屏蔽的矩阵</p><p>dropout是概率，需要屏蔽哪些</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;运行的代码是：&lt;a href=&quot;https://github.com/HuiyanWen/bysj_hit&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;哈工大大佬毕设代码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特
+      
+    
+    </summary>
+    
+      <category term="图像处理" scheme="http://aimasa.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+      <category term="手写识别" scheme="http://aimasa.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/"/>
+    
+    
+      <category term="图像处理" scheme="http://aimasa.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CNN论文笔记</title>
+    <link href="http://aimasa.github.io/2019/11/20/CNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <id>http://aimasa.github.io/2019/11/20/CNN论文笔记/</id>
+    <published>2019-11-20T13:12:23.000Z</published>
+    <updated>2019-12-25T12:15:32.733Z</updated>
+    
+    <content type="html"><![CDATA[<p>阅读<code>CNN for sentence classification</code>的笔记，记录一下。</p><a id="more"></a><p>对词向量的解释：</p><blockquote><p>Word vectors, wherein words are projected from a sparse, 1-of-V encoding (here V is the vocabulary size) onto a lower dimensional vector space via a hidden layer, are essentially feature extractors that encode semantic features of words in their dimensions.</p></blockquote><p>本质是特征提取器，对词在其维度上的语义特征进行编码。</p><hr><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>CNN应用领域挺广的，比如计算机视觉方面，音频识别方面，还有在自然语言处理方面。这里主要讲的是CNN在自然语言处理里面的运用以及一些知识点。</p><h2 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h2><p>在这篇论文里是一个简单的CNN模型，它只是一个简单的四层模型架构，分别有输入层、卷积层、池化层、全连接层。如下图所示：</p><center><img src="http://pictures.aimasa.club/static/images/CNN论文笔记\filter.png"></center><p>【图截取自该论文，我就不自己画了】</p><h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><p>这一层是将词语向量化，我的理解是把词语转换成0或1表示，现在用的比较多的词向量化工具是<a href="https://code.google.com/p/word2vec/" target="_blank" rel="noopener">word2Vec</a>。论文中用word2Vec对输入数据进行了两次word embeding，形成了两个通道（channel），一个进行卷积，一个通过反向传播进行微调一些参数（我目前理解的是调整权重和偏重，就是论文中的$f(w*x_{i:i+h-j} + b)$中的$w$和$b$，其中$w$是权重，它是随机初始化的，然后再根据loss的值进行反向传播微调，适应训练的参数类型，从而达到理想的分类效果，偏重就是$b$，以调整差值。根据反向传播的不断调整，再对结果进行筛选，得到最优的$w$和$b$值。</p><h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>这一层是用来提取输入参数的特征的，通过卷积，去提取特征。根据filter的高度，选择多少个词连接在一起与对应的filter进行卷积运算。</p><p>在卷积层中，filter对词向量做滑动取词计算，如果filter的高度$h$为$n$的话，那么和filter运算的分别是：</p><p>第一次运算：$x<em>{1:n}=x</em>{1}\oplus x<em>{2}…\oplus x</em>{n}$</p><p>第二次运算：$x<em>{2:n}=x</em>{2}\oplus x<em>{2}…\oplus x</em>{n+1}$</p><p>……</p><p>第x次运算：$x<em>{x:n}=x</em>{x}\oplus x<em>{x+1}…\oplus x</em>{n+x-1}$</p><p>注：如果$n+x-1 &lt; len(输入参数)$，则继续运算，如果$n+x-1 = len(输入参数)$则结束运算，如果$n+x-1 &gt; len(输入参数)$，那么会对其做padding处理，padding有两种处理方式，一种是VALID(不足舍弃)，另一种是SAME(不足补零)</p><p>【小声逼逼：一点都不想画图，因为感觉好麻烦哦，所以用公式表示啦</p><p>其中，$x<em>{i}$是指第$i$个词（word），其中  $x</em>{1:n}=x<em>{1}\oplus x</em>{2}…\oplus x<em>{n}$是$x</em>{1}$到$x_{n}$的词向量的连接（普通的连接哦）。</p><p>卷积运算的话就是用对应的权重和对应的拼接词汇向量相乘，再加上$b$偏移量，以此为参数放入选择好的激活函数中运算，从而得到对应的特征。就是：$f(w*x_{i:i+h-1}+b)$</p><p>很多博客都没有说过卷积运算是干么的，这里我对比着图像处理中的卷积运算讲讲咯。</p><p>图像处理中，用CNN进行分类计算，分类嘛，比如鸟类和鸟类的图片，只要图片上出现了鸟类，那就意味着这张图片我们可以把它归类为鸟类图片，但是，图片上出现鸟类的位置总不会一成不变，所以我们就要根据鸟类的特征去寻找图片上的鸟类，所以我们通过filter去一堆格子一堆格子的去搜寻，去比对，去寻找图片上可能出现的鸟类的局部特征，再通过分配不同的权重给搜寻结果，最后设置阈值，计算概率，以此判断这张图片是不是鸟类的图片。</p><p>语言处理也是一样的，它通过filter不同的高度，去寻找可能出现的词汇结构，再分配不同的权重，以此得到这个文本是不是这个类别的文本。【上下文相似的词其语义也相似———这是出自一篇经典论文】</p><h3 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h3><p>这一层是用来挑选出各种filter的最明显的特征，一般都是用max_feature来挑选，是吧是吧，简单粗暴。然后如果还想继续加层的话，就可以在池化层后，接上卷积层，再接上池化层，以此循环迭代。</p><h3 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h3><p>这一层可以看成分类器，它的公式是：$y=w*z+b$，其中$z$当然是所有filter中的所有的最大特征值咯。最后这个$y$就被代入到激活函数里头$a = f(y)$。得出的值就是对应的属于不同类别的概率值，这些概率值就是全连接层的输出结果。</p><p>在计算出了概率值之后，根据预期结果（$\hat{y}$）和实际结果$a$计算出loss值（一般都是用$E = \frac{1}{2}\sum_{i}^{n}(\hat{y}-a)^{2}$这个公式计算出偏移值）这样就可以通过反向传播，去调整权重值和偏差值。</p><h3 id="反向传参"><a href="#反向传参" class="headerlink" title="反向传参"></a>反向传参</h3><p>还记得上面论文中说过，CNN在句子分类中，使用的是两个chennal，一个是静态chennal，一个是动态chennal，动态的 chennal是用来从全连接层反向传播调整参数的，静态的chennal是用来向传参，计算分类概率的。</p><p>反向传参的方法就是求导，从全连接层往输入层去反向推导调整权重值和偏差值，之前一直没能理解为什么反向求导时候怎么调整权重值，现在在这里把我目前的理解，讲一遍，然后如果理解错了，大家能够指正一下：</p><p>$w<em>{后} = w</em>{初} - \triangledown w$</p><p>$\triangledown w = \eta \ast \frac{\partial E}{\partial a}\ast \frac{\partial a}{\partial y}\ast \frac{\partial y}{\partial w}$</p><p>【这里只是意思意思的写那么几个公式，就是求偏导数，当$\triangledown w $为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w<em>{后}$要用$w</em>{前}$去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w<em>{后}$的值需要减掉$\triangledown w $值得到，如果是负数，就说明$w</em>{后}$的值需要加上$\triangledown w $值得到。而里面的$\eta$是代表学习率，这个是自己设置的，是用来控制梯度下降的步长（这里可以看看吴恩达老师视频的梯度下降的这块），学习率太大，步长太长，就会很容易跳过让$w$能够等于最佳值的点，学习率太小，步长太小，就会下降速度太慢emmm，可以联想一下，数据不够，下降太慢==】</p><h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>分别有relu、tanh、sigmoi，这三种函数，一般，tanh、sigmoi会被用在全连接层，relu被用在卷积层。</p><p>激活函数的作用是把卷积后的结果压缩到某一个固定的范围，这样可以一直保持一层一层下去的数值范围是可控的。———-<a href="https://www.jianshu.com/p/58168fec534d" target="_blank" rel="noopener">摘自博客</a></p><h3 id="实验参数"><a href="#实验参数" class="headerlink" title="实验参数"></a>实验参数</h3><p>$l_{2}$范式 = 3</p><p>filter window 的h分别有：3、4、5</p><p>每个高有100个feather map</p><p>batch= 50</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这就是一篇实验报告，CNN通过不同长度的filter去搜索句子中的特征，这样的话就避免了特征遗漏的现象，然后明显化重要特征，再通过全连接层分类。这样的话有个缺点就是无法联系上下文去判断词语在文中的意义，就是无法语义理解。因为中文一词多义，所以这样分类肯定会有误差的。所以nlp比图像处理难太多了。</p><p>啊，自己跟着网上的教程手动撸了CNN代码，对训练过程以及喂数据过程有了个大体的了解，因为电脑的性能问题，我不得已把数据集分批读取再丢进模型里面处理，不知道是不是这个原因，导致loss值为负值，而且准确度奇低，目前还在探索，等有了结果会再写一篇心得，标志着CNN的学习告一段落。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/32819991" target="_blank" rel="noopener">反向传播</a></p><p><a href="https://www.aclweb.org/anthology/D14-1181.pdf" target="_blank" rel="noopener">CNN for sentence classification</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;阅读&lt;code&gt;CNN for sentence classification&lt;/code&gt;的笔记，记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="nlp自然语言处理" scheme="http://aimasa.github.io/categories/nlp%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
+    
+      <category term="CNN语言模型" scheme="http://aimasa.github.io/categories/nlp%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/CNN%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="nlp" scheme="http://aimasa.github.io/tags/nlp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>统计学习（一）之监督学习</title>
+    <link href="http://aimasa.github.io/2019/11/20/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://aimasa.github.io/2019/11/20/统计学习（一）/</id>
+    <published>2019-11-20T03:23:56.000Z</published>
+    <updated>2019-12-02T13:53:46.219Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="统计学习" scheme="http://aimasa.github.io/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="监督学习" scheme="http://aimasa.github.io/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="统计学习" scheme="http://aimasa.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>k个一组翻转链表</title>
     <link href="http://aimasa.github.io/2019/10/16/k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
     <id>http://aimasa.github.io/2019/10/16/k个一组翻转链表/</id>
     <published>2019-10-16T14:11:20.000Z</published>
-    <updated>2019-10-17T03:13:48.588Z</updated>
+    <updated>2019-10-24T03:06:35.770Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。</p><p>k 是一个正整数，它的值小于或等于链表的长度。</p><p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p><p>示例 :</p><p><code>给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</code></p><p><code>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</code></p><p><code>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</code></p><p>说明 :</p><p>你的算法只能使用常数的额外空间。<br>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><a id="more"></a><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>写这道题目可以用递归，但对递归不太了解，所以明天打算写一下递归的专题，暂时不在这道题上耗时间了，等递归用的顺手的时候再回来写它。</p><h2 id="学到的点："><a href="#学到的点：" class="headerlink" title="学到的点："></a>学到的点：</h2><p>1、计算时间复杂度，虽然我在一个大循环里面包了两个不同的小循环，但是时间复杂度加在一起，一共是$f(3l-\frac{l}{k})$,并不是我想的会复杂度很高。</p><p>2、要理清楚<code>ListNode</code>的存储结构，不然容易出现指向地址的值产生循环的情况。</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>注：里面<code>pre</code>和<code>corr</code>默认使用<code>0-&gt;xxxxxx</code>如此，虽然画的是直接指向需要转换的链表的头指针，但是他们默认是<code>.next</code>指向。</p><p>我没太看仔细看网上的思路，跟着自己的想法写了这个，用语言不知道要怎么表达，干脆放图好了：</p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\example.png"></center><p>在上图中，先考虑只改变<code>ListNode</code>链表首的翻转变动。$k = 1$的时候链表不做改动，$k = 2$的时候两两交换，$k = 3$的时候就把$k=2$时候翻转好的链表作为一个整体，再和指向的第三个链表做一次两两交换，$k=4$就可以把$k=3$的已经转换好的链表看做一个整体，再与指向的第四个链表做一次两两交换，以此类推。</p><p>这样就可以发现可以根据$k$数量的做一次循环了，这个循环的复杂度只有$f(k)$，需要的指针如下所示：</p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\zhizhen.png"></center><p>指针<code>end</code>永远都是跟在<code>second</code>的后面，指向链表尾部，<code>second</code>指向<code>end</code>的前一个的原因就是上面说的将前一部分看做一个整体，和后面指向的数字进行两两交换，<code>first-&gt;second</code>就是那个整体，<code>end</code>是那个后面指向的数字。所以<code>first</code>永远都是指在要交换的链表头（就是比如图上<code>1-&gt;2-&gt;3-&gt;4</code>时候，$k=3$，第一次要对<code>1-&gt;2-&gt;3</code>交换，那<code>first</code>指向链表中存储<code>1</code>的位置，当前面三个交换完之后，对下一组进行交换，那么<code>first</code>就应该指向<code>4</code>，因为它是下一组的链表之首。）</p><p><code>pre.next</code>这个指针我用来存储头节点，到最后可以通过输出它，而输出已经被翻转好的链表。</p><p>但是，因为<code>end</code>指针会一直和<code>first</code>指针进行交换，所以<code>pre.next</code>指针指向的地址只会一直跟着<code>first</code>，而无法将转换好的链表完整输出：</p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\preerror.png"></center><p>所以我加了一个<code>corr</code>指针去跟踪这个翻转后的完整的链表，让<code>corr</code>指向翻转好的链表地址。</p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\process.png"></center><p>这样，就得到正确的结果了。</p><p>为了知道有多少段链表需要我去进行翻转，而不用临时判空等操作浪费时间，所以在用循环知道了链表会有多长之后，整除$k$，知道了有多少段链表需要翻转，然后再整合上面的思路。</p><h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>emm我觉得递归的话可能效率更高？因为时间都浪费在让<code>occr</code>这个指针去跟踪更新的链表了。</p><h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener">leedcode</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。</p><p>k 是一个正整数，它的值小于或等于链表的长度。</p><p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p><p>示例 :</p><p><code>给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</code></p><p><code>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</code></p><p><code>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</code></p><p>说明 :</p><p>你的算法只能使用常数的额外空间。<br>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><a id="more"></a><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>写这道题目可以用递归，但对递归不太了解，所以明天打算写一下递归的专题，暂时不在这道题上耗时间了，等递归用的顺手的时候再回来写它。</p><h2 id="学到的点："><a href="#学到的点：" class="headerlink" title="学到的点："></a>学到的点：</h2><p>1、计算时间复杂度，虽然我在一个大循环里面包了两个不同的小循环，但是时间复杂度加在一起，一共是$f(3l-\frac{l}{k})$,并不是我想的会复杂度很高。</p><p>2、要理清楚<code>ListNode</code>的存储结构，不然容易出现指向地址的值产生循环的情况。</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>注：里面<code>pre</code>和<code>corr</code>默认使用<code>0-&gt;xxxxxx</code>如此，虽然画的是直接指向需要转换的链表的头指针，但是他们默认是<code>.next</code>指向。</p><p>我没太看仔细看网上的思路，跟着自己的想法写了这个，用语言不知道要怎么表达，干脆放图好了：</p><p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\example.png"></center><br>在上图中，先考虑只改变<code>ListNode</code>链表首的翻转变动。$k = 1$的时候链表不做改动，$k = 2$的时候两两交换，$k = 3$的时候就把$k=2$时候翻转好的链表作为一个整体，再和指向的第三个链表做一次两两交换，$k=4$就可以把$k=3$的已经转换好的链表看做一个整体，再与指向的第四个链表做一次两两交换，以此类推。</p><p>这样就可以发现可以根据$k$数量的做一次循环了，这个循环的复杂度只有$f(k)$，需要的指针如下所示：</p><p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\zhizhen.png"></center><br>指针<code>end</code>永远都是跟在<code>second</code>的后面，指向链表尾部，<code>second</code>指向<code>end</code>的前一个的原因就是上面说的将前一部分看做一个整体，和后面指向的数字进行两两交换，<code>first-&gt;second</code>就是那个整体，<code>end</code>是那个后面指向的数字。所以<code>first</code>永远都是指在要交换的链表头（就是比如图上<code>1-&gt;2-&gt;3-&gt;4</code>时候，$k=3$，第一次要对<code>1-&gt;2-&gt;3</code>交换，那<code>first</code>指向链表中存储<code>1</code>的位置，当前面三个交换完之后，对下一组进行交换，那么<code>first</code>就应该指向<code>4</code>，因为它是下一组的链表之首。）</p><p><code>pre.next</code>这个指针我用来存储头节点，到最后可以通过输出它，而输出已经被翻转好的链表。</p><p>但是，因为<code>end</code>指针会一直和<code>first</code>指针进行交换，所以<code>pre.next</code>指针指向的地址只会一直跟着<code>first</code>，而无法将转换好的链表完整输出：</p><p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\preerror.png"></center><br>所以我加了一个<code>corr</code>指针去跟踪这个翻转后的完整的链表，让<code>corr</code>指向翻转好的链表地址。</p><p><center><img src="http://pictures.aimasa.club/static/images/k个一组翻转链表\process.png"></center><br>这样，就得到正确的结果了。</p><p>为了知道有多少段链表需要我去进行翻转，而不用临时判空等操作浪费时间，所以在用循环知道了链表会有多长之后，整除$k$，知道了有多少段链表需要翻转，然后再整合上面的思路。</p><h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>emm我觉得递归的话可能效率更高？因为时间都浪费在让<code>occr</code>这个指针去跟踪更新的链表了。</p><h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener">leedcode</a></p><h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/mergeklists" target="_blank" rel="noopener">参考代码</a></p>]]></content>
     
     <summary type="html">
     
@@ -153,9 +225,9 @@
     <link href="http://aimasa.github.io/2019/08/21/python%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
     <id>http://aimasa.github.io/2019/08/21/python语法记录/</id>
     <published>2019-08-21T03:17:19.000Z</published>
-    <updated>2019-10-17T00:59:57.428Z</updated>
+    <updated>2019-11-08T03:04:37.870Z</updated>
     
-    <content type="html"><![CDATA[<p>这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用</p><a id="more"></a><h2 id="numpy语法记录"><a href="#numpy语法记录" class="headerlink" title="numpy语法记录"></a>numpy语法记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure><p><code>power</code>是<code>numpy</code>这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以<code>power(x,y)</code>是计算$\,x^{y}\,$这个公式的.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(power(vector2 - vector1, <span class="number">2</span>))</span><br></pre></td></tr></table></figure><p><code>sum</code>也是<code>numpy</code>这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），<code>num(x,y)</code>运算是$x + y$，所以里面就是<code>power(vector2 - vector1, 2)</code>计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试<code>sum</code>的括号里放多行两列数组）</p><h2 id="pandas语法记录"><a href="#pandas语法记录" class="headerlink" title="pandas语法记录"></a>pandas语法记录</h2><p><code>read_csv()</code>：默认返回值是<code>DataFrame</code></p><p>而加上了<code>chunksize=xxx</code>这个参数之后返回值就变成了：<code>TextFileReader</code></p><p>在试运行文本处理的程序时候需要进行数据预处理，作者说是先在本机几条数据看看效果，所以我通过加参数<code>chunksize</code>把数据分块成小块这样，注意：并不是单纯的分割出来前多少条数据。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.DataFrame(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>).get_chunk(<span class="number">1</span>))</span><br></pre></td></tr></table></figure><p>这是取分块成功后的第一块（就是前一千条哦）。是从1开始计数的。</p><p><code>G:/Data using/new_data/new_data/test_set.csv</code>这是我存放数据的地址。</p><p>​        </p><p>除掉这种<code>pd.DataFrame().get_chunk(1)</code>的办法还有拼接的办法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.concat(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>), ignore_index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure><h2 id="requests-html"><a href="#requests-html" class="headerlink" title="requests_html"></a>requests_html</h2><h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="https://stackoverflow.com/questions/39386458/how-to-read-data-in-python-dataframe-without-concatenating" target="_blank" rel="noopener">pandas TextFileReader  to DataFrame</a></p><p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank" rel="noopener">pandas官方文档</a></p>]]></content>
+    <content type="html"><![CDATA[<p>这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用</p><a id="more"></a><h2 id="numpy相关记录"><a href="#numpy相关记录" class="headerlink" title="numpy相关记录"></a>numpy相关记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure><p><code>power</code>是<code>numpy</code>这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以<code>power(x,y)</code>是计算$\,x^{y}\,$这个公式的.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(power(vector2 - vector1, <span class="number">2</span>))</span><br></pre></td></tr></table></figure><p><code>sum</code>也是<code>numpy</code>这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），<code>num(x,y)</code>运算是$x + y$，所以里面就是<code>power(vector2 - vector1, 2)</code>计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试<code>sum</code>的括号里放多行两列数组）</p><h2 id="pandas相关记录"><a href="#pandas相关记录" class="headerlink" title="pandas相关记录"></a>pandas相关记录</h2><p><code>read_csv()</code>：默认返回值是<code>DataFrame</code></p><p>而加上了<code>chunksize=xxx</code>这个参数之后返回值就变成了：<code>TextFileReader</code></p><p>在试运行文本处理的程序时候需要进行数据预处理，作者说是先在本机几条数据看看效果，所以我通过加参数<code>chunksize</code>把数据分块成小块这样，注意：并不是单纯的分割出来前多少条数据。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.DataFrame(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>).get_chunk(<span class="number">1</span>))</span><br></pre></td></tr></table></figure><p>这是取分块成功后的第一块（就是前一千条哦）。是从1开始计数的。</p><p><code>G:/Data using/new_data/new_data/test_set.csv</code>这是我存放数据的地址。</p><p>​        </p><p>除掉这种<code>pd.DataFrame().get_chunk(1)</code>的办法还有拼接的办法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.concat(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>), ignore_index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure><h2 id="requests-html"><a href="#requests-html" class="headerlink" title="requests_html"></a>requests_html</h2><h1 id="collection相关记录"><a href="#collection相关记录" class="headerlink" title="collection相关记录"></a>collection相关记录</h1><p>collection.OrderedDict()是按放入元素的先后顺序进行排序。（有序字典）</p><h1 id="普通语法"><a href="#普通语法" class="headerlink" title="普通语法"></a>普通语法</h1><p>cls()：让我感觉像是封装，就是把一些参数经过处理然后封装起来。</p><p><code>unicodedata.normalize()</code> 第一个参数指定字符串标准化的方式。 NFC表示字符应该是整体组成(比如可能的话就使用单一编码)，而NFD表示字符应该分解为多个组合字符表示。</p><ul><li>unicodedata.category(chr)  </li></ul><p>把一个字符返回它在UNICODE里分类的类型。具体类型如下：</p><p>Code    Description</p><p>[Cc]    Other, Control</p><p>[Cf]    Other, Format</p><p>[Cn]    Other, Not Assigned (no characters in the file have this property)</p><p>[Co]    Other, Private Use</p><p>[Cs]    Other, Surrogate</p><p>[LC]    Letter, Cased</p><p>[Ll]    Letter, Lowercase</p><p>[Lm]    Letter, Modifier</p><p>[Lo]    Letter, Other</p><p>[Lt]    Letter, Titlecase</p><p>[Lu]    Letter, Uppercase</p><p>[Mc]    Mark, Spacing Combining</p><p>[Me]    Mark, Enclosing</p><p>[Mn]    Mark, Nonspacing</p><p>[Nd]    Number, Decimal Digit</p><p>[Nl]    Number, Letter</p><p>[No]    Number, Other</p><p>[Pc]    Punctuation, Connector</p><p>[Pd]    Punctuation, Dash</p><p>[Pe]    Punctuation, Close</p><p>[Pf]    Punctuation, Final quote (may behave like Ps or Pe depending on usage)</p><p>[Pi]    Punctuation, Initial quote (may behave like Ps or Pe depending on usage)</p><p>[Po]    Punctuation, Other</p><p>[Ps]    Punctuation, Open</p><p>[Sc]    Symbol, Currency</p><p>[Sk]    Symbol, Modifier</p><p>[Sm]    Symbol, Math</p><p>[So]    Symbol, Other</p><p>[Zl]    Separator, Line</p><p>[Zp]    Separator, Paragraph</p><p>[Zs]    Separator, Space</p><p>使用一个类，然后用<code>__init__</code>去初始化它，再返回值，相当于返回了一个封装好了的对象</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state_dict = kwargs.get(<span class="string">'state_dict'</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure><p>这是<em>args和*</em>kwargs的使用方法。如果未给出该值则state_dict值为None</p><p><a href="https://stackoverflow.com/questions/36901/what-does-double-star-asterisk-and-star-asterisk-do-for-parameters" target="_blank" rel="noopener">参考</a></p><p>sys.version_info[0]可以得到python的版本</p><p>Python getattr() 函数   </p><p>pow(n) 是计算n次方的</p><h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="https://stackoverflow.com/questions/39386458/how-to-read-data-in-python-dataframe-without-concatenating" target="_blank" rel="noopener">pandas TextFileReader  to DataFrame</a></p><p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank" rel="noopener">pandas官方文档</a></p>]]></content>
     
     <summary type="html">
     
@@ -485,85 +557,6 @@ nums2 = [2]
     
     
       <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud学习</title>
-    <link href="http://aimasa.github.io/2019/06/05/SpringCloud%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://aimasa.github.io/2019/06/05/SpringCloud学习/</id>
-    <published>2019-06-05T06:28:23.000Z</published>
-    <updated>2019-06-05T08:33:47.760Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前我写的代码都是单架构模式，就是把多个功能放在同一个应用里面，就像之前写的小程序后台一样</p><p>修改了部分代码，就得整体再重新打包编译，没有修改的部分，甚至不需要使用到这部分代码的功能也因为重新打包编译而全部不能使用……</p><p>所以要通过分布式和集群的方式把单架构模式改造一下</p><a id="more"></a><h1 id="微服务概念"><a href="#微服务概念" class="headerlink" title="微服务概念"></a>微服务概念</h1><p>一个springboot就是一个微服务，而且这个springboot做的事情很单一。在我的理解里面，就是把之前的一个整体的分层架构的springboot分成controller、service、dao这三个部分，</p><h1 id="微服务注册"><a href="#微服务注册" class="headerlink" title="微服务注册"></a>微服务注册</h1><p>虽然把springboot分了三部分，但这三部分应该怎么建立连接，相互之间应该怎么进行联络，所以就要引入一个微服务注册中心的概念了。这个微服务注册中心在 springcloud 里就叫做 eureka server, 通过它把就可以把微服务注册起来，以供将来调用。</p><h1 id="微服务访问"><a href="#微服务访问" class="headerlink" title="微服务访问"></a>微服务访问</h1><p>一个服务通过微服务注册中心定位并访问另外一个微服务。</p><h1 id="分布式概念"><a href="#分布式概念" class="headerlink" title="分布式概念"></a>分布式概念</h1><p>博客里介绍：本来一个spring boot就能完成的任务现在分布在多个spring boot里面做。<br>就是不同的部分的微服务可以由不同的团队去开发，耦合度低。</p><h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>就是同样的功能，但是用的端口不一样，如果8080挂了，我可以用8081这个端口的这个功能的微服务，这叫高可用==。</p><h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><p><a href="http://how2j.cn/k/springcloud/springcloud-distribution/2037.html" target="_blank" rel="noopener">Spring Cloud入门（对这篇博客做的笔记）</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前我写的代码都是单架构模式，就是把多个功能放在同一个应用里面，就像之前写的小程序后台一样&lt;/p&gt;
-&lt;p&gt;修改了部分代码，就得整体再重新打包编译，没有修改的部分，甚至不需要使用到这部分代码的功能也因为重新打包编译而全部不能使用……&lt;/p&gt;
-&lt;p&gt;所以要通过分布式和集群的方式把单架构模式改造一下&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Spring Cloud学习（一）" scheme="http://aimasa.github.io/categories/Spring-Cloud%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    
-      <category term="微服务的概念" scheme="http://aimasa.github.io/categories/Spring-Cloud%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
-    
-    
-      <category term="Spring Cloud" scheme="http://aimasa.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>springBootTest注入失败</title>
-    <link href="http://aimasa.github.io/2019/06/05/springBootTest%E6%B3%A8%E5%85%A5%E5%A4%B1%E8%B4%A5/"/>
-    <id>http://aimasa.github.io/2019/06/05/springBootTest注入失败/</id>
-    <published>2019-06-05T01:26:51.000Z</published>
-    <updated>2019-06-05T01:41:11.417Z</updated>
-    
-    <content type="html"><![CDATA[<p>在用测试测dao层时候，虽然都有用注解:dao层用注解@Repository标记，Test类里面注入用@Autowired标记。</p><p>但是还是显示注入失败。</p><a id="more"></a><p>查了半天方法，最后去了spring boot的运行类里面加上了指定包扫描@ComponentScan(basePackages = {“扫描的包的共有的包名部分”})</p><p>然后刚刚发现，之所以扫不出来是因为我包名的命名错误</p><img src="http://pictures.aimasa.club/static/images/springBootTest注入失败/package.png">]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在用测试测dao层时候，虽然都有用注解:dao层用注解@Repository标记，Test类里面注入用@Autowired标记。&lt;/p&gt;
-&lt;p&gt;但是还是显示注入失败。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="spring相关" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="Test" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/Test/"/>
-    
-      <category term="SpringBootTest注入失败" scheme="http://aimasa.github.io/categories/spring%E7%9B%B8%E5%85%B3/Test/SpringBootTest%E6%B3%A8%E5%85%A5%E5%A4%B1%E8%B4%A5/"/>
-    
-    
-      <category term="运行error" scheme="http://aimasa.github.io/tags/%E8%BF%90%E8%A1%8Cerror/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>态势感知</title>
-    <link href="http://aimasa.github.io/2019/05/31/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
-    <id>http://aimasa.github.io/2019/05/31/态势感知/</id>
-    <published>2019-05-31T09:31:11.000Z</published>
-    <updated>2019-09-09T06:34:34.911Z</updated>
-    
-    <content type="html"><![CDATA[<p>在找研究方向时候，有人推荐我看看态势感知，所以记个笔记</p><p>我对态势感知的理解就是：对网络里来往的流量进行分析，排除噪声，通过各种手段通过分析得出安全情况，然后进行防护。</p><p>网络安全态势感知NSSA（network security situation awareness）<br><a id="more"></a></p><h1 id="态势感知"><a href="#态势感知" class="headerlink" title="态势感知"></a>态势感知</h1><p> 态势是各种状态的综合，是一个整体和全局的概念。它强调的是系统和系统对象之间的关系,下图是态势感知的系统要素内容（我jio的就是单纯的流程，就是从收集到的原始数据，然后进行处理得到的数据，再从这些数据里面用技术去分析，得到相关不同的进行了的活动，再去针对不同的活动进行不同的分析，最后的状态评估，进行预测，不同的活动会对系统中的各个对象产生的作用）</p><center><img src="http://pictures.aimasa.club/static/images/态势感知/struct.png"></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在找研究方向时候，有人推荐我看看态势感知，所以记个笔记&lt;/p&gt;
-&lt;p&gt;我对态势感知的理解就是：对网络里来往的流量进行分析，排除噪声，通过各种手段通过分析得出安全情况，然后进行防护。&lt;/p&gt;
-&lt;p&gt;网络安全态势感知NSSA（network security situation awareness）&lt;br&gt;
-    
-    </summary>
-    
-      <category term="态势感知相关" scheme="http://aimasa.github.io/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="态势感知" scheme="http://aimasa.github.io/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E7%9B%B8%E5%85%B3/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
-    
-    
-      <category term="态势感知" scheme="http://aimasa.github.io/tags/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/"/>
     
   </entry>
   

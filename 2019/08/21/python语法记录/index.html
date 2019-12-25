@@ -128,7 +128,7 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-10-17T00:59:57.428Z">
+<meta property="og:updated_time" content="2019-11-08T03:04:37.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python语法记录">
 <meta name="twitter:description" content="这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  419
+                  773
                 </span>
               
 
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  3
                 </span>
               
             </div>
@@ -479,11 +479,11 @@
       
         <p>这是在学习python时候碰到的一些语法问题，先记下来，方便日后使用</p>
 <a id="more"></a>
-<h2 id="numpy语法记录"><a href="#numpy语法记录" class="headerlink" title="numpy语法记录"></a>numpy语法记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="numpy相关记录"><a href="#numpy相关记录" class="headerlink" title="numpy相关记录"></a>numpy相关记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">power(vector2 - vector1, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <p><code>power</code>是<code>numpy</code>这个类的一个运算函数，是用来计算次方的，上面那行代码意思是计算$(vector2 - vector1)^{2}$,所以<code>power(x,y)</code>是计算$\,x^{y}\,$这个公式的.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(power(vector2 - vector1, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 <p><code>sum</code>也是<code>numpy</code>这个类的一个运算函数，但是在上式中vector是一个二维数组（可以这样说，是n行两列的矩阵中取的第一行），<code>num(x,y)</code>运算是$x + y$，所以里面就是<code>power(vector2 - vector1, 2)</code>计算出来的数组里面的第一行第一列和第二行第二列的数值相加。（等有机会试试<code>sum</code>的括号里放多行两列数组）</p>
-<h2 id="pandas语法记录"><a href="#pandas语法记录" class="headerlink" title="pandas语法记录"></a>pandas语法记录</h2><p><code>read_csv()</code>：默认返回值是<code>DataFrame</code></p>
+<h2 id="pandas相关记录"><a href="#pandas相关记录" class="headerlink" title="pandas相关记录"></a>pandas相关记录</h2><p><code>read_csv()</code>：默认返回值是<code>DataFrame</code></p>
 <p>而加上了<code>chunksize=xxx</code>这个参数之后返回值就变成了：<code>TextFileReader</code></p>
 <p>在试运行文本处理的程序时候需要进行数据预处理，作者说是先在本机几条数据看看效果，所以我通过加参数<code>chunksize</code>把数据分块成小块这样，注意：并不是单纯的分割出来前多少条数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.DataFrame(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>).get_chunk(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
@@ -492,7 +492,53 @@
 <p>​        </p>
 <p>除掉这种<code>pd.DataFrame().get_chunk(1)</code>的办法还有拼接的办法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">test_data = pd.concat(pd.read_csv(<span class="string">'G:/Data using/new_data/new_data/test_set.csv'</span>,chunksize= <span class="number">1000</span>), ignore_index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="requests-html"><a href="#requests-html" class="headerlink" title="requests_html"></a>requests_html</h2><h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="https://stackoverflow.com/questions/39386458/how-to-read-data-in-python-dataframe-without-concatenating" target="_blank" rel="noopener">pandas TextFileReader  to DataFrame</a></p>
+<h2 id="requests-html"><a href="#requests-html" class="headerlink" title="requests_html"></a>requests_html</h2><h1 id="collection相关记录"><a href="#collection相关记录" class="headerlink" title="collection相关记录"></a>collection相关记录</h1><p>collection.OrderedDict()是按放入元素的先后顺序进行排序。（有序字典）</p>
+<h1 id="普通语法"><a href="#普通语法" class="headerlink" title="普通语法"></a>普通语法</h1><p>cls()：让我感觉像是封装，就是把一些参数经过处理然后封装起来。</p>
+<p><code>unicodedata.normalize()</code> 第一个参数指定字符串标准化的方式。 NFC表示字符应该是整体组成(比如可能的话就使用单一编码)，而NFD表示字符应该分解为多个组合字符表示。</p>
+<ul>
+<li>unicodedata.category(chr)  </li>
+</ul>
+<p>把一个字符返回它在UNICODE里分类的类型。具体类型如下：</p>
+<p>Code    Description</p>
+<p>[Cc]    Other, Control</p>
+<p>[Cf]    Other, Format</p>
+<p>[Cn]    Other, Not Assigned (no characters in the file have this property)</p>
+<p>[Co]    Other, Private Use</p>
+<p>[Cs]    Other, Surrogate</p>
+<p>[LC]    Letter, Cased</p>
+<p>[Ll]    Letter, Lowercase</p>
+<p>[Lm]    Letter, Modifier</p>
+<p>[Lo]    Letter, Other</p>
+<p>[Lt]    Letter, Titlecase</p>
+<p>[Lu]    Letter, Uppercase</p>
+<p>[Mc]    Mark, Spacing Combining</p>
+<p>[Me]    Mark, Enclosing</p>
+<p>[Mn]    Mark, Nonspacing</p>
+<p>[Nd]    Number, Decimal Digit</p>
+<p>[Nl]    Number, Letter</p>
+<p>[No]    Number, Other</p>
+<p>[Pc]    Punctuation, Connector</p>
+<p>[Pd]    Punctuation, Dash</p>
+<p>[Pe]    Punctuation, Close</p>
+<p>[Pf]    Punctuation, Final quote (may behave like Ps or Pe depending on usage)</p>
+<p>[Pi]    Punctuation, Initial quote (may behave like Ps or Pe depending on usage)</p>
+<p>[Po]    Punctuation, Other</p>
+<p>[Ps]    Punctuation, Open</p>
+<p>[Sc]    Symbol, Currency</p>
+<p>[Sk]    Symbol, Modifier</p>
+<p>[Sm]    Symbol, Math</p>
+<p>[So]    Symbol, Other</p>
+<p>[Zl]    Separator, Line</p>
+<p>[Zp]    Separator, Paragraph</p>
+<p>[Zs]    Separator, Space</p>
+<p>使用一个类，然后用<code>__init__</code>去初始化它，再返回值，相当于返回了一个封装好了的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state_dict = kwargs.get(<span class="string">'state_dict'</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<p>这是<em>args和*</em>kwargs的使用方法。如果未给出该值则state_dict值为None</p>
+<p><a href="https://stackoverflow.com/questions/36901/what-does-double-star-asterisk-and-star-asterisk-do-for-parameters" target="_blank" rel="noopener">参考</a></p>
+<p>sys.version_info[0]可以得到python的版本</p>
+<p>Python getattr() 函数   </p>
+<p>pow(n) 是计算n次方的</p>
+<h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="https://stackoverflow.com/questions/39386458/how-to-read-data-in-python-dataframe-without-concatenating" target="_blank" rel="noopener">pandas TextFileReader  to DataFrame</a></p>
 <p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank" rel="noopener">pandas官方文档</a></p>
 
       
@@ -513,7 +559,7 @@
   <p><span>本文标题:</span><a href="/2019/08/21/python语法记录/">python语法记录</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年08月21日 - 11:08</p>
-  <p><span>最后更新:</span>2019年10月17日 - 08:10</p>
+  <p><span>最后更新:</span>2019年11月08日 - 11:11</p>
   <p><span>原始链接:</span><a href="/2019/08/21/python语法记录/" title="python语法记录">http://aimasa.github.io/2019/08/21/python语法记录/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/08/21/python语法记录/" aria-label="复制成功！"></i></span>
   </p>
@@ -685,7 +731,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -696,7 +742,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -707,7 +753,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -763,7 +809,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy语法记录"><span class="nav-number">1.</span> <span class="nav-text">numpy语法记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas语法记录"><span class="nav-number">2.</span> <span class="nav-text">pandas语法记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requests-html"><span class="nav-number">3.</span> <span class="nav-text">requests_html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考博客"><span class="nav-number">4.</span> <span class="nav-text">参考博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy相关记录"><span class="nav-number">1.</span> <span class="nav-text">numpy相关记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandas相关记录"><span class="nav-number">2.</span> <span class="nav-text">pandas相关记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requests-html"><span class="nav-number">3.</span> <span class="nav-text">requests_html</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#collection相关记录"><span class="nav-number"></span> <span class="nav-text">collection相关记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#普通语法"><span class="nav-number"></span> <span class="nav-text">普通语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考博客"><span class="nav-number">1.</span> <span class="nav-text">参考博客</span></a></li></ol></li></div>
             
 
           </div>
@@ -797,7 +843,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">43.2k</span>
+    <span title="Site words total count">46.3k</span>
   
 </div>
 
@@ -1467,9 +1513,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
