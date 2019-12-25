@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aimasa.github.io/"/>
-  <updated>2019-12-10T08:39:48.101Z</updated>
+  <updated>2019-12-25T12:29:15.768Z</updated>
   <id>http://aimasa.github.io/</id>
   
   <author>
@@ -17,21 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TensorFlow实现cnn踩坑点</title>
+    <link href="http://aimasa.github.io/2019/12/25/TensorFlow%E5%AE%9E%E7%8E%B0cnn%E8%B8%A9%E5%9D%91%E7%82%B9/"/>
+    <id>http://aimasa.github.io/2019/12/25/TensorFlow实现cnn踩坑点/</id>
+    <published>2019-12-25T12:20:00.000Z</published>
+    <updated>2019-12-25T12:29:15.768Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为是新手，所以跟着网上的教程用<code>tensorflow</code>框架实现了<code>CNN</code>模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。</p><p><a href="https://blog.csdn.net/White_Idiot/article/details/79253129" target="_blank" rel="noopener">教程博客</a></p><a id="more"></a><h1 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为是新手，所以跟着网上的教程用&lt;code&gt;tensorflow&lt;/code&gt;框架实现了&lt;code&gt;CNN&lt;/code&gt;模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/White_Idiot/article/details/79253129&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;教程博客&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="nlp自然语言处理" scheme="http://aimasa.github.io/categories/nlp%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
+    
+      <category term="CNN语言模型" scheme="http://aimasa.github.io/categories/nlp%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/CNN%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="nlp" scheme="http://aimasa.github.io/tags/nlp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>手写字体识别走过的坑</title>
     <link href="http://aimasa.github.io/2019/12/04/%E6%89%8B%E5%86%99%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/"/>
     <id>http://aimasa.github.io/2019/12/04/手写字体识别走过的坑/</id>
     <published>2019-12-04T07:18:35.000Z</published>
-    <updated>2019-12-10T08:39:48.101Z</updated>
+    <updated>2019-12-25T12:28:07.061Z</updated>
     
-    <content type="html"><![CDATA[<p>运行的代码是：<a href="https://github.com/HuiyanWen/bysj_hit" target="_blank" rel="noopener">哈工大大佬毕设代码</a></p><p>因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip" target="_blank" rel="noopener">数据集trn</a>，<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip" target="_blank" rel="noopener">数据集tst</a></p><h1 id="开门第一坑：缺少验证集"><a href="#开门第一坑：缺少验证集" class="headerlink" title="开门第一坑：缺少验证集"></a>开门第一坑：缺少验证集</h1><p>自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑</p><h1 id="开门第二坑：tf-data-TFRecordDataset-的使用"><a href="#开门第二坑：tf-data-TFRecordDataset-的使用" class="headerlink" title="开门第二坑：tf.data.TFRecordDataset()的使用"></a>开门第二坑：tf.data.TFRecordDataset()的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.TFRecordDataset(filename)</span><br></pre></td></tr></table></figure><p>我傻了吧唧的以为，这个可以直接把地址列表输入进去，它会自动按地址去读取那些对应的图片，事实证明我错的离谱……这个只会读取存有TFRecord文件地址的列表……所以才会报错：record被损坏……</p><p>这个<code>TFRecordDataset</code>里面的<code>filename</code>只能是<code>TFRecord</code>类型文件的地址==。</p><p>所以现在先进行数据预处理。</p><p>TFRecord是一种将图像数据和标签放在一起的二进制文件，适合以串行的方式读取大批量数据，虽然它的内部格式复杂，但是它可以很好地利用内存，方便地复制和移动，更符合TensorFlow执行引擎的方式。<a href="https://blog.csdn.net/JinbaoSite/article/details/75194226" target="_blank" rel="noopener">该句来源</a></p><p><a href="https://blog.csdn.net/hujiameihuxu/article/details/79944366" target="_blank" rel="noopener">代码参考博客</a></p><p>关于代码中的<code>tf.python_io.TFRecordWriter(path, options=None)</code>，括号中间的<code>path</code>是填写转换好的内容的存储地址的,<code>option</code>是用来定义<code>TFRecord</code>文件保存的压缩格式的，是<code>TFRecordOptions</code>对象。[注意哦，TensorFlow的v2.0版本和v2.0以下版本的语法不同哟~反正我觉得TensorFlowv2.0的bug有点多，不敢用。而且我看了一下别人提交的push，好多是修改语法的……emmm还是等它稳定点，再试着用用吧。]</p><p>将普通图片数据转换成<code>TFRecord</code>格式数据需要注意的一点就是：读取<code>TFRecord</code>文件的时候，读取字典的<code>key</code>是要根据转换成<code>TFRecord</code>格式时候的字典的<code>key</code>对应上的。</p><p>【==我对tfrecord的理解有问题，需要修改==</p><p>好，接着进入第三坑。【暂缓</p><h1 id="对TensorFlow不了解的坑"><a href="#对TensorFlow不了解的坑" class="headerlink" title="对TensorFlow不了解的坑"></a>对TensorFlow不了解的坑</h1><ol><li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.dropout(x, dropout)</span><br></pre></td></tr></table></figure><p>其中</p><p>x是输入的，需要dropout进行概率屏蔽的矩阵</p><p>dropout是概率，需要屏蔽哪些</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>运行的代码是：<a href="https://github.com/HuiyanWen/bysj_hit" target="_blank" rel="noopener">哈工大大佬毕设代码</a></p><p>因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip" target="_blank" rel="noopener">数据集trn</a>，<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip" target="_blank" rel="noopener">数据集tst</a></p><p>其实这里也算是记录用<code>TensorFlow</code>实现图片处理经过的坑。名字而已，无需计较</p><a id="more"></a><h1 id="开门第一坑：缺少验证集"><a href="#开门第一坑：缺少验证集" class="headerlink" title="开门第一坑：缺少验证集"></a>开门第一坑：缺少验证集</h1><p>自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑</p><h1 id="开门第二坑：tf-data-TFRecordDataset-的使用"><a href="#开门第二坑：tf-data-TFRecordDataset-的使用" class="headerlink" title="开门第二坑：tf.data.TFRecordDataset()的使用"></a>开门第二坑：tf.data.TFRecordDataset()的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.TFRecordDataset(filename)</span><br></pre></td></tr></table></figure><p>我傻了吧唧的以为，这个可以直接把地址列表输入进去，它会自动按地址去读取那些对应的图片，事实证明我错的离谱……这个只会读取存有TFRecord文件地址的列表……所以才会报错：record被损坏……</p><p>这个<code>TFRecordDataset</code>里面的<code>filename</code>只能是<code>TFRecord</code>类型文件的地址==。</p><p>所以现在先进行数据预处理。</p><p>TFRecord是一种将图像数据和标签放在一起的二进制文件，适合以串行的方式读取大批量数据，虽然它的内部格式复杂，但是它可以很好地利用内存，方便地复制和移动，更符合TensorFlow执行引擎的方式。<a href="https://blog.csdn.net/JinbaoSite/article/details/75194226" target="_blank" rel="noopener">该句来源</a></p><p><a href="https://blog.csdn.net/hujiameihuxu/article/details/79944366" target="_blank" rel="noopener">代码参考博客</a></p><p>关于代码中的<code>tf.python_io.TFRecordWriter(path, options=None)</code>，括号中间的<code>path</code>是填写转换好的内容的存储地址的,<code>option</code>是用来定义<code>TFRecord</code>文件保存的压缩格式的，是<code>TFRecordOptions</code>对象。[注意哦，TensorFlow的v2.0版本和v2.0以下版本的语法不同哟~反正我觉得TensorFlowv2.0的bug有点多，不敢用。而且我看了一下别人提交的push，好多是修改语法的……emmm还是等它稳定点，再试着用用吧。]</p><p>将普通图片数据转换成<code>TFRecord</code>格式数据需要注意的一点就是：读取<code>TFRecord</code>文件的时候，读取字典的<code>key</code>是要根据转换成<code>TFRecord</code>格式时候的字典的<code>key</code>对应上的。</p><p>【==我对tfrecord的理解有问题，需要修改==</p><p>好，接着进入第三坑。【暂缓</p><h1 id="对TensorFlow不了解的坑"><a href="#对TensorFlow不了解的坑" class="headerlink" title="对TensorFlow不了解的坑"></a>对TensorFlow不了解的坑</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.dropout(x, dropout)</span><br></pre></td></tr></table></figure><p>其中</p><p>x是输入的，需要dropout进行概率屏蔽的矩阵</p><p>dropout是概率，需要屏蔽哪些</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;运行的代码是：&lt;a href=&quot;https://github.com/HuiyanWen/bysj_hit&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;哈工大大佬毕设代码&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特
-      
+      &lt;p&gt;运行的代码是：&lt;a href=&quot;https://github.com/HuiyanWen/bysj_hit&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;哈工大大佬毕设代码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：&lt;a href=&quot;http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;数据集trn&lt;/a&gt;，&lt;a href=&quot;http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;数据集tst&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其实这里也算是记录用&lt;code&gt;TensorFlow&lt;/code&gt;实现图片处理经过的坑。名字而已，无需计较&lt;/p&gt;
     
     </summary>
     
@@ -525,35 +548,6 @@ E   D   H   N
       <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
       <category term="最长回文串" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2/"/>
-    
-    
-      <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>寻找两个有序数组的中位数</title>
-    <link href="http://aimasa.github.io/2019/06/10/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
-    <id>http://aimasa.github.io/2019/06/10/寻找两个有序数组的中位数/</id>
-    <published>2019-06-10T13:58:46.000Z</published>
-    <updated>2019-10-17T01:01:18.160Z</updated>
-    
-    <content type="html"><![CDATA[<p>给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。</p><p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p><p>你可以假设 nums1 和 nums2 不会同时为空。</p><pre><code>nums1 = [1, 3]nums2 = [2]</code></pre><p>中位数是：2.0</p><a id="more"></a><p>我自己的解法是用的归并排序，先把两个有序数组排好序放到另一个数组中，再用位运算找到中位，求解，然后结果是运行速度极慢。</p><p>就去看了官方的结题思路</p><p>因为官方有直接的答案，我就在这写写我的理解(ps：其中一些公式什么的是直接从官网复制黏贴来的，图片也是直接截的，手打太费事了)【简要概述】：</p><h1 id="结题思路"><a href="#结题思路" class="headerlink" title="结题思路"></a>结题思路</h1><p>把nums1和nums2都分成两个部分，然后nums1左边的部分和nums2左边的部分，nums1右边的部分nums2右边的部分放在一块，最后左边的部分总数要和右边部分的总数一样多,如下图：</p><p><center><img src="http://pictures.aimasa.club/static/images/寻找两个有序数组的中位数/part.png"></center><br>根据这张图里面的左边和右边的部分，我们假设已知$\,i\,$和$\,m\,$还有$\,n\,$的值，然后用公式把$\,j\,$表示出来,其中：</p><ul><li>$len(left_part)=len(right_part)$</li><li>$\max(\text{left_part}) \leq \min(\text{right_part})max(left_part)≤min(right_part)$</li></ul><p>为了保证数据不溢出，所以要保证nums1的长度要小于nums2，这样先对nums1选中i的指向位置后，根据公式算出j的时候就不会发生j指向的nums2数据溢出了。</p><p>这个题目的本质就是，把这两个数组统一分成两部分，前面那个部分都要比后面的部分小，所以，我们必须确保：</p><p>B[j−1]≤A[i] 以及 $\text{A}[i-1] \leq \text{B}[j],A[i−1]≤B[j]$</p><p>然后i和j的算法公式：</p><p>$ i=0∼m, j=\frac{m+n+1}{2}−i$</p><p>所以，得出i和j之后，我们就可以根据nums1[]和nums2[]这两个有序数组的大小去寻找中位数了。</p><p>其中m+n+1是为了保证中位数落在分割线的左边，如果中位数在中位线的右边的话，很容易因为数据溢出而报错。</p><p>因为很多时候，i会等于nums1[].lenth()，或者j会等于nums2[].lenth()，所以我们在循环保证i的指向是我们想要的地方之后（或者刚好溢出后），进入判断环节。</p><p>如果i等于nums1[].lenth()，那么则意味着j的指向的数字是我们所需要的中位数之一（之所以说是之一，是因为这两个数组长度加在一起是奇数，不然i是不会等于nums1[].lenth()），j也是这样。</p><p>如果i等于0的时候，那么意味着j现在指向的就是中位数，而不需要继续去寻找中位数了。j等于0的时候也是如此。（i或者j指向0，这种情况在两个数组长度为奇数或者偶数的情况下都会出现）</p><p>讲的有点零散，所以我决定直接把代码连接放出来！<br><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-shu-b/" target="_blank" rel="noopener">见官网</a></p><p><a href="https://github.com/aimasa/exercise_demo/tree/master/src/exercise/demo/findmediansortedarrays" target="_blank" rel="noopener">和我github上面的代码实现</a></p><h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays" target="_blank" rel="noopener">力扣（LeetCode）</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。&lt;/p&gt;
-&lt;p&gt;请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。&lt;/p&gt;
-&lt;p&gt;你可以假设 nums1 和 nums2 不会同时为空。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;nums1 = [1, 3]
-nums2 = [2]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;中位数是：2.0&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="寻找两个有序数组的中位数" scheme="http://aimasa.github.io/categories/%E7%AE%97%E6%B3%95/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
     
     
       <category term="算法" scheme="http://aimasa.github.io/tags/%E7%AE%97%E6%B3%95/"/>

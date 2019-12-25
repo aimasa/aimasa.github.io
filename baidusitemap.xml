@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://aimasa.github.io/2019/11/20/CNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://aimasa.github.io/2019/12/25/TensorFlow%E5%AE%9E%E7%8E%B0cnn%E8%B8%A9%E5%9D%91%E7%82%B9/</loc>
     <lastmod>2019-12-25</lastmod>
   </url>  <url>
     <loc>http://aimasa.github.io/2019/12/04/%E6%89%8B%E5%86%99%E5%AD%97%E4%BD%93%E8%AF%86%E5%88%AB%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/</loc>
-    <lastmod>2019-12-10</lastmod>
+    <lastmod>2019-12-25</lastmod>
+  </url>  <url>
+    <loc>http://aimasa.github.io/2019/11/20/CNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2019-12-25</lastmod>
   </url>  <url>
     <loc>http://aimasa.github.io/2019/11/20/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     <lastmod>2019-12-02</lastmod>

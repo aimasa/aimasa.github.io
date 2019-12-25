@@ -120,18 +120,18 @@
 
 
 
-<meta name="description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 开门第一坑：缺少验证集自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑 开门第二坑：tf.data.TFRecordDataset()的使用1tf.dat">
+<meta name="description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 其实这里也算是记录用TensorFlow实现图片处理经过的坑。名字而已，无需计较">
 <meta name="keywords" content="图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手写字体识别走过的坑">
 <meta property="og:url" content="http://aimasa.github.io/2019/12/04/手写字体识别走过的坑/index.html">
 <meta property="og:site_name" content="aimasa的个人博客">
-<meta property="og:description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 开门第一坑：缺少验证集自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑 开门第二坑：tf.data.TFRecordDataset()的使用1tf.dat">
+<meta property="og:description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 其实这里也算是记录用TensorFlow实现图片处理经过的坑。名字而已，无需计较">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-12-10T08:39:48.101Z">
+<meta property="og:updated_time" content="2019-12-25T12:28:07.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手写字体识别走过的坑">
-<meta name="twitter:description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 开门第一坑：缺少验证集自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑 开门第二坑：tf.data.TFRecordDataset()的使用1tf.dat">
+<meta name="twitter:description" content="运行的代码是：哈工大大佬毕设代码 因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：数据集trn，数据集tst 其实这里也算是记录用TensorFlow实现图片处理经过的坑。名字而已，无需计较">
 
 
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  581
+                  609
                 </span>
               
 
@@ -479,6 +479,8 @@
       
         <p>运行的代码是：<a href="https://github.com/HuiyanWen/bysj_hit" target="_blank" rel="noopener">哈工大大佬毕设代码</a></p>
 <p>因为数据集他们没放出来，所以我选用的是中科院的手写数据集，特别有名的那个HWDB：<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1trn_gnt.zip" target="_blank" rel="noopener">数据集trn</a>，<a href="http://www.nlpr.ia.ac.cn/databases/download/feature_data/HWDB1.1tst_gnt.zip" target="_blank" rel="noopener">数据集tst</a></p>
+<p>其实这里也算是记录用<code>TensorFlow</code>实现图片处理经过的坑。名字而已，无需计较</p>
+<a id="more"></a>
 <h1 id="开门第一坑：缺少验证集"><a href="#开门第一坑：缺少验证集" class="headerlink" title="开门第一坑：缺少验证集"></a>开门第一坑：缺少验证集</h1><p>自己写了个脚本，以3:1的比例从trn中抽取出验证集。【这些数据是要处理一下转换为图片的，网上很多教程，去搜就行了】因为很简单，所以不多说，进入第二坑</p>
 <h1 id="开门第二坑：tf-data-TFRecordDataset-的使用"><a href="#开门第二坑：tf-data-TFRecordDataset-的使用" class="headerlink" title="开门第二坑：tf.data.TFRecordDataset()的使用"></a>开门第二坑：tf.data.TFRecordDataset()的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.TFRecordDataset(filename)</span><br></pre></td></tr></table></figure>
 <p>我傻了吧唧的以为，这个可以直接把地址列表输入进去，它会自动按地址去读取那些对应的图片，事实证明我错的离谱……这个只会读取存有TFRecord文件地址的列表……所以才会报错：record被损坏……</p>
@@ -490,13 +492,10 @@
 <p>将普通图片数据转换成<code>TFRecord</code>格式数据需要注意的一点就是：读取<code>TFRecord</code>文件的时候，读取字典的<code>key</code>是要根据转换成<code>TFRecord</code>格式时候的字典的<code>key</code>对应上的。</p>
 <p>【==我对tfrecord的理解有问题，需要修改==</p>
 <p>好，接着进入第三坑。【暂缓</p>
-<h1 id="对TensorFlow不了解的坑"><a href="#对TensorFlow不了解的坑" class="headerlink" title="对TensorFlow不了解的坑"></a>对TensorFlow不了解的坑</h1><ol>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.dropout(x, dropout)</span><br></pre></td></tr></table></figure>
+<h1 id="对TensorFlow不了解的坑"><a href="#对TensorFlow不了解的坑" class="headerlink" title="对TensorFlow不了解的坑"></a>对TensorFlow不了解的坑</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.dropout(x, dropout)</span><br></pre></td></tr></table></figure>
 <p>其中</p>
 <p>x是输入的，需要dropout进行概率屏蔽的矩阵</p>
 <p>dropout是概率，需要屏蔽哪些</p>
-</li>
-</ol>
 
       
     </div>
@@ -516,7 +515,7 @@
   <p><span>本文标题:</span><a href="/2019/12/04/手写字体识别走过的坑/">手写字体识别走过的坑</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年12月04日 - 15:12</p>
-  <p><span>最后更新:</span>2019年12月10日 - 16:12</p>
+  <p><span>最后更新:</span>2019年12月25日 - 20:12</p>
   <p><span>原始链接:</span><a href="/2019/12/04/手写字体识别走过的坑/" title="手写字体识别走过的坑">http://aimasa.github.io/2019/12/04/手写字体识别走过的坑/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/12/04/手写字体识别走过的坑/" aria-label="复制成功！"></i></span>
   </p>
@@ -579,6 +578,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/25/TensorFlow实现cnn踩坑点/" rel="prev" title="TensorFlow实现cnn踩坑点">
+                TensorFlow实现cnn踩坑点 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -684,7 +687,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -796,7 +799,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.3k</span>
+    <span title="Site words total count">46.4k</span>
   
 </div>
 
@@ -1466,9 +1469,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
