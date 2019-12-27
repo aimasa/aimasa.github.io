@@ -7,6 +7,7 @@ categories:
 - java语法
 tags:
 - java语法
+mathjax: true
 ---
 
 java的一些基本语法在这里，然后QR生成的源码结构非常清晰，值得一读，所以在这里会零零散散记录一些关于源码里面的一些语法的笔记。
@@ -20,7 +21,7 @@ Object 是 Java 中所有类的基类，位于java.lang包。
 Objects 是 Object 的工具类，位于java.util包。它从jdk1.7开始才出现，被final修饰不能被继承，拥有私有的构造函数。它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。
 
     Objects.requireNonNull(text);
- 
+
 其中源码是这样写的：
     
     public static <T> T requireNonNull(T obj)
@@ -35,7 +36,7 @@ return：如果obj不为空就返回obj，如果是空就返回NullPointerExcept
 
 源码是这样的：
     NUMERIC_REGEX.matcher(text).matches()
- 
+
 先把text创建一个匹配此模式的给定输入的匹配器。返回的值再去与NUMERIC_REGEX这个模式(源码中定义的final字段)进行匹配
 
 
@@ -86,7 +87,7 @@ Java语言提供的Cloneable接口和Serializable接口的代码非常简单，�
 或者又如以下的代码：
 
     import java.io.*;   
-  
+      
     public class Box implements Serializable{   
         private int width;   
         private int height;   
@@ -100,7 +101,7 @@ Java语言提供的Cloneable接口和Serializable接口的代码非常简单，�
         Box myBox = new Box();   
         myBox.setWidth(50);   
         myBox.setHeight(30);   
-  
+      
         try{   
             FileOutputStream fs = new FileOutputStream("foo.ser");   
             ObjectOutputStream os = new ObjectOutputStream(fs);   
@@ -110,7 +111,7 @@ Java语言提供的Cloneable接口和Serializable接口的代码非常简单，�
             ex.printStackTrace();   
         }   
     }   
-  
+      
     }   
 
 如果去掉implements Serializable的话，那么下面的writeObject会报错。
@@ -150,17 +151,17 @@ Java语言提供的Cloneable接口和Serializable接口的代码非常简单，�
 这个克隆方法是用来创建并返回这个对象的一个副本，“副本”的准确含义可能依赖于对象的类。
 
     类Object：
-
+    
     protected native Object clone() throws CloneNotSupportedException;
 
 浅克隆方法中，如果克隆对象的成员变量是值类型，那么就会把值原原本本复制一份出来，但是如果成员变量是值引用类型，那么复制出来的也会是地址信息，而引用类型的成员对象并没有复制。所以会对引用类型的成员对象再去做一次克隆，让这个复制出来的东西是可以独立于那个克隆对象的东西。
 
     类BitSet：
-
+    
     public Object clone() {
         if (! sizeIsSticky)
             trimToSize();
-
+    
         try {
             BitSet result = (BitSet) super.clone();
             result.words = words.clone();

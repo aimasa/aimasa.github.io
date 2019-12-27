@@ -52,9 +52,23 @@ spare_time = 10
 
 注：配置文件后缀名为 .ini，也可以是.config
 
-该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10），运行之后，想中断运行的话按`ctrl+c`
+**小白使用方法**
+
+- 该脚本打包成的exe使用环境为 window10（我觉得window系列的系统都能用它，我没试过，因为我的电脑是window10，所以我这里标注的使用环境仅为window10）
+- 新建配置文件在自己电脑里（文件名格式：xxx.ini 或 xxx.config 。ps：没试过用中文的文件名，你们可以试试。）
+- 运行之后，输入配置文件地址
+- 中断运行的话按`ctrl+c`
+
+**开发者使用方法**
+
+- 下载源码，里面缺失的python包都能通过`pip install xxx`下载得到。
+- 新建配置文件在自己电脑里（文件名格式：xxx.ini 或 xxx.config 。ps：没试过用中文的文件名，你们可以试试。）
+- 入口地址为main.py。当然run.py里面也有入口，emmm我自己写着调试的，可以不用管它。
+- 运行后会要求输入配置文件地址，按配置文件在自己电脑里存放的位置输入即可。
 
 只能爬取自己已经购买了的漫画，或者网站确定为免费的漫画。
+
+打包后的脚本并未开放。
 
 ## 配置参数详解：
 
@@ -76,23 +90,23 @@ spare_time = 10
 
 点开`NetWork`这栏
 
-<center>{% qnimg GitReadMePicture\LezhinComic\getLezhincookie.png %}</center>
+<center>{% qnimg GitReadMePicture\LezhinComic\getLezhincookie.jpg %}</center>
 找到红框中的链接内容，点开之后会在旁边弹出一个小框
 
-<center>{% qnimg GitReadMePicture\LezhinComic\comic_nameandid.png %}</center>
+<center>{% qnimg GitReadMePicture\LezhinComic\comic_nameandid.jpg %}</center>
 在这个小框中，划拉到`header`这栏最下面，会看到Query xxxx，里面alias就是配置文件里对应的`comic_name`，`_`的值就是配置文件里的`comic_id`【ps:`comic_id`是我命名有问题，我也不知道`_`是代表什么。】
 
 ### lezhin_cookie
 
 在`header`这栏中间会看到`cookie`，这个值是`lezhin_cookie`
 
-<center>{% qnimg GitReadMePicture\LezhinComic\cookie.png %}</center>
-<center>{% qnimg GitReadMePicture\LezhinComic\togetaccesstoken.png %}</center>
+<center>{% qnimg GitReadMePicture\LezhinComic\cookie.jpg %}</center>
+<center>{% qnimg GitReadMePicture\LezhinComic\togetaccesstoken.jpg %}</center>
 ### access_token
 
 按`F5`刷新，切换按钮到红框指定的位置，根据下图的指示，能够找到配置文件中`access_token`对应的值。
 
-<center>{% qnimg GitReadMePicture\LezhinComic\getaccesstoken.png %}</center>
+<center>{% qnimg GitReadMePicture\LezhinComic\getaccesstoken.jpg %}</center>
 【因为如果哪天爬不到文件，有一个原因是cookie失效，或者access_token失效，那时候就需要重复一遍获取cookie和access_token的步骤去更新它们】
 
 ### comic_chinese_name、series_id_first、series_id_last、zip_type、folder_name_header、spare_time

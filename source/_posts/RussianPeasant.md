@@ -8,6 +8,7 @@ categories:
 tags:
 - 位运算代码示例
 - 算法
+mathjax: true
 ---
 
   俄罗斯农民乘法是在一个乘数和被乘数之间进行操作，降低运算需要花费的时间。
@@ -29,7 +30,7 @@ tags:
 
    以下是位运算代码示例： 
 
-    
+
     def gf_mult_noLUT(x, y, prim=0, field_charac_full=256, carryless=True):
     '''Galois Field integer multiplication using Russian Peasant Multiplication algorithm (faster than the standard multiplication + modular reduction).
     If prim is 0 and carryless=False, then the function produces the result for a standard integers multiplication (no carry-less arithmetics nor modular reduction).'''
@@ -41,7 +42,8 @@ tags:
             if prim > 0 and x & field_charac_full: x = x ^ prim # GF modulo: if x >= 256 then apply modular reduction using the primitive polynomial (we just subtract, but since the primitive number can be above 256 then we directly XOR).
     return r
 
-      
+
+​      
 其中y&1是用来判断y是奇数还是偶数，if carryless是用来判断这个是普通乘法还是伽罗瓦乘法，然后做出相应的算法
 
 prim > 0是判断是不是伽罗瓦乘法，是的话，再对结果进行相应的处理
