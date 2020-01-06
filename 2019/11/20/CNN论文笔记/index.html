@@ -129,7 +129,7 @@
 <meta property="og:description" content="阅读CNN for sentence classification的笔记，记录一下。">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/CNN论文笔记\filter.png">
-<meta property="og:updated_time" content="2020-01-06T11:48:45.772Z">
+<meta property="og:updated_time" content="2020-01-06T11:53:08.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN论文笔记">
 <meta name="twitter:description" content="阅读CNN for sentence classification的笔记，记录一下。">
@@ -499,7 +499,7 @@
 <p>第x次运算：$x_{x:n}=x_{x}\oplus x_{x+1}…\oplus x_{n+x-1}$</p>
 <p>注：如果$n+x-1 &lt; len(输入参数)$，则继续运算，如果$n+x-1 = len(输入参数)$则结束运算，如果$n+x-1 &gt; len(输入参数)$，那么会对其做padding处理，padding有两种处理方式，一种是VALID(不足舍弃)，另一种是SAME(不足补零)</p>
 <p>【小声逼逼：一点都不想画图，因为感觉好麻烦哦，所以用公式表示啦</p>
-<p>其中，$x<em>{i}$是指第$i$个词（word），其中  $x</em>{1:n}=x<em>{1}\oplus x</em>{2}…\oplus x<em>{n}$是$x</em>{1}$到$x_{n}$的词向量的连接（普通的连接哦）。</p>
+<p>其中，$x<em>{i}$是指第$i$个词（word），其中  $x\</em>{1:n}=x_{1}\oplus x_{2}…\oplus x_{n}$是$x<em>{1}$到$x</em>{n}$的词向量的连接（普通的连接哦）。</p>
 <p>卷积运算的话就是用对应的权重和对应的拼接词汇向量相乘，再加上$b$偏移量，以此为参数放入选择好的激活函数中运算，从而得到对应的特征。就是：$f(w*x_{i:i+h-1}+b)$</p>
 <p>很多博客都没有说过卷积运算是干么的，这里我对比着图像处理中的卷积运算讲讲咯。</p>
 <p>图像处理中，用CNN进行分类计算，分类嘛，比如鸟类和鸟类的图片，只要图片上出现了鸟类，那就意味着这张图片我们可以把它归类为鸟类图片，但是，图片上出现鸟类的位置总不会一成不变，所以我们就要根据鸟类的特征去寻找图片上的鸟类，所以我们通过filter去一堆格子一堆格子的去搜寻，去比对，去寻找图片上可能出现的鸟类的局部特征，再通过分配不同的权重给搜寻结果，最后设置阈值，计算概率，以此判断这张图片是不是鸟类的图片。</p>
@@ -512,7 +512,7 @@
 <p>$w_{后} = w_{初} - \triangledown w$</p>
 <p>$\triangledown w = \eta \ast \frac{\partial E}{\partial a}\ast \frac{\partial a}{\partial y}\ast \frac{\partial y}{\partial w}$</p>
 <p>【这里只是意思意思的写那么几个公式，就是求偏导数。</p>
-<p>当 $\triangledown w$ 为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w_{后}$要用 $w<em>{前}$ 去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w\</em>{后}$的值需要减掉 $\triangledown w $ 值得到，如果是负数，就说明$w_{后}$的值需要加上 $\triangledown w $ 值得到。除了有这个原因，<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a>    </p>
+<p>当 $\triangledown w$ 为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w_{后}$要用 $w_{前}$ 去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w_{后}$的值需要减掉 $\triangledown w $ 值得到，如果是负数，就说明$w_{后}$的值需要加上 $\triangledown w $ 值得到。除了有这个原因，<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a>    </p>
 <p>而里面的$\eta$是代表学习率，这个是自己设置的，是用来控制梯度下降的步长（这里可以看看吴恩达老师视频的梯度下降的这块），学习率太大，步长太长，就会很容易跳过让$w$能够等于最佳值的点，学习率太小，步长太小，就会下降速度太慢emmm，可以联想一下，数据不够，下降太慢==】</p>
 <p>讲到这里，不得不提及一下<code>softmax</code>是什么了，<a href="https://zhuanlan.zhihu.com/p/53794191" target="_blank" rel="noopener">参考博客</a>博客里面给出了相关公式，是将每个类别给出的分数通过<code>softmax</code>进行计算，把分值均转换为正数，通过$S<em>{i} = \frac{e^{i}}{\sum</em>{j}e^{j}}$这个公式，把分值最高的值凸显出来，同时将输出结果映射到(0,1)之间，转换成概率。</p>
 <p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
