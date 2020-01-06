@@ -128,10 +128,16 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="因为是新手，所以跟着网上的教程用tensorflow框架实现了CNN模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。 教程博客">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:updated_time" content="2019-12-27T09:07:21.095Z">
+<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/sc.png">
+<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/dev-loss.png">
+<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/dev-acc.png">
+<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/train-acc.png">
+<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/train-loss.png">
+<meta property="og:updated_time" content="2020-01-02T05:44:42.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow实现cnn踩坑点">
 <meta name="twitter:description" content="因为是新手，所以跟着网上的教程用tensorflow框架实现了CNN模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。 教程博客">
+<meta name="twitter:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/sc.png">
 
 
 
@@ -440,7 +446,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.4k
+                  3k
                 </span>
               
 
@@ -456,7 +462,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  11
                 </span>
               
             </div>
@@ -508,6 +514,15 @@
 <h2 id="loss绝对值增大"><a href="#loss绝对值增大" class="headerlink" title="loss绝对值增大"></a>loss绝对值增大</h2><p>当时loss值的绝对值越来越大，并没有收敛的趋势，我找了很久的问题，在学长的帮助下才发现出在这里：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">losses = tf.nn.softmax_cross_entropy_with_logits_v2(self.input_y, self.scores)</span><br></pre></td></tr></table></figure>
 <p>这是第一个坑， softmax_cross_entropy_with_logits_v2第一个是对应标签的labels值，第二个logits值是预测分数，会自动转为对应的标签值进行计算出相应的loss值。</p>
+<p>讲到这里，不得不提及一下<code>softmax</code>是什么了，<a href="https://zhuanlan.zhihu.com/p/53794191" target="_blank" rel="noopener">参考博客</a>博客里面给出了相关公式，是将每个类别给出的分数通过<code>softmax</code>进行计算，把分值均转换为正数，通过$S<em>{i} = \frac{e^{i}}{\sum</em>{j}e^{j}}$这个公式，把分值最高的值凸显出来，同时将输出结果映射到(0,1)之间，转换成概率。</p>
+<p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
+<ol>
+<li>通过激活函数得到预测值</li>
+<li>将预测值和期望值放在一起求出误差值</li>
+<li>反向传播时候，将误差值代入公式求偏导运算，调整参数。</li>
+</ol>
+<p>而 $\triangledown w$ 除了有判断梯度应该下降上升的作用以外，还有个作用就是为参数调整幅度做参考（对，可以这样说），因为<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a></p>
+<p>通过softmax计算出的值，而，loss值是由损失函数算出来的，这里使用交叉熵函数作为我们的损失函数。</p>
 <h2 id="对tf运行的理解"><a href="#对tf运行的理解" class="headerlink" title="对tf运行的理解"></a>对tf运行的理解</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.input_x = tf.placeholder(tf.int32, [<span class="keyword">None</span>, sequence_length], name=<span class="string">"input_x"</span>)</span><br><span class="line">self.input_y = tf.placeholder(tf.float32, [<span class="keyword">None</span>, num_classes], name=<span class="string">"input_y"</span>)</span><br></pre></td></tr></table></figure>
 <p><code>tf</code>和平常代码不一样，日常代码都是先赋值，再进行运算，而<code>tf</code>是先定义运算，再进行初始化赋值，就像上面这两行代码一样，这两行代码是预定义了<code>input_x</code>和<code>input_y</code>的值，然后再在后面</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step, summaries, loss, accuracy = sess.run([global_step, dev_summary_op, cnn_init.loss, cnn_init.accuracy], feed_dic)</span><br></pre></td></tr></table></figure>
@@ -522,15 +537,19 @@
 <h1 id="电脑性能限制"><a href="#电脑性能限制" class="headerlink" title="电脑性能限制"></a>电脑性能限制</h1><p>因为实验室不是专门做深度学习这块，所以没有较好的设备去完成实验，目前实验设备有：</p>
 <ol>
 <li><p>CPU</p>
-<p>   Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz</p>
-<p>   基准速度:    3.60 GHz<br>   插槽:    1<br>   内核:    4<br>   逻辑处理器:    8</p>
-</li>
+<pre><code>  Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz
+
+  基准速度:    3.60 GHz
+  插槽:    1
+  内核:    4
+  逻辑处理器:    8
+</code></pre></li>
 <li><p>GPU 1块</p>
 <pre><code>NVIDIA GeForce RTX 2060 SUPER
 
-专用 GPU 内存    8.0 GB
-共享 GPU 内存    8.0 GB
-GPU 内存    16.0 GB
+   专用 GPU 内存    8.0 GB
+   共享 GPU 内存    8.0 GB
+   GPU 内存    16.0 GB
 </code></pre></li>
 <li><p>内存</p>
 <pre><code>16.0 GB
@@ -538,15 +557,15 @@ GPU 内存    16.0 GB
 <li><p>磁盘 1 (D: F: G: E:)</p>
 <pre><code>WDC WD10EZEX-21M2NA0
 
-容量:    932 GB
-已格式化:    932 GB
-系统磁盘:    否
-页面文件:    是
+   容量:    932 GB
+   已格式化:    932 GB
+   系统磁盘:    否
+   页面文件:    是
 
-读取速度    199 KB/秒
-写入速度    41.0 KB/秒
-活动时间    56%
-平均响应时间    6.2 毫秒
+   读取速度    199 KB/秒
+   写入速度    41.0 KB/秒
+   活动时间    56%
+   平均响应时间    6.2 毫秒
 </code></pre></li>
 </ol>
 <p>目前硬件上面临的有几个困难：</p>
@@ -562,7 +581,23 @@ GPU 内存    16.0 GB
 <p>输出：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
 <p>就是迭代器，里面<code>batch_iter</code>这个方法就是迭代时候会使用的方法，然后迭代完<code>c</code>就是输出的值。</p>
-<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>等我慢慢运行吧，已经两天了，还没运行完 呢，。</p>
+<p>根据这个语法的特性，我改进了一下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">batches = process_data_init.batch_iter(normal_param.batch_size, normal_param.num_epochs)</span><br><span class="line"><span class="keyword">for</span> batch, dev_data, dev_label, is_save <span class="keyword">in</span> batches:    </span><br><span class="line">    x_batch, y_batch = zip(*batch)    <span class="comment"># print("y_batch", y_batch) </span></span><br><span class="line">    train_step(x_batch, y_batch, train_summary_write)    </span><br><span class="line">    current_step = tf.train.global_step(sess, global_step)    </span><br><span class="line">    <span class="keyword">if</span> current_step % normal_param.evaluate_every == <span class="number">0</span>:        </span><br><span class="line">        print(<span class="string">"\nEvaluation:"</span>)        </span><br><span class="line">        dev_step(dev_data, dev_label, writer=dev_summary_writer)</span><br></pre></td></tr></table></figure>
+<p>把数据集的读取改到迭代时候读取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_iter</span><span class="params">(self, batch_size, num_epochs, shuffle=True)</span>:</span>    </span><br><span class="line">    <span class="string">'''迭代器'''</span>    </span><br><span class="line">    <span class="comment"># num = 1    # data = np.array(data)    # data_size = len(data)    # num_batches_per_epoch = int((data_size - 1) / batch_size) + 1    </span></span><br><span class="line">    echo_part_num = len(self.all_text_path) // normal_param.num_database    </span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):        </span><br><span class="line">        print(<span class="string">"epoch:"</span>, epoch, <span class="string">"/"</span>, num_epochs)        </span><br><span class="line">        <span class="keyword">for</span> part_n <span class="keyword">in</span> range(normal_param.num_database):            </span><br><span class="line">            is_save = <span class="keyword">False</span>            </span><br><span class="line">            train_data, train_label, dev_data, dev_label, vocal_size_train = self.deal_data(part=echo_part_num,n_part=part_n)            </span><br><span class="line">            data = list(zip(train_data, train_label))            </span><br><span class="line">            data = np.array(data)            </span><br><span class="line">            data_size = len(data)            </span><br><span class="line">            num_batches_per_epoch = int((data_size - <span class="number">1</span>) / batch_size) + <span class="number">1</span>            </span><br><span class="line">            <span class="keyword">if</span> shuffle:                </span><br><span class="line">                shuffle_indices = np.random.permutation(np.arange(data_size))         </span><br><span class="line">                shuffle_data = data[shuffle_indices]            </span><br><span class="line">             <span class="keyword">else</span>:                </span><br><span class="line">                shuffle_data = data            </span><br><span class="line">             <span class="keyword">for</span> batch_num <span class="keyword">in</span> range(num_batches_per_epoch):                </span><br><span class="line">                 start_idx = batch_num * batch_size                </span><br><span class="line">                 end_idx = min((batch_num + <span class="number">1</span>) * batch_size, data_size)                </span><br><span class="line">                 <span class="keyword">if</span> batch_num + <span class="number">1</span> == num_batches_per_epoch:                    </span><br><span class="line">                    is_save = <span class="keyword">True</span>                </span><br><span class="line">                    <span class="keyword">yield</span> shuffle_data[start_idx:end_idx], dev_data，dev_label,is_save</span><br></pre></td></tr></table></figure>
+<h1 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h1><p>根据数据集大小以及过拟合情况，适当调整了batch_size的大小和学习率的大小、dropout的大小以及迭代的次数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">64</span></span><br><span class="line">num_epochs = <span class="number">50</span></span><br><span class="line">dropout_keep_prob = <span class="number">0.5</span></span><br><span class="line"><span class="comment">#学习率设置：1e-3</span></span><br><span class="line">optimizer = tf.train.AdamOptimizer(<span class="number">1e-3</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>数据集我用的是THUCNew1,里面有14个class，将前三个class抽取出来，并且每个类别中的数据以10:1的比例抽取，所以实验数据集有6,472个文件数据，实验中使用TensorBoard可视化数据，结果如下：</p>
+<p>神经网络流程图可视化</p>
+<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\sc.png" alt="sc"></p>
+<p>验证集的loss曲线图：</p>
+<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\dev-loss.png" alt="dev-loss"></p>
+<p>验证集的acc的曲线：</p>
+<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\dev-acc.png" alt="dev-acc"></p>
+<p>训练集的acc曲线：</p>
+<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\train-acc.png" alt="train-acc"></p>
+<p>训练集的loss曲线：</p>
+<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\train-loss.png" alt="train-loss"></p>
 
       
     </div>
@@ -582,7 +617,7 @@ GPU 内存    16.0 GB
   <p><span>本文标题:</span><a href="/2019/12/25/TensorFlow实现cnn踩坑点/">TensorFlow实现cnn踩坑点</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年12月25日 - 20:12</p>
-  <p><span>最后更新:</span>2019年12月27日 - 17:12</p>
+  <p><span>最后更新:</span>2020年01月02日 - 13:01</p>
   <p><span>原始链接:</span><a href="/2019/12/25/TensorFlow实现cnn踩坑点/" title="TensorFlow实现cnn踩坑点">http://aimasa.github.io/2019/12/25/TensorFlow实现cnn踩坑点/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/12/25/TensorFlow实现cnn踩坑点/" aria-label="复制成功！"></i></span>
   </p>
@@ -828,7 +863,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签处理"><span class="nav-number">1.1.</span> <span class="nav-text">标签处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理"><span class="nav-number">1.2.</span> <span class="nav-text">文本处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型搭建"><span class="nav-number">2.</span> <span class="nav-text">模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#loss绝对值增大"><span class="nav-number">2.1.</span> <span class="nav-text">loss绝对值增大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对tf运行的理解"><span class="nav-number">2.2.</span> <span class="nav-text">对tf运行的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型存取"><span class="nav-number">2.3.</span> <span class="nav-text">模型存取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电脑性能限制"><span class="nav-number">3.</span> <span class="nav-text">电脑性能限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化运行方案"><span class="nav-number">4.</span> <span class="nav-text">优化运行方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签处理"><span class="nav-number">1.1.</span> <span class="nav-text">标签处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理"><span class="nav-number">1.2.</span> <span class="nav-text">文本处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型搭建"><span class="nav-number">2.</span> <span class="nav-text">模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#loss绝对值增大"><span class="nav-number">2.1.</span> <span class="nav-text">loss绝对值增大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对tf运行的理解"><span class="nav-number">2.2.</span> <span class="nav-text">对tf运行的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型存取"><span class="nav-number">2.3.</span> <span class="nav-text">模型存取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电脑性能限制"><span class="nav-number">3.</span> <span class="nav-text">电脑性能限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化运行方案"><span class="nav-number">4.</span> <span class="nav-text">优化运行方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调参"><span class="nav-number">5.</span> <span class="nav-text">调参</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果"><span class="nav-number">6.</span> <span class="nav-text">结果</span></a></li></ol></div>
             
 
           </div>
@@ -848,7 +883,7 @@ var jiathis_config={
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -862,7 +897,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.7k</span>
+    <span title="Site words total count">49.6k</span>
   
 </div>
 
@@ -1532,9 +1567,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

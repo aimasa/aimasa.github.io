@@ -129,7 +129,7 @@
 <meta property="og:description" content="阅读CNN for sentence classification的笔记，记录一下。">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/CNN论文笔记\filter.png">
-<meta property="og:updated_time" content="2019-12-27T06:51:04.783Z">
+<meta property="og:updated_time" content="2020-01-06T11:48:45.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN论文笔记">
 <meta name="twitter:description" content="阅读CNN for sentence classification的笔记，记录一下。">
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.2k
+                  2.4k
                 </span>
               
 
@@ -458,7 +458,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -493,10 +493,10 @@
 <h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><p>这一层是将词语向量化，我的理解是把词语转换成0或1表示，现在用的比较多的词向量化工具是<a href="https://code.google.com/p/word2vec/" target="_blank" rel="noopener">word2Vec</a>。论文中用word2Vec对输入数据进行了两次word embeding，形成了两个通道（channel），一个进行卷积，一个通过反向传播进行微调一些参数（我目前理解的是调整权重和偏重，就是论文中的$f(w*x_{i:i+h-j} + b)$中的$w$和$b$，其中$w$是权重，它是随机初始化的，然后再根据loss的值进行反向传播微调，适应训练的参数类型，从而达到理想的分类效果，偏重就是$b$，以调整差值。根据反向传播的不断调整，再对结果进行筛选，得到最优的$w$和$b$值。</p>
 <h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>这一层是用来提取输入参数的特征的，通过卷积，去提取特征。根据filter的高度，选择多少个词连接在一起与对应的filter进行卷积运算。</p>
 <p>在卷积层中，filter对词向量做滑动取词计算，如果filter的高度$h$为$n$的话，那么和filter运算的分别是：</p>
-<p>第一次运算：$x<em>{1:n}=x</em>{1}\oplus x<em>{2}…\oplus x</em>{n}$</p>
-<p>第二次运算：$x<em>{2:n}=x</em>{2}\oplus x<em>{2}…\oplus x</em>{n+1}$</p>
+<p>第一次运算：$x_{1:n}=x<em>{1}\oplus x\</em>{2}…\oplus x_{n}$</p>
+<p>第二次运算：$x_{2:n}=x_{2}\oplus x_{2}…\oplus x_{n+1}$</p>
 <p>……</p>
-<p>第x次运算：$x<em>{x:n}=x</em>{x}\oplus x<em>{x+1}…\oplus x</em>{n+x-1}$</p>
+<p>第x次运算：$x_{x:n}=x_{x}\oplus x_{x+1}…\oplus x_{n+x-1}$</p>
 <p>注：如果$n+x-1 &lt; len(输入参数)$，则继续运算，如果$n+x-1 = len(输入参数)$则结束运算，如果$n+x-1 &gt; len(输入参数)$，那么会对其做padding处理，padding有两种处理方式，一种是VALID(不足舍弃)，另一种是SAME(不足补零)</p>
 <p>【小声逼逼：一点都不想画图，因为感觉好麻烦哦，所以用公式表示啦</p>
 <p>其中，$x<em>{i}$是指第$i$个词（word），其中  $x</em>{1:n}=x<em>{1}\oplus x</em>{2}…\oplus x<em>{n}$是$x</em>{1}$到$x_{n}$的词向量的连接（普通的连接哦）。</p>
@@ -509,9 +509,19 @@
 <p>在计算出了概率值之后，根据预期结果（$\hat{y}$）和实际结果$a$计算出loss值（一般都是用$E = \frac{1}{2}\sum_{i}^{n}(\hat{y}-a)^{2}$这个公式计算出偏移值）这样就可以通过反向传播，去调整权重值和偏差值。</p>
 <h3 id="反向传参"><a href="#反向传参" class="headerlink" title="反向传参"></a>反向传参</h3><p>还记得上面论文中说过，CNN在句子分类中，使用的是两个chennal，一个是静态chennal，一个是动态chennal，动态的 chennal是用来从全连接层反向传播调整参数的，静态的chennal是用来向传参，计算分类概率的。</p>
 <p>反向传参的方法就是求导，从全连接层往输入层去反向推导调整权重值和偏差值，之前一直没能理解为什么反向求导时候怎么调整权重值，现在在这里把我目前的理解，讲一遍，然后如果理解错了，大家能够指正一下：</p>
-<p>$w<em>{后} = w</em>{初} - \triangledown w$</p>
+<p>$w_{后} = w_{初} - \triangledown w$</p>
 <p>$\triangledown w = \eta \ast \frac{\partial E}{\partial a}\ast \frac{\partial a}{\partial y}\ast \frac{\partial y}{\partial w}$</p>
-<p>【这里只是意思意思的写那么几个公式，就是求偏导数，当 $\triangledown w$ 为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w<em>{后}$要用 $w</em>{前}$ 去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w<em>{后}$的值需要减掉 $\triangledown w $ 值得到，如果是负数，就说明$w</em>{后}$的值需要加上 $\triangledown w $ 值得到。而里面的$\eta$是代表学习率，这个是自己设置的，是用来控制梯度下降的步长（这里可以看看吴恩达老师视频的梯度下降的这块），学习率太大，步长太长，就会很容易跳过让$w$能够等于最佳值的点，学习率太小，步长太小，就会下降速度太慢emmm，可以联想一下，数据不够，下降太慢==】</p>
+<p>【这里只是意思意思的写那么几个公式，就是求偏导数。</p>
+<p>当 $\triangledown w$ 为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w_{后}$要用 $w<em>{前}$ 去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w\</em>{后}$的值需要减掉 $\triangledown w $ 值得到，如果是负数，就说明$w_{后}$的值需要加上 $\triangledown w $ 值得到。除了有这个原因，<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a>    </p>
+<p>而里面的$\eta$是代表学习率，这个是自己设置的，是用来控制梯度下降的步长（这里可以看看吴恩达老师视频的梯度下降的这块），学习率太大，步长太长，就会很容易跳过让$w$能够等于最佳值的点，学习率太小，步长太小，就会下降速度太慢emmm，可以联想一下，数据不够，下降太慢==】</p>
+<p>讲到这里，不得不提及一下<code>softmax</code>是什么了，<a href="https://zhuanlan.zhihu.com/p/53794191" target="_blank" rel="noopener">参考博客</a>博客里面给出了相关公式，是将每个类别给出的分数通过<code>softmax</code>进行计算，把分值均转换为正数，通过$S<em>{i} = \frac{e^{i}}{\sum</em>{j}e^{j}}$这个公式，把分值最高的值凸显出来，同时将输出结果映射到(0,1)之间，转换成概率。</p>
+<p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
+<ol>
+<li>通过激活函数得到预测值</li>
+<li>将预测值和期望值放在一起求出误差值</li>
+<li>反向传播时候，将误差值代入公式求偏导运算，调整参数。</li>
+</ol>
+<p>而 $\triangledown w$ 除了有判断梯度应该下降上升的作用以外，还有个作用就是为参数调整幅度做参考（对，可以这样说），因为</p>
 <h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>分别有relu、tanh、sigmoi，这三种函数，一般，tanh、sigmoi会被用在全连接层，relu被用在卷积层。</p>
 <p>激活函数的作用是把卷积后的结果压缩到某一个固定的范围，这样可以一直保持一层一层下去的数值范围是可控的。———-<a href="https://www.jianshu.com/p/58168fec534d" target="_blank" rel="noopener">摘自博客</a></p>
 <h3 id="实验参数"><a href="#实验参数" class="headerlink" title="实验参数"></a>实验参数</h3><p>$l_{2}$范式 = 3</p>
@@ -541,7 +551,7 @@
   <p><span>本文标题:</span><a href="/2019/11/20/CNN论文笔记/">CNN论文笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年11月20日 - 21:11</p>
-  <p><span>最后更新:</span>2019年12月27日 - 14:12</p>
+  <p><span>最后更新:</span>2020年01月06日 - 19:01</p>
   <p><span>原始链接:</span><a href="/2019/11/20/CNN论文笔记/" title="CNN论文笔记">http://aimasa.github.io/2019/11/20/CNN论文笔记/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/11/20/CNN论文笔记/" aria-label="复制成功！"></i></span>
   </p>
@@ -811,7 +821,7 @@ var jiathis_config={
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -825,7 +835,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.7k</span>
+    <span title="Site words total count">49.6k</span>
   
 </div>
 
@@ -1495,9 +1505,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
