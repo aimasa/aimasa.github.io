@@ -129,7 +129,7 @@
 <meta property="og:description" content="阅读CNN for sentence classification的笔记，记录一下。">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/CNN论文笔记\filter.png">
-<meta property="og:updated_time" content="2020-01-06T11:53:08.881Z">
+<meta property="og:updated_time" content="2020-01-06T12:52:18.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN论文笔记">
 <meta name="twitter:description" content="阅读CNN for sentence classification的笔记，记录一下。">
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.4k
+                  2.3k
                 </span>
               
 
@@ -514,22 +514,24 @@
 <p>【这里只是意思意思的写那么几个公式，就是求偏导数。</p>
 <p>当 $\triangledown w$ 为0的时候，就意味着$w$的值已经被调整到预期（最佳）值了，就不会继续调整下去了，而为什么调整$w_{后}$要用 $w_{前}$ 去减去偏导值呢？因为偏导后，得到当下的斜率值，如果是正数，说明$w_{后}$的值需要减掉 $\triangledown w $ 值得到，如果是负数，就说明$w_{后}$的值需要加上 $\triangledown w $ 值得到。除了有这个原因，<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a>    </p>
 <p>而里面的$\eta$是代表学习率，这个是自己设置的，是用来控制梯度下降的步长（这里可以看看吴恩达老师视频的梯度下降的这块），学习率太大，步长太长，就会很容易跳过让$w$能够等于最佳值的点，学习率太小，步长太小，就会下降速度太慢emmm，可以联想一下，数据不够，下降太慢==】</p>
-<p>讲到这里，不得不提及一下<code>softmax</code>是什么了，<a href="https://zhuanlan.zhihu.com/p/53794191" target="_blank" rel="noopener">参考博客</a>博客里面给出了相关公式，是将每个类别给出的分数通过<code>softmax</code>进行计算，把分值均转换为正数，通过$S<em>{i} = \frac{e^{i}}{\sum</em>{j}e^{j}}$这个公式，把分值最高的值凸显出来，同时将输出结果映射到(0,1)之间，转换成概率。</p>
-<p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
+<p>而 $\triangledown w$ 除了有判断梯度应该下降上升的作用以外，还有个作用就是为参数调整幅度做参考（对，可以这样说）</p>
+<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>分别有relu、tanh、sigmoi，这三种函数，一般，tanh、sigmoi会被用在全连接层，relu被用在卷积层。</p>
+<p>激活函数的作用是把卷积后的结果压缩到某一个固定的范围，这样可以一直保持一层一层下去的数值范围是可控的。———-<a href="https://www.jianshu.com/p/58168fec534d" target="_blank" rel="noopener">摘自博客</a></p>
+<h3 id="实验参数"><a href="#实验参数" class="headerlink" title="实验参数"></a>实验参数</h3><p>$l_{2}$范式 = 3（不过我做实验用的是drop=0.5）</p>
+<p>filter window 的h分别有：3、4、5（我用的是2、3、4）</p>
+<p>每个高有100个feather map（60个feather map）</p>
+<p>batch= 50（发现验证集的loss值开始下降，就停止了，设置batch值是50）</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
 <ol>
-<li>通过激活函数得到预测值</li>
+<li>进行卷积，池化，通过激活函数得到预测值</li>
 <li>将预测值和期望值放在一起求出误差值</li>
 <li>反向传播时候，将误差值代入公式求偏导运算，调整参数。</li>
 </ol>
-<p>而 $\triangledown w$ 除了有判断梯度应该下降上升的作用以外，还有个作用就是为参数调整幅度做参考（对，可以这样说），因为</p>
-<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>分别有relu、tanh、sigmoi，这三种函数，一般，tanh、sigmoi会被用在全连接层，relu被用在卷积层。</p>
-<p>激活函数的作用是把卷积后的结果压缩到某一个固定的范围，这样可以一直保持一层一层下去的数值范围是可控的。———-<a href="https://www.jianshu.com/p/58168fec534d" target="_blank" rel="noopener">摘自博客</a></p>
-<h3 id="实验参数"><a href="#实验参数" class="headerlink" title="实验参数"></a>实验参数</h3><p>$l_{2}$范式 = 3</p>
-<p>filter window 的h分别有：3、4、5</p>
-<p>每个高有100个feather map</p>
-<p>batch= 50</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这就是一篇实验报告，CNN通过不同长度的filter去搜索句子中的特征，这样的话就避免了特征遗漏的现象，然后明显化重要特征，再通过全连接层分类。这样的话有个缺点就是无法联系上下文去判断词语在文中的意义，就是无法语义理解。因为中文一词多义，所以这样分类肯定会有误差的。所以nlp比图像处理难太多了。</p>
-<p>啊，自己跟着网上的教程手动撸了CNN代码，对训练过程以及喂数据过程有了个大体的了解，因为电脑的性能问题，我不得已把数据集分批读取再丢进模型里面处理，不知道是不是这个原因，导致loss值为负值，而且准确度奇低，目前还在探索，等有了结果会再写一篇心得，标志着CNN的学习告一段落。</p>
+<p>这就是一篇实验报告，CNN通过不同长度的filter去搜索句子中的特征，这样的话就避免了特征遗漏的现象，然后明显化重要特征，再通过全连接层分类。这样的话有个缺点就是无法联系上下文去判断词语在文中的意义，就是无法语义理解。因为中文一词多义，所以这样分类肯定会有误差的。所以nlp比图像处理难太多了。</p>
+<p>ending</p>
+<hr>
+<p>以下是我根据这个论文尝试用<code>TensorFlow</code>实现的中文文本分类的笔记。</p>
+<p><a href="https://aimasa.github.io/2019/12/25/TensorFlow%E5%AE%9E%E7%8E%B0cnn%E8%B8%A9%E5%9D%91%E7%82%B9/#more">实验踩坑记</a></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/32819991" target="_blank" rel="noopener">反向传播</a></p>
 <p><a href="https://www.aclweb.org/anthology/D14-1181.pdf" target="_blank" rel="noopener">CNN for sentence classification</a></p>
 
@@ -551,7 +553,7 @@
   <p><span>本文标题:</span><a href="/2019/11/20/CNN论文笔记/">CNN论文笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年11月20日 - 21:11</p>
-  <p><span>最后更新:</span>2020年01月06日 - 19:01</p>
+  <p><span>最后更新:</span>2020年01月06日 - 20:01</p>
   <p><span>原始链接:</span><a href="/2019/11/20/CNN论文笔记/" title="CNN论文笔记">http://aimasa.github.io/2019/11/20/CNN论文笔记/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/11/20/CNN论文笔记/" aria-label="复制成功！"></i></span>
   </p>
@@ -835,7 +837,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.6k</span>
+    <span title="Site words total count">49.3k</span>
   
 </div>
 
@@ -1505,9 +1507,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>

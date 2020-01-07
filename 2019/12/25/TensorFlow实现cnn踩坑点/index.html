@@ -128,16 +128,16 @@
 <meta property="og:site_name" content="aimasa的个人博客">
 <meta property="og:description" content="因为是新手，所以跟着网上的教程用tensorflow框架实现了CNN模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。 教程博客">
 <meta property="og:locale" content="zh-Han">
-<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/sc.png">
-<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/dev-loss.png">
-<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/dev-acc.png">
-<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/train-acc.png">
-<meta property="og:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/train-loss.png">
-<meta property="og:updated_time" content="2020-01-02T05:44:42.373Z">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\sc.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\dev-loss.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\dev-acc.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\train-acc.png">
+<meta property="og:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\train-loss.png">
+<meta property="og:updated_time" content="2020-01-07T06:45:03.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow实现cnn踩坑点">
 <meta name="twitter:description" content="因为是新手，所以跟着网上的教程用tensorflow框架实现了CNN模型，并且开始了训练。在实现过程中经历了很多的坑，今天记录一下在实现过程中遇到过的坑。 教程博客">
-<meta name="twitter:image" content="f:/blog/tmp_myBlog/qiniu_picture/images/TensorFlow实现cnn踩坑点/sc.png">
+<meta name="twitter:image" content="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\sc.png">
 
 
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3k
+                  2.9k
                 </span>
               
 
@@ -500,6 +500,7 @@
 <p>如果直接把词向量做词嵌入处理，这样会导致工程浩大（因为会有很多重复的词出现在文档里，在喂进模型前要把对应的词向量矩阵捣鼓出来，这样的话，就会消耗计算机大量的内存，降低速率。）所以我们会先把清洗后的文本转换成对应的文本下标的<code>ID</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vocab_processor =learn.preprocessing.VocabularyProcessor(normal_param.max_document_length)</span><br><span class="line">x = np.array(list(vocab_processor.fit_transform(x_texts)))</span><br></pre></td></tr></table></figure>
 <p>【注：<code>x_texts</code>是已经经过清洗的数据，<code>x</code>就是<code>x_texts</code>对应的下标矩阵】</p>
+<p>为了防止之后加载模型时候，测试文件不能转换为和训练集一样对应的下标<code>ID</code>，所以在训练集转换完对应的<code>ID</code>后，用</p>
 <p>然后传入<code>cnn</code>模型中<code>word embeding</code>部分，找到对应的词向量，进行后续操作。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.device(<span class="string">'/cpu:0'</span>), tf.name_scope(<span class="string">"embedding"</span>):    </span><br><span class="line">    self.W = tf.Variable(tf.random_uniform([self.vocab_size, self.embedding_size], <span class="number">-1.0</span>, <span class="number">1.0</span>))   </span><br><span class="line">    <span class="comment"># 随机化W，得到维度是self.vocab_size个self.embedding_size大小的矩阵，随机值在-1.0-1.0之间 </span></span><br><span class="line">    self.embedding_chars = tf.nn.embedding_lookup(self.W, self.input_x)    </span><br><span class="line">    <span class="comment"># 从id(索引)找到对应的One-hot encoding    </span></span><br><span class="line">    self.embedding_chars_expanded = tf.expand_dims(self.embedding_chars, <span class="number">-1</span>)    <span class="comment"># 增加维度</span></span><br></pre></td></tr></table></figure>
 <p><code>W</code>相当于词袋模型，每个词都是个独立的个体，所以通过<code>tf.variable</code>设置随机变量，然后再根据前面处理好的下标过来找到不同的词对应的embeding。</p>
@@ -515,14 +516,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">losses = tf.nn.softmax_cross_entropy_with_logits_v2(self.input_y, self.scores)</span><br></pre></td></tr></table></figure>
 <p>这是第一个坑， softmax_cross_entropy_with_logits_v2第一个是对应标签的labels值，第二个logits值是预测分数，会自动转为对应的标签值进行计算出相应的loss值。</p>
 <p>讲到这里，不得不提及一下<code>softmax</code>是什么了，<a href="https://zhuanlan.zhihu.com/p/53794191" target="_blank" rel="noopener">参考博客</a>博客里面给出了相关公式，是将每个类别给出的分数通过<code>softmax</code>进行计算，把分值均转换为正数，通过$S<em>{i} = \frac{e^{i}}{\sum</em>{j}e^{j}}$这个公式，把分值最高的值凸显出来，同时将输出结果映射到(0,1)之间，转换成概率。</p>
-<p>按照论文里面的情况来讲，全连接后进行反向传播的详细步骤是：</p>
-<ol>
-<li>通过激活函数得到预测值</li>
-<li>将预测值和期望值放在一起求出误差值</li>
-<li>反向传播时候，将误差值代入公式求偏导运算，调整参数。</li>
-</ol>
-<p>而 $\triangledown w$ 除了有判断梯度应该下降上升的作用以外，还有个作用就是为参数调整幅度做参考（对，可以这样说），因为<strong>如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛</strong>。<a href="https://blog.csdn.net/u014313009/article/details/51043064" target="_blank" rel="noopener">来自博客</a></p>
-<p>通过softmax计算出的值，而，loss值是由损失函数算出来的，这里使用交叉熵函数作为我们的损失函数。</p>
+<p>loss值是由损失函数算出来的，这里使用交叉熵函数作为我们的损失函数。这里有交叉熵函数的公式。<a href="https://blog.csdn.net/QW_sunny/article/details/72885403" target="_blank" rel="noopener">参考博客</a></p>
 <h2 id="对tf运行的理解"><a href="#对tf运行的理解" class="headerlink" title="对tf运行的理解"></a>对tf运行的理解</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.input_x = tf.placeholder(tf.int32, [<span class="keyword">None</span>, sequence_length], name=<span class="string">"input_x"</span>)</span><br><span class="line">self.input_y = tf.placeholder(tf.float32, [<span class="keyword">None</span>, num_classes], name=<span class="string">"input_y"</span>)</span><br></pre></td></tr></table></figure>
 <p><code>tf</code>和平常代码不一样，日常代码都是先赋值，再进行运算，而<code>tf</code>是先定义运算，再进行初始化赋值，就像上面这两行代码一样，这两行代码是预定义了<code>input_x</code>和<code>input_y</code>的值，然后再在后面</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step, summaries, loss, accuracy = sess.run([global_step, dev_summary_op, cnn_init.loss, cnn_init.accuracy], feed_dic)</span><br></pre></td></tr></table></figure>
@@ -530,10 +524,10 @@
 <p><code>global_step, dev_summary_op</code>和后面的值不一样，不是从模型里面输出的值，</p>
 <h2 id="模型存取"><a href="#模型存取" class="headerlink" title="模型存取"></a>模型存取</h2><p>在程序的运行中，会因为各种问题导致程序突然中止，所以我想要运行到一定时间就自动保存一个正在学习的数据模型，再次运行时候，如果已经有保存了的模型，就加载出来。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">checkpoint_dir = os.path.abspath(os.path.join(out_dir, <span class="string">"checkpoint"</span>))</span><br><span class="line">checkpoint_prefix = os.path.join(checkpoint_dir, <span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(checkpoint_dir):    </span><br><span class="line">    os.makedirs(checkpoint_dir)</span><br><span class="line">saver = tf.train.Saver(tf.global_variables())ckpt = tf.train.latest_checkpoint(checkpoint_dir)</span><br><span class="line"><span class="keyword">if</span> ckpt:    </span><br><span class="line">    saver.restore(sess, ckpt)    </span><br><span class="line">    print(<span class="string">"CNN restore from the checkpoint &#123;0&#125;"</span>.format(ckpt))</span><br></pre></td></tr></table></figure>
-<p>继续训练后，运行了好几遍，发现并没有办法加载已有模型继续训练，究其原因，发现，问题出在<code>session</code>初始化上面。<code>tf.Session.run</code>中间的初始化参数不是和我想的那样随便加的TT。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sess.run(tf.global_variables_initializer())</span><br><span class="line">sess.run(tf.local_variables_initializer())</span><br></pre></td></tr></table></figure>
+<p>继续训练后，运行了好几遍，发现并没有办法加载已有模型继续训练，究其原因，发现，问题出在<code>session</code>初始化上面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(tf.global_variables_initializer())</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.jianshu.com/p/bebcdfb74fb1" target="_blank" rel="noopener">参考博文</a></p>
-<p>一个是初始化全局变量，但模型中的局部变量并没有初始化，所以，就再加上<code>sess.run(tf.local_variables_initializer())</code>初始化局部变量。</p>
+<p>以此初始化全局变量</p>
 <h1 id="电脑性能限制"><a href="#电脑性能限制" class="headerlink" title="电脑性能限制"></a>电脑性能限制</h1><p>因为实验室不是专门做深度学习这块，所以没有较好的设备去完成实验，目前实验设备有：</p>
 <ol>
 <li><p>CPU</p>
@@ -586,18 +580,15 @@
 <p>把数据集的读取改到迭代时候读取。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_iter</span><span class="params">(self, batch_size, num_epochs, shuffle=True)</span>:</span>    </span><br><span class="line">    <span class="string">'''迭代器'''</span>    </span><br><span class="line">    <span class="comment"># num = 1    # data = np.array(data)    # data_size = len(data)    # num_batches_per_epoch = int((data_size - 1) / batch_size) + 1    </span></span><br><span class="line">    echo_part_num = len(self.all_text_path) // normal_param.num_database    </span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):        </span><br><span class="line">        print(<span class="string">"epoch:"</span>, epoch, <span class="string">"/"</span>, num_epochs)        </span><br><span class="line">        <span class="keyword">for</span> part_n <span class="keyword">in</span> range(normal_param.num_database):            </span><br><span class="line">            is_save = <span class="keyword">False</span>            </span><br><span class="line">            train_data, train_label, dev_data, dev_label, vocal_size_train = self.deal_data(part=echo_part_num,n_part=part_n)            </span><br><span class="line">            data = list(zip(train_data, train_label))            </span><br><span class="line">            data = np.array(data)            </span><br><span class="line">            data_size = len(data)            </span><br><span class="line">            num_batches_per_epoch = int((data_size - <span class="number">1</span>) / batch_size) + <span class="number">1</span>            </span><br><span class="line">            <span class="keyword">if</span> shuffle:                </span><br><span class="line">                shuffle_indices = np.random.permutation(np.arange(data_size))         </span><br><span class="line">                shuffle_data = data[shuffle_indices]            </span><br><span class="line">             <span class="keyword">else</span>:                </span><br><span class="line">                shuffle_data = data            </span><br><span class="line">             <span class="keyword">for</span> batch_num <span class="keyword">in</span> range(num_batches_per_epoch):                </span><br><span class="line">                 start_idx = batch_num * batch_size                </span><br><span class="line">                 end_idx = min((batch_num + <span class="number">1</span>) * batch_size, data_size)                </span><br><span class="line">                 <span class="keyword">if</span> batch_num + <span class="number">1</span> == num_batches_per_epoch:                    </span><br><span class="line">                    is_save = <span class="keyword">True</span>                </span><br><span class="line">                    <span class="keyword">yield</span> shuffle_data[start_idx:end_idx], dev_data，dev_label,is_save</span><br></pre></td></tr></table></figure>
 <h1 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h1><p>根据数据集大小以及过拟合情况，适当调整了batch_size的大小和学习率的大小、dropout的大小以及迭代的次数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">64</span></span><br><span class="line">num_epochs = <span class="number">50</span></span><br><span class="line">dropout_keep_prob = <span class="number">0.5</span></span><br><span class="line"><span class="comment">#学习率设置：1e-3</span></span><br><span class="line">optimizer = tf.train.AdamOptimizer(<span class="number">1e-3</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>数据集我用的是THUCNew1,里面有14个class，将前三个class抽取出来，并且每个类别中的数据以10:1的比例抽取，所以实验数据集有6,472个文件数据，实验中使用TensorBoard可视化数据，结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">64</span></span><br><span class="line">num_epochs = <span class="number">50</span></span><br><span class="line"><span class="comment">#（视情况定，验证集loss值上升结束后开始下降说明学习已经结束）</span></span><br><span class="line">dropout_keep_prob = <span class="number">0.5</span></span><br><span class="line"><span class="comment">#学习率设置：1e-3</span></span><br><span class="line">optimizer = tf.train.AdamOptimizer(<span class="number">1e-3</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>数据集我用的是THUCNew1,里面有14个class，将前三个class抽取出来，并且每个类别中的数据以6:1的比例抽取，所以实验数据集有10,788个文件数据，实验中使用TensorBoard可视化数据，结果如下：</p>
 <p>神经网络流程图可视化</p>
-<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\sc.png" alt="sc"></p>
-<p>验证集的loss曲线图：</p>
-<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\dev-loss.png" alt="dev-loss"></p>
-<p>验证集的acc的曲线：</p>
-<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\dev-acc.png" alt="dev-acc"></p>
-<p>训练集的acc曲线：</p>
-<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\train-acc.png" alt="train-acc"></p>
-<p>训练集的loss曲线：</p>
-<p><img src="F:\blog\tmp_myBlog\qiniu_picture\images\TensorFlow实现cnn踩坑点\train-loss.png" alt="train-loss"></p>
+<p><center><img src="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\sc.png"></center><br>验证集的loss曲线图：</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\dev-loss.png"></center><br>验证集的acc的曲线：</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\dev-acc.png"></center><br>训练集的acc曲线：</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\train-acc.png"></center><br>训练集的loss曲线：</p>
+<p><center><img src="http://pictures.aimasa.club/static/images/TensorFlow实现cnn踩坑点\train-loss.png"></center></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p><a href="https://github.com/aimasa/CNN_classify" target="_blank" rel="noopener">代码实现</a></p>
 
       
     </div>
@@ -617,7 +608,7 @@
   <p><span>本文标题:</span><a href="/2019/12/25/TensorFlow实现cnn踩坑点/">TensorFlow实现cnn踩坑点</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年12月25日 - 20:12</p>
-  <p><span>最后更新:</span>2020年01月02日 - 13:01</p>
+  <p><span>最后更新:</span>2020年01月07日 - 14:01</p>
   <p><span>原始链接:</span><a href="/2019/12/25/TensorFlow实现cnn踩坑点/" title="TensorFlow实现cnn踩坑点">http://aimasa.github.io/2019/12/25/TensorFlow实现cnn踩坑点/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/12/25/TensorFlow实现cnn踩坑点/" aria-label="复制成功！"></i></span>
   </p>
@@ -863,7 +854,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签处理"><span class="nav-number">1.1.</span> <span class="nav-text">标签处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理"><span class="nav-number">1.2.</span> <span class="nav-text">文本处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型搭建"><span class="nav-number">2.</span> <span class="nav-text">模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#loss绝对值增大"><span class="nav-number">2.1.</span> <span class="nav-text">loss绝对值增大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对tf运行的理解"><span class="nav-number">2.2.</span> <span class="nav-text">对tf运行的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型存取"><span class="nav-number">2.3.</span> <span class="nav-text">模型存取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电脑性能限制"><span class="nav-number">3.</span> <span class="nav-text">电脑性能限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化运行方案"><span class="nav-number">4.</span> <span class="nav-text">优化运行方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调参"><span class="nav-number">5.</span> <span class="nav-text">调参</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果"><span class="nav-number">6.</span> <span class="nav-text">结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签处理"><span class="nav-number">1.1.</span> <span class="nav-text">标签处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理"><span class="nav-number">1.2.</span> <span class="nav-text">文本处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型搭建"><span class="nav-number">2.</span> <span class="nav-text">模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#loss绝对值增大"><span class="nav-number">2.1.</span> <span class="nav-text">loss绝对值增大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对tf运行的理解"><span class="nav-number">2.2.</span> <span class="nav-text">对tf运行的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型存取"><span class="nav-number">2.3.</span> <span class="nav-text">模型存取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电脑性能限制"><span class="nav-number">3.</span> <span class="nav-text">电脑性能限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化运行方案"><span class="nav-number">4.</span> <span class="nav-text">优化运行方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调参"><span class="nav-number">5.</span> <span class="nav-text">调参</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果"><span class="nav-number">6.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">7.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>
@@ -897,7 +888,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.6k</span>
+    <span title="Site words total count">49.3k</span>
   
 </div>
 
@@ -1567,9 +1558,9 @@ var jiathis_config={
 
   
 
-  <!-- 页面点击小红心 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!-- 页面点击小红心 -->
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"superSample":2,"width":100,"height":200,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 <script type="text/javascript" src="/js/src/love.js"></script>
 </html>
