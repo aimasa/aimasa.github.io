@@ -129,7 +129,7 @@
 <meta property="og:description" content="阅读CNN for sentence classification的笔记，记录一下。">
 <meta property="og:locale" content="zh-Han">
 <meta property="og:image" content="http://pictures.aimasa.club/static/images/CNN论文笔记\filter.png">
-<meta property="og:updated_time" content="2020-01-06T12:52:18.293Z">
+<meta property="og:updated_time" content="2020-01-14T02:12:16.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN论文笔记">
 <meta name="twitter:description" content="阅读CNN for sentence classification的笔记，记录一下。">
@@ -493,13 +493,13 @@
 <h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><p>这一层是将词语向量化，我的理解是把词语转换成0或1表示，现在用的比较多的词向量化工具是<a href="https://code.google.com/p/word2vec/" target="_blank" rel="noopener">word2Vec</a>。论文中用word2Vec对输入数据进行了两次word embeding，形成了两个通道（channel），一个进行卷积，一个通过反向传播进行微调一些参数（我目前理解的是调整权重和偏重，就是论文中的$f(w*x_{i:i+h-j} + b)$中的$w$和$b$，其中$w$是权重，它是随机初始化的，然后再根据loss的值进行反向传播微调，适应训练的参数类型，从而达到理想的分类效果，偏重就是$b$，以调整差值。根据反向传播的不断调整，再对结果进行筛选，得到最优的$w$和$b$值。</p>
 <h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>这一层是用来提取输入参数的特征的，通过卷积，去提取特征。根据filter的高度，选择多少个词连接在一起与对应的filter进行卷积运算。</p>
 <p>在卷积层中，filter对词向量做滑动取词计算，如果filter的高度$h$为$n$的话，那么和filter运算的分别是：</p>
-<p>第一次运算：$x_{1:n}=x<em>{1}\oplus x\</em>{2}…\oplus x_{n}$</p>
+<p>第一次运算：$x_{1:n}=x_{1}\oplus x_{2}…\oplus x_{n}$</p>
 <p>第二次运算：$x_{2:n}=x_{2}\oplus x_{2}…\oplus x_{n+1}$</p>
 <p>……</p>
 <p>第x次运算：$x_{x:n}=x_{x}\oplus x_{x+1}…\oplus x_{n+x-1}$</p>
 <p>注：如果$n+x-1 &lt; len(输入参数)$，则继续运算，如果$n+x-1 = len(输入参数)$则结束运算，如果$n+x-1 &gt; len(输入参数)$，那么会对其做padding处理，padding有两种处理方式，一种是VALID(不足舍弃)，另一种是SAME(不足补零)</p>
 <p>【小声逼逼：一点都不想画图，因为感觉好麻烦哦，所以用公式表示啦</p>
-<p>其中，$x<em>{i}$是指第$i$个词（word），其中  $x\</em>{1:n}=x_{1}\oplus x_{2}…\oplus x_{n}$是$x<em>{1}$到$x</em>{n}$的词向量的连接（普通的连接哦）。</p>
+<p>其中，$x_{i}$是指第$i$个词（word），其中  $x_{1:n}=x_{1}\oplus x_{2}…\oplus x_{n}$是$x/<em>{1}$到$x/</em>{n}$的词向量的连接（普通的连接哦）。</p>
 <p>卷积运算的话就是用对应的权重和对应的拼接词汇向量相乘，再加上$b$偏移量，以此为参数放入选择好的激活函数中运算，从而得到对应的特征。就是：$f(w*x_{i:i+h-1}+b)$</p>
 <p>很多博客都没有说过卷积运算是干么的，这里我对比着图像处理中的卷积运算讲讲咯。</p>
 <p>图像处理中，用CNN进行分类计算，分类嘛，比如鸟类和鸟类的图片，只要图片上出现了鸟类，那就意味着这张图片我们可以把它归类为鸟类图片，但是，图片上出现鸟类的位置总不会一成不变，所以我们就要根据鸟类的特征去寻找图片上的鸟类，所以我们通过filter去一堆格子一堆格子的去搜寻，去比对，去寻找图片上可能出现的鸟类的局部特征，再通过分配不同的权重给搜寻结果，最后设置阈值，计算概率，以此判断这张图片是不是鸟类的图片。</p>
@@ -553,7 +553,7 @@
   <p><span>本文标题:</span><a href="/2019/11/20/CNN论文笔记/">CNN论文笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 ZHY 的个人博客">ZHY</a></p>
   <p><span>发布时间:</span>2019年11月20日 - 21:11</p>
-  <p><span>最后更新:</span>2020年01月06日 - 20:01</p>
+  <p><span>最后更新:</span>2020年01月14日 - 10:01</p>
   <p><span>原始链接:</span><a href="/2019/11/20/CNN论文笔记/" title="CNN论文笔记">http://aimasa.github.io/2019/11/20/CNN论文笔记/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://aimasa.github.io/2019/11/20/CNN论文笔记/" aria-label="复制成功！"></i></span>
   </p>
