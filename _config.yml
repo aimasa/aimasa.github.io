@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://aimasa.github.io
+url: http://test.chenxiyuan.fun
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults: 
@@ -115,24 +115,24 @@ live2d:
     opacityDefault: 0.7
     opacityOnHover: 0.2
     
-qiniu:
-  offline: false
-  sync: true
-  bucket: picture
-  access_key: toPCG9eKiXISfgSqMuEM9j-moNc9leo7Ui2dH3NM
-  secret_key: ctfGat7QcX8dW4V3BpC1FywoR6zqEMauVWOKFpZL
-  dirPrefix: static
-  urlPrefix: http://pictures.aimasa.club/static
-  up_host: http://upload.qiniu.com
-  local_dir: qiniu_picture
-  update_exist: true
-  image: 
-    folder: images
-    extend: 
-  js:
-    folder: js
-  css:
-    folder: css
+# qiniu:
+#   offline: false
+#   sync: true
+#   bucket: picture
+#   access_key: toPCG9eKiXISfgSqMuEM9j-moNc9leo7Ui2dH3NM
+#   secret_key: ctfGat7QcX8dW4V3BpC1FywoR6zqEMauVWOKFpZL
+#   dirPrefix: static
+#   urlPrefix: http://pictures.aimasa.club/static
+#   up_host: http://upload.qiniu.com
+#   local_dir: qiniu_picture
+#   update_exist: true
+#   image: 
+#     folder: images
+#     extend: 
+#   js:
+#     folder: js
+#   css:
+#     folder: css
 
 # 自动生成sitemap
 sitemap: 
@@ -143,6 +143,12 @@ baidusitemap:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
-  type: git
-  repository: git@github.com:aimasa/aimasa.github.io.git
-  branch: master
+  type: qiniu
+  accessKey: toPCG9eKiXISfgSqMuEM9j-moNc9leo7Ui2dH3NM
+  secretKey: ctfGat7QcX8dW4V3BpC1FywoR6zqEMauVWOKFpZL
+  zone: Zone_z2
+  scope: zhyblog
+  # example http://www.a.com/,http://www.b.cn/
+  dirsToRefresh: https://aimasa.club/
+  expires: 3600
+  cover: true
